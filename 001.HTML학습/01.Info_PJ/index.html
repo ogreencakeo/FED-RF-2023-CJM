@@ -10,10 +10,27 @@
         <!-- ctrl shift a -->
         <!-- css 인터널방식 코딩영역 -->
         <style>
+            
+            /* css 영역내 주석문 */
+
+            /* 웹 폰트 CDN(Content Delevery Network) */
             @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gothic+A1&family=Gugi&family=Moirai+One&family=Noto+Sans+KR&display=swap');
 
-            /* css 영역내 주석문 */
-            
+            /* 
+                웹폰트 font-family 이름
+                font-family: 'Bagel Fat One', cursive;
+                font-family: 'Gothic A1', sans-serif;
+                font-family: 'Gugi', cursive;
+                font-family: 'Moirai One', cursive;
+                font-family: 'Noto Sans KR', sans-serif;
+            */
+
+            /* 
+                @import url(주소)
+                - 외부 CSS를 불러올때 사용하는 형식
+                - 외부 CSS 파일을 하나로 합칠 때 많이 사용함
+            */
+
             /* 
                 [ 모든 요소 공통 디자인 요소 : 박스모델 ]
                 1. 크기 : width 가로, height 세로
@@ -74,7 +91,15 @@
             #top h1{
                 color: #41779f;
                 font-size: 40px;
-                font-family: emoji;
+                font-weight: normal; /* fwn 글자두께 기본 */
+                
+                /* 
+                    font-family 글씨체
+                    값 - 콤마로 구분하여 우선순위 적용함
+                    (상위체가 없으면 하위체를 적용, 이도없으면 브라우저 기본체로 표시)
+                */
+                font-family: 'Gugi', cursive;
+                
                 /* 
                     text-shadow : 글자 그림자
                     값 x축 y축 블러(경계흐림) 색
@@ -88,7 +113,7 @@
                 color: #605d75;
                 text-decoration: none; /*tdn*/
                 font-size: 22px; /*fz*/
-                font-family: '굴림'; /*ff*/
+                font-family: 'Bagel Fat One', cursive; /*ff*/
                 vertical-align: -3px; /*va-3*/
                 /* 
                 vertical-align : 인라인요소간 세로 정렬
@@ -97,7 +122,8 @@
             }
 
             /* 가상 클래스 : hover 마우스오버시 */
-            #gnb a:hover {
+            /* a+a는 앞에 a요소가 있는 형제 a요소를 선택 결과적으로 첫 번째 a요소가 선택되지 않는다. */
+            #gnb a+a:hover {
                 /* a 태그인데 클래스가 haha인 것 */
                 color: honeydew; /* alt shift a */
                 /* 글자 데코 : 윗줄 물결 모양 */
@@ -113,6 +139,11 @@
             /* 2. 메인영역 */
             #cont {
                 margin: 20px auto;
+            }
+
+            /*  */
+            footer address {
+                
             }
         </style>
                 
