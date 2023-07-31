@@ -55,12 +55,20 @@
                 (div.mymy -> div인데 클래스가 mymy)
             */
 
+            /* 요소의 초기화 
+            - 기존에 기본셋팅값중 마진/패진 초기화 */
+            html, body, h1, h2{
+                margin: 0;
+                padding: 0;
+            }
+
             /* 레이아웃 박스 공통 디자인 */
             .bx{
                 /* 크기 : w800 -> 가로크기 */
                 width: 800px;
                 /* 외곽선 */
-                border: 4px double darkcyan;
+                /* border: 4px double darkcyan; */
+                border: 3px dashed darkcyan;
                 /* 패딩 */
                 padding: 20px;
                 /* 마진 : 마영오씨를 무대 중앙으로 모시겠습니다. */
@@ -75,6 +83,9 @@
                 */
                 /* 텍스트 중앙 : tac */
                 text-align: center;
+                /* 둥근 모서리 : border-radius */
+                border-radius: 15px;
+
             }
 
             /* 메인 이미지 */
@@ -106,6 +117,7 @@
                     -> 콤마로 다중 그림자 사용 가능!
                 */
                 text-shadow: 2px 2px 2px #0000008c;
+                margin: 10px 0;
             }
      
             /* 메뉴링크 */
