@@ -10,6 +10,8 @@
         <!-- ctrl shift a -->
         <!-- css 인터널방식 코딩영역 -->
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gothic+A1&family=Gugi&family=Moirai+One&family=Noto+Sans+KR&display=swap');
+
             /* css 영역내 주석문 */
             
             /* 
@@ -73,15 +75,21 @@
                 color: #41779f;
                 font-size: 40px;
                 font-family: emoji;
+                /* 
+                    text-shadow : 글자 그림자
+                    값 x축 y축 블러(경계흐림) 색
+                    -> 콤마로 다중 그림자 사용 가능!
+                */
+                text-shadow: 2px 2px 2px #0000008c;
             }
      
             /* 메뉴링크 */
             #gnb a {
                 color: #605d75;
-                text-decoration: none;
-                font-size: 24px;
-                font-family: '굴림';
-                vertical-align: -3px;
+                text-decoration: none; /*tdn*/
+                font-size: 22px; /*fz*/
+                font-family: '굴림'; /*ff*/
+                vertical-align: -3px; /*va-3*/
                 /* 
                 vertical-align : 인라인요소간 세로 정렬
                 값 - top / bottom / middle / baseline / 수치
@@ -89,8 +97,12 @@
             }
 
             /* 가상 클래스 : hover 마우스오버시 */
-            #gnb a {
-                
+            #gnb a:hover {
+                /* a 태그인데 클래스가 haha인 것 */
+                color: honeydew; /* alt shift a */
+                /* 글자 데코 : 윗줄 물결 모양 */
+                text-decoration: overline;
+                text-decoration-style: wavy;
             }   
 
             /* 로고 이미지 */
