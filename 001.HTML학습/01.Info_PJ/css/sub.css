@@ -3,3 +3,13 @@
 
 /* 공통외부 CSS 합치기 */
 @import url(./common.css);
+
+/* 서브 타이틀 */
+h2.stit {
+    color: #bacddd;
+    font-size: 39px;
+    font-family: 'Bagel Fat One', cursive;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: 2px 2px 2px #000000c7;
+}
