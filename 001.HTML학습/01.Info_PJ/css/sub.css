@@ -4,6 +4,11 @@
 /* 공통외부 CSS 합치기 */
 @import url(./common.css);
 
+/* 서브페이지 공통 글자 설정 */
+#cont {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 /* 서브 타이틀 */
 h2.stit {
     color: #bacddd;
@@ -88,4 +93,9 @@ h2.st5{
         이미지는 기본 비율을 가지고 있어서 가로, 세로 중 한쪽만 크기를 주면 나머지 방향은 자동으로 비율을 유지한다.
         가로, 세로를 다 주면 비율이 깨짐
     */
+}
+
+/* 기사 타이틀 */
+.arti{
+    font-size: 30px;
 }
