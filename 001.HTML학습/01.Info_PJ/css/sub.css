@@ -64,14 +64,14 @@ center/cover;
     margin-bottom: 30px;
 }
 /* IT/과학 배경이미지 */
-.st4{
+h2.st4{
     /* 배경 이미지 */
     background-image: url(../images/afig4.jpg);
 }
 
 /* TV/연예 배경이미지 */
 /* .st5의 적용우선순위를 높이기 위해 부모요소를 써줌 */
-#cont .st5{
+h2.st5{
     /* 배경 이미지 */
     background-image: url(../images/afig5.jpg);
     /* 배경 위치 변경 - y축                                                                                                                                                                                                */
@@ -79,4 +79,13 @@ center/cover;
 
     padding: 80px;
     color: blueviolet;
+}
+
+/* 언론사 로고 */
+.prlogo img {
+    height: 32px;
+    /* 
+        이미지는 기본 비율을 가지고 있어서 가로, 세로 중 한쪽만 크기를 주면 나머지 방향은 자동으로 비율을 유지한다.
+        가로, 세로를 다 주면 비율이 깨짐
+    */
 }
