@@ -12,4 +12,12 @@ h2.stit {
     font-weight: normal;
     text-align: center;
     text-shadow: 2px 2px 2px #000000c7;
+
+    outline: 1px solid red;
+    padding: 40px;
+    
+    /* 배경 넣기 */
+    background: url(../images/afig4.jpg) no-repeat 
+center/cover;
+    /* background: 색이반고윙/크; */
 }
