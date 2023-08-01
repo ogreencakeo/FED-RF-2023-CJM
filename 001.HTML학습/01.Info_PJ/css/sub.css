@@ -16,8 +16,35 @@ h2.stit {
     outline: 1px solid red;
     padding: 40px;
     
-    /* 배경 넣기 */
-    background: url(../images/afig4.jpg) no-repeat 
+    /* 배경 넣기 : 한 번에 쓰기 */
+    /* background: url(../images/afig4.jpg) no-repeat 
 center/cover;
-    /* background: 색이반고윙/크; */
+    /* background: 색이반고윙/크; 
+        배경색 이미지 반복 고정 위치/크기
+    */
+
+    /* 배경넣기 : 속성별 쓰기 */
+    /* 반복 여부 */
+    background-repeat: no-repeat;
+    /* 배경 위치 : 가로 세로 */
+    background-position: center;
+    /* 배경 크기 : 가로 세로 (cover - 박스채우기) */
+    background-size: cover;
+}
+/* IT/과학 배경이미지 */
+.st4{
+    /* 배경 이미지 */
+    background-image: url(../images/afig4.jpg);
+}
+
+/* TV/연예 배경이미지 */
+/* .st5의 적용우선순위를 높이기 위해 부모요소를 써줌 */
+#cont .st5{
+    /* 배경 이미지 */
+    background-image: url(../images/afig5.jpg);
+    /* 배경 위치 변경 - y축 */
+    background-position-y: -120px;
+
+    padding: 80px;
+    color: blueviolet;
 }
