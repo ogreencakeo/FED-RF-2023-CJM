@@ -160,9 +160,32 @@ h2.st5{
 }
 
 .alink a{
+    font-size: 20px;
+
+    /* 디자인 적용을 위해 display 변경하기 */
     display: inline-block;
-    width: 70px;
-    height: 70px;
+    
+    width: 100px;
+    height: 100px;
     border: 1px solid darkcyan;
     border-radius: 50%; /* 원형 */
+    
+    /* 줄간격으로 세로 글자 중앙 
+    - 높이값과 같음 */
+    line-height: 100px;
+    
+    /* 가로 정렬 - 중앙 */
+    text-align: center;
+    
+    /* a 요소 기본 글자색 변경, 밑줄 변경 */
+    color: #000;
+    background-color: #bacddd;
+    text-decoration: none;
+}
+
+/* 마우스 오버시 변경 */
+.alink a:hover{
+    color: rgb(253, 6, 88);
+    background-color: khaki;
+    box-shadow: 0 0 10px 5px steelblue;
 }
