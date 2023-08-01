@@ -12,8 +12,23 @@ h2.stit {
     font-weight: normal;
     text-align: center;
     text-shadow: 2px 2px 2px #000000c7;
+    
+    border-radius: 10px;
 
-    outline: 1px solid red;
+    /* 
+        [ outline 요소 ]
+        box모델의 필수속성은 아니지만
+        박스의 외곽선을 표현해주며
+        박스자체에 크기에 영향을 주지 않음
+        outline : 두께 종류 색상
+        
+        -> border와 셋팅이 같음
+        단, border-radius 둥근모서리는 보더만 적용되었으나 아웃트라인도 됨 이제는...
+
+        -> 주로 사용되는 예는 input 입력창에서 포커스가 갈 경우 외곽선표시가 됨
+    */
+
+    /* outline: 1px solid red; */
     padding: 40px;
     
     /* 배경 넣기 : 한 번에 쓰기 */
@@ -30,6 +45,9 @@ center/cover;
     background-position: center;
     /* 배경 크기 : 가로 세로 (cover - 박스채우기) */
     background-size: cover;
+
+    box-shadow: 4px 4px 4px #000;
+    margin-bottom: 30px;
 }
 /* IT/과학 배경이미지 */
 .st4{
