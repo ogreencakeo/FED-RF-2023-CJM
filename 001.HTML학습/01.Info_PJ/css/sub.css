@@ -125,12 +125,17 @@ h2.st5{
     
     /* 자간 : ls */
     letter-spacing: 2px;
-    
     /* 단어 간격 */
     word-spacing: 1px;
-    
     /* 양쪽 정렬 */
     text-align: justify;
+    /* 줄 간격 lh */
+    /* 글자 라인간 간격을 조정함
+    숫자만 쓰면 배수임 (글자 높이값에 대한 배수) 
+    단위를 쓰면 단위에 맞게 줄간격 조정 
+    -> 줄간격의 응용은 버튼 등의 글자를 
+    세로 중앙에 오게 할때 박스 높이 값 만큼 준다 */
+    line-height: 2.1;
 }
 
 /* 유튜브 동영상박스 */
@@ -147,4 +152,17 @@ h2.st5{
     border : none;
     width: 100%;
     height: 100%;
+}
+
+/* 기사 원문 */
+.alink{
+     text-align: right;
+}
+
+.alink a{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border: 1px solid darkcyan;
+    border-radius: 50%; /* 원형 */
 }
