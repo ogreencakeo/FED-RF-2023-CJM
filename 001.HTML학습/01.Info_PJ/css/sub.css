@@ -42,7 +42,7 @@ center/cover;
 #cont .st5{
     /* 배경 이미지 */
     background-image: url(../images/afig5.jpg);
-    /* 배경 위치 변경 - y축 */
+    /* 배경 위치 변경 - y축                                                                                                                                                                                                */
     background-position-y: -120px;
 
     padding: 80px;
