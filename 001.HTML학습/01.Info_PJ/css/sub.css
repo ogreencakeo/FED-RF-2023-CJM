@@ -100,6 +100,35 @@ h2.st5{
     font-size: 30px;
 }
 
-h3.arti{
-    margin: 0;
+
+/* 기사 이미지 박스 */
+.afig{
+    margin-bottom: 40px;
+}
+
+/* 기사 이미지 */
+.afig img{
+    width: 100%;
+}
+
+/* 기사 이미지 설명 */
+.afig figcaption{
+    font-size: 15px;
+    text-align: center;
+    color: #767676;
+}
+
+/* 기사 문단 */
+.acont p{
+    font-size: 17px;
+    color: #303038;
+    
+    /* 자간 : ls */
+    letter-spacing: 2px;
+    
+    /* 단어 간격 */
+    word-spacing: 1px;
+    
+    /* 양쪽 정렬 */
+    text-align: justify;
 }
