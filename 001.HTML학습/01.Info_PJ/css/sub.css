@@ -150,6 +150,21 @@ h2.st5{
     text-shadow: 2px 2px 2px #87bcdf;
 }
 
+/* mark요소 디자인 변경하기 */
+.acont p mark{
+    display: block;
+    background-color: #ebebeb;
+    text-align: center;
+    margin: 15px auto;
+    padding: 20px 50px;
+    font-size: 20px;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    color: darkorange;
+    font-family: "Black And White Picture", "궁서";
+    width: 65%;
+}
+
 /* 유튜브 동영상박스 */
 .mvbx{
     height: 550px;
