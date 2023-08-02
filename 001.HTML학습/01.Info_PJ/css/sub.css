@@ -203,7 +203,16 @@ h2.st5{
     margin-left: 20px;
 }
 
+/* 주해 박스 */
+.desc{
+    border-top: 2px dashed #ccc;
+    padding: 20px 0;
+    border-bottom: 2px dashed #ccc;
+}
 
+.desc div{
+    padding: 15px 0;
+}
 /* article 제목 공통 */
 .atbx h5{
     /* 배경색 */
