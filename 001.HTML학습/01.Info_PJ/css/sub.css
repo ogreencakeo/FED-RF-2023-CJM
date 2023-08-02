@@ -183,7 +183,7 @@ h2.st5{
 
 /* 인용블록 영역 */
 .bqbx{
-    padding: 20px;
+    padding: 20px 0;
     margin: 20px 0 ;
     border-top: 2px dashed #ccc;
     border-bottom: 2px dashed #ccc;
@@ -208,6 +208,8 @@ h2.st5{
     border-top: 2px dashed #ccc;
     padding: 20px 0;
     border-bottom: 2px dashed #ccc;
+    font-size: 15px;
+    line-height: 2;
 }
 
 .desc div{
