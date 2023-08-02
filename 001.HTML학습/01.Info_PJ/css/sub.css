@@ -185,10 +185,24 @@ h2.st5{
 .bqbx{
     padding: 20px;
     margin: 20px 0 ;
+    border-top: 2px dashed #ccc;
+    border-bottom: 2px dashed #ccc;
+    font-size: 15px;
 }
+
 .bqbx blockquote{
-    
+    padding: 15px 0;
+    line-height: 2;
+
 }
+
+/* 인용블록 이미지 */
+.bqbx img{
+    float: right;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
 
 /* article 제목 공통 */
 .atbx h5{
