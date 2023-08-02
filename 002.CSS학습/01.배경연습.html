@@ -112,25 +112,29 @@
                     -> 위치값의 가로는 left, 세로는 center가 기본 값이다.
                     -> 위치나 크기의 특정 값을 쓰지 않으면 기본값이 적용된다.
                     -> 위치 값을 0 쓰면 기본 값인 left, center가 적용된다.
+                    -> 위치 값을 %로 쓰면 설정박스의 %위치를 중심으로 이미지가 배치
                 */
                 background: 
                     /* 도깨비 */
+                    url(./imgs/d01.png) no-repeat 50% 60% /100px, 
                     url(./imgs/dc1.png) no-repeat center/400px,
-                    url(./imgs/d01.png) no-repeat 50% 65.5% /100px, 
 
                     /* 지은탁 */
+                    url(./imgs/d02.png) no-repeat 94% 11% /100px,
                     url(./imgs/dc2.png) no-repeat right top/auto 150px,
-                    url(./imgs/d02.png) no-repeat 93% 17.5% /100px,
 
                     /* 저승사자 */
+                    url(./imgs/d03.png) no-repeat 7% bottom/100px,
                     url(./imgs/dc3.png) no-repeat left bottom/300px,
                     
                     /* 써니 */
+                    url(./imgs/d04.png) no-repeat 93% 55%/100px,
                     url(./imgs/dc4.png) no-repeat right/300px,
                     
                     /* 포스터 */
-                    url(./imgs/bg_mainvisual.jpg) no-repeat 0/50%;
-
+                    url(./imgs/bg_mainvisual.jpg) no-repeat 0/50%,
+                    /* 배경꽃 */
+                    url(./imgs/eachBG.jpg) no-repeat 50% top/40% 100%;
             }
         }
 
