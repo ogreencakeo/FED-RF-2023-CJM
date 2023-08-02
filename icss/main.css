@@ -6,3 +6,38 @@ html, body, h1, h2, h3, ul, ol{
     margin: 0;
     padding: 0;
 }
+
+/* 웹 폰트 CDN(Content Delevery Network) */
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gothic+A1&family=Gugi&family=Moirai+One&family=Noto+Sans+KR&display=swap');
+
+/* 
+    웹폰트 font-family 이름
+    font-family: 'Bagel Fat One', cursive;
+    font-family: 'Gothic A1', sans-serif;
+    font-family: 'Gugi', cursive;
+    font-family: 'Moirai One', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
+*/
+
+/* 전체 배경이미지 */
+body{
+    background: url(../imgs/worksbg.jpg) no-repeat fixed center/cover;
+}
+
+/* 전체 박스 */
+.wrap{
+    background-color: rgba(255, 255, 255, 0.514);
+    width: 80%;
+    border-radius: 20px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* 메인 타이틀 */
+.tit{
+    color: rgb(243, 134, 95);
+    text-align: center;
+    font-family: 'Gugi', cursive;
+    text-shadow: 1px 1px 5px rgb(94, 90, 84);
+    font-size: 30px;
+}
