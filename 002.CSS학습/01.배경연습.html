@@ -40,6 +40,50 @@
             -> url(경로) 
             -> 기본적으로 반복됨*/
             background-image: url(./imgs/bg_logo_a_01.png);
+
+            /* 3. 배경 반복여부 bgr 
+                  값 : 
+                  reapeat-x : x축 반복
+                  reapeat-y : y축 반복
+                  reapeat   : 모든축 반복 (기본값)
+            */
+            background-repeat: no-repeat;
+
+            /* 
+                4. 화면고정 bga 
+                배경 고정값은 fixed
+                고정의 의미는 스크롤시 보이는 화면 기준으로 배경 고정
+            */
+            background-attachment: fixed;
+
+            /* 
+                5. 배경 위치 bgp
+                값 : 가로 세로 
+                1. 가로방향 : left, center, right
+                2. 세로방향 : top, center, bottom
+                - 수치값 : px, %, em 등  여러단위 사용가능 
+                
+                -> 방향별 개별속성은?
+                background-position-x: 값;
+                background-position-y: 값;
+            */
+            background-position: right bottom;
+
+            /* 
+                6. 배경이미지 크기 bgz :  가로 세로
+                
+                정해진 값 
+                    1) contain 이미지가 화면 채워지나 모두 보임
+                    2) cover은 이미지를 박스에 모두 채움 (잘리는 부분 있음)
+                
+                수치 값 
+                    가로 세로 중 하나만 주면 이미지가 비율 유지함 
+            */
+            /* background-size: contain; */
+            /* background-size: cover; */
+            background-size: 200px;
+
+
         }
     </style>
 </head>
