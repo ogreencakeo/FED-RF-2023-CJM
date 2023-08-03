@@ -265,3 +265,18 @@ h2.st5{
     background-color: khaki;
     box-shadow: 0 0 10px 5px steelblue;
 }
+
+/* 오늘의 작품&느낌 */
+.work{
+    text-align: center;
+    /* 배경색 */
+    background-color: lightpink;
+
+}
+
+/* 뉴스 파트 공통 class */
+.nbx{
+    border-top: 2px dashed #ccc;
+    margin: 20px 0;
+    padding: 20px 0;
+}
