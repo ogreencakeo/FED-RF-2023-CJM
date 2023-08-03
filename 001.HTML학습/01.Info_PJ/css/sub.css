@@ -382,4 +382,23 @@ h2.st5{
     [ CSS 가상 요소 : before, afer]
     - 모든 요소는 맨 앞과 맨 뒤에 가상 요소를 사용할 수 있다.
     - 맨앞은 before, 맨 뒤는 after
+    - 필수 속성 : content
+    - 이미지는 url() 사용
 */
+
+/* 분아별 뉴스 */
+.snews dt{
+    font-family: 'Bagel Fat One', cursive;
+    font-size: 28px;
+    background-color: lightsteelblue;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 50%;
+    border: 4px dashed blue;
+    margin-top: 45px;
+}
+
+/* dd앞에 가상요소로 블릿 넣기 */
+.snews dd::before{
+    content: '👀';
+}
