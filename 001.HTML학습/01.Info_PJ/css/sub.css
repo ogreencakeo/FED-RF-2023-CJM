@@ -343,3 +343,30 @@ h2.st5{
     margin: 20px 0;
     padding: 20px 0;
 }
+
+/* 뉴스 파트 공통 a요소 */
+.nbx a{
+    /* 글자크기 fz */
+    font-size: 17px;
+    /* 줄 간격 lh */
+    line-height: 2.5;
+    /* 글자색 c */
+    color: #222;
+    /* 밑줄 없앰 */
+    text-decoration: none;
+}
+
+/* 공통 a 마우스 오버시 */
+.nbx a:hover{
+    color: yellowgreen;
+    text-shadow: 1px 1px 1px #000;
+}
+
+/* 뉴스 타이틀 공통 */
+.nbx h3{
+    font-family: 'Gugi', cursive;
+    font-weight: normal;
+    font-size: 30px;
+    background-image: linear-gradient(to right, rgb(240, 129, 129), rgb(236, 219, 187), rgba(226, 226, 30, 0.418), transparent);
+    padding: 10px;
+}
