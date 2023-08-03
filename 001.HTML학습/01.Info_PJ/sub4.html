@@ -264,6 +264,73 @@
                     </dd>
                 </dl>
               </article>
+
+              <!-- 
+                [ 테이블 요소 : table ]
+                table > tbody > tr > td
+
+                -> tbody는 안써도 브라우저가 그려준다!
+                -> 직계자식으로 선택할 경우
+                table > tr 로 선택하면 적용되지 않는
+                이유가 바로 이것이다!!!(주의!)
+                ___________________
+
+                table : 테이블 박스 부모요소
+                tr : 테이블 행요소(table row)
+                td : 테이블 데이터요소(table data)
+             -->
+
+             <!-- 사진뉴스 : table -->
+             <artice class="pnews">
+                <h3>사진뉴스</h3>
+                <!-- 3행 3열 구성 테이블 -->
+                <table>
+                    <tr>
+                        <td>1</td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/437/0000353805?ntype=RANKING&sid=001">방향 튼 태풍 카눈, 어디로?…한반도 '열기' 밀어올려 더 …</a>
+                        </td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/437/0000353805?ntype=RANKING&sid=001">
+                                <img src="./images/pnews1.jpg" alt="사진뉴스1">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/009/0005167648?ntype=RANKING&sid=001">“자격 박탈하라”…베트남 미인대회 우승한 20대女에 무슨일 …</a>
+                        </td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/009/0005167648?ntype=RANKING&sid=001">
+                                <img src="./images/pnews2.jpg" alt="사진뉴스2">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/047/0002401327?ntype=RANKING&sid=001">잼버리 개막식 중 83명 집단 탈진... 행사 중단에 비상 …</a>
+                        </td>
+                        <td>
+                            <a href="https://n.news.naver.com/mnews/ranking/article/047/0002401327?ntype=RANKING&sid=001">
+                                <img src="./images/pnews3.jpg" alt="사진뉴스3">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <a href=""></a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <img src="" alt="">
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+             </artice>
         </main>
         <!-- 3. 하단영역 : 회사 정보 -->
         <footer id="info" class="bx">
