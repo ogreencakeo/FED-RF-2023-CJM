@@ -370,3 +370,16 @@ h2.st5{
     background-image: linear-gradient(to right, rgb(240, 129, 129), rgb(236, 219, 187), rgba(226, 226, 30, 0.418), transparent);
     padding: 10px;
 }
+
+/* 주요뉴스 ul */
+.cnews ul li::before{
+    content: '📌';
+}
+.cnews ul li::after{
+    content: '💬';
+}
+/* 
+    [ CSS 가상 요소 : before, afer]
+    - 모든 요소는 맨 앞과 맨 뒤에 가상 요소를 사용할 수 있다.
+    - 맨앞은 before, 맨 뒤는 after
+*/
