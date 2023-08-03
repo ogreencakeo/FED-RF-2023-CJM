@@ -50,7 +50,7 @@
 
 /* 요소의 초기화 
 - 기존에 기본셋팅값중 마진/패진 초기화 */
-html, body, h1, h2, figure, blockquote {
+html, body, h1, h2, figure, blockquote, ul, ol, dl, dd {
     margin: 0;
     padding: 0;
 }
