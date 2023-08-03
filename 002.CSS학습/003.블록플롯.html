@@ -131,7 +131,11 @@
         }
 
         /* float해제용 가상요소 */
-        
+        .flclb::after{
+          content: '';
+          display: block;
+          clear: both;
+        }
        
 
         /* 
@@ -159,9 +163,18 @@
 
 
         /* 경우4 */
+        .case4 .bx{
+          float: left;
+        }
+        .case4{
+          overflow: hidden;
+        }
         
         /* 경우5 - .flclb로 clear:both처리함! */
-        
+        .case5 .bx{
+          float: right;
+
+        }
 
     </style>
 </head>
@@ -203,10 +216,10 @@
         부모요소에 가상요소 after를 사용하여 clear:both구현
     </h3>
     <div class="wrap flclb">
-        <div class="bx bx1"></div>
-        <div class="bx bx2"></div>
-        <div class="bx bx3"></div>
-        <div class="bx bx4"></div>
+        <div class="bx bx1 fll"></div>
+        <div class="bx bx2 flr"></div>
+        <div class="bx bx3 clb fll"></div>
+        <div class="bx bx4 flr "></div>
     </div>
 
     <h2>경우4</h2>
@@ -226,7 +239,7 @@
         모든 .bx박스에 float:right 적용하기(순서역순!) <br>
         부모박스에 가상요소 after로 clear:both 적용하기
     </h3>
-    <div class="wrap case5">
+    <div class="wrap case5 flclb">
         <div class="bx bx1"></div>
         <div class="bx bx2"></div>
         <div class="bx bx3"></div>
