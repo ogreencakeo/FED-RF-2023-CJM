@@ -81,7 +81,7 @@
             /* :link 링크 최초상태 */
             h2 a:link {
                 /* 글자색 c */
-                
+                color: rgba(130, 100, 240, 0.555);
                 /* 밑줄없앰 : tdn */
                 
             }
@@ -89,24 +89,25 @@
             /* :hover 마우스 오버시 */
             h2 a:hover {
                 /* 글자색 c */
-                
+                color: rgba(228, 163, 24, 0.521);
                 /* 글자데코 - 윗줄 tdo */
-                
+                text-decoration: overline;
                 /* 글자데코 스타일 tdst */
-                
+                text-decoration-style: wavy;
             }
 
             /* :visited 클릭후 (방문후) 상태 */
-            /* h2 a:visited {
-            글자색
-            color: lime;
-        } */
+            h2 a:visited {
+            /* 글자색 */
+            /* color: rgba(255, 0, 212, 0.288); */
+        }
 
             /* :active 클릭 왼쪽버튼을 누른상태 */
             h2 a:active {
                 /* 글자색 c */
-                
+                color: red;
                 /* 글자그림자 : ts */
+            text-shadow: 1px 1px 1px #000;   
                 
             }
 
@@ -114,7 +115,7 @@
         :hover 정도만 변경해 준다! */
             h2 a {
                 /* 글자색 c */
-                color: darkorange;
+                /* color: darkorange; */
             }
 
             /* :focus 요소를 클릭/탭하여 초점이 올때 */
