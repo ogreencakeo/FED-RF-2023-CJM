@@ -107,8 +107,7 @@
                 /* 글자색 c */
                 color: red;
                 /* 글자그림자 : ts */
-            text-shadow: 1px 1px 1px #000;   
-                
+                text-shadow: 1px 1px 1px #000;   
             }
 
             /* 요즘은 a요소에 바로 셋팅하고
@@ -120,6 +119,7 @@
 
             /* :focus 요소를 클릭/탭하여 초점이 올때 */
             h2 a:focus {
+                outline: 10px dotted red;
                 /* 외곽선 : outline -> ol
             값: 두께 종류 색상 (boder와 유사)
             -> 보더와 차이점은 주변에 영향을
@@ -192,21 +192,35 @@
 
             /* 1번 li */
             
+            .part1 li:first-child{
                 /* 글자크기 40px 
-            글자체 "궁서"
-            글자색 red */
-                
-            /* 오버시 글자크기 50px 
-            글자색 blueviolet */
+                글자체 "궁서"
+                글자색 red */
+                font: 40px "궁서";
+                color: red;
+            }  
+            
+            .part1 li:first-child:hover{
+                /* 오버시 글자크기 50px 
+                글자색 blueviolet */
+                font-size: 50px;
+                color: blueviolet;
+            }
             
 
             /* 2번째 li
             font - bold 30px 굴림 
             글자색 - lightcoral  */
+            .part1 li:nth-child(2){
+                font: bold 30px "굴림";
+                color: lightcoral;
+            }
             
             /* 오버시
             글자색 skyblue */
-            
+            .part1 li:nth-child(2):hover{
+                color: skyblue;
+            }
             
             /* 3번째 li 
             font - italic bold 24px 돋움
