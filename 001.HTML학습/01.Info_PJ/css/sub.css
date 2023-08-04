@@ -553,3 +553,9 @@ h2.st5{
     /* 줄간격 변경 */
     line-height: 1.7;
 }
+
+/* 앞에 tr이 있는 tr만 하위 td에 디자인 */
+.pnews tr+tr td{
+    /* 사이 구분선 보더 탑 bdt */
+    border-top: 2px solid #ccc;
+}
