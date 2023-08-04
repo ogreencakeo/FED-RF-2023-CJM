@@ -310,22 +310,43 @@
             /* 두번째 div
             font - 30px 궁서
             글자색 - blueviolet */
+            .part2 div:nth-of-type(2){
+                font: 30px "궁서";
+                color: blueviolet;
+            }
             
             /* 첫번째 i 
             font - bold 20px
-            글자색 - palevioletred */
+            글자색 - palevioletred 
+            -> 주의 : font 한번에 쓰기는 반드시 글자체가 있어야 적용됨 */
+            .part2 i:first-of-type{
+                font-weight: bold;
+                font-size: 20px;
+                color: palevioletred;
+            }
             
 
             /* 3번째 div이후 div형제요소 모두
             font - 궁서체, 글자색 - red */
-            /* .part2 div:nth-of-type(3)~div{ */
+            /* .part2 div:nth-of-type(3)~div{
+                font-family: "궁서체";
+                color: red;
+            } */
 
             /* 3번째 div이후 i형제요소 모두
             font - 궁서체, 글자색 - red */
-            /* .part2 div:nth-of-type(3)~i{ */
+            /* .part2 div:nth-of-type(3)~i{
+                font-family: "궁서체";
+                color: blue;
+            } */
+            
 
             /* 3번째 div이후 모든형제요소(*)
             font - 궁서체, 글자색 - red */
+            .part2 div:nth-of-type(3)~*{
+                font-family: "궁서체";
+                color: yellow;
+            }
             
             
 
