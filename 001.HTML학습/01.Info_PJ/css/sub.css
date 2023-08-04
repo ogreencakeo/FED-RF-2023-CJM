@@ -484,13 +484,19 @@ h2.st5{
 
 /* 사진뉴스 테이블 */
 .pnews table{
+    /* 최대 가로크기 지정 maw */
+    /* 테이블은 기본적으로 내용만큼 가로크기를 가지며
+    부모 박스의 크기가 작아질 경우 그 크기에 맞춰진다. */
+    max-width: 500px;
+    
     /* 테이블 중앙 - 마영오 */
     margin: 0 auto;
     /* 테두리 */
     border: 2px solid #ccc;
+    
     /* 테이블 기본 간격 없앰 */
-    border-collapse: collapse;
     /* 기본값은 seperate */
+    border-collapse: collapse;
 }
 
 /* 
