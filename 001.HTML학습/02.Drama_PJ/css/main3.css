@@ -25,9 +25,31 @@ h1.tit{
     font-weight: bold;
     color: #222;
     cursor: pointer;
+
+    /* 패딩 넣기 */
+    padding: 5px;
+    /* 패딩, 보더 크기 포함 보더박스 */
+    box-sizing: border-box;
 }
 .mn1{
     text-align: right;
+}
+
+/* 라디오 버튼 체크시 label 디자인 변경하기 */
+/* +는 바로 다음에 있는 형제요소 선택자 */
+.rdo:checked+.menu{
+    color: rgb(93, 138, 236);
+    text-decoration: overline;
+}
+
+/* 메뉴 사이 구분선 가상요소로 넣기 */
+/* 2번째 메뉴 label요소 */
+.mn2::before{
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 21px;
+    background-color: darkblue;
 }
 
 /* 드라마 테이블 박스 */
