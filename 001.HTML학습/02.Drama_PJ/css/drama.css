@@ -55,3 +55,19 @@ html,body{
 #drama td, #drama th{
     padding: 8px 10px;
 }
+
+/* td에 밑줄 넣기 */
+#drama tbody td{
+    border-bottom: 1px solid #ccc;
+}
+
+/* th에 윗줄, 아랫줄 두꺼운 보더 넣기 */
+#drama th{
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+}
+
+/* tbody의 마지막 tr의 td 아랫줄 두꺼운 보더 */
+#drama tbody tr:last-child td{
+    border-bottom: 2px solid #555;
+}
