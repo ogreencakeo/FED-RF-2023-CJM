@@ -22,10 +22,35 @@
             /* 위치이동 값 */
             top: 50px;
             left: 50px;
+            /************************************************* 
+                [ 2. relative 포지션 ]
+                - 렐러티브 라고 읽어주세요
+                
+                1. 위치이동 속성이 적용된다
+                2. 위치이동의 기준은 원래있던 위치임
+                    (그래서 상대적인 즉, relative라는 단어를 사용함)
+                3. 이동시 다른 요소에 영향이 없이 겹쳐질 수 있다.
+                4. 원래 있던 위치는 그대로 보전된다.
+                    (의미 : 기존 위치가 보존되기 때문에 본래의 디자인이 망가지지 않는다.)
+                5. 위치값 설정시 2가지 기준으로만 셋팅한다.
+                    - 위, 아래 중 하나
+                    - 좌, 우 중 하나
+                    top, left / top, right
+                    bottom left, bottom right 
+            *************************************************/
             
             background: url(./images/ab5.jpg)
             no-repeat center/cover;
             
+        }
+
+        /* 또 하나의 렐러티브 */
+        #r2{
+            position: relative;
+            bottom: 77px;
+            right: -124px;
+            background: url(./images/ab5.jpg)
+            no-repeat center/cover;
         }
 
         #s1{
