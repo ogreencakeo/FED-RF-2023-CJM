@@ -37,6 +37,24 @@
                     - 좌, 우 중 하나
                     top, left / top, right
                     bottom left, bottom right 
+                6. 마진은 그대로 적용된다.
+                (다른 static한 요소에 영향을 미친다.)
+                -> 본래 위치에 마진이 적용된 것이므로 상대적인 이동값도 변경된 것으로 보인다.
+                7. relative는 위치이동 값을 사용하지 않으면 static과 똑같은 특징을 가진다.
+                8. relative는 겹쳐질 수 있으므로 위, 아래관계가 성립된다.
+
+                기본적인 위 아래 관계는 아래와 같다
+                (1) static보다는 항상 위
+                (2) static 포지션이 아닌경우 나중에 그려진 요소가 위
+                    (손 놓고 손등 때리기)
+                (3) z-index 속성으로 숫자가 크면 위
+
+                [z-index란 ? ]- static이 아닌 포지션만 적용됨
+                - 겹치는 포지션을 준 경우 위치 순서를 정하여 디스플레이를 변경하는 속성
+                - z는 화면 방향의 축을 의미한다
+                - 기본값은 0 -> 같은 층에 있는 모든 요소는 0
+                - 숫자를 비교하여 큰 숫자가 위에 위치함
+
             *************************************************/
             
             background: url(./images/ab5.jpg)
@@ -49,7 +67,7 @@
             position: relative;
             bottom: 77px;
             right: -124px;
-            background: url(./images/ab5.jpg)
+            background: url(./images/ab4.jpg)
             no-repeat center/cover;
         }
 
