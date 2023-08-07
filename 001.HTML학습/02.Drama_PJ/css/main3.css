@@ -10,10 +10,15 @@ h1.tit{
     /* 글자그림자: x y 블러 색 */
 }
 /* 라디오버튼 숨기기 */
+.rdo{
+    display: none;
+}
 
 /* 메뉴 */
 .menu{
-    
+    /* 디자인 적용을 위해 display변경 */
+    display: inline-block;
+    /* 50%로 쓰면 엔터간극 때문에 아래로 떨어진다. */
     width: 49%;
     margin-bottom: 50px;
     font-size: 24px;
