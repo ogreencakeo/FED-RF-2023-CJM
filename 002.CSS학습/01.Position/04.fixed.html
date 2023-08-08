@@ -48,7 +48,8 @@
                     반면에 fixed 포지션은 요소를 고정함 )
             *******************************************************/
 
-            background-color: lightblue;
+            background : url(./images/ab0.jpg) repeat-x 0/auto 100%;
+            color: #fff;
             z-index: 999;
             width: 100%;
             height: 200px;
@@ -251,20 +252,62 @@
             height: 100px;
             border-radius: 50%;
         }
+        
+        /* 고정 포스터 박스 */
+        .fixedPoster{
+            position: fixed;
+            top: 250px;
+            right: 0;
+            z-index: 9999;
+            /* 트랜지션 trs */
+            transition: .3s;
+        }
+
+        /* 글자 span */
+        .fixedPoster span{
+            /* 부모는? .fixedPoster */
+            position: absolute;
+            top: 0;
+            left: -50px;
+            width: 50px;
+            height: 100%;
+
+            background-color: lightblue;
+            /* 둥근 모서리 : 왼쪽 위부터 시계 방향 셋팅 가능 */
+            border-radius: 15px 0 0 15px;
+
+            /* 글자 세로 모드 */
+            /* vertical-lr 세로방향 왼쪽에서 오른쪽으로 */
+            writing-mode: vertical-lr;
+
+        font-size: 25px;
+        text-align: center;
+        padding-left: 20px;
+        letter-spacing: 10px;
+
+        }
     </style>
 </head>
 <body>
     <div class="bx" id="r1">r1</div>
     <div class="bx" id="s1">s1</div>
+    <!-- 젠틀 fixed -->
+    <div class="fxbx f1">
+        나는 젠틀 fixed다
+    </div>
+    
+    <!-- 포스터 고정 박스 -->
+    <div class="fixedPoster">
+        <img src="./images/ab0.jpg" alt="포스터">
+        <span>포스터 보기</span>
+    </div>
+
     <div class="bx" id="a1" title="나는 젠틀앱솔루트다">a1</div>
     <div class="bx" id="r2">r2</div>
     <div class="bx" id="s2">s2</div>
     <div class="bx" id="a2" title="나는 보이는 화면이 기준이다 부모가 없어서">a2</div>
     
     <!-- 화면고정 fixed 포지션 박스 -->
-    <div class="fxbx f1">
-        나는 젠틀 fixed다
-    </div>
     <div class="fxbx f2">
         나는 fixed다! 부모는 화면이다!
     </div>
