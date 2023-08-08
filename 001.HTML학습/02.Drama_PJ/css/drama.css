@@ -61,10 +61,16 @@ html,body{
     border-bottom: 1px solid #ccc;
 }
 
-/* th에 윗줄, 아랫줄 두꺼운 보더 넣기 */
+/* tbody의 첫 번째 tr의 첫 번째 td 중앙정렬 */
+#drama tbody tr td:first-child{
+    text-align: center;
+}
+
+/* th에 윗줄, 아랫줄 두꺼운 보더 넣기 + 배경색 */
 #drama th{
     border-top: 2px solid #555;
     border-bottom: 2px solid #555;
+    background-color: #efeaea;
 }
 
 /* tbody의 마지막 tr의 td 아랫줄 두꺼운 보더 */
