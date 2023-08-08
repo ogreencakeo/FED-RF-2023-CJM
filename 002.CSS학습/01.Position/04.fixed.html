@@ -257,10 +257,15 @@
         .fixedPoster{
             position: fixed;
             top: 250px;
-            right: 0;
+            right: -119px;
             z-index: 9999;
             /* 트랜지션 trs */
             transition: .3s;
+        }
+
+        /* 박스에 오버시 right 값 변경으로 보이기 */
+        .fixedPoster:hover{
+            right: 0;
         }
 
         /* 글자 span */
@@ -280,11 +285,17 @@
             /* vertical-lr 세로방향 왼쪽에서 오른쪽으로 */
             writing-mode: vertical-lr;
 
-        font-size: 25px;
-        text-align: center;
-        padding-left: 20px;
-        letter-spacing: 10px;
+            font-size: 22px;
+            text-align: center;
+            padding-left: 20px;
+            letter-spacing: 10px;
+        }
 
+        /* 포스터 이미지 */
+        .fixedPoster img{
+            height: 200px;
+            /* 하단간극 */
+            vertical-align: middle;
         }
     </style>
 </head>
