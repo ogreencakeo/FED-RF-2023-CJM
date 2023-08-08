@@ -296,6 +296,23 @@
             /* 하단간극 */
             vertical-align: middle;
         }
+
+        /* 구간적용 스티키 */
+        .stickyBox{
+            height: 1000px;
+            padding-top: 500px;
+            border: 5px dashed darkblue;
+        }
+
+        /* 스티키박스 */
+        .iambox{
+            position: sticky;
+            top: 500px;
+            width: 200px;
+            height: 200px;
+            border: 5px dotted red;
+        }
+
     </style>
 </head>
 <body>
@@ -334,7 +351,6 @@
         <img src="./images/ab4.jpg" alt="닥스">
     </div>
 
-
     <!--  부모를 찾는 앱솔루트 -->
     <div class="bx2 s5">s5
         <div class="bx2 s6">s6
@@ -348,6 +364,17 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- sticky 구간 적용 박스 -->
+    <div class="stickyBox">
+        <div class="iambox"></div>
+    </div>
+    <div class="stickyBox">
+        <div class="iambox"></div>
+    </div>
+    <div class="stickyBox">
+        <div class="iambox"></div>
     </div>
 
     <!-- 
