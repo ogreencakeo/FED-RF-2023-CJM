@@ -38,7 +38,7 @@
                 (2) 위치 이동값을 사용한 경우
                     - 위치 이동값을 사용한 부분에 대해서만 앱솔루트가 위치를 잡을 때 기준이 되는 부모는 static이 아닌요소가 부모다.   
                     -> static이 아닌 포지션이란?
-                    relative / absolute / fixed / sticky
+                        relative / absolute / fixed / sticky
                     -> 위치이동값을 쓰지 않은 부분에 대해서는 부모를 찾지 않는다. (젠틀함)
                     -> 부모자격이 있는 부모요소들 중 가장 가까운 것이 부모다.
                     -> 만약 부모자격이 모두 없으면 보이는 화면(window)을 기준한다.
@@ -159,6 +159,30 @@
             /* 나의 부모는? .s7 */
             border: 4px dotted red;
         }
+
+        /* 앱솔루트 : 판타롱스타킹  */
+        .a5{
+            position: absolute; /*poa*/
+            /* 크기를 안주면 내용만큼 늘어남 */
+            top: 20%;
+            right: 10%;
+            /* 부모는? */
+
+            outline: 2px solid red;
+        }
+
+        /* 블록박스 내의 단독 이미지 */
+        .a5 img{
+            vertical-align: top;
+            /* 
+                박스에 단일한 이미지를 넣을 경우
+                하단에 자연스런 간극이 존재한다(4px)
+                이것을 없애려면 verticle-align
+                인라인 요소간 세로 정렬 속성의 값으로 top/bottom/middle 중 어떤 것을 
+                써도 하단간극이 사라진다. 
+            */
+        }
+
     </style>
 </head>
 <body>
@@ -169,6 +193,11 @@
     <div class="bx" id="s2">s2</div>
     <div class="bx" id="a2" title="나는 보이는 화면이 기준이다 부모가 없어서">a2</div>
     
+    <!--  앱솔루트 : 판타롱스타킹 -->
+    <div class="a5" title="앱솔루트 판타롱 스타킹">
+        <img src="./images/ab2.jpg" alt="타노스">
+    </div>
+
     <!--  부모를 찾는 앱솔루트 -->
     <div class="bx2 s5">s5
         <div class="bx2 s6">s6
