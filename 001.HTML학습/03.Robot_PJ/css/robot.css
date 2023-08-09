@@ -69,6 +69,8 @@ body *{
     background: url(../images/metal01.jpg) no-repeat center/cover;
     /* 둥근 모서리 */
     border-radius: 100px 100px 80px 80px;
+    /* .nody보다 위 */
+    z-index: 1;
 }
 
 /* 가상요소로 머리에 가발 씌우기 */
@@ -97,8 +99,9 @@ body *{
 
 }
 
-/* 머리 하위요소 공통 */
-.head>div{
+/* 머리/몸통 하위요소 공통 */
+.head>div, 
+.body>div{
     /* 모든 직계 하위요소는 앱솔루트 */
     position: absolute;
 }
@@ -177,6 +180,80 @@ body *{
     border-radius: 0 20px 20px 0;
 }
 /* 2-1-2. 몸통 */
+.body{
+    /* 부모자격 -하위직계자식 div 앱솔루트 */
+    position: relative;
+    width: 250px;
+    height: 400px;
+    /* 무대중앙 */
+    margin: 0 auto;
+    margin-top: 50px;
+
+}
+
+/* 목 */
+.neck{
+    top: -64px;
+    /* 중앙보내기 원리 부모박스의 50%보내고 자신 크기의 절반 빼기
+    자신 크기는 left는 width 
+    top은 height이다. */
+    left: calc(50% - 50px/2);
+    width: 50px;
+    height: 70px;
+    border-radius: 20px;
+}
+/* 팔 공통 */
+.arm{
+    width: 50px;
+    height: 200px;
+}
+/* 왼팔 */
+.arm1{
+    left: -50px;
+}
+/* 오른팔 */
+.arm2{
+    right: -50px;
+}
+/* 다리 공통 */
+.leg{
+    /* 부모박스 높이만큼 나감
+    아래쪽 바깥에 위치함 */
+    top: 100%;
+    width: 80px;
+    height: 250px;
+}
+/* 왼다리 */
+.leg1{
+    left: 0;
+}
+/* 오른다리 */
+.leg2{
+    right: 0;
+}
+/* 어깨 공통 */
+.shd{
+    top: -15px;
+    width: 80px;
+    height: 80px;
+}
+/* 왼어깨 */
+.shd1{
+    left: -65px;
+    /* 
+        [ 둥근 모서리 값 설정 ]
+        1. 1개 - 네 방향
+        2. 2개 - 왼위 오른아래 / 오른위 왼아래
+        3. 3개 - 왼위 / 오른위 왼아래 / 오른아래
+        4. 4개 - 왼위 / 오른위 / 오른아래/ 왼아래
+    */
+    border-radius: 50% 0 0 50%;
+}
+/* 오른어깨 */
+.shd2{
+    right: -65px;
+    border-radius: 0 50% 50% 0;
+}
 /* 2-2. 로봇 설명 박스 */
 /********************** 3. 하단영역 **********************/
 /* 3-1. 회사 정보 */
