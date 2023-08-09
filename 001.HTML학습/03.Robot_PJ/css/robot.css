@@ -51,7 +51,7 @@ body *{
 /* 2-1. 로봇박스 */
 .box-robot{
     /* 패딩 : 위, 양쪽, 아래 */
-    padding: 200px 0 50px ;
+    padding: 200px 0 528px ;
     /* 마진 탑 */
     margin-top: 30px;
 }
@@ -183,12 +183,36 @@ body *{
 .body{
     /* 부모자격 -하위직계자식 div 앱솔루트 */
     position: relative;
-    width: 250px;
+    width: 220px;
     height: 400px;
     /* 무대중앙 */
     margin: 0 auto;
     margin-top: 50px;
 
+}
+
+/* 몸통의 가상요소로 상체 만들기 */
+.body::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: -18px;
+    width: 257px;
+    height: 200px;
+    background-image: linear-gradient(to top, #99bd90, #8e99df);
+}
+
+/* 몸통의 가상요소로 하체 만들기 */
+.body::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: -18px;
+    width: 257px;
+    height: 140px;
+    background-image: linear-gradient(to top, #fdea97, #f18787);
 }
 
 /* 목 */
@@ -206,30 +230,55 @@ body *{
 .arm{
     width: 50px;
     height: 200px;
+    border-radius: 20%;
+}
+/* 팔 하단부분 공통 */
+.arm span{
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    /* 부모는? .arm */
+
+    border-radius: 20%;
 }
 /* 왼팔 */
 .arm1{
-    left: -50px;
+    left: -70px;
 }
 /* 오른팔 */
 .arm2{
-    right: -50px;
+    right: -70px;
+}
+/* 다리 하단부분 공통 */
+.leg span{
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    /* 부모는? .leg */
+
+    border-radius: 20%;
 }
 /* 다리 공통 */
 .leg{
     /* 부모박스 높이만큼 나감
     아래쪽 바깥에 위치함 */
-    top: 100%;
+    top: 95%;
     width: 80px;
     height: 250px;
+
+    border-radius: 20%;
 }
 /* 왼다리 */
 .leg1{
-    left: 0;
+    left: 10px;
 }
 /* 오른다리 */
 .leg2{
-    right: 0;
+    right: 10px;
 }
 /* 어깨 공통 */
 .shd{
@@ -239,7 +288,7 @@ body *{
 }
 /* 왼어깨 */
 .shd1{
-    left: -65px;
+    left: -85px;
     /* 
         [ 둥근 모서리 값 설정 ]
         1. 1개 - 네 방향
@@ -251,7 +300,7 @@ body *{
 }
 /* 오른어깨 */
 .shd2{
-    right: -65px;
+    right: -85px;
     border-radius: 0 50% 50% 0;
 }
 /* 2-2. 로봇 설명 박스 */
