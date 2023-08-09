@@ -49,20 +49,60 @@ body *{
 
 /* 2-1-1. 머리 */
 .head{
+    /* 부모자격 : - 하위 앱솔루트 자식들 */
+    position: relative;
+    
     width: 250px;
     height: 250px;
     /* 무대중앙 마영오 */
     margin: 0 auto;
+    /* 메탈배경 */
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+    /* 둥근 모서리 */
+    border-radius: 100px 100px 80px 80px;
 }
+
+/* 가상요소로 머리에 가발 씌우기 */
+.head::before{
+    content: '';
+    /* 마치 div를 넣은 것 같다 */
+    display: block;
+    /* 앱솔루트 요소 */
+    position: absolute;
+    /* top: -77px;
+    left: -27px;
+    /* 부모는? .head */
+    /* width: 308px;
+    height: 250px; */
+
+    top : -63px;
+    left: -320px;
+    width: 888px;
+    height: 450px;
+
+    /* 배경 */
+    background: url(../images/hair5.png) no-repeat 0/100% 100%;
+}
+
+/* 머리 하위요소 공통 */
+.head>div{
+    /* 모든 직계 하위요소는 앱솔루트 */
+    position: absolute;
+}
+
 /* 눈 공통 */
 .eye{
+    /* 앱솔루트 top값은 공통임 */
+    top: 50px;
+    
     width: 50px;
     height: 50px;
-    
+
     /* 원형 */
     border-radius: 50%;
     /* 이중선 보더 */
     border: 4px double #000;
+    background-color: #fff;
 
     /* 공통 배경 */
     background-repeat: no-repeat;
@@ -71,13 +111,58 @@ body *{
 /* 외눈 */
 .eye1{
     background-image: url(../images/e1.jpg);
+    left: 50px;
 }
 /* 오른눈 */
 .eye2{
     background-image: url(../images/e2.jpg);
+    right: 50px;
 }
-
-
+/* 코 */
+.nose{
+    /* 위치 */
+    top: 101px;
+    right: 95px;
+    /* 크기 */
+    width: 60px;
+    height: 75px;
+    border-radius: 26px;
+    background: url(../images/nose.jpg) no-repeat -5px/cover;
+}
+/* 입 */
+.mouth{
+    /* 위치 */
+    bottom: -1px;
+    left: 64px;
+    /* 크기 */
+    width: 120px;
+    height: 68px;
+    background: url(../images/mouth.png) no-repeat 0/100%;
+}
+/* 귀 공통 */
+.ear{
+    /* 위치 */
+    top: 100px;
+    /* 크기 */
+    width: 50px;
+    height: 80px;
+    /* 배경 */
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+/* 왼귀 */
+.ear1{
+    /* 개별위치 왼쪽 바깥 */
+    left: -50px;
+    /* 둥근 모서리 : 왼쪽 위 왼쪽 아래 */
+    border-radius: 20px 0 0 20px;
+}
+/* 오른귀 */
+.ear2{
+    /* 개별위치 오른쪽 바깥 */
+    right: -50px;
+    /* 둥근 모서리 : 오른쪽 위 오른쪽 아래 */
+    border-radius: 0 20px 20px 0;
+}
 /* 2-1-2. 몸통 */
 /* 2-2. 로봇 설명 박스 */
 /********************** 3. 하단영역 **********************/
