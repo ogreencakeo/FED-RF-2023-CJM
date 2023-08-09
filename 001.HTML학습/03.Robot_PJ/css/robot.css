@@ -189,6 +189,10 @@ body *{
     margin: 0 auto;
     margin-top: 50px;
 
+    /* 배경이미지 사이즈 조정하기 
+    - 가로크기 80%,
+    세로크기 auto(생략가능) */
+    background-size: 80%;
 }
 
 /* 몸통의 가상요소로 상체 만들기 */
@@ -201,6 +205,7 @@ body *{
     width: 257px;
     height: 200px;
     background-image: linear-gradient(to top, #99bd90, #8e99df);
+    border-radius: 30px;
 }
 
 /* 몸통의 가상요소로 하체 만들기 */
@@ -213,6 +218,7 @@ body *{
     width: 257px;
     height: 140px;
     background-image: linear-gradient(to top, #fdea97, #f18787);
+    border-radius: 30px;
 }
 
 /* 목 */
@@ -226,22 +232,51 @@ body *{
     height: 70px;
     border-radius: 20px;
 }
+
 /* 팔 공통 */
 .arm{
     width: 50px;
     height: 200px;
     border-radius: 20%;
 }
+
 /* 팔 하단부분 공통 */
 .arm span{
     position: absolute;
+    /* 부모는? .arm */
     top: 100%;
     left: 10%;
     width: 80%;
     height: 80%;
-    /* 부모는? .arm */
 
     border-radius: 20%;
+}
+
+/* 가상요소로 손 만들기 */
+.arm span::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: calc(50% - 80px/2);
+    width: 80px;
+    height: 120px;
+    background: url(../images/hand_left.png) no-repeat 0/100%;
+    outline: 2px dashed lime;
+}
+
+/* 공통 left조정후 미세개별 위치 조정은 마진으로 하자 */
+
+
+/* 왼손가상요소 변경 */
+.arm1 span::after{
+    margin-left: 7px;
+}
+
+/* 오른팔 가상요소 변경 */
+.arm2 span::after{
+    margin-left: -6px;
+    background: url(../images/hand_right.png)no-repeat 0/100%;
 }
 /* 왼팔 */
 .arm1{
