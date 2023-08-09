@@ -69,19 +69,23 @@ body *{
     display: block;
     /* 앱솔루트 요소 */
     position: absolute;
-    /* top: -77px;
-    left: -27px;
     /* 부모는? .head */
-    /* width: 308px;
-    height: 250px; */
-
-    top : -63px;
-    left: -320px;
-    width: 888px;
+    top : -173px;
+    left: -120px;
+    width: 500px;
     height: 450px;
 
     /* 배경 */
-    background: url(../images/hair5.png) no-repeat 0/100% 100%;
+    background: url(../images/hair3.png) no-repeat 0/100% 100%;
+}
+/* 오버시 가상요소 가발 변경 */
+.head:hover::before{
+    top: -112px;
+    left: -111px;
+    width: 481px;
+    height: 450px;
+    background: url(../images/hair2.png) no-repeat 0/100% 100%;
+
 }
 
 /* 머리 하위요소 공통 */
