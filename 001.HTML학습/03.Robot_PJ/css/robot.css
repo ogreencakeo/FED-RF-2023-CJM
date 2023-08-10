@@ -432,6 +432,22 @@ body *{
     right: -85px;
     border-radius: 0 50% 50% 0;
 }
+
+/* TV */
+.tv{
+    top: 8%;
+    left: 50%;
+    /* left방향 중앙이동 */
+    transform: translateX(-50%);
+
+    width: 190px;
+    height: 130px;
+
+    /* 배경 이미지 */
+    background: url(../images/tv.jpg) no-repeat 0/100%;
+
+}
+
 /* 2-2. 로봇 설명 박스 */
 /********************** 3. 하단영역 **********************/
 /* 3-1. 회사 정보 */
