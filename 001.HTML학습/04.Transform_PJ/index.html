@@ -107,6 +107,7 @@
             */
             #trans3:hover img {
                 /* 트랜스폼 X축 위치이동 tftx */
+                transform: translateX(-50%);
                 
             }
             /* 
@@ -119,7 +120,7 @@
             */
             #trans4:hover img {
                 /* 트랜스폼 Y축 위치이동 tfty */
-                
+                transform: translateY(200%);
             }
             /* 
                 5. translate(x축거리,y축거리) - X,Y축이동
@@ -132,7 +133,7 @@
             */
             #trans5:hover img {
                 /* 트랜스폼 X,Y축 위치이동 tft */
-                
+                transform: translate(-500px, 300px);
             }
 
             /* 
@@ -144,9 +145,9 @@
             */
             #trans6:hover img {
                 /* 평면회전 tfr */
-                
+                transform: rotate(360deg);
                 /* 트랜지션 시간 늘리기 */
-                
+                transition-duration: 2s;
                 /* 
                 transition: 속시이지
                 개별 설정이 가능함!
@@ -170,6 +171,9 @@
                 - 가로값 : left, right, center, 몇px,몇%
                 - 세로값 : top, bottom, center, 몇px,몇%
                 - 기본값 : 가로, 세로 center임! */
+
+                /* transform-origin: right bottom; */
+                transform-origin: 20% 30%;
             }
 
             /* 
@@ -179,7 +183,7 @@
                 - 각도가 양수/음수에 따라 기울임 방향이 달라짐
             */
             #trans7:hover img {
-                
+                transform: skewY(20deg);
             }
 
             /* 
@@ -193,10 +197,11 @@
             */
             #trans8:hover img {
                 /* 트랜스폼 스케일 tf:s */
-                
+                transform: scale(2);
             }
             /* 초기배율설정 */
             #trans8 img {
+                transform: scale(.5);
                 
             }
 
@@ -207,7 +212,7 @@
 
             #trans9:hover img {
                 /* 다중 트랜스폼 tf */
-                
+                transform: scale(1.3) rotate(350deg) translate(-50px, -50px);
                 /* 트랜지션 시간늘리기 */
                 
             }
