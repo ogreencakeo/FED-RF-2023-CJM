@@ -1,0 +1,156 @@
+@charset "utf-8";
+
+/* Robot PJ 메인 CSS - robot.css */
+
+/* 웹폰트 CDN */
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Black+Ops+One&family=Chakra+Petch&family=Orbitron:wght@500&display=swap');
+
+/* 
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Black Ops One', cursive;
+    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+*/
+
+/* 초기화 */
+html, body, h1, h2, h3, ul, ol{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url(../images/bg.jpg) no-repeat fixed top/cover;
+}
+
+body *{
+    outline: 2px dashed yellow;
+}
+
+.metal1{
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+.metal2{
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+
+.main-aria{
+    overflow: hidden;
+}
+
+.box-robot{
+    margin-top: 30px;
+    padding: 200px 0 528px;
+}
+
+.head{
+    position: relative;
+
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    background: url(../images/metal01.jpg) no-repeat center/cover;
+
+    border-radius: 100px 100px 80px 80px;
+    z-index: 1;
+}
+
+.head::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -173px;
+    left: -111px;
+    width: 500px;
+    height: 450px;
+    background: url(../images/hair3.png) no-repeat 0/100% 100%;
+}
+
+.head:hover::before{
+    top: -112px;
+    left: -111px;
+    width: 481px;
+    height: 450px;
+    background: url(../images/hair2.png) no-repeat 0/100% 100%;
+}
+
+.head>div,
+.body>div{
+    position: absolute;
+}
+
+.eye{
+    top: 50px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 4px double #000;
+    background-color: #fff;
+    
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.eye1{
+    background-image: url(../images//e1.jpg);
+    left: 50px;
+}
+
+.eye2{
+    background-image: url(../images//e2.jpg);
+    right: 50px;
+}
+
+.nose{
+    top: 101px;
+    right: 95px;
+    width: 60px;
+    height: 75px;
+    border-radius: 26px;
+    background: url(../images/nose.jpg) no-repeat -5px/cover;
+}
+
+.mouth{
+    bottom: -1px;
+    right: calc(50% - 120px/2);
+    width: 120px;
+    height: 68px;
+    background: url(../images/mouth.png) no-repeat 0/100%;
+}
+
+.ear{
+    top: 100px;
+    width: 50px;
+    height: 80px;
+    background: url(../images/metal02.jpg) no-repeat center/cover;
+}
+
+.ear1{
+    left: -50px;
+    border-radius: 0 20px 20px 0;
+}
+
+.ear2{
+    right: -50px;
+    border-radius: 0 20px 20px 0;
+}
+
+.body{
+    position: relative;
+    width: 220px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    block-size: 80%;
+}
+.body::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: -18px;
+    width: 257px;
+    height: 200px;
+    background-image: linear-gradient(to top, #99bd90, #8e99df);
+    border-radius: 30px;
+}
