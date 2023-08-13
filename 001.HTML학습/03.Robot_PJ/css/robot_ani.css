@@ -67,13 +67,48 @@
 /* 로고 이동 키프레임 */
 @keyframes logo-ani {
     /* from{} - 첫 상태 이미 설정해서 생략 */
-    to{
+    60%{
         top: 50px;
         left: 50px;
         transform: scale(1);
     }
+    100%{
+        top: 50px;
+        left: 50px;
+        /* 처음 회전 상태 추가애니 rotate(-25deg) */
+        transform: scale(1) rotate(-25deg);
+    }
 }
-/* 로고 이동 호출하기 - 대상.logo */
+/* 로고 이동 + 오뚜기 애니 호출하기 - 대상.logo */
 .logo{
-    animation: logo-ani 2s cubic-bezier(0.89, -0.08, 0.1, 0.96) 3s forwards;
+    animation: 
+        /* 이동 스케일 애니 1초후 작동 */
+        logo-ani 1.5s ease-in-out 1s forwards,
+        /* 기울기 애니 : 4.5초후 직동 */
+        swing-ani .5s ease-in-out 2.5s infinite alternate;
 }
+
+/* 오뚜기 애니 키프레임 */
+@keyframes swing-ani{
+    from{
+        transform: rotate(-25deg);
+    }
+    to{ 
+        transform: rotate(25deg);
+    }
+}
+
+/* 로봇 위치/크기 변경 애니 */
+@keyframes robot-ani {
+    /* from{} */
+    to{
+        transform: translate(0,0) scale(1)
+    }
+}
+
+/* 로봇애니 호출 */
+.box-robot{
+    animation: robot-ani 5s linear 3s forwards;
+}
+
+/*  */
