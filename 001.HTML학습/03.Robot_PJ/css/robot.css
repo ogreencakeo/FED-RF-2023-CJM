@@ -493,7 +493,7 @@ body *{
     left: 50%;
     /* left방향 중앙이동 */
     transform: translateX(-50%) scale(5);
-    z-index: 99;
+    z-index: 10;
 
     width: 190px;
     height: 130px;
@@ -503,6 +503,14 @@ body *{
     /* 배경 이미지 */
     background: url(../images/tv.jpg) no-repeat 0/100%;
 
+    /* 트랜지션: 속시이지 */
+    transition: 1.2s ease-in-out;
+    
+}
+
+/* TV가 커지는 클래스 */
+.tv.on{
+    transform: translateX(-50%) scale(5);
 }
 
 /* 동영상 선택버튼 */
