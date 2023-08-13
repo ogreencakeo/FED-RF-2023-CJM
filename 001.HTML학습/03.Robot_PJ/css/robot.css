@@ -529,6 +529,9 @@ body *{
 
     width: 174px;
     height: 100px;
+
+    /* 아이프레임 기본보더 없앰 */
+    border: none;
 }
 
 /* 2-2. 로봇 설명 박스 */
