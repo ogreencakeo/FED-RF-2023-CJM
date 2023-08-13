@@ -80,6 +80,12 @@
                                 <iframe src="https://www.youtube.com/embed/xLD8oWRmlAE" id="mv"></iframe>
                                 <iframe src="https://www.youtube.com/embed/dqkfpKJw348" id="mv"></iframe>
                             </div>
+                            <!-- 조작버튼 박스 -->
+                            <div class="box-btn">
+                                <button onclick="바꿔()">ch1</button>
+                                <button onclick="바꿔()">ch2</button>
+                                <button onclick="바꿔()">ch3</button>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -117,6 +123,22 @@
             var 나야나 = 
                 document.getElementById('mv').src;
             // JS는 명령어 끝에 꼭 세미클론;
+
+            // 콘...........솔
+            // console
+            // 로..........그
+            //log
+            // 콘솔 위치 : F12 개발자모드 -> console탭
+
+            console.log("내꺼얌 : ", 나야나);
+
+            document.getElementById('mv').src = 
+                'https://www.youtube.com/embed/dqkfpKJw348';
+
+            function 바꿔(){
+                console.log("영상바꿔");
+            }
+
         </script>
     </body>
 </html>
