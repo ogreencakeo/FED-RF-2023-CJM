@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃 연습1</title>
+    <style>
+        body * {
+            outline: 2px dashed #ccc;
+        }
+        body > div > *{
+            outline-color: red;
+        }
+        /* 기본 초기화 */
+        html, body{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 공통 레이아웃 클래스 */
+        /* 속박스 */
+        .inner-box{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* 클리어 설정 가상요소 */
+        /* float에 의한 망가짐 방지 */
+        .inner-box::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        /* 파티션박스 */
+        .partbox{
+            float: left;
+        }
+        /* 개별영역 박스 */
+        .header{
+            height: 100px;
+        }
+        .banner{
+            height: 300px;
+        }
+        .main{
+            height: 200px;
+        }
+        .footer{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 웹디자인 기능사 1번 레이아웃 -->
+    <div id="header">
+        <header class="header inner-box">
+
+        </header>
+    </div>
+    <div id="banner">
+        <section class="banner inner-box"></section>
+    </div>
+    <div id="main">
+        <main class="main inner-box"></main>
+    </div>
+    <div id="footer">
+        <footer class="footer inner-box"></footer>
+    </div>
+</body>
+</html>
