@@ -22,7 +22,7 @@
         100%{끝CSS}
     }    
 
-    [ 여러장명 코딩법 ]
+    [ 여러장면 코딩법 ]
     @keyframes 키프레임명 {
         0%{시작CSS}
         10%{중간CSS}
@@ -75,5 +75,5 @@
 }
 /* 로고 이동 호출하기 - 대상.logo */
 .logo{
-    animation: logo-ani 1s cubic-bezier(0.91, 0.26, 0, 0.82) 3s forwards;
+    animation: logo-ani 2s cubic-bezier(0.89, -0.08, 0.1, 0.96) 3s forwards;
 }
