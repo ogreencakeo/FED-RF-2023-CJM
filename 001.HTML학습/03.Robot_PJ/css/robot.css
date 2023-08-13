@@ -505,7 +505,18 @@ body *{
 
 }
 
-/*  */
+/* 동영상 선택버튼 */
+.box-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 90px;
+}
+
+.box-btn button{
+    width: 100%
+}
 
 /* Screen */
 .screen{
