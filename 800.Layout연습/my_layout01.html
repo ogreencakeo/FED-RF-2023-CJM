@@ -38,7 +38,23 @@
             box-sizing: border-box;
             /* 내부 패딩 */
             padding: 15px;
+            /* 임시 보이게 보더 */
+            border: 2px dotted blue;
         }
+        /* 12그리드 클래스 */
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        /* 참고 : https://www.w3schools.com/css/css_rwd_grid.asp */
         /* 개별영역 박스 */
         .header{
             height: 100px;
@@ -58,17 +74,32 @@
     <!-- 웹디자인 기능사 1번 레이아웃 -->
     <div id="header">
         <header class="header inner-box">
-
+            <!-- 파트박스 2개 -->
+            <div class="partbox"></div>
+            <div class="partbox"></div>
         </header>
     </div>
     <div id="banner">
-        <section class="banner inner-box"></section>
+        <section class="banner inner-box">
+            <!-- 파트박스 1개 -->
+            <div class="partbox"></div>
+        </section>
     </div>
     <div id="main">
-        <main class="main inner-box"></main>
+        <main class="main inner-box">
+            <!-- 파트박스 3개 -->
+            <div class="partbox"></div>
+            <div class="partbox"></div>
+            <div class="partbox"></div>
+        </main>
     </div>
     <div id="footer">
-        <footer class="footer inner-box"></footer>
+        <footer class="footer inner-box">
+            <!-- 파트박스 3개 -->
+            <div class="partbox"></div>
+            <div class="partbox"></div>
+            <div class="partbox"></div>
+        </footer>
     </div>
 </body>
 </html>
