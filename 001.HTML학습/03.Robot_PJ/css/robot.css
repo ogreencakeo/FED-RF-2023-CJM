@@ -20,7 +20,8 @@ html, body, h1, h2, h3, ul, ol{
 
 body{
     /* 전체 배경이미지 */
-    background: url(../images/bg.jpg) no-repeat fixed top/cover;
+    background: 
+        url(../images/bg.jpg) no-repeat fixed top/cover;
 }
 
 /* 공사중 표시 */
@@ -90,6 +91,9 @@ body *{
 }
 /* 2-1. 로봇박스 */
 .box-robot{
+    position: fixed;
+    width: 100%;
+    
     /* 패딩 : 위, 양쪽, 아래 */
     padding: 200px 0 528px ;
     /* 마진 탑 */
@@ -281,6 +285,9 @@ body *{
     width: 50px;
     height: 200px;
     border-radius: 20%;
+
+    /* 팔 트랜스폼 회전축 변경 */
+    transform-origin: left top;
 }
 
 /* 가상요소로 팔 관절 만들기 */
@@ -359,7 +366,8 @@ body *{
 }
 /* 오른팔 */
 .arm2{
-    right: -70px;
+    right: -45px;
+    
 }
 /* 다리 하단부분 공통 */
 .leg span{
