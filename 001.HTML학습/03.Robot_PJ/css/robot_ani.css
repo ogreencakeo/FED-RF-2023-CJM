@@ -186,6 +186,15 @@
         transform: rotate(-15deg);
     }
 }
+/* 오른팔 애니4 키프레임 : 손목 흔들기 */
+@keyframes right-arm-ani-04 {
+    from{
+        transform: rotate(10deg);
+    }
+    to{
+        transform: rotate(-10deg);
+    }
+}
 
 /* 오른팔 애니1,2 호출 */
 .arm2{
@@ -204,4 +213,11 @@
     /* 팔들기3 */
     animation: 
         right-arm-ani-03 .4s ease-in-out 10.4s infinite alternate;
+}
+/* 오른팔 애니4 호출 */
+.arm2 span::after{
+    transform-origin: top;
+    /* 손목흔들기 */
+    animation: 
+        right-arm-ani-04 .4s ease-in-out 10.4s infinite alternate;
 }
