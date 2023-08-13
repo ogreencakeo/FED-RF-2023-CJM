@@ -111,4 +111,19 @@
     animation: robot-ani 5s linear 3s forwards;
 }
 
-/*  */
+/* 걷는 다리 키프레임 */
+@keyframes walking-ani {
+    from{
+        transform: scaleY(0.9);
+    }
+}
+
+/* 왼쪽다리 애니호출 */
+.leg1{
+    animation: walking-ani .4s ease-in-out 3s 13 alternate;
+}
+/* 오른쪽다리 애니호출 */
+.leg2{
+    animation: walking-ani .4s ease-in-out 3.4s 13 alternate;
+}
+
