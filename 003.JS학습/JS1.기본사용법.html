@@ -55,28 +55,54 @@
 
             - 형식 : function 함수명(전달변수){코드}
 
+            - 호출 : 함수명(값)
+            -> 값은 함수의 전달변수 개수만큼 보낸다
+            -> 호출시 소괄호를 꼭 해준다.
+
          ***********************************************************************/
 
          // 화면출력 1
-         document.write('<h1>나야나~!</h1>');
+         // document.write('<h1>나야나~!</h1>');
 
          // 화면출력 2
-         window.alert('너도 개발자냐?');
+         // window.alert('너도 개발자냐?');
 
          // 화면출력 3
-         console.log('나는 프론트엔드 개발자다!');
+         // console.log('나는 프론트엔드 개발자다!');
     </script>
 
     <!-- CSS코딩구역 -->
     <style>
+        .pbox{
+            /* 부모는? window(보이는 화면) */
+            position: absolute;
+            top: 0;
+            left: 0;
 
+            margin: 0;
+            padding: 0;
+            width: 600px;
+            height: 400px;
+
+            /* 글자 */
+            line-height: 150px;
+            font-size: 40px;
+            text-align: center;
+
+            /* 줄바꿈방지 */
+            white-space: nowrap;
+
+            border: 4px solid purple;
+            /* 보더박스 : 보더, 패딩포함 */
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- 드라마 소개박스 -->
-    <p class="pbox" title="여기를 클릭하세요!">
+    <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()">
         나는 요즘 매일 생각한다! <br>
         도대체 <span id="name"></span>
     </p>
