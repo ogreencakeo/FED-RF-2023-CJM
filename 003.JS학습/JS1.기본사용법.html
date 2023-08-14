@@ -105,6 +105,7 @@
             1. 아이디 선택법 : getElementById(아이디명)
                 가져와 요소를 아이디로!
                 -> 아이디는 유일하므로 선택즉시 바로 접근할 수 있다.
+
             2. 클래스 선택법 : getElementByClassName(클래스명)
                 가져와 요소들을 클래스명으로!
                 -> 클래스는 여러번 사용 가능하므로 선택후 순번을 선택해야 구체적인 요소에 
@@ -114,6 +115,16 @@
                 .getElementsByClassName(클래스명).item(순번) 
                 document
                 .getElementsByClassName(클래스명)[순번]
+
+            3. 태그 선택법 : getElementByTagName(태그명)
+                가져와 요소들을 태그명으로!
+                -> 태그는 여러번 사용 가능하므로 선택후 순번을 선택해야 구체적인 요소에 
+                    접근할 수 있다.
+                -> 순번 선택 방법 : item(순번) / [순번]
+                document
+                .getElementsByTagName(태그명).item(순번) 
+                document
+                .getElementsByTagName(태그명)[순번]
 
          ***********************************************************************/
 
