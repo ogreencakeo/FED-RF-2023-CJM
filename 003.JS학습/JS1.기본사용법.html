@@ -157,8 +157,25 @@
             // 모든 style 속성명은 변수형으로 정의 됨
             // 예) font-size -> fontSize
             // -를 빼고 시작문자를 대문자로 쓰면된다.
-            document.getElementsByClassName('pbox').item(0)
-            .style.background = 'url(./images/kimbs.jpg) no-repeat center/cover';
+
+            // 반복사용할 요소를 변수에 담기!
+            // 변수는 재사용!
+            // 변수는 여기를 봐! var선언 (let/const도 있음)
+            // 변수는 값이 저장되는 메모리 공간
+            // 변수명은 메모리공간의 주소(변수명은 유일!)
+            // 변수는 따옴표로 싸지 않는다!
+            // 변수는 띄어쓰기를 하지 않는다!
+            // 변수는 호출시에 값이 출력된다!
+
+            var 목표 = 
+                document.getElementsByClassName('pbox')[0];
+                // document.getElementsByClassName('pbox').item(0);
+
+            // 3-1. 배경이미지 넣기
+            목표.style.background = 'url(./images/kimbs.jpg) no-repeat center/cover';
+
+            // 3-2. 글자색 변경하기
+            목표.style.color = "lime";
 
         } // 보여줘 함수
     </script>
