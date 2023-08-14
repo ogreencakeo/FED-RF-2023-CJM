@@ -313,12 +313,22 @@
             
                 // 5. .원이야 클래스 on 제거하여 회전애니 없애니
                 // 대상 : .원이야(해당순번) -> 멍청이 할당
+                // classList는 선택요소의 클래스를 제어하는 객체
+                // add(클래스명) - 넣기
+                // remove(클래스명) - 빼기
+                // toggle(클래스명) - 넣기/빼기
                 멍청이.classList.remove('on');
 
-
-
-
        } // 맘대로해라 함수
+
+       /*********************************************** 
+            함수명 : 사각사각
+            기능 : 전체가 사각형으로 화면을 채우며 애니메이션 됨
+        ***********************************************/
+       function 사각사각(){
+            // 1. 호출확인
+            console.log("사각사각!");
+       } // 사각사각 함수
     </script>
 
     <!-- CSS코딩구역 -->
@@ -395,6 +405,20 @@
                 transform: rotate(360deg);
             }
         }
+
+        /* 전체 사각형으로 변할 원 */
+        .넌뭐냐{
+            position: absolute;
+            top: 40%;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            white-space: nowrap;
+            border-radius: 50%;
+            background: #bbd3b3 url(./images/prog.jpg) no-repeat center/auto 100%;
+        }
     </style>
 </head>
 
@@ -418,7 +442,9 @@
         onmouseover="맘대로해라(2, '밤의 카페 테라스')">
         </div>
     </div>
+    <!-- 사각형으로 변할 전체 마무리 원박스 -->
+    <div class="넌뭐냐" title="오른쪽 버튼을 클릭해 주세요!" oncontextmenu="사각사각()">
 
+    </div>
 </body>
-
 </html>
