@@ -77,6 +77,11 @@
         function 보여줘(){
             // 1. 호출확인
             console.log('보여줘 호출');
+
+            // 2. html 넣기
+            // innerHTML 속성 이용
+            // 문서.가져와아이디로(아이디명)
+            document.getElementById("name").innerHTML = '<img src="./images/kim.png" alt="김비서가 왜그럴까?">';
         } // 보여줘 함수
     </script>
 
@@ -114,6 +119,7 @@
     <p class="pbox" title="여기를 클릭하세요!" onclick="보여줘()">
         나는 요즘 매일 생각한다! <br>
         도대체 <span id="name"></span>
+        
     </p>
 
 </body>
