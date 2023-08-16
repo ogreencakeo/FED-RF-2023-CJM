@@ -87,7 +87,10 @@ body *{
         그 마진 값은 부모요소 바깥으로 나간다. (기본성질)
         마진 탑을 포함할려면 부모요소에 overflow:hidden을 셋팅해야 한다. 
         + 하단마진도 부모요소 바깥으로 나감 */
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* 자식요소인 .box-robot이 fixed 포지션이 됨에 따라 상단부분이 없어졌으므로 패딩으로
+    로봇영역을 채워준다. */
+    padding-top: 860px;
 }
 /* 2-1. 로봇박스 */
 .box-robot{
@@ -251,8 +254,11 @@ body *{
     left: -18px;
     width: 257px;
     height: 200px;
-    background-image: linear-gradient(to top, #99bd90, #8e99df);
+    background-image: linear-gradient(to top, #99bd90, #3850e7);
     border-radius: 30px;
+
+    /* 클립패스 : 부분만 보이기 */
+    clip-path: polygon(0% 0%, 100% 0%,84% 100%, 16% 100% );
 }
 
 /* 몸통의 가상요소로 하체 만들기 */
@@ -264,8 +270,11 @@ body *{
     left: -18px;
     width: 257px;
     height: 140px;
-    background-image: linear-gradient(to top, #fdea97, #f18787);
+    background-image: linear-gradient(to top, #dfc242, #df3838);
     border-radius: 30px;
+
+    /* 클립패스 : 부분만 보이기 */
+    clip-path: polygon(6% 25%, 15% 3%,87% 0%, 95% 25%, 90% 74%, 58% 95%, 41% 95%, 10% 75% );
 }
 
 /* 목 */
