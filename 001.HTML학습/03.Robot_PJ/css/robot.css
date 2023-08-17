@@ -25,9 +25,9 @@ body{
 }
 
 /* 공사중 표시 */
-body *{
+/* body *{
     outline: 2px dashed yellow;
-}
+} */
 
 /* 공통 클래스 */
 /* 메탈배경 클래스 */
@@ -44,23 +44,24 @@ body *{
     position: fixed;
     /* 화면 정중앙 이동  calc()로*/
     
-    top: calc(50% - 200px/2);
-    left: calc(50% - 200px/2);
-    
-    width: 200px;
-    height: 200px;
+    top: calc(50% - 20vw/2);
+    left: calc(50% - 20vw/2);
+
+    width: 20vw;
+    height: 20vw;
     
     /* 배경 이미지 */
-    background: pink url(../images/robot_03.png) no-repeat center/160px;
+    background: pink url(../images/robot_03.png) no-repeat center/77%;
+   
     border-radius: 50%;
-    border: 2cap solid #ccc;
+    border: 2px solid #ccc;
     
     /* 텍스트 */
     text-align: center;
     /* line-height: 200px; */
     color: aquamarine;
     /* font : 스두크/줄체 */
-    font: 45px/200px 'Orbitron' ;
+    font: 4vw/20vw 'Orbitron';
     text-shadow: 2px 2px 5px #000;
     
     /* 박스 그림자
@@ -75,7 +76,6 @@ body *{
     transform: scale(2);
     /* 가장 위 */
     z-index: 99;
-
 }
 
 
