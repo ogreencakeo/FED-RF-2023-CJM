@@ -569,5 +569,29 @@ body{
 }
 
 /* 2-2. 로봇 설명 박스 */
+.box-text{
+    /* 최대크기 800px */
+    max-width: 800px;
+    /* 박스중앙 : 마영오 */
+    margin: 0 auto;
+    /* 하단마진 200px */
+    margin-bottom: 200px;
+    /* 반투명 검정배경 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 글자색 : 흰색 */
+    color: #fff;
+    /* 글자그림자 */
+    text-shadow: 1px 1px qpx #000;
+    /* 패딩 : 15px 30px */
+    padding: 15px 30px;
+    /* 경계선 : 3px solid # fff */
+    border: 3px solid #fff;
+    /* 둥근 모서리 : 20px */
+    border-radius: 20px;
+    /* 박스 그림자를 이용한 글루오 효과 : 내부만 2개줌 */
+    box-shadow: 
+        inset 0 0 20px blue,
+        inset 0 0 50px 10px cyan;
+}
 /********************** 3. 하단영역 **********************/
 /* 3-1. 회사 정보 */
