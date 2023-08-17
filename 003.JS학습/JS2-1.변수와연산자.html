@@ -218,6 +218,27 @@
             오늘의 날씨는 ${todayWeather}입니다. <br/>
             ${message}
         `);
+
+        // 변수값 변경하기
+        userName = "제시카";
+        todayWeather = "흐르고 구름 많음";
+        message = "나는 소중하니까!";
+
+        // 화면 출력
+        document.write(`
+            <br/><br/><hr/>
+            ${userName}님, 안녕하세요! <br/>
+            오늘의 날씨는 ${todayWeather}입니다. <br/>
+            ${message}
+        `);
+
+        /* 
+            [ JS의 실행 순서 ]
+            1. 위에서 아래로
+            2. 이퀄 왼쪽에서 오른쪽으로
+            3. 괄호 안에서 바깥으로
+            4. 함수 바깥부터, 함수는 호출시 실행
+        */
     </script>
     <!-- CSS 코딩구역 -->
     <style>
