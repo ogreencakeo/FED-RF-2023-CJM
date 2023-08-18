@@ -99,6 +99,7 @@ body{
     border: 5px outset #fff;
     background-color: #ccc;
 
+    /* 위치 상위 */
     z-index: 10;
 }
 /* 버튼 a요소 */
@@ -114,6 +115,7 @@ body{
     100px - 보더 10px = 90px */
     font: 30px/90px 'Black Ops One';
     text-decoration: none;
+
 }
 
 /* 버튼 마우스 오버시 */
