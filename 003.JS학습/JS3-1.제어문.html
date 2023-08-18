@@ -36,24 +36,41 @@
 
             // 메시지 변수
             var message;
+            // 글자색 변수
+            var fontColor;
 
             // if문을 셋트로 작성시 구간처리 불필요!
             if(score >= 90){
                 message = '매우잘함';
+                fontColor = 'blue';
             }else if(score >= 80){
                 message = '잘함';
+                fontColor = 'green';
             }else if(score >= 70){
                 message = '보통';
+                fontColor = 'purple';
             }else if(score >= 60){
                 message = '노력요함';
+                fontColor = 'orange';
             }else{
                 message = '재시험';
+                fontColor = 'red';
             }
 
-            console.log('결과 : ', message);
+            // 메시지 완성하기 : 평가결과는 어쩌구...
+            message = '평가결과는 ' + message;
+
+            console.log('결과 : ', message, fontColor);
 
             // if문을 따로 작성하면 적용범위를 줘야함!
 
+            // 5. 메세지 출력하기
+            // 출력대상 : #jexp -> jexp변수
+            jexp.innerText = message;
+
+            // 6. 출력 글자 색 변경하기
+            // 대상 : #jexp -> jexp변수
+            jexp.style.color = fontColor;
         }   // jumsu 함수
         
         /************************************************* 
@@ -129,8 +146,9 @@
         <h2 class="tit">if문 연습</h2>
         <h3 id="jexp">평가출력</h3>
         <label for="jumsu">점수입력:</label>
-        <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" />
-        
+        <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" 
+        onkeypress="if(event.keyCode == 13)jumsu()"/>
+        <!--  -->
 
         <!-- 버튼클릭시 클릭이벤트 속성과 미리만든 함수를 연결한다! -->
         <button class="sbtn" onclick="jumsu()">평가하기</button>
