@@ -561,7 +561,7 @@
         // 변수에 할당하여 재사용하자!
         var member_fn = function (){
             document.write(`
-                <br/> ♠ 회원정보 <br/>
+                <br/><br/> ♠ 회원정보 ♠ <br/>
                 1) 회원소속 : ${member} <br/>
                 2) 회원성별 : ${gender2} <br/>
                 3) 회원나이 : ${age2} <br/>
@@ -570,10 +570,24 @@
                 - 남자입니까? ${gender2 === '남자'} <br/>
                 - 20살 미만입니까? ${age2 <20} <br/>
                 - 20살 미만인 남자입니까? 
-                ${gender2 === '남자' && age2 <20}
+                ${gender2 === '남자' && age2 <20} <br/>
+                5) 최종결과 : <br/>
+                - 카카오 회원이거나 20살 미만인 남장입니까?
+                ${
+                    member === '카카오' ||
+                    (gender2 === '남자' && age2 <20)
+                }
+                <br/><br/>
             `);
         }; // member_fn 함수
 
+        // 회원조건검사 함수 호출!
+        member_fn();
+
+        // 기존 변수값 변경
+        member = '카카오';
+        gender2 = '여자';
+        age2 = 19;
         </script>
         <!-- CSS 코딩구역 -->
         <style>
