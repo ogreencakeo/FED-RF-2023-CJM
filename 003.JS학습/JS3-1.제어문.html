@@ -51,19 +51,19 @@
             }else if(score >= 80){
                 message = '잘함';
                 fontColor = 'green';
-                bgPosition = '100% 50%';
+                bgPosition = '0% 100%';
             }else if(score >= 70){
                 message = '보통';
                 fontColor = 'purple';
-                bgPosition = '100% 50%';
+                bgPosition = '50% 50%';
             }else if(score >= 60){
                 message = '노력요함';
                 fontColor = 'orange';
-                bgPosition = '100% 50%';
+                bgPosition = '100% 100%';
             }else{
                 message = '재시험';
                 fontColor = 'red';
-                bgPosition = '100% 50%';
+                bgPosition = '100% 0%';
             }
 
             // 메시지 완성하기 : 평가결과는 어쩌구...
@@ -159,6 +159,7 @@
 
             /* 칭찬스티커 박스 */
             .jshow{
+                /* 부모는? .bx-if */
                 position: absolute;
                 top: 5vw;
                 left: 48vw;
