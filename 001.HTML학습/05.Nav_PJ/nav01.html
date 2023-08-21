@@ -46,9 +46,13 @@
         /* 메인로고 */
         .logo{
             line-height: 80px;
+
         }
 
         /* 네비게이션 박스 */
+        .gnb{
+            padding: 0 min(100px, 8vw);
+        }
         .gnb li{
             /* 나는 왼쪽, 너는 오른쪽으로 올라와 */
             float: left;
@@ -73,6 +77,25 @@
             border: 10px dashed lightgreen;
             margin: 0 auto;
         }
+
+        /* 서브메뉴 */
+        .sub-menu{
+            position: absolute;
+            width: 200px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 128, 0.7);
+        }
+        /* 서브메뉴 li */
+        .sub-menu li{
+            /* float 설정이 있어도 한줄에 하나씩 옴! */
+            width: 100%;
+            text-align: center;
+        }
+        /* 서브메뉴 a */
+        .sub-menu a{
+            line-height: 40px;
+            font-size: min(14px, 1.4vw);
+        }
     </style>
 </head>
 <body>
@@ -95,6 +118,25 @@
                 <ul>
                     <li>
                         <a href="#">Vision Processor</a>
+                        <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                                <li>
+                                    <a href="#">In-cabin</a>
+                                </li>
+                                <li>
+                                    <a href="#">FVC</a>
+                                </li>
+                                <li>
+                                    <a href="#">SVM</a>
+                                </li>
+                                <li>
+                                    <a href="#">E-mirror</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
                     <li>
                         <a href="#">ADAS Processor</a>
