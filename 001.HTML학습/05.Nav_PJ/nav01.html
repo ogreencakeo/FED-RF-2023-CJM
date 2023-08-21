@@ -57,7 +57,10 @@
         .gnb{
             padding: 0 min(100px, 8vw);
         }
-        .gnb li{
+        /* 최상위 직계 li만 적용! */
+        .gnb>ul>li{
+            /* 부모자격 - .sub-menu */
+            position: absolute;
             /* 나는 왼쪽, 너는 오른쪽으로 올라와 */
             float: left;
         }
@@ -82,9 +85,14 @@
             margin: 0 auto;
         }
 
-        /* 서브메뉴 */
+        /* 서브메뉴 
+        - 높이값 0으로 숨길때 숨길박스에 보더나 패딩이 있으면 
+        완전히 숨길 수 없다! 따라서 보더, 패딩은 없어야함! */
         .sub-menu{
             position: absolute;
+            /* 가로방향 메뉴 정중앙 이동 */
+            left : 50%;
+            transform: translateX(-50%);
             width: min(200px, 18vw);
             border-radius: 15px;
             background-color: rgba(0, 0, 128, 0.7);
@@ -93,8 +101,9 @@
         }
         /* 서브메뉴 li */
         .sub-menu li{
-            /* float 설정이 있어도 한줄에 하나씩 옴! */
-            width: 100%;
+            /* float 설정이 있어도 한줄에 하나씩 옴! 
+            - float설정이 없으면 안줘도 됨*/
+            /* width: 100%; */
             text-align: center;
         }
         /* 서브메뉴 a */
