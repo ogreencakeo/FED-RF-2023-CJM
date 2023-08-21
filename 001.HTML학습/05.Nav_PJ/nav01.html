@@ -74,16 +74,7 @@
             line-height: 80px;
         }
 
-        /* 메인영역 */
-        .main-area{
-            max-width: 1000px;
-            min-height: 600px;
-            line-height: 600px;
-            text-align: center;
-            font-size: 2.5vw;
-            border: 10px dashed lightgreen;
-            margin: 0 auto;
-        }
+        
 
         /* 서브메뉴 
         - 높이값 0으로 숨길때 숨길박스에 보더나 패딩이 있으면 
@@ -93,12 +84,29 @@
             /* 가로방향 메뉴 정중앙 이동 */
             left : 50%;
             transform: translateX(-50%);
+
             width: min(200px, 18vw);
             border-radius: 15px;
             background-color: rgba(0, 0, 128, 0.7);
             /* 박스글로우효과 */
             box-shadow: inset 0 0 5px lightblue;
+
+            /* 숨기기 높이값0 */
+            height: 0;
+            /* 넘치는 요소 숨기기 */
+            overflow: hidden;
+
+            /* 트랜지션 */
+            transition: .4s ease-in-out;
         }
+
+        /* 상위메뉴 li에 마우스 오버시 서브메뉴 보이기 애니 */
+        .gnb>ul>li:hover .sub-menu{
+            /* height : auto 
+            - 자동높이값은 애니메이션 불가! */
+            height: calc(40px * 5);
+        }
+
         /* 서브메뉴 li */
         .sub-menu li{
             /* float 설정이 있어도 한줄에 하나씩 옴! 
@@ -124,6 +132,17 @@
         .sub-menu a:hover{
             opacity: 1;
             transform: scale(1.1);
+        }
+
+        /* 메인영역 */
+        .main-area{
+            max-width: 1000px;
+            min-height: 600px;
+            line-height: 600px;
+            text-align: center;
+            font-size: 2.5vw;
+            border: 10px dashed lightgreen;
+            margin: 100px auto;
         }
     </style>
 </head>
