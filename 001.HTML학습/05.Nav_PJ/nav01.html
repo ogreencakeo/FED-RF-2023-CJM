@@ -96,15 +96,32 @@
             /* 넘치는 요소 숨기기 */
             overflow: hidden;
 
+            /* 투명하게 */
+            opacity: 0;
+
             /* 트랜지션 */
             transition: .4s ease-in-out;
         }
 
         /* 상위메뉴 li에 마우스 오버시 서브메뉴 보이기 애니 */
         .gnb>ul>li:hover .sub-menu{
+            /* 투명도 복구 */
+            opacity: 1;
+        }
+        .gnb>ul>li.m5:hover .sub-menu{
             /* height : auto 
             - 자동높이값은 애니메이션 불가! */
             height: calc(40px * 5);
+        }
+        .gnb>ul>li.m3:hover .sub-menu{
+            /* height : auto 
+            - 자동높이값은 애니메이션 불가! */
+            height: calc(40px * 3);
+        }
+        .gnb>ul>li.m1:hover .sub-menu{
+            /* height : auto 
+            - 자동높이값은 애니메이션 불가! */
+            height: 40px;
         }
 
         /* 서브메뉴 li */
@@ -164,8 +181,9 @@
             <!-- 네비게이션박스 -->
             <nav class="gnb">
                 <ul>
-                    <li>
+                    <li class="m5">
                         <a href="#">Vision Processor</a>
+                        <!-- 서브메뉴 -->
                         <div class="sub-menu">
                             <ol>
                                 <li>
@@ -186,20 +204,72 @@
                             </ol>
                         </div>
                     </li>
-                    <li>
+                    <li class="m3">
                         <a href="#">ADAS Processor</a>
+                        <!-- 서브메뉴 -->
+                        <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                                <li>
+                                    <a href="#">In-cabin</a>
+                                </li>
+                                <li>
+                                    <a href="#">FVC</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
-                    <li>
+                    <li class="m1">
                         <a href="#">AHD™</a>
+                         <!-- 서브메뉴 -->
+                         <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
-                    <li>
+                    <li class="m1">
                         <a href="#">News</a>
+                         <!-- 서브메뉴 -->
+                         <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
-                    <li>
+                    <li class="m3">
                         <a href="#">About Us</a>
+                         <!-- 서브메뉴 -->
+                         <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                                <li>
+                                    <a href="#">In-cabin</a>
+                                </li>
+                                <li>
+                                    <a href="#">FVC</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
-                    <li>
+                    <li class="m1">
                         <a href="#">Career</a>
+                         <!-- 서브메뉴 -->
+                         <div class="sub-menu">
+                            <ol>
+                                <li>
+                                    <a href="#">RVC</a>
+                                </li>
+                            </ol>
+                        </div>
                     </li>
                 </ul>
             </nav>
