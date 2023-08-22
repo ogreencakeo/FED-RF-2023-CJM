@@ -239,6 +239,16 @@
             // 메시지 변수
             var message;
 
+            switch(txt){
+                case '서울' :  message = '02'; break
+                case '경기' :  message = '031'; break
+                case '인천' :  message = '032'; break
+                case '부산' :  message = '051'; break
+                default : message = 'esc'; 
+
+            } // switch case
+            console.log("메시지 :", message);
+
         } // showLocal 함수
 
         /************************************************************ 
