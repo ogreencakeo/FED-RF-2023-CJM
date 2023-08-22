@@ -5,7 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+    <script>
+        function jumsu(){
+            var jumsu = document.querySelector('#jumsu');
+            var jexp = document.querySelector('#jexp');
+            var jshow = document.querySelector('.jshow');
+
+            var score = jumsu.value;
+
+            var validateFn = function(txt){
+                jexp.innerText = txt;
+                jumsu.value = '';
+
+                jumsu.focus();
+
+                jexp.style.color = '#000';
+                jshow.style.backgroundPosition = '-50% 0%';
+            }
+
+            if(score.trim() == ''){
+                validateFn('값을 꼭 입력하세요');
+                return;
+            }
+
+        }
+    </script>
+    <style>
+        h1 {
+            font-size: 4vw;
+        }
+        h2 {
+            font-size: 3vw;
+        }
+        body,
+        h3,
+        input,
+        button,
+        select {
+            font-size: 2vw;
+        }
+        .tit {
+            text-align: center;
+            background-image: linear-gradient(to bottom, lightgreen, lightsalmon);
+        }
+
+        /* if문 박스 */
+        .bx-if {
+            /* 부모자격 - .jshow */
+            position: relative;
+        }
+
+        /* 칭찬스티커 박스 */
+        .jshow {
+            /* 부모는? .bx-if */
+            position: absolute;
+            top: 5vw;
+            left: 48vw;
+            width: 15vw;
+            height: 15vw;
+            /* outline: 2px solid red;*/
+
+            background: url(./images/ifshow.jpg) no-repeat;
+            /* 배경위치 : 처음에 안보임 */
+            background-position: -50% 0%;
+            /* 배경크기 */
+            background-size: 300%;
+            /* 트랜지션 : 배경위치만! */
+            transition: background-position 1s;
+        }
+    </style>
+</head>
 <body>
-    
+    <h1 class="tit">JS 제어문</h1>
+    <hr />
+    <!-- if문 연습 -->
+    <div class="bx-if">
+        <h2 class="tit">if문 연습</h2>
+        <h3 id="jexp">평가출력</h3>
+        <label for="jumsu">점수입력:</label>
+        <input
+            type="text"
+            id="jumsu"
+            placeholder="점수를 입력하세요!"
+            maxlength="3"
+            onkeypress="if(event.keyCode == 13)jumsu()"
+        />
+        <!-- 
+        [ onkeypress 이벤트 속성 ]
+        -> 키보드를 치면 발생하는 이벤트 속성
+        if조건문
+        조건식 : event.keyCode === 13
+        -> 키보드의 키코드가 13번이냐? 엔터키 눌렀냐?
+        -> 엔터키의 키코드는 13번이다!
+        -> true이면 jumsu() 라는 함수를 호출해라!
+        -> event 브라우저 내장객체 : 이벤트관련 객체
+
+        참고) 키코드 참조: 아스키코드 
+        (리턴키는 carriage return)
+        https://www.w3schools.com/charsets/ref_html_ascii.asp
+        -->
+
+        <!-- 버튼클릭시 클릭이벤트 속성과 미리만든 함수를 연결한다! -->
+        <button class="sbtn" onclick="jumsu()">평가하기</button>
+
+        <!-- 
+        [ label요소 ]
+        input요소의 설명라벨요소
+        - for속성 : 클릭시 아이디 input요소로 포커스이동
+
+        [ input 요소 : 입력요소 ]
+        - type = "text" -> 글자입력창
+        - placeholder  -> 안내문구출력
+        - maxlength -> 최대입력 글자수 제한
+     -->
+        <!-- 칭찬스티커 박스 -->
+        <div class="jshow"></div>
+    </div>
+
+    <br /><br />
+    <hr />
+
+    <!-- switch case문 연습 -->
+    <h2 class="tit">switch case문 연습</h2>
+    <h3 id="info">국번안내</h3>
+    <label for="local">지역명 입력:</label>
+    <input
+        type="text"
+        id="local"
+        placeholder="지역명을 '도'를 빼고 쓰세요!"
+        maxlength="10"
+        onkeypress="if(event.keyCode == 13) showLocal()"
+    />
+    <button class="sbtn" onclick="showLocal()">국번문의</button>
+
+    <br /><br />
+    <hr />
+
+    <!-- for문 연습 -->
+    <h2 class="tit">for문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel" id="sel">
+        <option value="1">구구단을 선택하세요!</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+        <option value="10">10단</option>
+        <option value="11">11단</option>
+        <option value="12">12단</option>
+        <option value="13">13단</option>
+        <option value="14">14단</option>
+        <option value="15">15단</option>
+        <option value="16">16단</option>
+        <option value="17">17단</option>
+        <option value="18">18단</option>
+        <option value="19">19단</option>
+        <option value="20">20단</option>
+    </select>
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g1"></div>
+
+    <br /><br />
+    <hr />
+
+    <!-- while문 연습 -->
+    <h2 class="tit">while문 연습</h2>
+    <h3>구구단 출력하기</h3>
+    <select name="sel2" id="sel2">
+        <option value="1">구구단을 선택하세요!</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+        <option value="10">10단</option>
+        <option value="11">11단</option>
+        <option value="12">12단</option>
+        <option value="13">13단</option>
+        <option value="14">14단</option>
+        <option value="15">15단</option>
+        <option value="16">16단</option>
+        <option value="17">17단</option>
+        <option value="18">18단</option>
+        <option value="19">19단</option>
+        <option value="20">20단</option>
+    </select>
+    <!-- 구구단 출력박스 -->
+    <div class="gugu g2"></div>
 </body>
 </html>
