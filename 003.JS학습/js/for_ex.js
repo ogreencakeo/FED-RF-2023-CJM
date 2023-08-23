@@ -15,6 +15,17 @@ console.log('미니언즈 :', mini, blue_box);
 
 // 2. 이벤트 연결하기
 
+// 2-1. 미니언즈 이미지 클릭시 넣기함수 호출
+// mini[0].onclick = insertMini;
+// 기본 for문으로 반복하여 개수만큼 이벤트 셋팅하기
+// (0부터 시작; 개수보다 작을때까지 반복; 1씩 증가)
+for(var i=0; i<mini.length; i++){
+    mini[i].addEventListener('click', insertMini);
+    console.log('for문내i :', i);
+} // for
+console.log('for문 밖 i :', i);
+
+
 // 3. 함수 만들기
 
 // 3-1. 미니언즈 넣기 함수
