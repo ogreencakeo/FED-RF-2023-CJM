@@ -51,5 +51,4 @@ function insertMini(){
         blue_box.innerHTML += `<img src="./images/Minions.png" alt="미니언즈">`;  
     } 
 
-
 } // insertMini함수
