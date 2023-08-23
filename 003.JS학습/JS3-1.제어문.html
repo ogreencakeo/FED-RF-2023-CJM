@@ -378,14 +378,19 @@
             // 구구단 선택박스에 change이벤트 설정하기
             // 이벤트 대상선정 : select#sel
             // 이벤트 종류 : change - 선택박스 옵션 변경시 발생
-            document.querySelector('#sel').onchange = showGugu();
 
+            // for문 구구단 이벤트 설정하기
+            document.querySelector('#sel').onchange = showGugu;
+
+            // while문 구구단 이벤트 설정하기
+            // 대상 : select#sel2
+            document.querySelector('#sel2').onchange = showGugu2;
 
         }); // 로드 구역
 
         /************************************************************** 
             함수명 : showGugu
-            기능 : 구구단을 출력한다!
+            기능 : 구구단을 출력한다! (for문)
         **************************************************************/
         function showGugu(){
             // 1. 함수호출 확인
@@ -403,10 +408,67 @@
             // 3. 구구단 만들기
             result = `<h2>${optVal}단</h2>`;
 
+            // for(시; 한; 증){실행코드}
+            for(var i=1; i<=9; i++){
+                console.log('반복!', i);
+                result += `${optVal} × ${i} = ${optVal * i} <br/>`;
+            } // for
+
             // 4. 화면출력
             document.querySelector('.g1').innerHTML = result;
 
         } // showGugu함수
+        
+        /*******************************************************
+            [ for 문 ]
+        *******************************************************/
+
+        /************************************************************** 
+            함수명 : showGugu2
+            기능 : 구구단을 출력한다! (while문)
+        **************************************************************/
+        function showGugu2(){
+            // 1. 함수호출 확인
+            console.log('보여줘! 구구단!', this.value);
+            // this 키워드 - 나 자신! 
+            // -> 할당된 요소자신 (여기서는 select 요소 자신)
+            // this.value -> value는 option요소의 속성값
+
+            // 2. 선택값 읽기
+            var optVal = this.value;
+
+            // 구구단 저장변수
+            var result;
+
+            // 3. 구구단 만들기
+            result = `<h2>${optVal}단</h2>`;
+
+            // for(시; 한; 증){실행코드}
+            // for(var i=1; i<=9; i++){
+            //     console.log('반복!', i);
+            //     result += `${optVal} × ${i} = ${optVal * i} <br/>`;
+            // } // for
+
+            // while문
+            // 시작값
+            var i = 1;
+
+            // while(한계값){코드 + 증감}
+            while(i<9){
+                console.log('while 반복!', i);
+                result += `${optVal} × ${i} = ${optVal * i} <br/>`;
+                // 증감 : 안쓰면 무한루프
+                i++;
+            } // while
+
+            // 4. 화면출력
+            document.querySelector('.g2').innerHTML = result;
+
+        } // showGugu2함수
+
+        /*******************************************************
+            [ while 문 ]
+        *******************************************************/
         </script>
         <style>
             h1 {
@@ -465,6 +527,11 @@
                 /* 박스 y축 스크롤 : 박스보다 내용 많으면 
                 스크롤바 생김(스크롤바 트랙나와있음) */
                 overflow-y: scroll;
+                font-size: 2.5vw;
+            }
+
+            .gugu h2{
+                font-size: 3vw;
             }
         </style>
     </head>
