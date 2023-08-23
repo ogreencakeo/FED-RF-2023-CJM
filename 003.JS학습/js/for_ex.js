@@ -10,7 +10,7 @@ var mini = document.querySelectorAll('.mini');
 
 // 1-2. 출력대상 : 파란박스
 var blue_box = document.querySelector('.Bcase');
-
+ 
 console.log('미니언즈 :', mini, blue_box);
 
 // 2. 이벤트 연결하기
