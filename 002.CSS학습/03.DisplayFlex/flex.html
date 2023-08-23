@@ -303,12 +303,60 @@
                 display: flex;
                 /* 플렉스 랩핑박스 */
                 flex-wrap: wrap;
+                /* 진행방향 정렬 중앙 : jcc */
+                justify-content: center;
+                /* 수직방향 정렬 (여러줄) :ac */
+                align-content: space-evenly;
+                /*
+                    [ align-content 속성 ]
+                */
             }
 
             .t6 li{
                 /* 작아질때 크기유지 */
                 flex-shrink: 0;
-                margin: 0 22px;
+                margin: 0 15px;
+            }
+
+            /* 마진없이 플렉스 랩핑박스 줄바꿈하기! */
+            .t7{
+                top: 10px;
+                /* 기존 left값 해제 */
+                left: auto;
+                /* right 기준 새로 셋팅! */
+                right: 10px;
+                width: 400px;
+                height: 250px;
+                /* 트랜스폼 해제 */
+                transform: none;
+
+                /* 플렉스 박스 */
+                display: flex;
+                /* 플렉스 랩핑박스 
+                -> 자식요소에 flex-shrink : 0; 으로
+                설정값을 변경하지 않아도 자동으로 변환된다. */
+                flex-wrap: wrap;
+                /* 진행방향 정렬 중앙 : jcc */
+                justify-content: space-evenly;
+                /* 수직방향 정렬 (여러줄) :ac */
+                align-content: center;
+                /*
+                    [ align-content 속성 ]
+                */
+            }
+
+            /* 줄바꿈요소 셋팅 */
+            .t7 li.brk{
+                /* width: 100%; */
+                flex-basis: 100%;
+                /* flex-basis는 width와 동일하지만
+                flex에서만 사용가능한 가로크기 속성 */
+                
+                /* 기존 디자인 변경 */
+                height: 0;
+                border: none;
+                /* 사이간격조정 */
+                margin-top: 40px;
             }
 
         </style>
@@ -318,11 +366,11 @@
         <div class="wrap">
             <!-- 파티션 박스 -->
             <ul class="flex-box">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li style="order: 3;"></li>
+                <li style="order: 5;"></li>
+                <li style="order: 2;"></li>
+                <li style="order: 1;"></li>
+                <li style="order: 4;"></li>
             </ul>
 
             <!-- 타이틀박스 1 -->
@@ -390,6 +438,25 @@
                 <li>T</li>
                 <li>E</li>
             </ol>
+
+            <!-- 타이틀박스 7 -->
+            <ol class="tit t7">
+                <li>L</li>
+                <li>O</li>
+                <li>T</li>
+                <li>T</li>
+                <li>E</li>
+
+                <!-- 줄바꿈 할 요소 추가 -->
+                <li class="brk"></li>
+
+                <li>W</li>
+                <li>O</li>
+                <li>R</li>
+                <li>L</li>
+                <li>D</li>
+            </ol>
+
         </div>
     </body>
 </html>
