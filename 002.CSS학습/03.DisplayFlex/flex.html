@@ -123,11 +123,63 @@
                     4) column-reverse : 아래->위
 
             ***********************************************/
+            .wrap{
+                /* 보이는 화면 100% 채우기 */
+                height: 100vh;
+            }
+            /* 등분할 flex 적용박스 */
+            .flex-box{
+                /* 플렉스 박스 : df */
+                display: flex;
+                
+                height: 100%;
+            }
+            /* 자식요소 li 옆으로 보내기 */
+            .flex-box li{
+                flex: 1;
 
-            
+                /* float 방식 */
+                /* float: left;
+                width: 20%;
+                height: 100%; */
+            }
+            /* 
+                [ float 속성을 이용한 가로방향 정렬 ]
+                1. 옆으로 보낼 블록박스에 float:left 설정
+                2. 부모박스에 맞추려면 height값 100%
+                3. 등분할 하려면 width값 100%/나눌 수
+                4. 부모박스에 가상요소로 clear:both 설정
+            */
+
+            /* 등분할 박스 li 개별 셋팅 */
+            .flex-box li:nth-child(1){
+                background: url(./images/m01_bg.jpg) no-repeat center/cover;
+            }
+            .flex-box li:nth-child(2){
+                background: url(./images/m02_bg.jpg) no-repeat center/cover;
+            }
+            .flex-box li:nth-child(3){
+                background: url(./images/m03_bg.jpg) no-repeat center/cover;
+            }
+            .flex-box li:nth-child(4){
+                background: url(./images/m04_bg.jpg) no-repeat center/cover;
+            }
+            .flex-box li:nth-child(5){
+                background: url(./images/m05_bg.jpg) no-repeat center/cover;
+            }
         </style>
     </head>
     <body>
-        
+        <!-- 전체 랩핑박스 -->
+        <div class="wrap">
+            <!-- 파티션 박스 -->
+            <ul class="flex-box">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
     </body>
 </html>
