@@ -355,6 +355,19 @@
             -> default문에는 break를 쓰지 않는다!                                                                                                                           
 
         ************************************************************/
+
+        /****************************************************************
+            이벤트 설정 로딩구역 만들기
+        ****************************************************************/
+        window.addEventListener();
+
+        /************************************************************** 
+            함수명 : showGugu
+            기능 : 구구단을 출력한다!
+        **************************************************************/
+        function showGugu(){
+
+        } // showGugu함수
         </script>
         <style>
             h1 {
@@ -386,7 +399,7 @@
                 /* 부모는? .bx-if */
                 position: absolute;
                 top: 5vw;
-                left: 48vw;
+                left: 73vw;
                 width: 15vw;
                 height: 15vw;
                 /* outline: 2px solid red;*/
@@ -400,13 +413,17 @@
                 transition: background-position 1s;
             }
 
+            body{
+                text-align: center;
+            }
+
             /* 구구단 출력박스 */
             .gugu{
                 width: 40vw;
                 height: 40vw;
                 border: 2px dashed blue;
                 text-align: center;
-                margin-top: 3vh;
+                margin: 3vh auto;
                 /* 박스 y축 스크롤 : 박스보다 내용 많으면 
                 스크롤바 생김(스크롤바 트랙나와있음) */
                 overflow-y: scroll;
