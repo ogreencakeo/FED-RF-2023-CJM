@@ -49,7 +49,9 @@
             /* 1. 분할개수 */
             --split-num : 5;
             /* 2. 보더색 */
-            --bg-color : gray;
+            --bd-color : gray;
+            /* 3. 타이틀 글자크기 */
+            --tit-font-size : 25px;
         }
         /* 초기화 */
         html, body{
@@ -64,11 +66,12 @@
         }
         /* 공사중 표시 */
         body *{
-            outline: 2px dashed var(--bg-color);
+            outline: 2px dashed var(--bd-color);
         }
         /* 타이틀 */
         .tit{
             text-align: center;
+            font-size: var(--tit-font-size);
         }
         /* 쇼핑몰 리스트 박스 */
         .list-box{
@@ -170,7 +173,7 @@
             }
         }
         /* 500이하 미디어쿼리 종료 */
-        
+
     </style>
 </head>
 <body>
