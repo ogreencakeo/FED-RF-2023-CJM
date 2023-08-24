@@ -8,6 +8,49 @@
     <script src="./js/for_ex2.js" defer></script>
     <!-- 스타일시트 구역 -->
     <style>
+        /**************************************************************
+            [ CSS에서 변수 사용하기! ]
+            1. 정의 : 같은 값을 사용하는 속성에 변수를 사용하여
+            반복작업을 줄여주기 위한 CSS에서만 사용되는 변수
+
+            2. 사용법
+            (1) 변수 선언 및 셋팅구역
+            :root{
+                --변수명 : 값;
+                --변수명 : 값;
+                --변수명 : 값;
+            }
+
+            (2) 변수 호출
+                - 사용하고자 하는 속성값에 변수를 아래처럼 호출
+                var(--변수명)
+
+                예) 
+                :root{
+                    --my-color : red;
+                    --my-num : 5;
+                }
+
+                #my{
+                    width : calc(1000px / var(--my-num));
+                }
+
+                h1{
+                    color : var(--my-color);
+                }
+
+                .mymy{
+                    background-color : var(--my-color);
+                }
+                color : 
+        **************************************************************/
+        /* 변수구역 */
+        :root{
+            /* 1. 분할개수 */
+            --split-num : 5;
+            /* 2. 보더색 */
+            --bg-color : gray;
+        }
         /* 초기화 */
         html, body{
             margin: 0;
@@ -21,7 +64,7 @@
         }
         /* 공사중 표시 */
         body *{
-            outline: 2px dashed gray;
+            outline: 2px dashed var(--bg-color);
         }
         /* 타이틀 */
         .tit{
@@ -59,10 +102,11 @@
             position: relative;
 
             /* 사이간격 gap값을 고려한 계산법 */
-            flex-basis: calc((100% - 2vw * 2)/3);
+            flex-basis: calc((100% - 2vw * (var(--split-num) - 1)) / var(--split-num));
+            /* flex-basis: calc((100% - 2vw * 2)/3); */
             /* flex-basis : 
                 calc((100% - 가로간격 * 분할수-1) / 분할수); 
-               -> 사이간격은 분할수보다 1개 적다!
+                -> 사이간격은 분할수보다 1개 적다!
             */
             /* flex-basis: calc(100%/3); */
             /* 등분할 비율을 %로 줄 때 직접 계산하기보다
@@ -86,6 +130,47 @@
             color: #fff;
             background: rgb(0 0 0 /53%);
         }
+
+        /* 1300이하 미디어쿼리 시작 */
+        @media screen and (max-width:1300px) {
+            /* 분할 개수 조정하기 - 변수만 업데이트 */
+            :root{
+                --split-num : 4;
+                --bg-color : hotpink;
+            }
+        }
+        /* 1300이하 미디어쿼리 종료 */
+
+        /* 1100이하 미디어쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            /* 분할 개수 조정하기 - 변수만 업데이트 */
+            :root{
+                --split-num : 3;
+                --bg-color : lime;
+            }
+        }
+        /* 1100이하 미디어쿼리 종료 */
+        
+        /* 700이하 미디어쿼리 시작 */
+        @media screen and (max-width:700px) {
+            /* 분할 개수 조정하기 - 변수만 업데이트 */
+            :root{
+                --split-num : 2;
+                --bg-color : blue;
+            }
+        }
+        /* 700이하 미디어쿼리 종료 */
+        
+        /* 500이하 미디어쿼리 시작 */
+        @media screen and (max-width:500px) {
+            /* 분할 개수 조정하기 - 변수만 업데이트 */
+            :root{
+                --split-num : 1;
+                --bg-color : orange;
+            }
+        }
+        /* 500이하 미디어쿼리 종료 */
+        
     </style>
 </head>
 <body>
