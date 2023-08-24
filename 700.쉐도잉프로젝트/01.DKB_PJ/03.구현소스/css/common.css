@@ -23,7 +23,7 @@
     display: flex;
     /* 진행방향정렬 */
     justify-content: flex-end;
-    padding: 14px 0 7px;
+    padding: 14px 16px 7px 0;
 }
 
 /* 첫번째 빼고 li 선택 */
