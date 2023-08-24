@@ -53,6 +53,26 @@
             h1, .mini-box{
                 text-align: center;
             }
+
+            /* 미니언즈 정보박스 */
+            .info-box{
+                position: absolute;
+                background-color: rgba(0, 0, 255, 0.534);
+                padding: 15px;
+                border-radius: 0 0 30px 0;
+                font-size: 1.2vw;
+                color: #fff;
+            }
+
+            /* 리셋버튼 */
+            .rbtn{
+                background-color: #000;
+                color: #fff;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                font-weight: bold;
+            }
         </style>
         <!-- 외부 JS 불러오기 -->
         <!-- 외부 JS 호출은 src속성에 외부 JS경로를 쓴다!
@@ -96,13 +116,21 @@
         <요소 data-내가만든이름="값">
      -->
 
-        <!-- 현재 미니언즈 개수표시 -->
-        <h2 class="stxt">현재 미니언즈 그룹개수 : <span>0</span>개</h2>
+     
+     <!-- 파란상자 -->
+     <div class="Bcase">
+         <!-- 가방정보 및 리셋버튼 박스 -->
+         <div class="info-box">
+                <!-- 현재 미니언즈 개수표시 -->
+                <h2 class="stxt">미니언즈 수 : <span>0</span>개</h2>
+           
+                <!-- 리셋을 한다면 이렇게...! -->
+                <button class="rbtn">리셋</button>
+            </div>
+            <!-- 미니언즈 들어가는 박스 -->
+            <div class="mini-space">
 
-        <!-- 리셋을 한다면 이렇게...! -->
-        <button class="rbtn">리셋</button>
-
-        <!-- 파란상자 -->
-        <div class="Bcase"></div>
+            </div>
+        </div>
     </body>
 </html>
