@@ -63,7 +63,7 @@ function insertMini(){
     console.log('미니개수 :', count_mini, typeof count_mini);
 
     // 출력대상 : .stxt span -> cnt_spot 변수
-    // 미니언즈가 개당 3개씩 이므로 *3
+    // 미니언즈가 개당 3개씩 이므로 * 3
     cnt_spot.innerText = count_mini * 3;
 
 } // insertMini함수
