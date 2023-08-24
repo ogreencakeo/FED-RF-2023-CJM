@@ -19,15 +19,39 @@
 
             /* 파란색 가방 */
             .Bcase {
+                position: relative;
                 border: 20px ridge blue;
-                min-height: 250px;
+                min-height: 30vh;
                 /* 최소높이를 주면 설정높이를 유지하다가
-            내용이 많아지면 높이값이 늘어남! */
+                내용이 많아지면 높이값이 늘어남! */
+                border-radius: 20px;
+                width: 80vw;
+                margin: 0 auto;
+            }
+            /* 가상요소 손잡이 */
+            .Bcase::after{
+                content: '';
+                /* absolute는 자동블록 */
+                position: absolute;
+                top: -100px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 20vw;
+                height: 100px;
+                border: 30px ridge blue;
+                border-radius: 50px;
+                /* 손잡이 부분만 보이게 함 */
+                clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
             }
 
             .Bcase img {
                 width: 150px;
                 /* 크기줄임 */
+            }
+
+            /* 미니언즈 박스 */
+            h1, .mini-box{
+                text-align: center;
             }
         </style>
         <!-- 외부 JS 불러오기 -->
@@ -41,27 +65,29 @@
     <body>
         <h1>for문 연습1 - 파란상자에 미니언즈 집어넣기</h1>
         <!-- data-cnt는 각 미니언즈를 몇개씩 넣을지에 대한 정보값임 -->
-        <img
-            src="./images/Minions.png"
-            alt="미니언즈"
-            class="mini"
-            title="나를 클릭하면 한개씩 가방에 들어갈꼬얌~!"
-            data-cnt="1"
-        />
-        <img
-            src="./images/Minions.png"
-            alt="미니언즈"
-            class="mini"
-            title="나를 클릭하면 다섯개씩 가방에 들어갈꼬얌~!"
-            data-cnt="5"
-        />
-        <img
-            src="./images/Minions.png"
-            alt="미니언즈"
-            class="mini"
-            title="나를 클릭하면 열개씩 가방에 들어갈꼬얌~!"
-            data-cnt="10"
-        />
+        <div class="mini-box">
+            <img
+                src="./images/Minions.png"
+                alt="미니언즈"
+                class="mini"
+                title="나를 클릭하면 한개씩 가방에 들어갈꼬얌~!"
+                data-cnt="1"
+            />
+            <img
+                src="./images/Minions.png"
+                alt="미니언즈"
+                class="mini"
+                title="나를 클릭하면 다섯개씩 가방에 들어갈꼬얌~!"
+                data-cnt="5"
+            />
+            <img
+                src="./images/Minions.png"
+                alt="미니언즈"
+                class="mini"
+                title="나를 클릭하면 열개씩 가방에 들어갈꼬얌~!"
+                data-cnt="10"
+            />
+        </div>
 
         <!-- 
         [ 데이터를 저장하기위한 속성사용하기 ]
