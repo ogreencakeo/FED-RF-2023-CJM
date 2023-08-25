@@ -133,7 +133,14 @@
 
                 // 전역변수에 let으로 선언된 같은 이름의 변수 만들기
                 let toktok = '라인';
+                // 지역변수가 됨!
                 console.log('toktok :',toktok); // 라인 ◆
+
+                // let으로 선언된 전역변수 sport를 중괄호 안에서 var로 다시 선언하면?
+                // var sport = '배구'; // 에러
+                // Identifier 'sport' has already been declared
+                // 중괄호안에 var로 선언하면 전역이 되므로 이미 전역변수에 let으로 
+                // 선언했으므로 let은 중복선언 금지 되므로 에러발생함!
 
                 // 블록영역 내부에서 전역변수 찍기 뒤
                 console.log('블록영역 내부에서 전역변수 찍기 뒤');
