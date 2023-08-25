@@ -63,6 +63,8 @@
                 동사적 특징이 모두 있어야 객체다!
 
             **********************************************************************/
+
+
             // 로딩구역 //
             window.addEventListener('DOMContentLoaded', loadFn);
             // DOMContentLoaded 이벤트 : html DOM 로딩 후 발생
@@ -77,7 +79,27 @@
             
                 // 2. 출력 대상 .cont
                 let target = document.querySelectorAll('.cont');
-                
+                console.log("target :", target);
+
+                // 3. 내용 출력하기
+                // 3-1. new 키워드와 함께 배열 선언, 할당하기
+                const arr1 = new Array(
+                    '1993년 10월 12일',
+                    '183cm',
+                    '65kg',
+                    '너도 인간이니? 치인트',
+                    4567,
+                    '서강준'
+                );
+                // arr1
+                // ['1993년 10월 12일', '183cm', '65kg', '너도 인간이니?, 치인트', 4567, '서강준'] , typeof : object
+                console.log('arr1 :', arr1, ', typeof :',typeof(arr1)); 
+
+                target[0].innerHTML = 
+                    '이름 : ' + arr1[5] + 
+                    ', 키 : ' + arr1[1] + 
+                    ', 몸무게 : ' + arr1[2] + 
+                    ', 대표작 : ' + arr1[3];
             }   // loadFn함수
         </script>
     </head>
