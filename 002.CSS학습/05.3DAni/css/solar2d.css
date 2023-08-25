@@ -26,16 +26,31 @@
 :root{
     /* 태양크기 */
     --sun-size: 250px;
+
     /* 지구크기 */
     --earth-size: 80px;
+    /* 지구거리 */
+    --earth-trans-size: -250px;
+    
     /* 달크기 */
     --moon-size: 40px;
+    /* 달거리 */
+    --moon-trans-size : 80px;
+    
     /* 목성크기 */
     --jupiter-size: 150px;
+    /* 목성거리 */
+    --jupiter-trans-size: 400px;
+    
     /* 토성크기 */
     --saturn-size: 160px;
+    /* 토성거리 */
+    --saturn-trans-size:-460px;
+    
     /* 명왕성크기 */
     --pluto-size: 50px;
+    /* 명왕성 거리 */
+    --pluto-trans-size: 650px;
 }
 
 html,body{
@@ -131,79 +146,157 @@ body{
 /* 지구 */
 #earth{
     position: absolute;
+    /* 부모는? #solar */
+    top: calc(50% - var(--earth-size) / 2);
+    left: calc(50% - var(--earth-size) / 2);
     
+    width: var(--earth-size);
+    height: var(--earth-size);
+
+    /* 배경이미지 */
+    background: url(../images/earth.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 호출 */
+    animation: rotate-earth-ani 20s linear infinite;
 }
 
 /* 지구회전 키프레임 */
-@keyframes earth {
+@keyframes rotate-earth-ani {
     from{
-        
+        transform: 
+            rotate(0deg)  translateX(var(--earth-trans-size)) rotate(0deg);
+            /*
+                [ 원형 주변회전 만들기 ]
+                1. 첫 번째 rotate : 0deg -> 360deg
+                    -> 중앙회전 담당!
+                2. 위치이동 translateX
+                    -> 주변을 도는 효과 생김
+                3. 두번째 rotate : 0deg -> -360deg
+                    -> 반대회전은 옆으로 이동한 박스에 적용되어
+                        세워져서 주변을 도는 효과가 생김!
+            */
     }
     to{
-        
+        transform: 
+            rotate(360deg) translateX(var(--earth-trans-size)) rotate(-360deg);
     }
 } /* 지구회전 키프레임 */
 
 /* 달 */
 #moon{
     position: absolute;
+    /* 부모는? #earth */
+    top: calc(50% - var(--moon-size) / 2);
+    left: calc(50% - var(--moon-size) / 2);
+    
+    width: var(--moon-size);
+    height: var(--moon-size);
+
+    /* 배경이미지 */
+    background: url(../images/moon.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 호출 */
+    animation: rotate-moon-ani 4s linear infinite;
 }
 
 /* 달회전 키프레임 */
-@keyframes moon {
+@keyframes rotate-moon-ani {
     from{
-        
+        transform: 
+            rotate(0deg)  translateX(var(--moon-trans-size)) rotate(0deg);
     }
     to{
-        
+        transform: 
+            rotate(360deg)  translateX(var(--moon-trans-size)) rotate(-360deg);
     }
 } /* 달회전 키프레임 */
 
 /* 목성 */
 #jupiter{
     position: absolute;
+    /* 부모는? #solar */
+    top: calc(50% - var(--jupiter-size) / 2);
+    left: calc(50% - var(--jupiter-size) / 2);
+    
+    width: var(--jupiter-size);
+    height: var(--jupiter-size);
+
+    /* 배경이미지 */
+    background: url(../images/jupiter.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 호출 */
+    animation: rotate-jupiter-ani 35s linear infinite;
     
 }
 
 /* 목성회전 키프레임 */
-@keyframes jupiter {
+@keyframes rotate-jupiter-ani {
     from{
-        
+        transform: 
+            rotate(0deg)  translateX(var(--jupiter-trans-size)) rotate(0deg);
     }
     to{
-        
+        transform: 
+            rotate(360deg)  translateX(var(--jupiter-trans-size)) rotate(-360deg);
     }
 } /* 목성회전 키프레임 */
 
 /* 토성 */
 #saturn{
     position: absolute;
+    /* 부모는? #solar */
+    top: calc(50% - var(--saturn-size) / 2);
+    left: calc(50% - var(--saturn-size) / 2);
+    
+    width: var(--saturn-size);
+    height: var(--saturn-size);
+
+    /* 애니메이션 호출 */
+    animation: rotate-saturn-ani 45s linear infinite;
     
 }
 /* 가상요소로 토성이미지 배경으로 넣기 */
+#saturn::before{
 
+}
 
 /* 토성회전 키프레임 */
-@keyframes saturn {
+@keyframes rotate-saturn-ani {
     from{
-        
+        transform: 
+            rotate(0deg)  translateY(var(--saturn-trans-size)) rotate(0deg);
     }
     to{
-        
+        transform: 
+            rotate(360deg)  translateY(var(--saturn-trans-size)) rotate(-360deg);
     }
 } /* 토성회전 키프레임 */
 
 /* 명왕성 */
 #pluto{
     position: absolute;
+    /* 부모는? #solar */
+    top: calc(50% - var(--pluto-size) / 2);
+    left: calc(50% - var(--pluto-size) / 2);
+    
+    width: var(--pluto-size);
+    height: var(--pluto-size);
+
+    /* 배경이미지 */
+    background: url(../images/pluto.png) no-repeat 0/100% 100%;
+
+    /* 애니메이션 호출 */
+    animation: rotate-pluto-ani 50s linear infinite;
 }
 
 /* 명왕성회전 키프레임 */
-@keyframes pluto {
+@keyframes rotate-pluto-ani {
     from{
-        
+        transform: 
+            rotate(0deg)  translateY(var(---pluto-size)) rotate(0deg);
     }
     to{
-        
+        transform: 
+            rotate(0deg)  translateY(var(--pluto-trans-size)) rotate(0deg);
     }
 } /* 명왕성회전 키프레임 */
