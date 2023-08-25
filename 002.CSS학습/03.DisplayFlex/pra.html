@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body,
+        ul,
+        ol {
+            margin: 0;
+            padding: 0;
+        }
+        /* 블릿없앰 */
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .wrap{
+            height: 100vh;
+        }
+        .flex-box{
+            display: flex;
+            height: 100%;
+        }
+        .flex-box li{
+            flex: 1;
+        }
+
+        .flex-box li:nth-child(1){
+            background: url(./images/m01_bg.jpg) no-repeat center/cover;
+        }
+        .flex-box li:nth-child(2){
+            background: url(./images/m02_bg.jpg) no-repeat center/cover;
+        }
+        .flex-box li:nth-child(3){
+            background: url(./images/m03_bg.jpg) no-repeat center/cover;
+        }
+        .flex-box li:nth-child(4){
+            background: url(./images/m04_bg.jpg) no-repeat center/cover;
+        }
+        .flex-box li:nth-child(5){
+            background: url(./images/m05_bg.jpg) no-repeat center/cover;
+        }
+
+        .tit{
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 500px;
+            height: 100px;
+            border: 5px dashed #fff;
+        }
+
+        .tit > li{
+            width: 50px;
+            height: 50px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background-color: #f00;
+            text-align: center;
+            font: bold 14px/50px Verdana;
+        }
+
+        .t1{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .t2{
+            top: 250px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .t2 li:nth-child(2){
+            line-height: 80px;
+        }
+        .t2 li:nth-child(4){
+            line-height: 30px;
+        }
+
+        .t3{
+            top: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        .t3 li:nth-child(4){
+            margin-left: auto;
+        }
+        .t4{
+            left: 10px;
+            transform: none;
+            width: 150px;
+            height: 500px;
+            display: flex;
+
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .t4 li:nth-child(3){
+            margin-top: auto;
+        }
+        .t5{
+            top: 10px;
+            width: 150px;
+            height: 80px;
+            display: flex;
+        }
+        .t5 li{
+            flex-shrink: 0;
+        }
+
+        .t6{
+            top: 520px;
+            height: 250px;
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+            align-content: space-evenly;
+        }
+
+        .t6 li{
+            flex-shrink: 0;
+            margin: 0 15px;
+        }
+
+        .t7{
+            top: 10px;
+            left: auto;
+
+            right: 10px;
+            width: 400px;
+            height: 250px;
+
+            transform: none;
+            display: flex;
+
+            flex-wrap: wrap;
+            align-content: center;
+
+            justify-content: space-evenly;
+        }
+
+        .t7 li{
+            flex-shrink: 0;
+        }
+
+        .t7 li.brk{
+            flex-basis: 100%;
+            height: 0;
+            border: none;
+            margin-top: 40px;
+        }
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="flex-box">
+            <li style="order: 2;"></li>
+            <li style="order: 4;"></li>
+            <li style="order: 1;"></li>
+            <li style="order: 3;"></li>
+            <li style="order: 5;"></li>
+        </ul>
+        <!-- 타이틀박스 1 -->
+        <ol class="tit t1">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+        <!-- 타이틀박스 2 -->
+        <ol class="tit t2">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+        <!-- 타이틀박스 3 -->
+        <ol class="tit t3">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+        <!-- 타이틀박스 4 -->
+        <ol class="tit t4">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+        <!-- 타이틀박스 5 -->
+        <ol class="tit t5">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+
+        <!-- 타이틀박스 6 -->
+        <ol class="tit t6">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+
+        <!-- 타이틀박스 7 -->
+        <ol class="tit t7">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+
+            <!-- 줄바꿈 할 요소 추가 -->
+            <li class="brk"></li>
+
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+        </ol>
+    </div>
+</body>
+</html>
