@@ -16,7 +16,7 @@ h1 {
 body {
     background-color: #9c0;
     /* 배경색 애니메이션: 이시이지반방마 */
-    /* animation: bgAni 10s linear infinite; */
+    /* animation: bg-ani 10s linear infinite; */
 }
 
 /* 전체 타이틀 */
@@ -78,9 +78,17 @@ body {
         -> 두 값 중에 하나만 쓸 수 있고 복합일 경우
         2가지를 같이 셋팅함!
     ***********************************************/
+
+    /* 파도치는 애니 호출 */
+    animation: wave-ani 3s ease-in-out infinite alternate;
 }
 
 /* 배경이미지 크기변경으로 파도치는 키프레임 */
+@keyframes wave-ani {
+    to{
+        background-size: auto 120%;
+    }
+}
 
 /* 문짝 */
 .door {
@@ -106,14 +114,15 @@ body {
     /* 애니메이션: 이시이지반방마 */
     animation: 
         /* 처음에 한번만 열리고 끝상태 유지 */
-        first-open-door-ani .5s ease-in-out forwards,
+        first-open-door-ani 1s ease-in-out forwards,
         /* 1초후 바깥쪽으로 열린 상태에서 여닫기 애니 무한반복 */
-        open-door-ani 2.5s ease-in-out .5s infinite alternate;
+        open-door-ani 2s ease-in-out 1s infinite alternate;
 
-    /* 처음에 애니메이션 멈춰있기 
-    animation-play-state 속성 : 
-    1. running : 작동
-    2. paused : 멈춤
+    /* 
+        처음에 애니메이션 멈춰있기 
+        animation-play-state 속성 : 
+        1. running : 작동
+        2. paused : 멈춤
     */
     animation-play-state: paused;
 }
@@ -152,7 +161,23 @@ body {
 }
 
 /* 엘사박스 */
+#elsa{
+    position: absolute;
+    top: 0;
 
+    /* 프레임과 같은 크기 */
+    width: 150px;
+    height: 280px;
+
+    /* 넘치는 요소 숨기기 */
+    overflow: hidden;
+}
 /* 엘사이미지 */
+#elsa img{
+    margin-left: 130px;
+    /* 엘사 회전축 변경 :  바닥 */
+    transform-origin: bottom;
+    transform: rotate(-10deg);
+}
 
 /* 엘사 애니 키프레임 */
