@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
-        <title>For문 옵션</title>
+        <title>For문 옵션1</title>
         <style>
             body {
                 font-size: min(30px, 2vw);
@@ -35,9 +35,17 @@
                 console.log('대상 :', btns);
 
                 // 2. 이벤트 셋팅하기
-                btns.item(0).onclick = function(){
-                    console.log('나야나!');
-                };
+                // for문
+                // 한계값을 위한 버튼 개수
+                let cnt = btns.length;
+                for(let i=0; i<cnt; i++){
+                    // console.log('순번 :', i);
+                    btns.item(i).onclick = function(){
+                        // console.log('나야나!', this);
+
+                    };
+                }
+
 
             }); // 로드구역 //
         </script>
