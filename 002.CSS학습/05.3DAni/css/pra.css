@@ -1,212 +1,235 @@
 @charset "utf-8";
-/* Open Door CSS - opendoor.css */
+
+/* 태양계 2D 애니 - solar2d.css */
 
 /* 웹폰트 */
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
-/* font-family: 'Comfortaa', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap');
 
-/* 초기화 */
-html,body,h1{
+/************************************************* 
+    [ CSS에서 변수사용하기 ]
+
+    [ 변수설정하기 ] 
+        :root{
+            --변수명1: 값1;
+            --변수명2: 값2;
+        }
+        
+    [ 변수호출사용 ]
+        var(--변수명)
+
+    [ 변수는 언제 사용하나? ]
+        ->>> 값은 값이 여러부분에서 사용될때
+        ->>> 미디어쿼리 등에서 변경이 필요한 경우
+        변수값만 변경하면 복잡한 값 변경이 불필요하게됨!
+
+*************************************************/
+:root{
+    /* 태양크기 */
+    --sun-size: 250px;
+    /* 지구크기 */
+    --earth-size: 80px;
+    /* 달크기 */
+    --moon-size: 40px;
+    /* 목성크기 */
+    --jupiter-size: 150px;
+    /* 토성크기 */
+    --saturn-size: 160px;
+    /* 명왕성크기 */
+    --pluto-size: 50px;
+}
+
+html,body{
     margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 body{
-    background-color: #9c0;
-    /* 배경색 애니메이션: 이시이지반방마 */
-    animation: bgAni 10s linear infinite;
-}
-
-@keyframes bgAni {
-    0%{
-        background-color: #9c0;
-    }
-    20%{
-        background-color: rgb(167, 221, 221);
-    }
-    40%{
-        background-color: rgb(233, 130, 101);
-    }
-    60%{
-        background-color: rgb(216, 135, 166);
-    }
-    80%{
-        background-color: rgb(164, 156, 235);
-    }
-    100%{
-        background-color: #9c0;
-    }
-}
-
-/* 전체 타이틀 */
-.tit{
-    /* height: 50px;
-    -> auto로 유동적인 글자크기만큼만
-    사이즈 주지 말자! */
-    font-family: 'Comfortaa', cursive;
-    /* 최대글자크기 지정 */
-    font-size: min(5vw,42px);
-    margin: 5vh 0;
-    text-align: center;
-    color: #fff;
-    text-shadow: 2px 2px 2px #222;
+    background: url(../images/space.jpg) no-repeat center/cover;
     overflow: hidden;
+    /* 스크롤바없앰 */
+}
+/* 공통클래스 */
+
+/* 배경이미지설명숨기기 */
+.ir{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 공사중 표시 */
+/* body *{
+    outline: 1px dashed lightblue;
+} */
+
+
+/* 타이틀 */
+.tit {
+    position: relative;
+    top: 100%;
+
+    z-index: 1;
+    /* 행성들보다 위 */
+
+    margin: 0;
+    padding: 0;
+    /* h1의 기본마진,패딩 없앰 */
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    color: #fff;
+    font-size: 80px;
+    text-align: center;
+    padding-top: 20px;
+
+    perspective: 40vh;
+    animation: fly-up-tit-ani 5s ease-out 2s forwards;
 }
 
 .tit span{
-    display: inline-block;
-    transform: translateY(150%);
-    animation: tit-fly-up 1s ease-in-out forwards;
-}
-/* 전체문부모 */
-.cont{
-    width: 200px;
-    height: 300px;
-    margin: 0 auto;
-    background-color: #900;
-
-    transform: translateY(150%);
-    animation: tit-fly-up 2s ease-in-out 1s forwards;
+    display: block;
+    animation: rotate-tit-ani 7s cubic-bezier(0.18, 0.89, 0.32, 1.28) 2s forwards;
 }
 
-@keyframes tit-fly-up {
+@keyframes rotate-tit-ani {
     to{
-        transform: translateY(0%);
+        transform: rotateX(calc(360deg * 10));
     }
 }
 
-/* 전체랩핑박스 */
-.wrap{
-    overflow: hidden;
-    /* 3D문이 잘려보이지 않게 위아래 패딩줌! */
-    padding: 50px 0;
-    
-    
-}
-/* 문프레임 */
-.frame{
-    position: relative;
-    top: 20px;
-    width: 150px;
-    height: 280px;
-    margin: 0 auto;
-    background: url(../images/seashore.jpg) no-repeat center/auto 100%;
-
-    /******************************* 
-        [ 3D 원근설정 ]
-        1. 셋팅위치 : 3D원근 설정을 할
-        대상의 부모요소
-        2. 설정방법 : 
-        perspective: 수치;
-        -> 수치는 px단위로 숫자가 클수록
-        소실점이 먼것이므로 각도가 작아짐
-        (이 거리는 기준점에서 소실점까지의
-        거리임)
-    *******************************/
-    perspective: 480px;
-
-     /*********************************************** 
-        [ 뷰포인트(관찰자위치) 변경옵션 ]
-        perpective-origin : 가로 세로;
-        - 가로축: left, center, right, px, % 등 단위
-        - 세로축: top, center, bottom, px, % 등 단위
-        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우
-        2가지를 같이 셋팅함!
-    ***********************************************/
-    perspective-origin: 50% 50%;
-    animation: wave-ani 3s ease-in-out infinite alternate;
-}
-
-/* 배경이미지 크기변경으로 파도치는 키프레임 */
-@keyframes wave-ani {
+@keyframes fly-up-tit-ani {
     to{
-        transform: auto 120%;
+        top:0;
     }
 }
 
-
-/* 문짝 */
-.door{
-    position: relative;
-    /* 부모자격 : .handle */
-    z-index: 1;
-    /* 엘사보다 위! */
-    width: 150px;
-    height: 280px;
-    background-color: #c90;
-
-    /* 문짝회전 */
-    transform-origin: left;
-    /* 축변경 */
-    
-    /* 
-        [트랜스폼 회전축 변경속성]
-        transform-origin: 가로축 세로축
-        - 가로축: left, center, right, px, % 등 단위
-        - 세로축: top, center, bottom, px, % 등 단위
-    */
-
-    /* 애니메이션: 이시이지반방마 */
-    animation: first-open-door-ani 1s ease-in-out,
-        open-door-ani 1s ease-in-out 1s infinite alternate;
-
-    animation-play-state: paused;
-}
-
-/* 문짝부모에 오버시 문짝애니작동! */
-.cont:hover .door{
-    animation-play-state: running;
-}
-
-/* 문짝 처음열기 키프레임 */
-@keyframes first-open-door-ani {
-    to{
-        transform: rotateY(0deg);
-    }
-}
-
-/* 문짝 여닫기 키프레임 */
-@keyframes open-door-ani {
-    from{
-        transform: rotateY(-60deg);
-    }
-    to{
-        transform: rotateY(60deg);
-    }
-}
-
-
-
-
-/* 손잡이 */
-.handle{
+/* 태양계박스 */
+#solar{
     position: absolute;
-    top: 140px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: blue;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 박스 정중앙이동 */
+    
+    width: var(--sun-size);
+    height: var(--sun-size);
 }
-
-/* 엘사박스 */
-#elsa{
-    width: 150px;
-    height: 280px;
+/* 태양박스 */
+#sun{
     position: absolute;
     top: 0;
+    left: 0;
+    width: var(--sun-size);
+    height: var(--sun-size);
+    border-radius: 50%;
+    box-shadow: 0 0 60px 10px orange;
     overflow: hidden;
+
 }
-/* 엘사이미지 */
-#elsa img{
-    margin-left: 120px;
-    transform-origin: bottom;
-    animation: elsa-ani 1s ease-in-out 2s infinite alternate;
+/* 태양이미지 */
+#sun img{
+    width: 100%;
+    height: 100%;
+    animation: flame-ani 40s linear infinite alternate;
+}
+/* 태양이 이글거리는 애니메이션 키프레임 */
+@keyframes flame-ani {
+    to{
+        transform: scale(1.5);    
+    }
+} /* 키프레임 */
+
+
+
+
+/* 지구 */
+#earth{
+    position: absolute;
+    top: calc(50% - var(--earth-size) / 2);
+    left: calc(50% - (var(--earth-size) / 2));
+
+    width: var(--earth-size);
+    height: var(--earth-size);
+    
+    background: url(../images/earth.png) no-repeat 0/ 100% 100%;
+    
+    animation: rotate-earth-ani 20s linear infinite;
+
+
+    
 }
 
-/* 엘사 애니 키프레임 */
-@keyframes elsa-ani {
-    to{
-        transform : rotate(-15deg);
+/* 지구회전 키프레임 */
+@keyframes rotate-earth-ani {
+    from{
+        transform: rotate(0deg) translateX(-250px) rotate(0deg);
     }
+    to{
+        transform: rotate(360deg) translateX(-250px) rotate(-360deg);
+    }
+} /* 지구회전 키프레임 */
+
+/* 달 */
+#moon{
+    position: absolute;
 }
+
+/* 달회전 키프레임 */
+@keyframes moon {
+    from{
+        
+    }
+    to{
+        
+    }
+} /* 달회전 키프레임 */
+
+/* 목성 */
+#jupiter{
+    position: absolute;
+    
+}
+
+/* 목성회전 키프레임 */
+@keyframes jupiter {
+    from{
+        
+    }
+    to{
+        
+    }
+} /* 목성회전 키프레임 */
+
+/* 토성 */
+#saturn{
+    position: absolute;
+    
+}
+/* 가상요소로 토성이미지 배경으로 넣기 */
+
+
+/* 토성회전 키프레임 */
+@keyframes saturn {
+    from{
+        
+    }
+    to{
+        
+    }
+} /* 토성회전 키프레임 */
+
+/* 명왕성 */
+#pluto{
+    position: absolute;
+}
+
+/* 명왕성회전 키프레임 */
+@keyframes pluto {
+    from{
+        
+    }
+    to{
+        
+    }
+} /* 명왕성회전 키프레임 */
