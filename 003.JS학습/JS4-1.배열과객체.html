@@ -482,6 +482,10 @@
                 function playMovie(mocode){     // mcode - 영화 아이디
                     // 함수 호출 및 전달값 확인
                     console.log('난 진짜야 ~! ', mocode);
+
+                    // 동영상 박스 대상 : #mvbox
+                    let mvbox = document.querySelector('#mvbox');
+                    
                 } // playMovie 함수
                 
             }   // loadFn함수
@@ -497,5 +501,11 @@
         <div class="cont"></div>
         <div class="cont"></div>
         <div class="cont"></div>
+        <div class="cont">
+            <!-- 영화 초이스 버튼박스 -->
+        </div>
+
+        <!-- 영화예고편 동영상용 박스 -->
+        <aside id="mvbox"></aside>
     </body>
 </html>
