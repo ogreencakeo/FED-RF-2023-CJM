@@ -22,6 +22,25 @@
                 height: 100px;
             }
         </style>
+        <!-- JS 코딩구역 -->
+        <script>
+            /// 로드구역 ///
+            window.addEventListener('load', function(){
+                // 로드확인
+                console.log('로딩완료!');
+
+                // 1. 대상선정 : 
+                // 이벤트 대상
+                let btns = document.querySelectorAll('button');
+                console.log('대상 :', btns);
+
+                // 2. 이벤트 셋팅하기
+                btns.item(0).onclick = function(){
+                    console.log('나야나!');
+                };
+
+            }); // 로드구역 //
+        </script>
     </head>
 
     <body>
