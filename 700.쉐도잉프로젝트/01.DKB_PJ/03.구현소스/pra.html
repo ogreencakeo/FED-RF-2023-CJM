@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body, h1, h2, h3, h4, h5{
+            padding: 0;
+            margin: 0;
+        }
+        ul, ol{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        } 
+        h1, h2, h3, h4, h5, h6{
+            font-size: 100%;
+        }
+
+        body * {
+            outline: 2px dashed #ccc;
+        }
+
+        body > div > * {
+            outline-color: red;
+        }
+
+        .inbox{
+            min-width: 1360px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        .inbox::after,
+        .group-part::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .partbox{
+            float: left;
+            box-sizing: border-box;
+            border: 2px solid blue;
+            height: 100%;
+        }
+
+        .header .partbox{
+            height: 120px;
+        }
+
+        .header_logo img{
+            width: 126px;
+            margin-top: 40px;
+        }
+
+        .top-menu ul{
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 16px 7px 0;
+        }
+
+        .top-menu li+li{
+            margin-left: 12px;
+        }
+
+        .top-menu a{
+            font-size: 1.3rem;
+        }
+
+        .gnb ul{
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .gnb ul>li>a{
+            font-size: 1.6rem;
+            padding: 28px 16px;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .gnb ul>li:hover>a{
+            color: red;
+        }
+
+        .gnb ul>li:nth-child(3)
+        ~ li:nth-child(-n+6)>a::after{
+            content: '∨';
+            display: inline-block;
+            transform: scale(.5, .3);
+            margin-left: 3px;
+        }
+
+        .main{
+            min-height: 800px;
+        }
+
+        .footer .partbox{
+            height: 100px;
+        }
+
+        .col-1 {
+            width: 8.33%;
+        }
+        .col-2 {
+            width: 16.66%;
+        }
+        .col-3 {
+            width: 25%;
+        }
+        .col-4 {
+            width: 33.33%;
+        }
+        .col-5 {
+            width: 41.66%;
+        }
+        .col-6 {
+            width: 50%;
+        }
+        .col-7 {
+            width: 58.33%;
+        }
+        .col-8 {
+            width: 66.66%;
+        }
+        .col-9 {
+            width: 75%;
+        }
+        .col-10 {
+            width: 83.33%;
+        }
+        .col-11 {
+            width: 91.66%;
+        }
+        .col-12 {
+            width: 100%;
+        }
+        #banner{
+            background: url(./images/bg_mainvisual2.jpg) no-repeat center/auto 100%;
+        }
+        .banner .partbox{
+            height: 530px;
+        }
+        #dokebi-menu{
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+        }
+        .dokebi-menu ul{
+            display: flex;
+            padding: 12px 0;
+        }
+        .dokebi-menu ul>li>a{
+            color: #999;
+            font-size: 1.8rem;
+            display: block;
+            padding: 9px 24px;
+            white-space: nowrap;
+        }
+        .dokebi-menu ul>li:hover>a{
+            color: #222;
+        }
+        .dokebi-menu ul>li.be-sub>a::after{
+            content: '∨';
+            display: inline-block;
+            transform: scale(.5,.3);
+            margin-left: 3px;
+        }
+        .dokebi-menu ul>li.on>a{
+            background-color: red;
+            color: #fff;
+            background-repeat: 30px;
+        }
+
+        .dokebi-sub-menu{
+            position: absolute;
+            border: 1px solid red;
+            border-radius: 30px;
+            width: 180px;
+            background-color: #fff;
+            display: none;
+        }
+
+        .dokebi-sub-menu ul>li:hover .dokebi-sub-menu{
+            display: block;
+        }
+
+        .dokebi-sub-menu a{
+            display: block;
+            padding: 10px 15px;
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <header class="header inbox">
+            <div class="partbox col-3">
+                <h1 class="header_logo">
+                    <img src="./images/tvnlogo2.png" alt="">
+                </h1>
+            </div>
+            <div class="partbox col-9">
+                <nav class="top-menu">
+                    <ul>
+                        <li>
+                            <a href="#">로그인</a>
+                        </li>
+                        <li>
+                            <a href="#">회원가입</a>
+                        </li>
+                        <li>
+                            <a href="#">검색</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="gnb">
+                    <ul>
+                        <li>
+                            <a href="#">About tvN</a>
+                        </li>
+                        <li>
+                            <a href="#">골드핑거 14기</a>
+                        </li>
+                        <li>
+                            <a href="#">편성표</a>
+                        </li>
+                        <li>
+                            <a href="#">드라마</a>
+                        </li>
+                        <li>
+                            <a href="#">연예오락</a>
+                        </li>
+                        <li>
+                            <a href="#">인사이트</a>
+                        </li>
+                        <li>
+                            <a href="#">동영상</a>
+                        </li>
+                        <li>
+                            <a href="#">이벤트</a>
+                        </li>
+                        <li>
+                            <a href="#">프로그램</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div id="banner">
+        <section class="banner inbox">
+            <!-- <h2 class="blind">캐릭터 소개영역</h2> -->
+            <div class="partbox col-12"></div>
+        </section>
+    </div>
+    <div id="dokebi-menu">
+        <nav class="dokebi-menu inbox">
+            <ul>
+                <li class="on">
+                    <a href="#">메인</a>
+                </li>
+                <li class="be-sub">
+                    <a href="#">프로그램 소개</a>
+                    <div class="dokebi-sub-menu">
+                        <ol>
+                            <li>
+                                <a href="#">프로그램 소개</a>
+                            </li>
+                            <li>
+                                <a href="#">인물소개</a>
+                            </li>
+                            <li>
+                                <a href="#">인물 관계도</a>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">미리보기</a>
+                </li>
+                <li>
+                    <a href="#">동영상</a>
+                </li>
+                <li class="be-sub">
+                    <a href="#">사진첩</a>
+                </li>
+                <li>
+                    <a href="#">OST</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
