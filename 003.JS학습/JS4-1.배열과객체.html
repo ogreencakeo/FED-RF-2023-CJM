@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JS4-1. 배열변수와 객체</title>
         <style>
+            /* 동영상 주변 암전효과 박스 */
             body::before {
                 content: "";
                 display: none;
@@ -15,6 +16,7 @@
                 height: 100vh;
                 background-color: rgba(0, 0, 0, 0.592);
             }
+            /* body에 클래스 on 설정시 보임 */
             body.on::before {
                 display: block;
             }
@@ -483,10 +485,100 @@
                     // 함수 호출 및 전달값 확인
                     console.log('난 진짜야 ~! ', mocode);
 
-                    // 동영상 박스 대상 : #mvbox
+                    // 1. 동영상 박스 대상 선정 : #mvbox
                     let mvbox = document.querySelector('#mvbox');
-                    
+
+                    // 2. 영화박스에 아이프레임 넣기
+                    mvbox.innerHTML = `
+                        <div id='mv'>
+                            <!-- 유튜브 아이프레임 -->
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${mocode}?autoplay=1"  allow="autoplay" >
+                            </iframe>
+                            <!-- 닫기버튼 -->
+                            <button class='cbtn'>×</button>
+                        </div>
+                    `;
+
+                    // 3. 삽입된 동영상 박스 CSS 설정하기
+                    let mv = document.querySelector('#mv');
+                    let css = mv.style;
+
+                    css.position = 'fixed';
+                    css.top = '50%';
+                    css.left = '50%';
+                    css.transform = 'translate(-50%, -50%)';
+                    css.width = '700px';
+                    css.height = '450px';
+                    css.backgroundColor = '#000';
+
+                    // 4. 닫기버튼 CSS 셋팅하기
+                    let cbtn = document.querySelector(".cbtn");
+                    // style.cssText는 css를 직접 style 속성값으로 넣음!
+                    cbtn.style.cssText = `
+                        position : absolute;
+                        top : 0;
+                        right : -70px;
+                        width : 50px;
+                        height : 50px;
+                        border : none;
+                        color : #fff;
+                        background-color : blue;
+                        font-size : 40px;
+                        font-weight : bold;
+                        border-radius : 50%;
+                        cursor : pointer;
+                        line-height : 50px;
+                    `;
+
+                    // 아이프레임 보더 없앰
+                    mv.querySelector('iframe').style.border = 'none';
+
+                    // 5. 닫기버튼 클릭시 #mv 제거하기
+                    cbtn.onclick = function(){
+                        mv.remove();
+                        // remove() 는 DOM 메서드로 선택요소를 제거함!
+
+                        // body에 클래스 on 제거하기
+                        document.body.classList.remove('on');
+                    }; // click 이벤트 함수
+
+                    // 6. body 요소에 클래스 on 주기
+                    // 동영상 배경 암전효과
+                    document.body.classList.add('on');
+
                 } // playMovie 함수
+
+                // 초이스 버튼 링크걸기
+
+                // 대상선정 : .choice button
+                let choice = document.querySelectorAll('.choice button');
+                console.log('초이스 :', choice);
+
+                // 초이스 개수
+                let choice_cnt = choice.length;
+
+                // for문으로 버튼들을 click이벤트 설정함
+                for(let i=0; i<choice_cnt; i++){
+                    choice[i].onclick = function(){
+                        // 1. 버튼 텍스트
+                        let btxt = this.innerText;
+                        console.log('난 누구? :', btxt);
+
+                        // 할당전 이전 영화객체
+                        console.log(cake_obj);
+
+                        // 2. 버튼 텍스트에 해당하는 객체를 기존 객체에 덮어쓰기
+                        switch(btxt){
+                            case ___:
+                                cake_obj = ___;
+                                break;
+                        }
+
+                        // 3. 객체 셋팅함수 호출!
+                        
+
+                    }; // click 이벤트함수
+                } // for문
                 
             }   // loadFn함수
         </script>
@@ -501,8 +593,20 @@
         <div class="cont"></div>
         <div class="cont"></div>
         <div class="cont"></div>
-        <div class="cont">
+        <div class="cont choice">
             <!-- 영화 초이스 버튼박스 -->
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button> <br/>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button>
+            <button>초이스</button> <br/>
         </div>
 
         <!-- 영화예고편 동영상용 박스 -->
