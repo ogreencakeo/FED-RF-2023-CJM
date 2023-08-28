@@ -259,8 +259,25 @@
                     소속사 : "셋별당엔터",
                     바밀번호 : 7777,
                     팬레터 : function(){
+                        // 변경대상.style
+                        let mycss = target[3].style;
+
                         // 1. 메시지 띄우기
                         alert("상남자 오빠! 지금뭐해?");
+                        // 2. 배경이미지 넣기
+                        mycss.background = '';
+                        // 3. 글자색
+                        mycss.color = '#fff';
+                        // 4. 글자 그림자
+                        mycss.textShadow = '0 0 5px #000';
+                        // 5. 글자 내용 변경
+                        target[3].innerText = '손석구 최고 멋쟁이! 승승장구! 화이팅!!!';
+                        // 6. 줄간격 
+                        mycss.lineHeight = '84px';
+                        // 7. 박스 크게 하기
+                        mycss.transform = 'scale(1.2)';
+                        // 8. 트랜지션
+                        mycss.transition = '1s ease-out 1s';
                     }
                 });
 
@@ -280,6 +297,18 @@
                 // 2줄이니까 줄 간격 조정
                 target[3].style.lineHeight = '40px';
 
+                // 객체에 셋팅된 함수를 보통 '메서드'라고 부른다.
+                // 이 메서드를 호출해 보자!
+                target[3].onclick = SSG['팬레터'];
+
+                // title 속성 넣기
+                target[3].title = `
+                    여기를 클릭하여 ${SSG['너의 이름은?']}팬레터를 확인하세요!
+                `;
+
+                // 손가락표시
+                target[3].style.cursor = 'pointer';
+                
             }   // loadFn함수
         </script>
     </head>
