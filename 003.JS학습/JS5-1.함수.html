@@ -362,8 +362,28 @@
                 함수명: myFn
                 기능: 파라미터 얼마든지 받아서 h2만들어 넣기
             ************************************************/
-
             
+            // 함수의 전달변수가 없어도 보내는 전달값이 있으면
+            // 함수의 arguments라는 전달변수 배열 객체에 값을 자동으로 담아준다!
+            
+            const myFn =  function(){
+                // 파라미터가 전혀 없음
+                console.log('내함수!', arguments, typeof arguments, typeof scene); // typeof : Object
+
+                // 대상선정 : body
+                for(let i=0; i<arguments.length; i++){
+                    document.body.innerHTML += `
+                        <h2>${arguments[i]}</h2>
+                    `;
+                    // 기존 body 자식으로 추가 (+=대입연산자)
+                }
+            }
+
+            // 타임아웃 함수를 사용하여 일정시간뒤 코드실행하기
+            setTimeout(() => {
+                myFn('동해물과', '백두산이', '마르고', '닳도록', 
+                '하느님이', '보우하사', '우라나라', '만세');
+            }, 3000);
             
 
             // 로드구역 //
