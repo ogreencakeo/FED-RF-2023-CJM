@@ -1,102 +1,98 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>For문 옵션</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS4-1. 배열변수와 객체</title>
         <style>
-            body {
-                font-size: min(30px, 2vw);
+            body::before {
+                content: "";
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.592);
+            }
+            body.on::before {
+                display: block;
+            }
+            h1 {
                 text-align: center;
-                padding-bottom: 100px;
-            }
-            body,
-            button {
-                font-size: min(20px, 1.5vw);
-            }
-            .forCls {
-                height: 100px;
-                border: 4px dotted lightseagreen;
             }
 
-            .forCls img {
-                height: 100px;
+            /* 정보출력박스 */
+            .cont {
+                width: 1000px;
+                height: 80px;
+                border: 2px solid #000;
+                text-align: center;
+                white-space: nowrap;
+                line-height: 84px;
+                margin: 5px auto;
+                font-size: 24px;
             }
         </style>
+        <!-- JS코드구역 -->
         <script>
-            window.addEventListener('load', function(){
-                let btns = document.querySelectorAll('button');
+            window.addEventListener('loaad', loadFn);
 
-                for(let i=0; i<btns.length; i++){
-                    btns.item(i).onclick = showNum; 
+            function loadFn(){
+
+                let target = document.querySelectorAll('.cont');
+                let cake_obj = {};
+                cake_obj.title = '암살';
+                cake_obj.director = '최동훈';
+                cake_obj.actor = '전지현, 이정재, 하정우, 최덕문, 조진웅';
+                cake_obj.genre = '액션/드라마';
+                cake_obj.ratings = '15세 관람가';
+                cake_obj.trailer = function(){
+                    playMovie('RnGxpZ75zFU');
                 }
+                
+                target[5].style.lineHeight = '34px';
+                target[5].style.cursor = 'pointer';
+                target[5].style.fontSize = '14px';
 
-                function showNum(){
-                    let txt = this.innerText;
-                    let target = this.parentElement.querySelector('.forCls');
-                    
-                    target.innerHTML = '';
-                    for(let i=0; i<=10; i++){
-                        if(txt == 'for문옵션1' && (i==4 || i==7)){
-                            continue;
-                        }
+                const showMovieInfo = function(){
+                    target[5].innerHTML = `
+                        ♠ 영화명 : ${cake_obj.title}
+                        ♠ 감독 : ${cake_obj.director} <br/>
+                        ♠ 배우 : ${cake_obj.actor}
+                        ♠ 장르 : ${cake_obj.genre}
+                        ♠ 등급 : ${cake_obj.ratings}
+                    `;
+                    target[5].title = `클릭하시면 ${cake_obj.title}예고편을 보실 수 있습니다!`;
+                    target[5].onclick = cake_obj.trailer;
+                };
 
-                        if(txt == 'for문옵션2' && i>5){
-                            break;
-                        }
-                        // 2~4,9빼고 돌리기
-                        if(txt == 'for문옵션연습' && (i>=2 && i<=4) || i==9){
-                            continue;
-                        }
+                showMovieInfo();
 
-                        target.innerHTML += `
-                        <img src="../images/num/num_0${i}.png" alt="">
-                        `;
+                let choice = document.querySelectorAll('.choice button');
+
+                for(let i=0; i<choice.length; i++){
+                    choice[i].onclick = function(){
+                        let btxt = this.innerText;
+                        
                     }
                 }
-            })
+
+
+            }
         </script>
     </head>
 
     <body>
-        <h1>for문 옵션</h1>
+        <h1>JS4-1. 배열변수와 객체</h1>
 
-        <hr />
-
-        <div>
-            <h2>기본for문</h2>
-            <button>기본호출</button>
-            <br /><br />
-            <div class="forCls"></div>
+        <div class="cont"></div>
+        <div class="cont"></div>
+        <div class="cont"></div>
+        <div class="cont"></div>
+        <div class="cont"></div>
+        <div class="cont choice">
+            <button>초이스</button>
         </div>
-        <hr />
-
-        <div>
-            <h2>4번과 7번빼고 돌리기</h2>
-            <button>for문옵션1</button>
-            <br /><br />
-            <div class="forCls"></div>
-        </div>
-
-        <hr />
-
-        <div>
-            <h2>5번까지만 돌리기</h2>
-            <button>for문옵션2</button>
-            <br /><br />
-            <div class="forCls"></div>
-        </div>
-
-        <hr />
-
-        <div>
-            <h2>2~4,9빼고 돌리기</h2>
-            <button>for문옵션연습</button>
-            <br /><br />
-            <div class="forCls">
-                
-            </div>
-        </div>
-
-        <hr />
     </body>
 </html>
