@@ -4,28 +4,26 @@
         <meta charset="UTF-8" />
         <title>JS5-1. 함수(function)</title>
         <style>
-            body {
+             body {
                 margin: 0;
-                /* 최소 높이로 보이는 화면크기만 지정하면 
-                기본적으로 body가 보이는 화면을 유지하다가 
-                컨텐츠가 많아져서 스크롤 생성시 body도 늘어남! */
                 min-height: 100vh;
-                /* background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
-                    no-repeat fixed center/cover; */
-            }
+                /* 최소 높이로 보이는 화면크기만큼 지정하면
+                기본적으로 body가 보이는 화면을 유지하다가
+                컨텐츠가 많아져서 스크롤 생성시 body도 늘어남! */
 
+                /* background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564) no-repeat fixed center/cover; */
+            }
             /* 배경박스 */
             .bgbox{
-                padding: fixed;
+                position: fixed;
                 top: 0;
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                /* body가 투명하므로 아래쪽에 내려가 있어도 배경은 보인다.
-                -> 배경 처리시 이렇게 하면됨! */
                 z-index: -1;
+                /* body가 투명하므로 아래쪽에 내려가 있어도
+                배경은 보인다! -> 배경처리시 이렇게 하면됨! */
             }
-
             .bgbox ul{
                 margin: 0;
                 padding: 0;
@@ -33,25 +31,19 @@
                 width: 100%;
                 height: 100%;
             }
-
             .bgbox li{
-                /* 서로 겹쳐짐 */
                 position: absolute;
-
+                /* 서로겹쳐짐 */
                 width: 100%;
                 height: 100%;
-                
-                /* 투평 */
+                /* 투명하게 */
                 opacity: 0;
-                
                 /* 트랜지션 */
                 transition: 1s ease-in-out;
             }
-            
             .bgbox li.on{
-                /* 보이게 함 */
+                /* 보이게함 */
                 opacity: 1;
-
                 /* 맨위로 오게함 */
                 z-index: 1;
             }
