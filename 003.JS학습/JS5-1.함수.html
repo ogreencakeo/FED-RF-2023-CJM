@@ -206,8 +206,24 @@
             const scene = [
                 "https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F1ee63066-4239-11ec-b414-b1f6389ab345.jpg", 
                 "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg", 
-                "https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg"
+                "https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg",
+                "https://www.wallpaperflare.com/static/353/548/867/cityscape-seoul-south-korea-landscape-wallpaper-preview.jpg",
+                "https://wallpaperaccess.com/full/11675.jpg",
+                "https://wallpaperaccess.com/full/11676.jpg",
+                "https://wallpaperaccess.com/full/11678.jpg",
+                "https://wallpaperaccess.com/full/5480068.jpg",
+                "https://wallpaperaccess.com/full/11682.jpg"
             ];
+
+            /* 
+            https://www.wallpaperflare.com/static/353/548/867/cityscape-seoul-south-korea-landscape-wallpaper-preview.jpg
+            https://wallpaperaccess.com/full/11675.jpg
+            https://wallpaperaccess.com/full/11676.jpg
+            https://wallpaperaccess.com/full/11678.jpg
+            https://wallpaperaccess.com/full/5480068.jpg
+            https://wallpaperaccess.com/full/11682.jpg
+
+            */
 
             /*////////////////////////////////
                 함수명: Korea
@@ -347,6 +363,9 @@
                 기능: 파라미터 얼마든지 받아서 h2만들어 넣기
             ************************************************/
 
+            
+            
+
             // 로드구역 //
             window.addEventListener('load', function(){
                 console.log('로딩완료!');
@@ -363,7 +382,13 @@
                 // 명령문이 하나면 중괄호 생략가능!
                 // class = 'on'을 넣기위해 삼항연산자(비? 집 : 놀이동산)를 사용
                 // i==0 이면 class='on' 넣기
-                for(let i=0; i<3; i++){
+
+                // li 개수는 동적으로 scene 배열변수의 개수와 같게 생성하고 배경을 세팅한다.
+                // scene 개수 변수
+                let scene_cnt = scene.length;
+                console.log('배경배열개수 : ' + scene_cnt);
+
+                for(let i=0; i<scene_cnt; i++){
                     hcode += `
                         <li ${i==0? "class = 'on'" : ""}></li>
                     `;
@@ -395,7 +420,9 @@
                     seq++;
 
                     // 3. 한계수 체크 (마지막번호 + 1 -> 0번으로)
-                    if(seq == 3) seq = 0;
+                    // 마지막번호는 (배열개수 -1)
+                    // 마지막번호 다음은 개수다!
+                    if(seq == scene_cnt) seq = 0;
 
                     // 4. 다음해당 순번 적용하기
                     bg_li[seq].classList.add('on');
