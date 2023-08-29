@@ -1,98 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS4-1. 배열변수와 객체</title>
+        <title>JS5-1. 함수(function)</title>
         <style>
-            body::before {
-                content: "";
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background-color: rgba(0, 0, 0, 0.592);
+            body {
+                background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
+                    no-repeat fixed center/cover;
             }
-            body.on::before {
-                display: block;
-            }
-            h1 {
+
+            h2 {
+                font-size: 5vh;
+                color: #fff;
+                text-shadow: 0 0 5px #000;
                 text-align: center;
             }
 
-            /* 정보출력박스 */
-            .cont {
-                width: 1000px;
-                height: 80px;
-                border: 2px solid #000;
-                text-align: center;
-                white-space: nowrap;
-                line-height: 84px;
-                margin: 5px auto;
-                font-size: 24px;
+            button {
+                font-size: 40px;
             }
         </style>
-        <!-- JS코드구역 -->
         <script>
-            window.addEventListener('loaad', loadFn);
 
-            function loadFn(){
+            // 온라인상 배경이미지 주소를 배열로 셋팅
+            const scene = [
+                "https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F1ee63066-4239-11ec-b414-b1f6389ab345.jpg?crop=2667%2C1500%2C0%2C0&resize=1200",
+                "https://www.asml.com/-/media/asml/images/careers/working-at-asml/south-korea/gyeongbokgung_palace_south_korea.jpg?mw=1920&rev=5154661f5c8943bb8c81419c01b327e2&hash=30B844A1D30F8A9B2BB0A2FE6377E953",
+                "https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564",
+            ];
 
-                let target = document.querySelectorAll('.cont');
-                let cake_obj = {};
-                cake_obj.title = '암살';
-                cake_obj.director = '최동훈';
-                cake_obj.actor = '전지현, 이정재, 하정우, 최덕문, 조진웅';
-                cake_obj.genre = '액션/드라마';
-                cake_obj.ratings = '15세 관람가';
-                cake_obj.trailer = function(){
-                    playMovie('RnGxpZ75zFU');
-                }
+            function Korea(txt) {
+                // 1.함수호출,전달값 확인
+                alert(txt);
+                let ri = Ri(txt + '리');
+                return ri + "국 만세";
+            } 
+
+            function Ri(txt) {
+                // 1.함수호출,전달값 확인
+                alert(txt);
+                let na = Na(txt + '나');
+                return na+ '민';
+            } 
+
+            function Na(txt) {
+                // 1.함수호출,전달값 확인
+                alert(txt);
+                let ra = Ra(txt + '라');
+                return ra + '한';
+            } 
+
+            function Ra(txt) {
+                // 1.함수호출,전달값 확인
+                alert(txt); // 우리나라
+                return txt + '대';
                 
-                target[5].style.lineHeight = '34px';
-                target[5].style.cursor = 'pointer';
-                target[5].style.fontSize = '14px';
+            } 
 
-                const showMovieInfo = function(){
-                    target[5].innerHTML = `
-                        ♠ 영화명 : ${cake_obj.title}
-                        ♠ 감독 : ${cake_obj.director} <br/>
-                        ♠ 배우 : ${cake_obj.actor}
-                        ♠ 장르 : ${cake_obj.genre}
-                        ♠ 등급 : ${cake_obj.ratings}
-                    `;
-                    target[5].title = `클릭하시면 ${cake_obj.title}예고편을 보실 수 있습니다!`;
-                    target[5].onclick = cake_obj.trailer;
-                };
+            ///////////////////////////////////
+            // callMe("함수위에서 호출!");
 
-                showMovieInfo();
+            function callMe(txt) {
+                // txt 전달변수
+                console.log("나, 불렀어?", txt);
+            } 
 
-                let choice = document.querySelectorAll('.choice button');
+            /////////////////////////////////////////////
+            // myHome("익명함수 위에서 호출!");
 
-                for(let i=0; i<choice.length; i++){
-                    choice[i].onclick = function(){
-                        let btxt = this.innerText;
-                        
-                    }
-                }
+            const myHome = function (txt) {
+                // txt 전달변수
+                console.log("오!나의집!", txt);
+            }; /////// myHome 함수 ////////////////
 
 
-            }
+            /**************************************** 
         </script>
     </head>
 
     <body>
-        <h1>JS4-1. 배열변수와 객체</h1>
-
-        <div class="cont"></div>
-        <div class="cont"></div>
-        <div class="cont"></div>
-        <div class="cont"></div>
-        <div class="cont"></div>
-        <div class="cont choice">
-            <button>초이스</button>
-        </div>
+        <button onclick="alert(Korea('우'))">우리나라 대한민국 만세 프로젝트 시작!</button>
+        <!-- 
+            [JS 일반적인 실행순서]
+            1. 위에서 아래로
+            2. 이퀄 오른쪽에서 왼쪽으로
+            3. 소괄호 안에서 바깥으로
+            4. 함수바깥부터실행 호출시 함수실행
+        -->
     </body>
 </html>
