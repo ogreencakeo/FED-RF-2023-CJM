@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
-        <title>for문 확장 - for of문</title>
+        <title>forEach메서드</title>
         <script>
             // 배열 만들기
             // 배열구성 [제목,주연,내용]
@@ -79,40 +79,31 @@
                         // for of문을 사용하여 배열 순회!
                         // 변경 대상의 순번을 변수로 처리함
 
-                        let seq = 0; // 변경대상 순번
+                        // forEach메서드 사용!
+                        mv_info.forEach((val, idx)=>{
+                            // console.log('전달값 :', val, ",", idx);
+                            minfo[idx].innerText = val;
+                        })
 
-                        for(let y of mv_info){
-                            // console.log('배열순회 y :', y); 
-                            // 대상에 순서대로 넣는다.
-                            minfo[seq].innerText = y;
 
-                            // 변경대상 순번증가
-                            seq++;
-                        }
+
+                        // let seq = 0; // 변경대상 순번
+
+                        // for(let y of mv_info){
+                        //     // console.log('배열순회 y :', y); 
+                        //     // 대상에 순서대로 넣는다.
+                        //     minfo[seq].innerText = y;
+
+                        //     // 변경대상 순번증가
+                        //     seq++;
+                        // }
 
                     };
                 }
             }
 
-            /******************************************* 
-                [ for of 문 ]
-                ___________________________
-
-                - 일반for문에 비해 간단한 형식의 for문
-                ((형식))
-                for(변수 of 배열/컬렉션){실행문}
-
-                ((특징))
-                -> 시;한;증 이 필요없다!
-                -> 배열/컬렉션 개수만큼 알아서 돌아줌!
-                -> ES6에서 새롭게 등장함!
-
-                -> 부가기능: 
-                문자데이터를 넣으면 한글자씩 돌아줌! 
-                for(변수 of 문자데이터변수) {실행문}
-                -> 한글자씩 태그로 싸줄때 편리함!
-
-            *******************************************/
+            /*
+            */
         </script>
         <style>
             .btns {
