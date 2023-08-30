@@ -2,101 +2,106 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8" />
-        <title>For문 옵션</title>
+        <title>JS5-1. 함수(function)</title>
         <style>
             body {
-                font-size: min(30px, 2vw);
-                text-align: center;
-                padding-bottom: 100px;
-            }
-            body,
-            button {
-                font-size: min(20px, 1.5vw);
-            }
-            .forCls {
-                height: 100px;
-                border: 4px dotted lightseagreen;
+                /* background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
+                    no-repeat fixed center/cover; */
+                margin: 0;
+                min-height: 100vh;
             }
 
-            .forCls img {
-                height: 100px;
+            .bgbox{
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                z-index: -1;
+                /* body가 투명하므로 아래쪽에 내려가 있어도
+                배경은 보인다! -> 배경처리시 이렇게 하면됨! */
+            }
+            .bgbox ul{
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                width: 100%;
+                height: 100%;
+            }
+            .bgbox li{
+                position: absolute;
+                /* 서로겹쳐짐 */
+                width: 100%;
+                height: 100%;
+                /* 투명하게 */
+                opacity: 0;
+                /* 트랜지션 */
+                transition: .5s ease-in-out;
+            }
+            .bgbox li.on{
+                /* 보이게함 */
+                opacity: 1;
+                /* 맨위로 오게함 */
+                z-index: 1;
+            }
+            h2 {
+                font-size: 5vh;
+                color: #fff;
+                text-shadow: 0 0 5px #000;
+                text-align: center;
+            }
+
+            button {
+                font-size: 40px;
             }
         </style>
         <script>
+
+            // 온라인상 배경이미지 주소를 배열로 셋팅
+            const scene = [
+                "https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Fsundaytimes%2Fprod%2Fweb%2Fbin%2F1ee63066-4239-11ec-b414-b1f6389ab345.jpg", 
+                "https://cdn.britannica.com/57/75757-050-122EC2ED/Changgyong-Palace-background-Seoul.jpg", 
+                "https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg",
+                "https://www.wallpaperflare.com/static/353/548/867/cityscape-seoul-south-korea-landscape-wallpaper-preview.jpg",
+                "https://wallpaperaccess.com/full/11675.jpg",
+                "https://wallpaperaccess.com/full/11676.jpg",
+                "https://wallpaperaccess.com/full/11678.jpg",
+                "https://wallpaperaccess.com/full/5480068.jpg",
+                "https://wallpaperaccess.com/full/11682.jpg"
+            ];
+
             window.addEventListener('load', function(){
-                let btns = document.querySelectorAll('button');
+                let bgbox = document.querySelector('.bgbox');
+                let hcode = '';
+                hcode += '<ul>';
 
-                for(let i=0; i<btns.length; i++){
-                    btns.item(i).onclick = showNum; 
+                for(let i=0; i<scene.length; i++){
+                    hcode += `
+                        <li ${i==0? "class : 'on'" : "" }></li>
+                    `;
+                }
+                hcode += '</ul>';
+
+                let bg_li = bgbox.querySelectorAll('li');
+                for(let i=0; i<bg_li.length; i++){
+                    bg_li[i].style.background = `
+                        url(${scene[i]}) no-repeat center/cover
+                    `;
                 }
 
-                function showNum(){
-                    let txt = this.innerText;
-                    let target = this.parentElement.querySelector('.forCls');
-                    
-                    target.innerHTML = '';
-                    for(let i=0; i<=10; i++){
-                        if(txt == 'for문옵션1' && (i==4 || i==7)){
-                            continue;
-                        }
-
-                        if(txt == 'for문옵션2' && i>5){
-                            break;
-                        }
-                        // 2~4,9빼고 돌리기
-                        if(txt == 'for문옵션연습' && (i>=2 && i<=4) || i==9){
-                            continue;
-                        }
-
-                        target.innerHTML += `
-                        <img src="../images/num/num_0${i}.png" alt="">
-                        `;
-                    }
-                }
-            })
+                let seq = 0;
+                setInterval(() => {
+                    bg_li[seq].classList.remove('on');
+                    seq++;
+                    if(seq == scene.length) seq=0;
+                    bg_li[seq].classList.add('on');
+                }, 2000);
+            });
         </script>
     </head>
 
     <body>
-        <h1>for문 옵션</h1>
-
-        <hr />
-
-        <div>
-            <h2>기본for문</h2>
-            <button>기본호출</button>
-            <br /><br />
-            <div class="forCls"></div>
-        </div>
-        <hr />
-
-        <div>
-            <h2>4번과 7번빼고 돌리기</h2>
-            <button>for문옵션1</button>
-            <br /><br />
-            <div class="forCls"></div>
-        </div>
-
-        <hr />
-
-        <div>
-            <h2>5번까지만 돌리기</h2>
-            <button>for문옵션2</button>
-            <br /><br />
-            <div class="forCls"></div>
-        </div>
-
-        <hr />
-
-        <div>
-            <h2>2~4,9빼고 돌리기</h2>
-            <button>for문옵션연습</button>
-            <br /><br />
-            <div class="forCls">
-                
-            </div>
-        </div>
-
-        <hr />
+        <div class="bgbox"></div>
+        <button onclick="Korea('우')">우리나라 대한민국 만세 프로젝트 시작!</button>
     </body>
 </html>
