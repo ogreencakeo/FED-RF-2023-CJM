@@ -107,15 +107,32 @@
                 // 2. 이벤트 함수 구현하기
                 // 2-1. .wrap박스 위에 마우스 무브시 따라오기
                 // 이벤트 : mousemove
-                wrap.onmousemove = () => {
+                wrap.onmousemove = (e) => { // e - 이벤트 전달 변수
+                    // 이벤트 함수에 전달변수를 하나 쓰면 그 변수명이
+                    // 무엇일지라도 evnet객체가 내부로 전달된다!
+                    // 이것으로 이벤트 관련 속성, 메서드 사용 가능!
+                    // event라고 쓰면 오리지널 브라우저 이벤트 객체가
+                    // 호출되는 것임!
                     console.log(
-                        'x:', event.pageX,
-                        '/y :', event.pageY);
+                        'x:', e.pageX,
+                        '/y :', e.pageY);
+                    // console.log(
+                    //     'x:', event.pageX,
+                    //     '/y :', event.pageY);
+
                     // x, y 좌표값 구하기
                     // 발생 이벤트의 pageX, pageY로 구함
                     // event.pageX / event.pageY
                     // 전달변수를 하나쓰고 예컨데 e라고 쓰고
                     // 내부에 e.pageX / e.pageY로 사용!
+
+                    // pageX는 화면 왼쪽 끝에서 부터 px위치값
+                    // pageY는 화면 위쪽 끝에서 부터 px위치값
+
+                    // 변경대상의 style top, left값 변경하기
+                    moving.style.top = e.pageY + "px";
+                    moving.style.left = e.pageX + "px";
+                    
                 };
 
             }
@@ -161,17 +178,26 @@
                 line-height: 2;
             }
 
-            /* 따라다니는 포스터 박스 */
+            /* 따라다니는 포스터박스 */
             .flying-poster{
                 position: fixed;
                 top: 0;
                 left: 0;
+
+                /* 정중앙 이동 */
+                transform: translate(-50%, -50%);
+                
                 width: 200px;
                 height: 300px;
                 background: url(./images/ala1.jpg) no-repeat center/cover;
-                transition: 2s ease-in-out;
+                
+                /* 트랜지션 ease-out을 줘야 처음이동시 마우스 포인터와
+                같은 속도로 자연스럽게 이동됨! */
+                transition: .2s ease-out;
+                
                 /* display: none; */
             }
+
             .wrap > div {
                 color: #444;
             }
