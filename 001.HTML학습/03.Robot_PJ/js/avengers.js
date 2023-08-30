@@ -20,5 +20,13 @@ let hcode = '';
 
 // for in
 for(let x in character){
-    console.log(x);
+    // 변수 x는 객체의 속성이다.
+    // 객체 값은 객체변수[x]
+    // console.log(x, ' / ', character[x]);
+
+    // html 코드를 만들어준다!
+
+    hcode += `
+        
+    `;
 }
