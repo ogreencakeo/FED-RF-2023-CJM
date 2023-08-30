@@ -43,18 +43,25 @@
                 console.log('대상 :',btns, ", ", minfo);
 
                 // 2. 버튼 클릭 이벤트 설정
-                for (let x of btns) {
+                // for Each 메서드
+                btns.forEach(ele=>{
+                // for (let x of btns) {
                     // x는 버튼 각 요소
                     // console.log("x, 너는 누구? :", x);
 
+                    console.log('ele 너는 누구니? :', ele);
+
                     // 각 버튼에 클릭 이벤트함수 설정
-                    x.onclick = () => {
+                    
+                    // x.onclick = () => {
+                    ele.onclick = () => {
                         // console.log("나야나~!", x);
                         // this를 사용말고 x를 사용하자!
 
                         // 1. 버튼텍스트 가져오기
                         // -> 버튼에 따른 배열 데이터 선택위해!
-                        let btxt = x.innerText;
+                        // let btxt = x.innerText;
+                        let btxt = ele.innerText;
                         // console.log("버튼명 :", btxt);
 
                         // 2. 버튼별 데이터 분기
@@ -80,10 +87,11 @@
                         // 변경 대상의 순번을 변수로 처리함
 
                         // forEach메서드 사용!
-                        mv_info.forEach((val, idx)=>{
-                            // console.log('전달값 :', val, ",", idx);
-                            minfo[idx].innerText = val;
-                        })
+                        // mv_info.forEach((val, idx)=>{
+                        //     // console.log('전달값 :', val, ",", idx);
+                        //     minfo[idx].innerText = val;
+                        // })
+                        mv_info.forEach((val, idx)=> minfo[idx].innerText = val);
 
 
 
@@ -99,7 +107,8 @@
                         // }
 
                     };
-                }
+             // }                
+                });
             }
 
             /*
