@@ -5,45 +5,12 @@
         <title>JS5-1. 함수(function)</title>
         <style>
             body {
-                /* background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
-                    no-repeat fixed center/cover; */
                 margin: 0;
                 min-height: 100vh;
+                /* background: url(https://images.adsttc.com/media/images/5f73/76e0/63c0/17bc/c900/04e8/large_jpg/HK_1_N3.jpg?1601402564)
+                    no-repeat fixed center/cover; */
             }
 
-            .bgbox{
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                z-index: -1;
-                /* body가 투명하므로 아래쪽에 내려가 있어도
-                배경은 보인다! -> 배경처리시 이렇게 하면됨! */
-            }
-            .bgbox ul{
-                margin: 0;
-                padding: 0;
-                list-style: none;
-                width: 100%;
-                height: 100%;
-            }
-            .bgbox li{
-                position: absolute;
-                /* 서로겹쳐짐 */
-                width: 100%;
-                height: 100%;
-                /* 투명하게 */
-                opacity: 0;
-                /* 트랜지션 */
-                transition: .5s ease-in-out;
-            }
-            .bgbox li.on{
-                /* 보이게함 */
-                opacity: 1;
-                /* 맨위로 오게함 */
-                z-index: 1;
-            }
             h2 {
                 font-size: 5vh;
                 color: #fff;
@@ -53,6 +20,36 @@
 
             button {
                 font-size: 40px;
+            }
+
+            .bgbox{
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+
+            .bgbox ul{
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .bgbox li{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: .5s ease-in-out;
+            }
+
+            .bgbox .on{
+                opacity: 1;
+                z-index: 1;
             }
         </style>
         <script>
@@ -71,18 +68,21 @@
             ];
 
             window.addEventListener('load', function(){
-                let bgbox = document.querySelector('.bgbox');
+                const bgbox = document.querySelector('.bgbox');
                 let hcode = '';
                 hcode += '<ul>';
-
+                
                 for(let i=0; i<scene.length; i++){
                     hcode += `
-                        <li ${i==0? "class : 'on'" : "" }></li>
+                        <li ${ i==0? "class:'on'" : ""}></li>
                     `;
                 }
                 hcode += '</ul>';
 
+                bgbox.innerHTML = hcode;
+
                 let bg_li = bgbox.querySelectorAll('li');
+
                 for(let i=0; i<bg_li.length; i++){
                     bg_li[i].style.background = `
                         url(${scene[i]}) no-repeat center/cover
@@ -93,15 +93,25 @@
                 setInterval(() => {
                     bg_li[seq].classList.remove('on');
                     seq++;
-                    if(seq == scene.length) seq=0;
+                    if(seq==scene.length) seq=0;
                     bg_li[seq].classList.add('on');
                 }, 2000);
             });
+            
         </script>
     </head>
 
     <body>
-        <div class="bgbox"></div>
+        <div class="bgbox">
+            
+        </div>
         <button onclick="Korea('우')">우리나라 대한민국 만세 프로젝트 시작!</button>
+        <!-- 
+            [JS 일반적인 실행순서]
+            1. 위에서 아래로
+            2. 이퀄 오른쪽에서 왼쪽으로
+            3. 소괄호 안에서 바깥으로
+            4. 함수바깥부터실행 호출시 함수실행
+        -->
     </body>
 </html>
