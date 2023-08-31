@@ -45,6 +45,8 @@ function wheelFn(e){    // 이벤트 전달 변수 (자동)
     // 화면단위로 이동하므로 윈도우 높이값을 기본값으로 처리
     // window.innerHeight -> window 높이값 구해온다!
 
-    pg_num++;
+    if(delta<0) pg_num++;
+    else pg_num--;
+
     window.scrollTo(0, window.innerHeight * pg_num);
 }
