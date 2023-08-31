@@ -25,7 +25,8 @@ body > div > * {
     background: url(../images/bg_mainvisual2.jpg) no-repeat center/auto 100%;
 }
 .banner .partbox {
-    height: 530px;
+    aspect-ratio: 2/1;
+    /* height: 530px; */
 }
 
 /************* 3. 도깨비메뉴박스 *************/
