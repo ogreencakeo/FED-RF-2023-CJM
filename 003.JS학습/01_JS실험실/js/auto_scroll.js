@@ -21,7 +21,7 @@ let pg_num = 0;
 // 1-2. 휠상태 변수
 let sts_wheel = 0;
 // 1-3. 전체 페이지수 
-const total_pg = 7;
+let total_pg;
 
 // 새로고침시 첫페이지로 리셋하기
 // 브라우저 스크롤바 위치 캐싱때문에 함!
