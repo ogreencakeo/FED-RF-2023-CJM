@@ -5,27 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>레이아웃 연습2 - float 레이아웃 확장</title>
     <style>
-        body * {
+        /* 공사중표시 */
+        body *{
             outline: 2px dashed #ccc;
         }
-        body > div > *{
+        body>div>*{
             outline-color: red;
         }
+
         /* 기본 초기화 */
-        html, body, h1, h2, h3,h4{
+        html,body,h1,h2,h3,h4{
             margin: 0;
             padding: 0;
         }
 
         /* 공통 레이아웃 클래스 */
         /* 속박스 */
-        .inner-box{
+        .inbox{
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* 클리어 설정 가상요소 */
-        /* float에 의한 망가짐 방지 */
-        .inner-box::after, 
+        /* 클리어 설정 가상요소
+        float에 의한 망가짐 방지! */
+        .inbox::after,
         .group-part::after{
             content: '';
             display: block;
@@ -35,23 +37,25 @@
         .partbox{
             /* 옆으로 흐르게 */
             /* float: left; */
-            /* 보더패딩 포함박스 */
+            /* 보더/패딩 포함박스 */
             box-sizing: border-box;
-            /* 내부 패딩 */
+            /* 내부패딩 */
             padding: 15px;
             /* 임시 보이게 보더 */
             border: 2px dotted blue;
-            /* 높이값이 속박스에 있을경우 채우기 셋팅 - 높이값이 파티션박스에 있으면 안씀 */
+            /* 높이값이 속박스에 있을 경우 
+            채우기셋팅 - 높이값이 파티션박스에 있으면 안씀! */
             height: 100%;
-        }
 
+        }
         /* 공통 flex박스 클래스 */
         .flex-box{
             display: flex;
             flex-wrap: wrap;
         }
 
-        /* 12그리드 클래스 */
+        /* 12 그리드 클래스 : 
+        한줄에 합이 12컬럼이 되도록 셋팅! */
         .col-1 {width: 8.33%;}
         .col-2 {width: 16.66%;}
         .col-3 {width: 25%;}
@@ -64,28 +68,27 @@
         .col-10 {width: 83.33%;}
         .col-11 {width: 91.66%;}
         .col-12 {width: 100%;}
-        /* 참고 : https://www.w3schools.com/css/css_rwd_grid.asp */
-        /* 
-            [ 개별영역 박스 -> 확장형 박스 ]
-            -> 개별영역 중앙박스에 높이값을 주면
-            파트박스가 늘어날 경우 높이값에 제한을 받게 됨!
-            확장형은 반드시 파트박스에 높이값을 설정한다. 
-        */
-        /************************************* 1. 상단영역 *************************************/
+        /* 참고: https://www.w3schools.com/css/css_rwd_grid.asp */
+
+        /* 개별영역 박스 -> 확장형 박스
+        -> 개별영역 중앙속박스에 높이값을 주면
+        파트박스가 늘어날 경우 높이값에 제한을 받게됨!
+        확장형은 반드시 파트박스에 높이값을 설정한다! */
+        /************* 1. 상단영역 *************/
         #header{
             background-color: lightblue;
         }
         .header .partbox{
             height: 100px;
         }
-        /************************************* 2. 배너영역 *************************************/
+        /************* 2. 배너영역 *************/
         #banner{
             background-color: lightgreen;
         }
         .banner .partbox{
             height: 300px;
         }
-        /************************************* 3. 메인 영역 : .group-part *************************************/
+        /************* 3. 메인영역 : .group-part *************/
         #main{
             background-color: lightpink;
         }
@@ -104,9 +107,9 @@
         .main .group-part-05 .partbox{
             height: 240px;
         }
-        /************************************* 4. 하단 영역 *************************************/
+        /************* 4. 하단영역 *************/
         #footer{
-            background-color: lightsalmon;
+            background-color: lightskyblue;
         }
         .footer .partbox{
             height: 100px;
@@ -114,8 +117,8 @@
 
         /* 미디어쿼리 레이아웃 변경 적용 */
         /* 최대 800px 이하 시작 */
-        @media screen and (max-width : 800px) {
-            /* 레이아웃 구성 */
+        @media screen and (max-width:800px) {
+            /* 레이아웃구성 */
             .col2-1 {width: 8.33%;}
             .col2-2 {width: 16.66%;}
             .col2-3 {width: 25%;}
@@ -131,13 +134,15 @@
         }
         /* 최대 800px 이하 종료 */
 
+
+
     </style>
 </head>
 <body>
     <!-- 확장형 레이아웃 -->
     <!-- 1. 상단영역 -->
     <div id="header">
-        <header class="header inner-box">
+        <header class="header inbox">
             <!-- 파트박스 3개 -->
             <div class="flex-box">
                 <div class="partbox col-2 col2-3"></div>
@@ -148,21 +153,21 @@
     </div>
     <!-- 2. 배너영역 -->
     <div id="banner">
-        <section class="banner inner-box">
-            <!-- 파트박스 2개 -->
+        <section class="banner inbox">
             <h2>메인배너</h2>
+            <!-- 파트박스 2개 -->
             <div class="flex-box">
                 <div class="partbox col-9 col2-6"></div>
                 <div class="partbox col-3 col2-6"></div>
             </div>
         </section>
     </div>
-    <!-- 3. 메인 영역 -->
+    <!-- 3. 메인영역 -->
     <div id="main">
-        <main class="main inner-box">
+        <main class="main inbox">
             <!-- 파트그룹박스 5개 -->
             <div class="group-part group-part-01">
-                <h2>배너 바로가기</h2>
+                <h2>배너바로가기</h2>
                 <!-- 파트박스 4개 -->
                 <div class="flex-box">
                     <div class="partbox col-3 col2-6"></div>
@@ -174,7 +179,7 @@
             <div class="group-part group-part-02">
                 <h2>바로가기링크영역</h2>
                 <!-- 파트박스 1개 -->
-                <div class="partbox col-12 "></div>
+                <div class="partbox col-12"></div>
             </div>
             <div class="group-part group-part-03">
                 <h2>뉴스모아보기</h2>
@@ -189,6 +194,7 @@
                     <div class="partbox col-3 col2-6"></div>
                     <div class="partbox col-3 col2-6"></div>
                 </div>
+                
             </div>
             <div class="group-part group-part-04">
                 <h2>유관기관링크모음</h2>
@@ -199,11 +205,13 @@
                     <div class="partbox col-2 col2-3"></div>
                     <div class="partbox col-2 col2-3"></div>
                     <div class="partbox col-2 col2-6"></div>
-                    <div class="partbox col-2 col2-6"></di>
+                    <div class="partbox col-2 col2-6"></div>
                 </div>
+                
+            </div>
             <div class="group-part group-part-05">
                 <h2>마케팅통계보기</h2>
-                <!-- 파트박스 6개 -->
+                <!-- 파트박스 4개 -->
                 <div class="flex-box">
                     <div class="partbox col-3 col2-6"></div>
                     <div class="partbox col-3 col2-6"></div>
@@ -213,9 +221,9 @@
             </div>
         </main>
     </div>
-    <!-- 4. 하단 영역 -->
+    <!-- 4. 하단영역 -->
     <div id="footer">
-        <footer class="footer inner-box">
+        <footer class="footer inbox">
             <!-- 파트박스 6개 -->
             <div class="flex-box">
                 <div class="partbox col-6 col2-6"></div>
@@ -227,5 +235,8 @@
             </div>
         </footer>
     </div>
+
+
+    
 </body>
 </html>
