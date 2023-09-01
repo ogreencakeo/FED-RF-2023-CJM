@@ -29,7 +29,7 @@ for (let x in character) {
 
     // html 코드를 만들어준다!
     // num이 3이상일때는 .txt에 .right를 추가함!
-
+    console.log("x", x);
     hcode += `
         <!-- ${num}. ${x} -->
         <div class="hero">
