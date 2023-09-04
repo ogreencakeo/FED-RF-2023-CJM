@@ -43,15 +43,32 @@ function loadFn(){
     // (2) 이벤트 대상 : document.body
     const myBody = document.body;
 
+    /*
+    */
+    // 무버 크기의 절반계산
+    let gap = mover.clientWidth / 2;
+    // 선택요소의 크기 JS
+    // width는 clientWidth, height는 clientHeight
+    console.log('무버 width :', gap);
+
+
     console.log('요소 mover :', mover, ',myBody :', myBody);
 
     // 2. 이벤트 대상에 마우스 무드 이벤트가 적용될때 
     // 무버가 따라다니게 기능 구현
     myBody.onmousemove = e => {     // e - 이벤트 전달변수
-        console.log('e.pageX :', e.pageX, '/ e.pageY :', e.pageY);
-        console.log('e.screenX :', e.screenX, '/ e.screenY :', e.screenY);
-        console.log('e.offsetX :', e.offsetX, '/ e.offsetY :', e.offsetY);
-        console.log('e.clientX :', e.clientX, '/ e.clientY :', e.clientY);
-        console.log('------------------------------');
-    }
+        // 1. 위치값 가져오기
+        let posX = e.pageX - gap;
+        let posY = e.pageY - gap;
+
+        // 2. 무버에 위치값 적용하기
+        mover.style.top = posY + 'px';
+        mover.style.left = posX + 'px';
+
+        // console.log('e.pageX :', e.pageX, '/ e.pageY :', e.pageY);
+        // console.log('e.screenX :', e.screenX, '/ e.screenY :', e.screenY);
+        // console.log('e.offsetX :', e.offsetX, '/ e.offsetY :', e.offsetY);
+        // console.log('e.clientX :', e.clientX, '/ e.clientY :', e.clientY);
+        // console.log('------------------------------');
+    };
 }
