@@ -55,7 +55,13 @@ console.log(hcode);
 // 3. 대상에 html 넣어 출력하기
 avengers.innerHTML = hcode;
 
- /************************************************* 
+//4. 로딩후 2초후 avengers박스에 클래스 on 넣기
+setTimeout(() => {
+    avengers.classList.add('on');
+}, 2000);
+
+
+/************************************************* 
     [ 객체를 위한 for in 문 ]
 
     - 구문: 
