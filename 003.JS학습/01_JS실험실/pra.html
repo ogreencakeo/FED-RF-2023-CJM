@@ -101,17 +101,19 @@
         let pg_num = 0;
         let sts_wheel = 0;
         let pg_total;
-        // window.addEventListener('load', loadFn);
+        let ele_pg;
+        window.addEventListener('load', loadFn);
         window.addEventListener('wheel', wheelFn);
 
         setTimeout(() => { window.scrollTo(0, 0) }, 500);
 
-        // function loadFn(){
+        function loadFn(){
 
-        // }
+            ele_pg = document.querySelectorAll('.page');
+            pg_total = ele_pg.length;
+        }
 
         function wheelFn(e) {
-            pg_total = document.querySelectorAll('.page').length;
             console.log(pg_num);
             if (sts_wheel) return;
             sts_wheel = 1;
@@ -127,6 +129,34 @@
             if (pg_num == pg_total) pg_num = pg_total - 1;
 
             window.scrollTo(0, window.innerHeight * pg_num);
+        }
+
+        window.addEventListener('touchstart', touchStart);
+        window.addEventListener('touchend', touchEnd);
+
+        let pos_start=0, pos_end=0;
+        function touchStart(e){
+            pos_start = e.touches[0].screenY;
+            console.log('터치시작 :', pos_start);
+        }
+        function touchEnd(e){
+            pos_end = e.changedTouches[0].screenY;
+            console.log('터치 끝 :', pos_end);
+
+            let result = pos_start - pos_end;
+
+            if(result == 0)return;
+            movePage(result>0? 1:0);
+        }
+
+        function movePage(dir){
+            if(dir) pg_num++;
+            else pg_num--;
+
+            if(pg_num<0) pg_num=0;
+            if(pg_num == pg_total) pg_num = pg_total-1;
+
+            window.scrollTo(0, ele_pg[pg_num].offsetTop);
         }
 
     </script>
