@@ -63,6 +63,10 @@
             border-radius: 50%;
             background-color: aqua;
 
+            /* 자기자신요소는 이벤트가 무시되게 셋팅해야 아랫쪽
+            요소를 만질 수 있음 */
+            pointer-events: none;
+
             /* 트랜지션 : 이징은 ease-out */
             transition: .3s ease-out;
         }

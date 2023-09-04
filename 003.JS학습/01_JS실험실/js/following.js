@@ -57,7 +57,7 @@ function loadFn(){
     // 2. 이벤트 대상에 마우스 무드 이벤트가 적용될때 
     // 무버가 따라다니게 기능 구현
     myBody.onmousemove = e => {     // e - 이벤트 전달변수
-        // 1. 위치값 가져오기
+        // 1. 위치값 가져오기 (박스중앙 위치로 보정)
         let posX = e.pageX - gap;
         let posY = e.pageY - gap;
 
