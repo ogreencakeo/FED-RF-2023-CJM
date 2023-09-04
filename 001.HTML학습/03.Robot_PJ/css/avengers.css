@@ -75,6 +75,13 @@ body{
     transform: translateY(0) scale(1);
 }
 
+/* 두번째 페이지 타이틀 */
+.t2{
+    font-family: 'Single Day', cursive;
+    position: sticky;
+    top: 15vh;
+}
+
 /********************* 개별요소 디자인 *********************/
 .avengers-box{
     /* 부모는 .page */
