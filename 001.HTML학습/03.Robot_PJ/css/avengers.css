@@ -57,9 +57,8 @@ body{
 .t1{
     font-family: 'Monoton', cursive;
     font-weight: normal;
-    font-size: 4vw;
-    margin-top: 10vh;
-    transform: translateY(10deg);
+    font-size: 70px;
+    transform: translateY(5vh);
 }
 
 /********************* 개별요소 디자인 *********************/
