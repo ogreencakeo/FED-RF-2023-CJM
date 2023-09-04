@@ -43,8 +43,26 @@ function loadFn(){
     // (2) 이벤트 대상 : document.body
     const myBody = document.body;
 
-    /*
+    
+    /* 
+        ★[[ 이벤트발생시 위치값 ]]★
+
+        1. clientX, clientY
+            -> 현재 보이는 브라우저 화면이 기준
+            -> 화면을 기준한 fixed 포지션에서 주로 사용!
+
+        2. offsetX, offsetY
+            -> 이벤트 대상이 기준
+            -> 특정박스이 부모자격박스로 부터 위치를 사용할 경우
+
+        3. pageX, pageY
+            -> 전체 문서를 기준(스크롤 화면을 포함)
+            -> 화면을 기준한 absolute 포지션에서 주로 사용!
+
+        4. screenX, screenY
+            -> 모니터 화면을 기준
     */
+
     // 무버 크기의 절반계산
     let gap = mover.clientWidth / 2;
     // 선택요소의 크기 JS
