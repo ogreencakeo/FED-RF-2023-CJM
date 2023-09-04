@@ -13,6 +13,7 @@ function loadFn(){
     // 함수 호출확인
     console.log('로딩완료');
 
+    // [1] html 코드 넣기
     // 1. 대상선정
     // 변경대상 : .cont-box
     const cont_box = qs('.cont-box');
@@ -34,4 +35,14 @@ function loadFn(){
     
     // 3. 대상에 html 넣기
     cont_box.innerHTML = hcode;
+
+    // [2] 따라다니는 원 셋팅하기
+    // 1. 대상선정 : 
+    // (1) 움직일 대상 : .mover
+    const mover = qs('.mover');
+    // (2) 이벤트 대상 : document.body
+    const myBody = document.body;
+
+    console.log('요소 :', mover, myBody);
+
 }
