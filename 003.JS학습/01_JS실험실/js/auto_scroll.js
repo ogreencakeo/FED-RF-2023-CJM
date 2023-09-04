@@ -27,7 +27,6 @@ let total_pg;
 // 브라우저 스크롤바 위치 캐싱때문에 함!
 setTimeout(() =>{window.scrollTo(0,0)}, 500);
 
-
 // 2. 이벤트 등록하기 //////////////////////////////
 // 대상 : window
 window.addEventListener('wheel', wheelFn);
@@ -92,6 +91,28 @@ function wheelFn(e){    // 이벤트 전달 변수 (자동)
     // 화면단위로 이동하므로 윈도우 높이값을 기본값으로 처리
     // window.innerHeight -> window 높이값 구해온다!
 
-
     window.scrollTo(0, window.innerHeight * pg_num);
+}
+
+/*
+*/
+
+// 1. 모바일 이벤트 등록하기
+// 대상 : window
+window.addEventListener('touchstart', mobileFn);
+window.addEventListener('touchend', mobileFn);
+
+
+// 2. 모바일 이벤트 함수만들기
+function mobileFn(e){   // e - 이벤트 전달변수
+    // 모바일 이벤트 화면 위치값 구하기
+    // 모바일 오리저널 이벤트 객체 - originalEvent
+    // 하위 터치 이벤트 컬렉션 - touches[0]
+    // 변경된 터치 이벤트를 담는 컬렉션 - changedTouches[0]
+
+    // 스크린 위치값 구하기
+    let scY = e.originalEvent.touches[0].screenY;
+
+    // 함수호출확인
+    console.log('모바일이야~!', scY);
 }
