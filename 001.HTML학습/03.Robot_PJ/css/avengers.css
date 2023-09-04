@@ -57,11 +57,11 @@ body{
 .t1{
     position: fixed;
     width: 100%;
+    z-index: 999;
     font-family: 'Monoton', cursive;
     font-weight: normal;
     font-size: 70px;
     transform: translateY(5vh);
-    z-index: 999;
 }
 
 /* 하위 span */
