@@ -88,4 +88,28 @@ function loadFn(){
         // console.log('e.clientX :', e.clientX, '/ e.clientY :', e.clientY);
         // console.log('------------------------------');
     };
+
+    // 이벤트 구역을 들어올때만 보이기 / 나가면 숨기기
+    myBody.onmouseenter = () => {
+        mover.style.opacity = 1;
+    };
+    myBody.onmouseleave = () => {
+        mover.style.opacity = 0;
+    };
+
+    // [3] a요소에 오버시 원크게 만들기
+    // 대상 : .link
+    const link = qsa('.link');
+    console.log('link :', link);
+
+    // 한번에 셋팅하기
+    link.forEach(ele=>{
+        // a요소에 마우스 들어올때
+        ele.onmouseenter = 
+            () => mover.style.transform = 'scale(2)';
+        // a요소에 마우스 나갈때
+        ele.onmouseleave = 
+            () => mover.style.transform = 'scale(1)';
+    });
+
 }
