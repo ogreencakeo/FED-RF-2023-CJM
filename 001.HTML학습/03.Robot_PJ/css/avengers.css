@@ -64,11 +64,19 @@ body{
     
     width: 300px;
     height: 400px;
-
-    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
     border-radius: 50%;
     box-shadow: 0 0 50px 10px cyan,     /* 바깥 글로우 */
         inset 0 0 30px lightgreen;      /* 내부 글로우 */
+
+    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+
+    transform: scale(0);
+    /* 트랜지션 */
+    transition: 2s ease-in-out;
+}
+/* 클래스 on을 주면 등장!! */
+.avengers-box.on{
+    transform: scale(1);
 }
 
 /* 캐릭터 공통 */
@@ -80,6 +88,17 @@ body{
 
     width: 150px;
     height: 150px;
+
+    /* 처음에 모두 안보이게 */
+    opacity: 0;
+
+    /* 트랜지션 */
+    transition: 1s ease-in-out 2s;
+}
+
+/* 부모박스 .on 적용시 동시에 보이게 함! */
+.avengers-box.on .hero{
+    opacity: 1;
 }
 
 /* 어벤저스 이미지 */
@@ -153,23 +172,23 @@ body{
 }
 
 /* .hero 순서별 위치값 셋팅 */
-.hero:nth-child(1){
+.avengers-box.on .hero:nth-child(1){
     /* 개별위치 이동값 */
     transform: translate(-170%, -110%);
 }
-.hero:nth-child(2){
+.avengers-box.on .hero:nth-child(2){
     /* 개별위치 이동값 */
     transform: translate(-170%, 110%);
 }
-.hero:nth-child(3){
+.avengers-box.on .hero:nth-child(3){
     /* 개별위치 이동값 */
     transform: translate(0%, 220%);
 }
-.hero:nth-child(4){
+.avengers-box.on .hero:nth-child(4){
     /* 개별위치 이동값 */
     transform: translate(170%, 110%);
 }
-.hero:nth-child(5){
+.avengers-box.on .hero:nth-child(5){
     /* 개별위치 이동값 */
     transform: translate(170%, -110%);
 }
