@@ -43,6 +43,15 @@ function loadFn(){
     // (2) 이벤트 대상 : document.body
     const myBody = document.body;
 
-    console.log('요소 :', mover, myBody);
+    console.log('요소 mover :', mover, ',myBody :', myBody);
 
+    // 2. 이벤트 대상에 마우스 무드 이벤트가 적용될때 
+    // 무버가 따라다니게 기능 구현
+    myBody.onmousemove = e => {     // e - 이벤트 전달변수
+        console.log('e.pageX :', e.pageX, '/ e.pageY :', e.pageY);
+        console.log('e.screenX :', e.screenX, '/ e.screenY :', e.screenY);
+        console.log('e.offsetX :', e.offsetX, '/ e.offsetY :', e.offsetY);
+        console.log('e.clientX :', e.clientX, '/ e.clientY :', e.clientY);
+        console.log('------------------------------');
+    }
 }
