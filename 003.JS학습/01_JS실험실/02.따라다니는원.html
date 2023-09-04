@@ -67,6 +67,15 @@
             요소를 만질 수 있음 */
             pointer-events: none;
 
+            /*
+                [ mix-blend-mode 속성 ]
+                - 겹치는 색상처리 블랜딩 모드속성
+                - 겹치는 요소의 색상을 섞어서 디스플레이 처리함
+                - 밝은색 섞기 (screen계열)
+                - 어두운색 섞기 (darken계열)
+            */
+            mix-blend-mode: exclusion;
+
             /* 트랜지션 : 이징은 ease-out */
             transition: .3s ease-out;
         }

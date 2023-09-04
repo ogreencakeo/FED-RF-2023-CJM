@@ -69,7 +69,6 @@ function loadFn(){
     // width는 clientWidth, height는 clientHeight
     console.log('무버 width :', gap);
 
-
     console.log('요소 mover :', mover, ',myBody :', myBody);
 
     // 2. 이벤트 대상에 마우스 무드 이벤트가 적용될때 
