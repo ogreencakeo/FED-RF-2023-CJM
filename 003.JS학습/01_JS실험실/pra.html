@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>원 페이지 자동 스크롤 레이아웃</title>
-    <style>
-        @charset "utf-8";
-        /* 자동 스크롤 CSS - auto_scroll.css */
 
-        /* 기본 초기화 */
+    <style>
         html,
         body,
         h1,
@@ -54,32 +51,32 @@
         }
 
         .pg2 {
-            background-image: url(../images/auto_scroll/pic2.png);
+            background-image: url(./images/auto_scroll/pic2.png);
 
         }
 
         .pg3 {
-            background-image: url(../images/auto_scroll/pic3.png);
+            background-image: url(./images/auto_scroll/pic3.png);
 
         }
 
         .pg4 {
-            background-image: url(../images/auto_scroll/pic4.png);
+            background-image: url(./images/auto_scroll/pic4.png);
 
         }
 
         .pg5 {
-            background-image: url(../images/auto_scroll/pic5.png);
+            background-image: url(./images/auto_scroll/pic5.png);
 
         }
 
         .pg6 {
-            background-image: url(../images/auto_scroll/pic6.png);
+            background-image: url(./images/auto_scroll/pic6.png);
 
         }
 
         .pg7 {
-            background-image: url(../images/auto_scroll/pic7.png);
+            background-image: url(./images/auto_scroll/pic7.png);
 
         }
 
@@ -103,34 +100,35 @@
     <script>
         let pg_num = 0;
         let sts_wheel = 0;
-        let total_pg;
-
-        setTimeout(()=>{window.scrollTo(0,0)}, 500);
-
+        let pg_total;
+        // window.addEventListener('load', loadFn);
         window.addEventListener('wheel', wheelFn);
-        window.addEventListener('DOMContentLoaded', loadFn);
 
-        const qs = (x) => document.querySelector(x);
-        const qsa = (x) => document.querySelectorAll(x);
+        setTimeout(() => { window.scrollTo(0, 0) }, 500);
 
-        function loadFn(){
-            total_pg = qsa('.page').length;
-        }
+        // function loadFn(){
 
-        function wheelFn(e){
-            if(sts_wheel) return;
+        // }
 
-            setTimeout(() => {sts_wheel=0}, 800);
+        function wheelFn(e) {
+            pg_total = document.querySelectorAll('.page').length;
+            console.log(pg_num);
+            if (sts_wheel) return;
+            sts_wheel = 1;
+            setTimeout(() => { sts_wheel = 0 }, 800);
 
             let delta = e.wheelDelta;
+            console.log('휠델타', delta);
 
-            if(delta<0) pg_num++;
+            if (delta < 0) pg_num++;
             else pg_num--;
 
-            if(pg_num<0) pg_num==0;
-            if(pg_num == total_pg) pg_num = total_pg-1;
+            if (pg_num < 0) pg_num = 0;
+            if (pg_num == pg_total) pg_num = pg_total - 1;
+
             window.scrollTo(0, window.innerHeight * pg_num);
         }
+
     </script>
 </head>
 
@@ -145,42 +143,48 @@
         <main>
             <!-- 2-1. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg1">
 
                 </div>
             </section>
 
             <!-- 2-2. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg2">
 
                 </div>
             </section>
 
             <!-- 2-3. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg3">
 
                 </div>
             </section>
 
             <!-- 2-4. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg4">
 
                 </div>
             </section>
 
             <!-- 2-5. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg5">
 
                 </div>
             </section>
 
             <!-- 2-6. 페이지 -->
             <section class="page">
-                <div class="inbox">
+                <div class="inbox bg-com pg6">
+
+                </div>
+            </section>
+            <!-- 2-6. 페이지 -->
+            <section class="page">
+                <div class="inbox bg-com pg7">
 
                 </div>
             </section>
