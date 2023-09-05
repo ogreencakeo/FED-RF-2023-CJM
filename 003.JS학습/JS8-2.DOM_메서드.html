@@ -61,10 +61,36 @@
                     1. 서브메뉴 보이기
                     2. 링크 이동하기
                 */
-               // 대상 선정 : smenu
+                // 1. 대상 선정 : smenu
                 const smenu = qsa('.smenu');
-                console.log('smenu :', smenu);
-                
+                // console.log('smenu :', smenu);
+
+                // 2. 이벤트 설정하기
+                // 이벤트 종류 : mouseover / mouseout
+
+                // for of문
+                for(let x of smenu){
+                    // console.log('smenu x >', x);
+
+                    // 오버시
+                    x.onmouseover = () => {
+                        console.log('오버 :', x);
+                        // 1. 대상 : 하위의 div
+                        let target = x.querySelector('div');
+                        // 2. 높이값 변경
+                        target.style.height = '200px';
+                        target.style.transition = 'height .4s ese-out';
+                    }
+                    // 아웃시
+                    x.onmouseout = () => {
+                        console.log('아웃 :', x);
+                        // 1. 대상 : 하위의 div
+                        let target = x.querySelector('div');
+                        // 2. 높이값 변경
+                        target.style.height = '0';
+                    }
+
+                }
             });
         </script>
     </head>
