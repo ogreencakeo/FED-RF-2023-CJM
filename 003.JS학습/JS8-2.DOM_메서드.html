@@ -77,9 +77,14 @@
                         console.log('오버 :', x);
                         // 1. 대상 : 하위의 div
                         let target = x.querySelector('div');
-                        // 2. 높이값 변경
-                        target.style.height = '200px';
-                        target.style.transition = 'height .4s ese-out';
+                        
+                        // 2. 하위 ol 요소의 높이값 알아오기
+                        let hv = target.querySelector('ol').offsetHeight;
+                        console.log('hv :', hv);
+
+                        // 3. 높이값 변경
+                        target.style.height = hv+'px';
+                        target.style.transition = 'height .4s ease-out';
                     }
                     // 아웃시
                     x.onmouseout = () => {
