@@ -250,8 +250,7 @@
 
                     // 3. 메모리상에 생성된 li에 이미지요소 넣기
                     newEle.innerHTML = `<img src="images/ab${rdnNum}.jpg" 
-                                                alt="${avenName[rdnNum-1]}">`;
-
+                                                alt="${avenName[rdnNum-1]}" title ="클릭하시면 지워집니다.">`;
                     // 4. li 클릭시 li 지우기
                     newEle.onclick = () => newEle.remove();
 
@@ -260,6 +259,16 @@
                     // -> 맨뒤에 새로운 요소 추가!
                     box2.appendChild(newEle);
                 }
+
+                // 기존에 있는 li에 지우기 넣기
+                // box2 변수 아래 li
+                box2.querySelectorAll('li')
+                    .forEach(ele=>{
+                        // 지움설정
+                        ele.onclick = () => ele.remove();
+                        // 툴팁 넣기
+                        ele.querySelector('img').title = "클릭하시면 지워집니다.";
+                });
             });
 
             /************************************************** 
