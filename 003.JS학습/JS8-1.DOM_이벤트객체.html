@@ -49,13 +49,19 @@
                     // event.currentTarget
                     e.currentTarget
                         .style.backgroundColor = 'red';
+                    // 이벤트 속성값 찍기
+                    showLog('아들방');
                 };
                 // 엄마집 (p요소) 클릭시
                 qs('p').onclick = (e) => {
+                    event.stopPropagation();
+                    // 이벤트 버블링 막기
+
                     // 이벤트가 발생한 자신은?
                     // event.currentTarget
                     e.currentTarget
                         .style.backgroundColor = 'yellow';
+                    return false;
                 };
                 // 친척네집 (div요소) 클릭시
                 qs('div').onclick = (e) => {
