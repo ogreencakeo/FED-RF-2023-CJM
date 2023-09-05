@@ -252,7 +252,10 @@
                     newEle.innerHTML = `<img src="images/ab${rdnNum}.jpg" 
                                                 alt="${avenName[rdnNum-1]}">`;
 
-                    // 4. 변경대상에 새로운 li 넣기
+                    // 4. li 클릭시 li 지우기
+                    newEle.onclick = () => newEle.remove();
+
+                    // 5. 변경대상에 새로운 li 넣기
                     // appendChild(요소)
                     // -> 맨뒤에 새로운 요소 추가!
                     box2.appendChild(newEle);
