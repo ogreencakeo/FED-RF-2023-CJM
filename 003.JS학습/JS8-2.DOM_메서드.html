@@ -128,8 +128,28 @@
                     // 호출확인 : this는 a요소 자신!
                     // console.log('나야나!', this.innerText);
 
+                    // 0. a요소 글자
+                    let atxt = this.innerText;
+
                     // 1. a요소 기본이동막기
                     e.preventDefault();
+
+                    // 2. 이동할 주소 분기하여 할당하기
+                    // 주소변수
+                    let url;
+                    switch(atxt){
+
+                    }
+                    console.log('할당url :', url);
+                    
+                    // 3. 페이지 이동하기
+                    // 페이지 이동은 
+                    // (1) 현재창 이동
+                    // location.href = 이동주소
+                    // (2) 새창 이동
+                    // window.open(이동주소)
+                    window.open(url);
+                    // location.href = url;
                 }
             });
         </script>
