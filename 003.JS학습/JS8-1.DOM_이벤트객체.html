@@ -36,6 +36,47 @@
             // DOM 선택함수
             const qs = x => document.querySelector(x);
             const qsa = x => document.querySelectorAll(x);
+
+            // 로드구역
+            window.addEventListener('DOMContentLoaded', loadFn);
+
+            // 로드함수
+            function loadFn(){
+                console.log('로딩완료!');
+                // 아들방 (a요소) 클릭시
+                qs('a').onclick = (e) => {
+                    // 이벤트가 발생한 자신은?
+                    // event.currentTarget
+                    e.currentTarget
+                        .style.backgroundColor = 'red';
+                };
+                // 엄마집 (p요소) 클릭시
+                qs('p').onclick = (e) => {
+                    // 이벤트가 발생한 자신은?
+                    // event.currentTarget
+                    e.currentTarget
+                        .style.backgroundColor = 'yellow';
+                };
+                // 친척네집 (div요소) 클릭시
+                qs('div').onclick = (e) => {
+                    // 이벤트가 발생한 자신은?
+                    // event.currentTarget
+                    e.currentTarget
+                        .style.backgroundColor = 'green';
+                };
+                // 대한민국 전체 (body요소) 클릭시
+                qs('body').onclick = (e) => {
+                    // 이벤트가 발생한 자신은?
+                    // event.currentTarget
+                    e.currentTarget
+                        .style.backgroundColor = 'blue';
+                };
+
+            }
+
+            /**********************************************************
+
+            **********************************************************/
         </script>
     </head>
 
@@ -48,7 +89,5 @@
                 <a href="#">내방</a>
             </p>
         </div>
-
-
     </body>
 </html>
