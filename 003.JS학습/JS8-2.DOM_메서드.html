@@ -226,6 +226,9 @@
 
                 console.log('btnNew :', btnNew, ', box2 :', box2);
 
+                // 이미지 alt 설명 배열
+                const avenName = ['아이언맨', '딱딱이', '토르', '닥스', '스타로드'];
+
                 // 1-2. 이벤트 걸기
                 addEvt(btnNew, 'click', makeEle);
 
@@ -238,12 +241,18 @@
                     let newEle = document.createElement('li');
 
                     // 2. 랜덤수 만들기
-                    console.log(Math.random());
+                    // 1부터 최대수까지의 랜덤수 구하기
+                    // -> Math.ceil(Math.random()*최대수)
+                    // Math.ceil() 소수점 올림처리 메서드
+                    // Math.random() 난수발생 메서드
+                    let rdnNum = Math.ceil(Math.random()*5);
+                    console.log(rdnNum);
 
-                    // 2. 메모리상에 생성된 li에 이미지요소 넣기
-                    newEle.innerHTML = `<img src="images/ab1.jpg" alt="아이언맨">`;
+                    // 3. 메모리상에 생성된 li에 이미지요소 넣기
+                    newEle.innerHTML = `<img src="images/ab${rdnNum}.jpg" 
+                                                alt="${avenName[rdnNum-1]}">`;
 
-                    // 3. 변경대상에 새로운 li 넣기
+                    // 4. 변경대상에 새로운 li 넣기
                     // appendChild(요소)
                     // -> 맨뒤에 새로운 요소 추가!
                     box2.appendChild(newEle);
@@ -277,8 +286,6 @@
 
             **************************************************/
             
-            
-
         </script>
     </head>
 
