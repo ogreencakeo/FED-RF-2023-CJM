@@ -6,11 +6,10 @@ const qsa = (x) => document.querySelectorAll(x);
 
 // addEvent 함수
 // ele - 요소, evt - 이벤트, fn - 함수
-const addEvt = 
-(ele, evt, fn) => ele.addEventListener(evt, fn);
+const addEvt = (ele, evt, fn) => ele.addEventListener(evt, fn);
 
 // HTML태그 로딩후 loadFn함수 호출! ///
-addEvt(window,"DOMContentLoaded", loadFn);
+addEvt(window, "DOMContentLoaded", loadFn);
 
 /***************************************************** 
     [ 슬라이드 이동 기능정의 ]
@@ -48,5 +47,48 @@ addEvt(window,"DOMContentLoaded", loadFn);
 function loadFn() {
     console.log("로딩완료!");
 
+    // 1. 대상선정
+    // 이벤트 대상 : .abtn
+    const abtn = qsa(".abtn");
+    // 변경 대상 : #slide
+    const slide = qs("#slide");
+
+    // 대상확인
+    console.log("대상 abtn :", abtn, ", slide :", slide);
+
+    // 2. 이벤트 설정하기 : 버튼요소들 -> forEach
+    abtn.forEach((ele) => addEvt(ele, "click", goSlide));
+
+    // 3. 함수 만들기
+    function goSlide() {
+        // 호출확인
+        console.log("나야나!", this, this.classList.contains("ab2"));
+
+        // classList.contains(클래스명)
+        // 선택요소에 해당 클래스가 있으면 true
+
+        // 1. 오른쪽 버튼 여부 알아내기
+        let isRight =  this.classList.contains('ab2');
+
+        // 2. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
+        if(isRight){   // 오른쪽 버튼
+            // 1. 대상 이동하기
+            slide.style.left = '-100%'
+            // 2. 트랜지션 주기
+            slide.style.transition = '.4s ease-in-out'
+            // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
+            // appendChild(요소)
+            setTimeout(() => {
+                // 3. 맨 앞 li 맨뒤로 이동
+                slide.appendChild(slide.querySelectorAll('li')[0]);
+                // 4. slide left 값 0
+                slide.style.left = '0';
+                // 5. 트랜지션 없애기
+                slide.style.transition = 'none';
+            }, 400);
+        }else{  // 왼쪽 버튼
+
+        }
+    }
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
