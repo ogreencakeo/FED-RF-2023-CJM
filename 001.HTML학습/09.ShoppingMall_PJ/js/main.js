@@ -70,7 +70,10 @@ function loadFn() {
         // 1. 오른쪽 버튼 여부 알아내기
         let isRight =  this.classList.contains('ab2');
 
-        // 2. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
+        // 2. 슬라이드 li 새로 읽기
+        let eachOne = slide.querySelectorAll('li');
+
+        // 3. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
         if(isRight){   // 오른쪽 버튼
             // 1. 대상 이동하기
             slide.style.left = '-100%'
@@ -80,14 +83,16 @@ function loadFn() {
             // appendChild(요소)
             setTimeout(() => {
                 // 3. 맨 앞 li 맨뒤로 이동
-                slide.appendChild(slide.querySelectorAll('li')[0]);
+                slide.appendChild(eachOne[0]);
                 // 4. slide left 값 0
                 slide.style.left = '0';
                 // 5. 트랜지션 없애기
                 slide.style.transition = 'none';
             }, 400);
         }else{  // 왼쪽 버튼
-
+            // 1. 맨뒤 li 맨 앞으로 이동
+            // 놈.놈.놈 -> > insertBefore(넣을놈, 넣을놈전놈)
+            slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
         }
     }
 } //////////////// loadFn 함수 ///////////////
