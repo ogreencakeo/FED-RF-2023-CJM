@@ -80,7 +80,7 @@ function loadFn() {
 
             // 2. 트랜지션 주기
             slide.style.transition = '.4s ease-in-out';
-            
+
             // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
             // appendChild(요소)
             setTimeout(() => {
@@ -108,6 +108,8 @@ function loadFn() {
             // 같은 left값을 동시에 변경하면 효과가 없음!
             // 비동기적으로 처리해야함!
             // setTimeout으로 싸주기!
+            // 시간은 0이어도 비동기 처리므로 효과 있음.
+
             setTimeout(()=> {
                 // 3. left값 0으로 들어오기
                 slide.style.left = '0%';
