@@ -76,16 +76,21 @@ function loadFn() {
         // 3. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
         if(isRight){   // 오른쪽 버튼
             // 1. 대상 이동하기
-            slide.style.left = '-100%'
+            slide.style.left = '-100%';
+
             // 2. 트랜지션 주기
-            slide.style.transition = '.4s ease-in-out'
+            slide.style.transition = '.4s ease-in-out';
+            
             // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
             // appendChild(요소)
             setTimeout(() => {
+
                 // 3. 맨 앞 li 맨뒤로 이동
                 slide.appendChild(eachOne[0]);
+
                 // 4. slide left 값 0
                 slide.style.left = '0';
+
                 // 5. 트랜지션 없애기
                 slide.style.transition = 'none';
             }, 400);
@@ -93,6 +98,25 @@ function loadFn() {
             // 1. 맨뒤 li 맨 앞으로 이동
             // 놈.놈.놈 -> > insertBefore(넣을놈, 넣을놈전놈)
             slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
+            
+            // 2. left값 -100% 만들기 : 들어올 준비 위치
+            slide.style.left = '-100%';
+
+            // 3. 트랜지션 없애기
+            slide.style.transition = 'none';
+            
+            // 같은 left값을 동시에 변경하면 효과가 없음!
+            // 비동기적으로 처리해야함!
+            // setTimeout으로 싸주기!
+            setTimeout(()=> {
+                // 3. left값 0으로 들어오기
+                slide.style.left = '0%';
+    
+                // 4. 트랜지션 주기
+                slide.style.transition = '.4s ease-in-out'
+            }, 0);
+
+
         }
     }
 } //////////////// loadFn 함수 ///////////////
