@@ -127,6 +127,13 @@ a {
     font-size: 17px;
 }
 
+/* a요소 오버시 */
+.gnb dl:hover dt a, 
+.gnb dd:hover a
+{
+    color: red;
+}
+
 /* 하위메뉴 : dd */
 .gnb dd{
     font-size: 15px;
