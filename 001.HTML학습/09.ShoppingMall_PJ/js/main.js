@@ -108,19 +108,19 @@ function loadFn() {
             // 1. 대상 이동하기
             slide.style.left = '-100%';
 
-            // 2. 트랜지션 주기
+            // // 2. 트랜지션 주기
             slide.style.transition = TIME_SLIDE+'ms ease-in-out';
 
-            // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
-            // appendChild(요소)
+            // // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
+            // // appendChild(요소)
             setTimeout(() => {
-                // 3. 맨 앞 li 맨뒤로 이동
+            //     // 3. 맨 앞 li 맨뒤로 이동
                 slide.appendChild(eachOne[0]);
 
-                // 4. slide left 값 0
+            //     // 4. slide left 값 0
                 slide.style.left = '0';
 
-                // 5. 트랜지션 없애기
+            //     // 5. 트랜지션 없애기
                 slide.style.transition = 'none';
             }, TIME_SLIDE);
         }else{  // 왼쪽 버튼
