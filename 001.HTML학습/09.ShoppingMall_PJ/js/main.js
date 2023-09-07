@@ -66,6 +66,11 @@ function loadFn() {
 
     // 3. 함수 만들기
     function goSlide() {
+        // 광클금지
+        if(clickSts) return; // 나가!
+        clickSts = 1; // 잠금!
+        setTimeout(()=>clickSts = 0,400); // 해제
+
         // 호출확인
         console.log("나야나!", this, this.classList.contains("ab2"));
 
