@@ -45,15 +45,14 @@ a {
 .blind img:last-child{
     display: none;
 }
-/* .top에 오버시 마지막 이미지 보이기 */
-.top:hover .blind img:last-child{
+/* #top에 오버시 마지막 이미지 보이기 */
+#top:hover .blind img:last-child{
     display: inline;
 }
-/* .top에 오버시 첫번째 이미지 숨기기 */
-.top:hover .blind img:first-child{
+/* #top에 오버시 첫번째 이미지 숨기기 */
+#top:hover .blind img:first-child{
     display: none;
 }
-
 
 /* 전체 타이틀 */
 .tit {
@@ -65,14 +64,10 @@ a {
 }
 
 /* 상단영역 */
-.top{ 
-    /* 플렉스 박스 - 상단영역 큰 레이아웃 3개 */
-    display: flex;
-    /* 진행방향 정렬 : 사이간격 일정하게 */
-    justify-content: space-between;
-    /* 상단영역 글자체 */
-    font-family: 'Maven Pro', 'Noto Sans KR', sans-serif;
-    
+/* 겉박스 */
+#top{
+    position: fixed;
+    width: 100%;
     /* 전체 숨기기 설정 */
     overflow: hidden;
     height: 100px;
@@ -81,14 +76,34 @@ a {
     transition: .4s ease-in-out;
 }
 
+/* 가상요소로 구분선 오버시 나오게 하기 */
+#top:hover::after{
+    content: '';
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+}
+
+/* 속박스 */
+.top{ 
+    /* 플렉스 박스 - 상단영역 큰 레이아웃 3개 */
+    display: flex;
+    /* 진행방향 정렬 : 사이간격 일정하게 */
+    justify-content: space-between;
+    /* 상단영역 글자체 */
+    font-family: 'Maven Pro', 'Noto Sans KR', sans-serif;
+}
+
 /* .top에 마우스 오버시 높이값 늘어나기 */
-.top:hover{
+#top:hover{
     height: 343px;
     background-color: #fff;
 }
 
 /* .top에 마우스 오버시 글자색 */
-.top:hover a{
+#top:hover a{
     color: #222;
 }
 
@@ -128,8 +143,8 @@ a {
 }
 
 /* a요소 오버시 */
-.gnb dl:hover dt a, 
-.gnb dd:hover a
+#top dl:hover dt a, 
+#top dd:hover a
 {
     color: red;
 }
@@ -154,4 +169,21 @@ a {
 /* 기타파트 이미지 */
 .tlink img{
     height: 30px;
+}
+
+/* 기타파트 가상요소로 글자 넣기 */
+.lang a::after{
+    content: 'KOR';
+    position: absolute;
+    margin-top: 15px;
+    margin-left: -10px;
+    font-size: 12px;
+}
+/* 기타파트 가상요소로 글자 넣기 */
+.store a::after{
+    content: 'STORE';
+    position: absolute;
+    margin-top: 15px;
+    margin-left: -12px;
+    font-size: 12px;
 }
