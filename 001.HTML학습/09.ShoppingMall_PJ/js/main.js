@@ -128,16 +128,16 @@ function loadFn() {
             // 놈.놈.놈 -> > insertBefore(넣을놈, 넣을놈전놈)
             slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
             
-            // 2. left값 -100% 만들기 : 들어올 준비 위치
+            // // 2. left값 -100% 만들기 : 들어올 준비 위치
             slide.style.left = '-100%';
 
-            // 3. 트랜지션 없애기
+            // // 3. 트랜지션 없애기
             slide.style.transition = 'none';
             
-            // 같은 left값을 동시에 변경하면 효과가 없음!
-            // 비동기적으로 처리해야함!
-            // setTimeout으로 싸주기!
-            // 시간은 0이어도 비동기 처리므로 효과 있음.
+            // // 같은 left값을 동시에 변경하면 효과가 없음!
+            // // 비동기적으로 처리해야함!
+            // // setTimeout으로 싸주기!
+            // // 시간은 0이어도 비동기 처리므로 효과 있음.
 
             setTimeout(()=> {
                 // 3. left값 0으로 들어오기
@@ -154,10 +154,10 @@ function loadFn() {
         // isRight값이 true이면 오른쪽버튼이고 순번은 [1]
         // isRight값이 false이면 왼쪽버튼이고 순번은 [0]
         let nowSeq = slide.querySelectorAll('li')[isRight? 1:0].getAttribute('data-seq');
-        console.log('현재슬라이드 순번(nowSeq) :', nowSeq);
+        // console.log('현재슬라이드 순번(nowSeq) :', nowSeq);
 
-        // 해당순번 블릿li에 클래스 on 넣기
-        // 블릿전체 순회시 해당 순번에 on 넣고 나머지는 on빼기
+        // // 해당순번 블릿li에 클래스 on 넣기
+        // // 블릿전체 순회시 해당 순번에 on 넣고 나머지는 on빼기
         indic.forEach((ele, idx)=>{
             if(idx==nowSeq) ele.classList.add('on');
             else ele.classList.remove('on');
