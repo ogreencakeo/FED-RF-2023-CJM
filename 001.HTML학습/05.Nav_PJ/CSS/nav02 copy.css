@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+/* 네비게이션 유형1 CSS - nav02.css */
+
+html,
+body,
+h1 {
+    margin: 0;
+    padding: 0;
+}
+h1.tit {
+    text-align: center;
+    padding: 20px;
+}
+
+/* ul,ol 초기화 : 3無 */
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* a요소공통 */
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+body{
+    background-color: darkcyan;
+    height: 200vh;
+}
