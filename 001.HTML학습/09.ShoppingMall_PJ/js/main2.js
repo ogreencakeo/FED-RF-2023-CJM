@@ -48,5 +48,107 @@ addEvt(window,"DOMContentLoaded", loadFn);
 function loadFn() {
     console.log("로딩완료!");
 
-} //////////////// loadFn 함수 ///////////////
-/////////////////////////////////////////////
+    // 1. 대상선정
+    // 1-1. 이벤트 대상 : .abtn
+    const abtn = qsa(".abtn");
+    // 1-2. 변경 대상 : #slide
+    const slide = qs("#slide");
+    // 1-3. 블릿박스 대상
+    const indic = qsa('.indic li');
+
+    // 대상확인
+    console.log("대상 abtn :", abtn, ", slide :", slide, ', indic :', indic);
+
+    // 1.5. li리스트에 순번 속성 만들어 넣기
+    // 만드는 이유 : 블릿변경 등에 현재 슬라이드 순번 필요
+    // 사용자 정의 속성은 반드시 'data-;로 시작해야함! (W3C규칙)
+    // data-seq로 순번 속성을 넣을 것임!
+    slide.querySelectorAll('li').forEach(
+        (ele, idx) => ele.setAttribute('data-seq', idx)
+    );
+    // setAttribute(속성명, 속성값) -> 속성셋팅 JS 내장 메서드
+
+    // 2. 이벤트 설정하기 : 버튼요소들 -> forEach
+    abtn.forEach((ele) => addEvt(ele, "click", goSlide));
+
+    // 3. 함수 만들기
+    function goSlide() {
+        // 광클금지
+        if(clickSts) return; // 나가!
+        clickSts = 1; // 잠금!
+        setTimeout(()=>clickSts = 0,TIME_SLIDE); // 해제
+
+        // 호출확인
+        console.log("나야나!", this, this.classList.contains("ab2"));
+
+        // classList.contains(클래스명)
+        // 선택요소에 해당 클래스가 있으면 true
+
+        // 1. 오른쪽 버튼 여부 알아내기
+        let isRight =  this.classList.contains('ab2');
+
+        // 2. 슬라이드 li 새로 읽기
+        let eachOne = slide.querySelectorAll('li');
+
+        // 3. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
+        if(isRight){   // 오른쪽 버튼
+            console.log('isRight');
+            // 1. 대상 이동하기
+            slide.style.top = '-100%';
+
+            // 2. 트랜지션 주기
+            slide.style.transition = TIME_SLIDE+'ms ease-in-out';
+
+            // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
+            // appendChild(요소)
+            setTimeout(() => {
+                // 3. 맨 앞 li 맨뒤로 이동
+                slide.appendChild(eachOne[0]);
+
+                // 4. slide top 값 0
+                slide.style.top = '0';
+
+                // 5. 트랜지션 없애기
+                slide.style.transition = 'none';
+            }, TIME_SLIDE);
+        }else{  // 왼쪽 버튼
+            // 1. 맨뒤 li 맨 앞으로 이동
+            // 놈.놈.놈 -> > insertBefore(넣을놈, 넣을놈전놈)
+            slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
+            
+            // 2. top값 -100% 만들기 : 들어올 준비 위치
+            slide.style.top = '-100%';
+
+            // 3. 트랜지션 없애기
+            slide.style.transition = 'none';
+            
+            // 같은 top값을 동시에 변경하면 효과가 없음!
+            // 비동기적으로 처리해야함!
+            // setTimeout으로 싸주기!
+            // 시간은 0이어도 비동기 처리므로 효과 있음.
+
+            setTimeout(()=> {
+                // 3. top값 0으로 들어오기
+                slide.style.top = '0%';
+    
+                // 4. 트랜지션 주기
+                slide.style.transition = TIME_SLIDE+'ms ease-in-out'
+            }, 0);
+        }
+
+        // 4. 슬라이드 순번과 일치하는 블릿에 클래스 넣기
+        // 대상 : .indic li -> indic변수
+        // 맨앞 슬라이드 li의 'data-seq'값 읽어오기
+        // isRight값이 true이면 오른쪽버튼이고 순번은 [1]
+        // isRight값이 false이면 왼쪽버튼이고 순번은 [0]
+        let nowSeq = slide.querySelectorAll('li')[isRight? 1:0].getAttribute('data-seq');
+        console.log('현재슬라이드 순번(nowSeq) :', nowSeq);
+
+        // 해당순번 블릿li에 클래스 on 넣기
+        // 블릿전체 순회시 해당 순번에 on 넣고 나머지는 on빼기
+        indic.forEach((ele, idx)=>{
+            if(idx==nowSeq) ele.classList.add('on');
+            else ele.classList.remove('on');
+        });
+    }
+}
