@@ -40,6 +40,11 @@ addEvt(window, "DOMContentLoaded", loadFn);
 
 *****************************************************/
 
+// 전역변수구역 //
+// 1. 광클금지상태변수 : 0 - 허용, 1 - 불허용
+let clickSts = 0;
+
+
 /****************************************** 
     함수명: loadFn
     기능: 로딩 후 버튼 이벤트 및 기능구현
@@ -75,6 +80,7 @@ function loadFn() {
 
         // 3. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
         if(isRight){   // 오른쪽 버튼
+            console.log('isRight');
             // 1. 대상 이동하기
             slide.style.left = '-100%';
 
@@ -84,7 +90,6 @@ function loadFn() {
             // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
             // appendChild(요소)
             setTimeout(() => {
-
                 // 3. 맨 앞 li 맨뒤로 이동
                 slide.appendChild(eachOne[0]);
 
