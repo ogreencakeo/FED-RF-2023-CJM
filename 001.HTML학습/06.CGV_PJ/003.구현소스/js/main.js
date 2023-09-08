@@ -18,3 +18,23 @@ const pmenu = domFn.qsa('.poster-menu a');
 // 1-2. 변경 대상 : .screen
 const screen = domFn.qs('.screen');
 console.log('대상(pmenu) :', pmenu, '대상(screen) :',screen);
+
+// 2. 데이터 생성하기
+// 각 영화별 아이디 객체 만들기
+const mvCode = {
+    '' : '',
+    '' : '',
+    '' : '',
+    '' : '',
+    '' : '',
+    '' : '',
+}
+
+// 3. 이벤트 함수 만들기
+// 이벤트 대상에 클릭 설정하여 함수 연결하기
+pmenu.forEach(ele=>{
+    domFn.addEvt(ele, 'click', (e) => {
+        // 호출확인!
+        console.log('나야나!', e.currentTarget);
+    });
+}); // forEach
