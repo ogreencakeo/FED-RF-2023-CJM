@@ -19,8 +19,11 @@ const domFn = {
 const pmenu = domFn.qsa('.poster-menu a');
 // 1-2. 변경 대상 : .screen
 const screen = domFn.qs('.screen');
+// 1-3. 포스터 메뉴 리스트
+const mlist = domFn.qsa('.poster-menu>ul>li');
 
 console.log('대상:',pmenu,screen);
+console.log('mlist :',mlist);
 
 // 2. 데이터 생성하기
 // 각 영화별 아이디 객체 만들기
@@ -54,7 +57,13 @@ pmenu.forEach(ele=>{
         // 3. 추가구현 : 클릭된 a요소의 부모인 li에 클래스 on 주기
         // on을 주면 미리 셋팅된 대로 li 가 일어나있다!
         // 부모로 올라가기 ele.parentElement
+
+        // 3-1. 클래스 지우기 초기화 : 대상 mlist 변수
+        mlist.forEach(ele => ele.classList.remove('on'));
+        // 3-2. 해당 li 요소에 클래스 on 넣기 
         ele.parentElement.classList.add('on');
+
+
     });
 }); ////// forEach //////////
 
