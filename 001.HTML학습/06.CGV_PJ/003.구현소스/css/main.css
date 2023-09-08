@@ -8,7 +8,7 @@
 
 /* 공사중 표시 */
 body * {
-    outline: 1px dashed ghostwhite;
+    /* outline: 1px dashed ghostwhite; */
 }
 
 /* 전체배경색 */
@@ -79,19 +79,38 @@ body{
     display: flex;
     /* 가로사이간격 */
     gap: 0 10px;
+    /* 원근설정 */
+    perspective: 50vh;
 }
 .poster-menu>ul>li{
     position: relative;
     /* 부모자격 */
-
+    
     /* 앱솔루트 영화정보 
     부모자격요소가 숨길 수 있다! */
     overflow: hidden;
-
+    
     /* 등분할 */
     flex: 1;
-
+    /* x축 회전 */
+    transform: rotateX(36deg);
+    /* 회전축 하단으로 변경 */
+    transform-origin: bottom;
+    /* 트랜지션 */
+    transition: .3s;
 }
+
+/* 포스터 메뉴 각 li에 오버시 + 클래스 on 적용시*/
+.poster-menu>ul>li:hover, 
+.poster-menu>ul>li.on{
+    transform: rotateX(0);
+    outline: 1px solid aqua;
+
+    /* 일어서는 li가 항상위! */
+    z-index: 1;
+}
+
+
 .poster-menu img{
     /* li에 이미지 가로채움! */
     width: 100%;
@@ -108,7 +127,7 @@ body{
 
     /* 글자셋팅 */
     font-family: 'Cute Font', cursive;
-    font-size: 14px;
+    font-size: min(1.3vw, 14px);
     /* 줖바꿈방지 */
     white-space: nowrap;
 
@@ -118,7 +137,7 @@ body{
 
 /* 영화정보박스 제목만 변경 */
 .mv-info li:first-child{
-    font-size: 17px;
+    font-size: min(1.5vw,17px);
     color: aqua;
     
 }
