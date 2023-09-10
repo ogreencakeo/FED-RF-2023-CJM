@@ -17,17 +17,17 @@ const mvCode = {
     '범죄도시2':'aw9j_23nORs',
     '잠':'aRxQDCXnfOc',
     '스파이더맨:노웨이홈':'W7edvITC9g4',
-};
+}
 
-pmenu.forEach((ele)=>{
+
+pmenu.forEach(ele => {
     domFn.addEvt(ele, 'click', (e)=>{
-        let mtxt = domFn.qsEl(ele, 'li').innerText;
+        let mtit = domFn.qsEl(ele, 'li').innerText;
         screen.innerHTML = `
-            <iframe src="https://www.youtube.com/embed/${mvCode[mtxt]}?autoplay=1" allow="autoplay"></iframe>
+        <iframe src="https://www.youtube.com/embed/${mvCode[mtit]}?autoplay=1" allow="autoplay"></iframe>
         `;
-
-        mlist.forEach((ele)=> ele.classList.remove('on'));
+        mlist.forEach(ele => ele.classList.remove('on'));
         ele.parentElement.classList.add('on');
-    });
 
+    });
 });
