@@ -94,6 +94,7 @@ body{
     font-size: 2rem;
     /* 트랜지션 */
     transition: .3s;
+    /* 패딩으로 젠틀앱솔루트인 .smenu를 아랫쪽으로 밀려서 이동되게 함! li에 연결된 상태 유지 */
     padding-bottom: 10px;
 }
 
@@ -111,15 +112,14 @@ body{
 /* GNB 서브메뉴 */
 .smenu{
     position: absolute;
-    z-index: 1;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
     left: 50%;
     /* x축 중앙이동 */
     transform: translateX(-50%);
     width: 140px;
     border-radius: 5px;
     padding: 3px;
-    background: url(../images/bg_smenu.png) no-repeat center/cover;
-
+    z-index: 1;
 }
 
 /**************** 2.메인영역 ****************/
