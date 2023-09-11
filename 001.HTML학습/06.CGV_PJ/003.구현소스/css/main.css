@@ -142,8 +142,18 @@ body{
 
 /* 서브메뉴 a오버시 가상요소로 이미지 넣기 */
 .smenu li:hover a::after{
-    content: '📌';
+    content: '🎬';
     float: right;
+}
+/* 서브메뉴 li별 이미지 변경하기 */
+.gnb ul>li:nth-child(2) .smenu li:hover a::after{
+    content: '🎫';
+}
+.gnb ul>li:nth-child(3) .smenu li:hover a::after{
+    content: '🎪';
+}
+.gnb ul>li:nth-child(4) .smenu li:hover a::after{
+    content: '🎁';
 }
 
 /**************** 2.메인영역 ****************/
