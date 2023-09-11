@@ -90,14 +90,6 @@ function loadFn() {
         clickSts = 1; // 잠금!
         setTimeout(()=>clickSts = 0,TIME_SLIDE); // 해제
 
-        // 인터발 호출 상태값 업데이트
-        // 0 - 인터발 호출 아님! 
-        // 1 - 인터발 호출
-        stsI = 0;
-
-        // 인터발 지우기 함수 호출
-        if(stsI) clearAuto();
-
         // 호출확인
         console.log("나야나!", this, this.classList.contains("ab2"));
 
@@ -112,25 +104,8 @@ function loadFn() {
 
         // 3. 버튼 분기하기 '.ab2' 이면 오른쪽 버튼
         if(isRight){   // 오른쪽 버튼
-            console.log('isRight');
-            // 1. 대상 이동하기
-            slide.style.left = '-100%';
-
-            // // 2. 트랜지션 주기
-            slide.style.transition = TIME_SLIDE+'ms ease-in-out';
-
-            // // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
-            // // appendChild(요소)
-            setTimeout(() => {
-            //     // 3. 맨 앞 li 맨뒤로 이동
-                slide.appendChild(eachOne[0]);
-
-            //     // 4. slide left 값 0
-                slide.style.left = '0';
-
-            //     // 5. 트랜지션 없애기
-                slide.style.transition = 'none';
-            }, TIME_SLIDE);
+            // 오른쪽에서 들어오는 슬라이드 함수 호출!
+            rightSlide();
         }else{  // 왼쪽 버튼
             // 1. 맨뒤 li 맨 앞으로 이동
             // 놈.놈.놈 -> > insertBefore(넣을놈, 넣을놈전놈)
@@ -155,8 +130,14 @@ function loadFn() {
                 slide.style.transition = TIME_SLIDE+'ms ease-in-out'
             }, 0);
         }
+        // 4. 블릿순번 변경 함수 호출
+        chgIndic(isRight); // 방향값을 보냄!
 
-        // 4. 슬라이드 순번과 일치하는 블릿에 클래스 넣기
+    }
+
+    // 블릿순번 변경 함수
+    function chgIndic(isRight){ // isRight(0 - 왼쪽 / 1 - 오른쪽)
+        // 슬라이드 순번과 일치하는 블릿에 클래스 넣기
         // 대상 : .indic li -> indic변수
         // 맨앞 슬라이드 li의 'data-seq'값 읽어오기
         // isRight값이 true이면 오른쪽버튼이고 순번은 [1]
@@ -170,6 +151,28 @@ function loadFn() {
             if(idx==nowSeq) ele.classList.add('on');
             else ele.classList.remove('on');
         });
+    }
+
+    // 슬라이드 오른쪽 방향 함수
+    function rightSlide(){
+        // 1. 대상 이동하기
+        slide.style.left = '-100%';
+
+        // // 2. 트랜지션 주기
+        slide.style.transition = TIME_SLIDE+'ms ease-in-out';
+
+        // // 이동시간 후 맨앞 li 잘라서 맨뒤로 이동하기
+        // // appendChild(요소)
+        setTimeout(() => {
+        //     // 3. 맨 앞 li 맨뒤로 이동
+            slide.appendChild(slide.querySelectorAll('li')[0]);
+
+        //     // 4. slide left 값 0
+            slide.style.left = '0';
+
+        //     // 5. 트랜지션 없애기
+            slide.style.transition = 'none';
+        }, TIME_SLIDE);
     }
 
     /**************************************************
