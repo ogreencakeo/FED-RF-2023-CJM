@@ -22,6 +22,9 @@ body{
     position: relative;
     height: 80px;
     background: url(../images/curtain.jpg) repeat-x;
+
+    /* 상단영역박스 가장위! */
+    z-index: 999;
 }
 /* 1-1. 로고 */
 .tit{
@@ -82,7 +85,7 @@ body{
 .smenu{
     position: absolute;
     z-index: 1;
-    
+
 }
 
 /**************** 2.메인영역 ****************/
