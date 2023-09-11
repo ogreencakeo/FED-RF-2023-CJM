@@ -90,6 +90,14 @@ function loadFn() {
         clickSts = 1; // 잠금!
         setTimeout(()=>clickSts = 0,TIME_SLIDE); // 해제
 
+        // 인터발 호출 상태값 업데이트
+        // 0 - 인터발 호출 아님! 
+        // 1 - 인터발 호출
+        stsI = 0;
+
+        // 인터발 지우기 함수 호출
+        if(stsI) clearAuto();
+
         // 호출확인
         console.log("나야나!", this, this.classList.contains("ab2"));
 
@@ -171,15 +179,27 @@ function loadFn() {
         -> 버튼클릭 실행 메서드 : click()
         대상 : 오른쪽 버튼 - .ab2 -> abtn[1]
     **************************************************/
-    let autoI = setInterval(() => {
-                    // console.log('실행!');
-                    // 오른쪽버튼 클릭이벤트 강제발생!
-                    // 선택요소.click()
-                    abtn[1].click();
-                }, 3000);
+    // 인터발 변수
+    let autoI;
+    // 인터발 상태 변수 (0 - 일반호출 / 1 - 인터발 호출)
+    let stsI = 0;
+
+    // 자동 인터발 호출 함수
+    function slideAuto(){
+        autoI = setInterval(() => {
+            // console.log('실행!');
+            // 오른쪽버튼 클릭이벤트 강제발생!
+            // 선택요소.click()
+            abtn[1].click();
+        }, 3000);
+    }
     
     // 버튼을 클릭할 경우를 구분하여 자동넘김을 멈춰준다.
-    
+    function clearAuto(){
+        // 자동넘김 지우기
+        // clearInterval (인터발 할당 변수)
+        clearInterval(autoI);
+    }
 
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
