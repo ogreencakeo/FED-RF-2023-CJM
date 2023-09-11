@@ -213,7 +213,9 @@ function loadFn() {
         // clearInterval (인터발 할당 변수)
         clearInterval(autoI);
         console.log('멈춤!');
-    }
 
+        // 일정시간 후 다시 인터발 호출 셋팅하기
+        setTimeout(slideAuto, 5000);
+    }
 } //////////////// loadFn 함수 ///////////////
 /////////////////////////////////////////////
