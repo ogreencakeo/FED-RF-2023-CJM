@@ -8,7 +8,7 @@
 
 /* 공사중 표시 */
 body * {
-    /* outline: 1px dashed ghostwhite; */
+    outline: 1px dashed ghostwhite;
 }
 
 /* 전체배경색 */
@@ -60,6 +60,32 @@ body{
     font-family: 'Jua';
 }
 
+/* 상위메뉴 li */
+.gnb ul>li{
+    position: relative;
+    /* 부모자격 : .smenu */
+    
+}
+
+/* 서브메뉴 가상요소로 삼각형 만들기 */
+.smenu::before{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -15px;
+    content: '';
+    width: 20px;
+    height: 15px;
+    background-color: red;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+/* 서브메뉴 a */
+.smenu a{
+    font-size: 1.6rem;
+    line-height: 1.7;
+}
+
 /* 상위메뉴 a */
 .gnb ul>li>a{
     /* a는 원래 inline인데 트랜스폼이 적용안됨
@@ -68,6 +94,7 @@ body{
     font-size: 2rem;
     /* 트랜지션 */
     transition: .3s;
+    padding-bottom: 10px;
 }
 
 /* 상위메뉴 a 오버시 */
@@ -85,6 +112,13 @@ body{
 .smenu{
     position: absolute;
     z-index: 1;
+    left: 50%;
+    /* x축 중앙이동 */
+    transform: translateX(-50%);
+    width: 140px;
+    border-radius: 5px;
+    padding: 3px;
+    background: url(../images/bg_smenu.png) no-repeat center/cover;
 
 }
 
