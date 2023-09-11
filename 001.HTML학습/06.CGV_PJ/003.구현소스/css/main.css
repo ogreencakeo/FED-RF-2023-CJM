@@ -162,6 +162,16 @@ body{
     border-top: 1px solid rgba(204, 204, 204, 0.5);
 }
 
+/* 영사기 박스 */
+.cam{
+    /* 부모는? .gnb */
+    position: absolute;
+}
+/* 영사기 이미지 */
+.cam>img{
+    width: 50px;
+}
+
 /**************** 2.메인영역 ****************/
 .main{
     position: relative;
