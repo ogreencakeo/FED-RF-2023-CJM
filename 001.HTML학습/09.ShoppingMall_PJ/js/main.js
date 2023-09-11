@@ -133,11 +133,14 @@ function loadFn() {
         // 4. 블릿순번 변경 함수 호출
         chgIndic(isRight); // 방향값을 보냄!
 
+        // 5. 자동넘김 멈춤함수 호출하기
+        clearAuto();
+
     }
 
     // 블릿순번 변경 함수
     function chgIndic(isRight){ // isRight(0 - 왼쪽 / 1 - 오른쪽)
-        // 슬라이드 순번과 일치하는 블릿에 클래스 넣기
+        // 1. 슬라이드 순번과 일치하는 블릿에 클래스 넣기
         // 대상 : .indic li -> indic변수
         // 맨앞 슬라이드 li의 'data-seq'값 읽어오기
         // isRight값이 true이면 오른쪽버튼이고 순번은 [1]
@@ -182,14 +185,18 @@ function loadFn() {
         -> 버튼클릭 실행 메서드 : click()
         대상 : 오른쪽 버튼 - .ab2 -> abtn[1]
     **************************************************/
-    // 인터발 변수
+    // 인터발 변수 
     let autoI;
-    // 인터발 상태 변수 (0 - 일반호출 / 1 - 인터발 호출)
-    let stsI = 0;
+    // 인터발타이밍 함수를 변수를 할당 후
+    // clearInterval(할당변수) 해야 멈출 수 있다!
 
     // 자동 인터발 호출 함수
     function slideAuto(){
         autoI = setInterval(() => {
+            // 오른쪽 이동 슬라이드 함수 호출
+            rightSlide();
+            // 블릿변경 함수 호출 (오른쪽은 1)
+            chgIndic(1);
             // console.log('실행!');
             // 오른쪽버튼 클릭이벤트 강제발생!
             // 선택요소.click()
@@ -197,11 +204,15 @@ function loadFn() {
         }, 3000);
     }
     
+    // 인터발함수 최초 호출!
+    slideAuto();
+
     // 버튼을 클릭할 경우를 구분하여 자동넘김을 멈춰준다.
     function clearAuto(){
         // 자동넘김 지우기
         // clearInterval (인터발 할당 변수)
         clearInterval(autoI);
+        console.log('멈춤!');
     }
 
 } //////////////// loadFn 함수 ///////////////
