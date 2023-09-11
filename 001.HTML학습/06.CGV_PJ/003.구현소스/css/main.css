@@ -145,6 +145,7 @@ body{
     content: '🎬';
     float: right;
 }
+
 /* 서브메뉴 li별 이미지 변경하기 */
 .gnb ul>li:nth-child(2) .smenu li:hover a::after{
     content: '🎫';
