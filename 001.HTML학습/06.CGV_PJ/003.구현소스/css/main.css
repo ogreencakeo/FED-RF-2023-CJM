@@ -166,12 +166,42 @@ body{
 .cam{
     /* 부모는? .gnb */
     position: absolute;
+    top: -12px;
+    right: -55px;
 }
 /* 영사기 이미지 */
 .cam>img{
+    position: relative;
+    z-index: 1;
     width: 50px;
+    transform: rotate(30deg);
+    /* 트랜지션 : 돌아올때 빔회수 시간 기다림*/
+    transition: .3s .2s;
+}
+/* .gnb에 오버시 영상기 돌기 */
+.gnb:hover .cam>img{
+    transform: rotate(0);
+    transition-delay: 0s;
 }
 
+/* 빔박스 */
+.beam{
+    position: absolute;
+    top: -16px;
+    right: 9px;
+    width: 0;
+    /* width: 174px; */
+    height: 70px;
+    background: url(../images/bim.png) no-repeat right/auto 100%;
+    /* 트랜지션 : 먼저 빔회수하기 */
+    transition: width .2s linear;
+}
+/* .gnb오버시 빔박스 빔쏘기 */
+.gnb:hover .beam{
+    width: 200px;
+    /* 트랜지션 : 영사기 도는 0.3초 기다림 */
+    transition-delay: .3s;
+}
 /**************** 2.메인영역 ****************/
 .main{
     position: relative;
