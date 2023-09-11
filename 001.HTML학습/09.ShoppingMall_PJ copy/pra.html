@@ -5,7 +5,58 @@
     <title>01.가로방향 배너 슬라이드</title>
     <link rel="stylesheet" href="css/main.css">
     <!-- 외부JS삽입 -->
-    <script src="js/pra.js"></script>
+    <script>
+        const domFn = {
+            qs : (x) => document.querySelector(x),
+            qsa : (x) => document.querySelectorAll(x),
+            qsEl : (el, x) => el.querySelector(x),
+            qsaEl : (el, x) => el.querySelectorAll(x),
+
+            addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn)
+        };
+        
+        domFn.addEvt(window, 'load', loadFn);
+
+        function loadFn(){
+            const slide = domFn.qs('#slide');
+            const abtn = domFn.qsa('.abtn');
+            const indic = domFn.qsa('.indic li');
+            slide.querySelectorAll('li').forEach((ele,idx) =>ele.setAttribute('data-seq', idx));
+    
+            abtn.forEach(ele => {
+                domFn.addEvt(ele, 'click', (e)=>{
+                    console.log('로딩완료');
+                    let isRight = ele.classList.contains('ab2');
+                    let eachOne = domFn.qsaEl(slide, 'li');
+                    console.log('eachOne :', eachOne);
+                    console.log('isRight :', isRight);
+                    if(isRight){
+                        slide.style.left = '-100%';
+                        slide.style.transition = '.4s ease-in-out';
+                        setTimeout(()=>{
+                            slide.appendChild(eachOne[0]);
+                            slide.style.left = '0';
+                            slide.style.transition = 'none';
+                        }, 400);
+                    }else{
+                        slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
+                        slide.style.left = '-100%';
+                        slide.style.transition = 'none';
+                        setTimeout(() => {
+                            slide.style.left = '0';
+                            slide.style.transition = '.4s ease-in-out';
+                        }, 0);
+                    }
+                    const nowSeq = slide.querySelectorAll('li')[isRight? 1:0].getAttribute('data-seq');
+                    indic.forEach((ele, idx)=>{
+                        if(nowSeq == idx) ele.classList.add('on');
+                        else ele.classList.remove('on');
+                    });
+                });
+            });
+        }
+        
+    </script>
 </head>
 
 <body>
