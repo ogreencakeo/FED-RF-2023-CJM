@@ -39,13 +39,20 @@
     /* 영사기 박스 */
     .cam{
         /* gnb ul과 연결! */
-        padding-bottom: 100px;
+        padding-bottom: 20px;
     }
 }
 /************* 1050px 이하 사이즈 종료 *************/
 
 /************* 800px 이하 사이즈 시작 *************/
 @media screen and (max-width: 800px) {
-    
+    .footer{
+        height: auto;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .sns-box{
+        margin-left: 0;
+    }
 }
 /************* 800px 이하 사이즈 종료 *************/
