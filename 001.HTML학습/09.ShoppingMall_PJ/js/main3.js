@@ -63,6 +63,9 @@ function loadFn() {
     function goSlide(){
         console.log('나야나!', this);
 
+        // 0. 이전 순번 li 클래스 "on" 지우기
+        // slide[snum].classList.remove('on');
+
         // 1. 버튼 구분하기
         let isR = this.classList.contains('ab2');
         console.log('오른쪽? :', isR);
@@ -84,5 +87,16 @@ function loadFn() {
 
         // 3. 해당 li에 클래스 "on" 넣기
         slide[snum].classList.add('on');
+
+        // 0번에서 처리 안할 경우 4번에서 처리
+        // 4. 해당 li 빼고 전체 li 클래스 "on" 지우기
+        // 같은  li요소인지 검증 : 요소.isSameNode(다른요소)
+        slide.forEach(ele => {
+            // console.log(ele.isSameNode(slide[snum]));
+            // 현재 li가 아니면 클래스 "on" 지우기!
+            if(!ele.isSameNode(slide[snum])){
+                ele.classList.remove("on");
+            }
+        })
     }
 }
