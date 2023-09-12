@@ -69,15 +69,20 @@ function loadFn() {
 
         // 2. 버튼별 분기하기
         if(isR){  // 오른쪽 버튼
+            // 슬라이드 번호 증가
             snum++;
-            if(snum)
+            // 슬라이드 한계값 -> 끝이상은 처음으로!
+            if(snum==CNT_SLIDE) snum=0;
         }else{  // 왼쪽 버튼
-
+            // 슬라이드 번호 감소
+            snum--;
+            // 슬라이드 한계값 -> 0미만은 마지막번호!
+            if(snum<0) snum = CNT_SLIDE-1;
         }
+
+        console.log('snum :', snum);
 
         // 3. 해당 li에 클래스 "on" 넣기
         slide[snum].classList.add('on');
     }
-
-
 }
