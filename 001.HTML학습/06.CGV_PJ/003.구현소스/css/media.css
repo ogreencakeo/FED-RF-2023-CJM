@@ -1,8 +1,12 @@
 @charset "utf-8";
 /* CGV PJ 미디어쿼리 CSS - media.css */
 
-/************* 1330px 이하 사이즈 시작 *************/
-@media screen and (max-width: 1330px) {
+/************* 1370px 이하 사이즈 시작 *************/
+@media screen and (max-width: 1370px) {
+    /* GNB메뉴 */
+    .gnb{
+        right: 80px;
+    }
     
 }
 /************* 1330px 이하 사이즈 종료 *************/
@@ -10,6 +14,33 @@
 /************* 1050px 이하 사이즈 시작 *************/
 @media screen and (max-width: 1050px) {
     
+    /* 2-2. GNB */
+    .gnb{
+        bottom: -90px;
+        /* 하위 ul 안보일때도 위치유지하기 위해 */
+        height: 140px;
+    }
+    .gnb ul{
+        flex-direction: column;
+        top: 53px;
+        left: 59px;
+        align-items: flex-end;
+        /* 처음에 안보임 */
+        display: none;
+    }
+    /* .gnb 오버시 ul 보이기  */
+    .gnb:hover ul{
+        display: flex;
+    }
+    /* 상위메뉴 오버시 하위메뉴 보이기 없앰 */
+    .gnb ul>li:hover .smenu{
+        display: none;
+    }
+    /* 영사기 박스 */
+    .cam{
+        /* gnb ul과 연결! */
+        padding-bottom: 100px;
+    }
 }
 /************* 1050px 이하 사이즈 종료 *************/
 
