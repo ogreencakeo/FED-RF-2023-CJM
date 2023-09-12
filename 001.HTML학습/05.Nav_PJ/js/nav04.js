@@ -58,10 +58,22 @@ function showSub(){
             // 결과 처리 : false일때만 높이값 0처리
             // false일때 true처리 하려면 논리부정(!) 사용!
 
-            if(!result){    // false일때만 들어옴
-                if(domFn.qsEl(ele, '.smenu'))   
-                    domFn.qsEl(ele, '.smenu').style.height = '0px';
+            // 처리대상 변수 : 순회하며 li 하위 .smenu 담기
+            let target = domFn.qsEl(ele, '.smenu');
+
+            // 현재 노드와 같은 li는 처리하지 않음
+            if(!result){    // false일때만 들어옴!
+                // 하위에 .smenu가 없으면 처리안함
+                if(target)   target.style.height = '0px';
             }
         }); 
+    // 서브가 없는 li 클릭시 서브가 있는 것을 모두 닫기!
+    }else{
+        gnbList.forEach(ele=>{
+            // 처리대상 변수 : 순회하며 li 하위 .smenu 담기
+            if(domFn.qsEl(ele, '.smenu'))  
+                // 하위에 .smenu가 없으면 처리안함 
+                domFn.qsEl(ele, '.smenu').style.height = '0px'
+        });
     }
 }
