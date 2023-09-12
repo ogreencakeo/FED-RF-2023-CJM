@@ -356,3 +356,17 @@ body{
 .sns-box a{
     font-size: 4rem;
 }
+
+/* 각 sns별 오버시 아이콘색(글자색) 넣기 */
+.fa-square-facebook:hover{
+    color: cornflowerblue;
+}
+.fa-square-twitter:hover{
+    color: lightskyblue;
+}
+.fa-square-instagram:hover{
+    color: orangered;
+}
+.fa-square-youtube:hover{
+    color: lightcoral;
+}
