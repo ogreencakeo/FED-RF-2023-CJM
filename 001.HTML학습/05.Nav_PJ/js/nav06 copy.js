@@ -13,10 +13,3 @@ const domFn = {
     addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
 }; 
 
-// 1. 구현 요구사항
-// GNB메뉴의 데이터를 모두 HTML DOM으로 구조화 하여 
-// 화면에 출력한다!
-
-// 2. 대상 선정 : .gnb
-const gnbBox = domFn.qs('.gnb');
-console.log('대상 :', gnbBox);
