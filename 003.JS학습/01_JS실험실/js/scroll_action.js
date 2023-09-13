@@ -59,8 +59,8 @@ function showIt(){
     scAct.forEach((ele, idx) => {
         let bTop = domFn.getBCR(ele);
         console.log('바운딩값', idx, ":", bTop);
-        
-        if(bTop<0) ele.classList.add('on');
+
+        if(bTop<window.innerHeight/3*2) ele.classList.add('on');
     });
 
 }
