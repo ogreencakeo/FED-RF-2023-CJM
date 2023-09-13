@@ -181,25 +181,29 @@ function moveTit(){
     let scTop = window.scrollY;
     // console.log('타이틀이야!', scTop);
 
+    // 1. 맨위 위치로 이동
+    if(scTop < posTop[0] - winH/2){
+        tit.style.top = '0';
+        tit.style.left = '50%';
+        tit.style.transition = '1s';
+    }
+    // 2. 첫번째 포스터 옆으로 이동
     if(scTop > posTop[0] - winH/2 && scTop < posTop[0]){
         tit.style.top = '50%';
         tit.style.left = '20%';
         tit.style.transition = '2s';
     }
-    else if(scTop > posTop[1] - winH/2 && scTop < posTop[1]){
+    // 3. 두번째 포스터 옆으로 이동
+    if(scTop > posTop[1] - winH/2 && scTop < posTop[1]){
         tit.style.top = '70%';
         tit.style.left = '65%';
         tit.style.transition = '1s';
     }
-    else if(scTop > posTop[2] - winH/2 && scTop < posTop[2]){
+    // 4. 세번째 포스터 옆으로 이동
+    if(scTop > posTop[2] - winH/2 && scTop < posTop[2]){
         tit.style.top = '50%';
         tit.style.left = '25%';
         tit.style.transition = '0.5s';
-    }
-    else{
-        tit.style.top = '0';
-        tit.style.left = '50%';
-        tit.style.transition = '1s';
     }
 
 }
