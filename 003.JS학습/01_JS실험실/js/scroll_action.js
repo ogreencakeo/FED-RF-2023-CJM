@@ -8,7 +8,7 @@ const domFn = {
     addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
 
     // 바운딩 위치값 함수
-    getBCR : (ele) => ele.getBoundingClientRect().top 
+    getBCR : (ele) => ele.getBoundingClientRect().top,
 }; 
 
 /***********************************************************
@@ -56,6 +56,11 @@ function showIt(){
     // if(scTop > pos3-350) scAct[2].classList.add('on');
 
     // 요소의 바운딩 위치값 찍기
-    console.log('요소1 바운딩값 :', scAct[0].getBoundingClientRect().top);
+    scAct.forEach((ele, idx) => {
+        let bTop = domFn.getBCR(ele);
+        console.log('바운딩값', idx, ":", bTop);
+        
+        if(bTop<0) ele.classList.add('on');
+    });
 
 }
