@@ -18,17 +18,21 @@ const mvCode = {
 domFn.addEvt(window, 'load', loadFn);
 
 function loadFn(){
-    let pmenu = domFn.qsa('.poster-menu a');
-    let screen = domFn.qs('.screen');
-    let mlist = domFn.qsa('.poster-menu>ul>li');
-    pmenu.forEach(ele => {
-        domFn.addEvt(ele, 'click', (e)=>{
+    const pmenu = domFn.qsa('.poster-menu a');
+    const screen = domFn.qs('.screen');
+    const plist = domFn.qsa('.poster-menu>ul>li');
+
+    pmenu.forEach(ele=>{
+        domFn.addEvt(ele, 'click', ()=>{
             let txt = domFn.qsEl(ele, 'li').innerText;
             screen.innerHTML = `
                 <iframe src="https://www.youtube.com/embed/${mvCode[txt]}?autoplay=1" allow="autoplay"></iframe>
             `;
-            mlist.forEach(ele => ele.classList.remove('on'));
+            
+            plist.forEach(ele=> ele.classList.remove('on'));
             ele.parentElement.classList.add('on');
         });
     });
+
+    
 }
