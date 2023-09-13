@@ -6,10 +6,6 @@ const domFn = {
     addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn)
 };
 
-const pmenu = domFn.qsa('.poster-menu a');
-const screen = domFn.qs('.screen');
-const mlist = domFn.qsa('.poster-menu>ul>li');
-
 const mvCode = {
     '닥터스트레인지2':'mI9oyFMUlfg',
     '쥬라기월드:도미니언':'DSEfRVqjbFA',
@@ -19,15 +15,20 @@ const mvCode = {
     '스파이더맨:노웨이홈':'W7edvITC9g4',
 }
 
+domFn.addEvt(window, 'load', loadFn);
 
-pmenu.forEach(ele => {
-    domFn.addEvt(ele, 'click', (e)=>{
-        let mtit = domFn.qsEl(ele, 'li').innerText;
-        screen.innerHTML = `
-        <iframe src="https://www.youtube.com/embed/${mvCode[mtit]}?autoplay=1" allow="autoplay"></iframe>
-        `;
-        mlist.forEach(ele => ele.classList.remove('on'));
-        ele.parentElement.classList.add('on');
-
+function loadFn(){
+    let pmenu = domFn.qsa('.poster-menu a');
+    let screen = domFn.qs('.screen');
+    let mlist = domFn.qsa('.poster-menu>ul>li');
+    pmenu.forEach(ele => {
+        domFn.addEvt(ele, 'click', (e)=>{
+            let txt = domFn.qsEl(ele, 'li').innerText;
+            screen.innerHTML = `
+                <iframe src="https://www.youtube.com/embed/${mvCode[txt]}?autoplay=1" allow="autoplay"></iframe>
+            `;
+            mlist.forEach(ele => ele.classList.remove('on'));
+            ele.parentElement.classList.add('on');
+        });
     });
-});
+}

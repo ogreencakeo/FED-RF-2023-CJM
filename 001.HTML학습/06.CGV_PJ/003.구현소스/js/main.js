@@ -46,7 +46,7 @@ pmenu.forEach(ele=>{
         let mtit = domFn.qsEl(ele,'li').innerText;
 
         // 호출확인!
-        console.log('나야나!',me,mtit,mvCode[mtit],
+        console.log('나야나! me : ',me,"mtit : ", mtit,mvCode[mtit],
         '\n부모 (ele.parentElement) :', ele.parentElement);
 
         // 2. 스크린박스에 아이프레임 src재구성하여 넣기
