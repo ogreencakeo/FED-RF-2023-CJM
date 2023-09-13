@@ -57,9 +57,9 @@ body {
 
 /* 스크롤 등장 초기화 클래스 */
 .set-it {
-    transform: translateY(20%);
+    /* transform: translateY(20%);
     opacity: 0;
-    transition: 1.2s ease-in-out;
+    transition: 1.2s ease-in-out; */
 }
 /* 스크롤 등장 클래스 .on */
 .set-it.on {
