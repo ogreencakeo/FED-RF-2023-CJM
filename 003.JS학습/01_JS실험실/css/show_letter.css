@@ -5,7 +5,7 @@ body {
     background-color: darkslateblue;
 }
 /* 글자스테이지 */
-.stage {
+.stage-letters {
     position: fixed;
     display: flex;
     top: 50%;
@@ -20,17 +20,25 @@ body {
 }
 
 /* 글자개별박스 셋팅 */
-.stage span {
+.stage-letters span {
     /* 트랜스폼 적용위해 */
     display: block;
 }
 
 /* 글자등장 스타일1 */
-.style1{
+.style1 span{
     /* 현재위치로 부터 이동 */
     transform: translate(500%, -300%);
     /* 투명도 0 */
     opacity: 0;
     /* 트랜지션: 속시이지 */
     transition: 0.3s ease-in;
+    
+}
+/* 등장클래스 .on */
+.style1.on span{
+    /* 현재위치로 부터 이동 */
+    transform: translate(0, 0);
+    /* 투명도 0 */
+    opacity: 1;
 }

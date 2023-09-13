@@ -29,11 +29,20 @@ let seqNum = 0;
 
 for(let x of myText){
     // console.log(x);
-    if(x == ' ') hcode += '&nbsp;&nbsp;&nbsp;';
-    else hcode += `<span>${x}</span>`;
+    if(x == ' ') hcode += '&nbsp;&nbsp;';
+    else hcode += `<span style="transition-delay: ${seqNum*0.2}s;">${x}</span>`;
+
+    // 순차적인 지연시간 생성을 위한 숫자변수 증가
+    seqNum++;
+    // &nbsp; 는 공백문자로 no break space란 말.
 }
 
 console.log('코드 :', hcode);
 
 // 5. 스테이지 박스에 코드 출력하기
 stage.innerHTML = hcode;
+
+// 6. 일정시간뒤 등장 클래스 .on 주기
+setTimeout(()=>{
+    stage.classList.add('on');
+},2000)
