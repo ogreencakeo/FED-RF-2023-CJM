@@ -23,6 +23,10 @@ body {
 .stage span {
     /* 트랜스폼 적용위해 */
     display: block;
+}
+
+/* 글자등장 스타일1 */
+.style1{
     /* 현재위치로 부터 이동 */
     transform: translate(500%, -300%);
     /* 투명도 0 */
