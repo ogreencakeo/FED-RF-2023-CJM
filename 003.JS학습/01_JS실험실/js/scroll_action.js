@@ -24,6 +24,10 @@ startSS();
     (휠 이벤트는 모바일에서 사용불가!)
     
     2. 스크롤바 위치값 알아내기 : 세로방향(Y축)
+    (1) window.scrollY (IE6~11지원안함)
+    (2) document.scrollingElement.scrollTop
+    (3) document.documentElement.scrollTop
+    (4) document.querySelector('html').scrollTop
     -> 가로방향 스크롤바는 Y대신 X라는 문자를 사용함!
 
     3. 스크롤 등장 대상요소의 보이는 화면에서의 top값
@@ -72,7 +76,7 @@ function showIt() {
     // if(scTop > pos3-350) scAct[2].classList.add('on');
 
     // 요소의 바운딩 위치값 찍기
-    for(let x of scAct) addOn(x);
+    for (let x of scAct) addOn(x);
 }
 
 // 기준값을 검사후 클래스 넣는 함수
@@ -97,27 +101,26 @@ let winH = window.innerHeight;
 let docH = document.body.clientHeight;
 // 스크롤 한계값 : 전체 document높이 - 화면 높이
 let scLimit = docH - winH;
-console.log('스크롤한계값 :', scLimit);
+console.log("스크롤한계값 :", scLimit);
 // 비례식 => 스크롤한계값 : 윈도우 높이 = 스크롤이동값 : 이미지이동값
 // 이미지 이동값 = 윈도우높이 * 스크롤이동값 / 스크롤한계값
 
 // 떨어지는 여자요소
-let woman = domFn.qs('#woman');
+let woman = domFn.qs("#woman");
 
-function moveWoman(){
-    
+function moveWoman() {
     // 1. 스크롤 위치값
     let scTop = window.scrollY;
-    
+
     // 2. 떨녀 top값
     // 이미지 이동값 = 윈도우높이 * 스크롤이동값 / 스크롤한계값
-    let wTop = winH * scTop / scLimit;
-    
-    console.log('난 떨녀! scTop :', scTop, ', wTop :', wTop);
+    let wTop = (winH * scTop) / scLimit;
+
+    console.log("난 떨녀! scTop :", scTop, ", wTop :", wTop);
 
     // 3. 떨어지는 여자에 적용하기
-    woman.style.top = wTop + 'px';
+    woman.style.top = wTop + "px";
 
     // 4. 맨위일때 윗쪽으로 숨기기
-    if(scTop == 0) woman.style.top = '-20%';
+    if (scTop == 0) woman.style.top = "-20%";
 }
