@@ -20,3 +20,10 @@ const domFn = {
 // 2. 대상 선정 : .gnb
 const gnbBox = domFn.qs('.gnb');
 console.log('대상 :', gnbBox);
+
+// 3. 객체 데이터로 html 코드 만들기
+let hcode = '';
+hcode += ``;
+for(let x in mdata){
+    console.log("mdata x >> ", x);
+}
