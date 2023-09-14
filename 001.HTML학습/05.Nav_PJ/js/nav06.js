@@ -59,7 +59,11 @@ function makeCode(obj){ // obj - 객체 전달값
         hcode += `
             <dl>
                 <dt>${x}</dt>
-                <dd><a href="">3차</a></dd>
+                <!-- 3차 메뉴 dd생성 -->
+                ${obj[x].map(
+                    val=>
+                    `<dd><a href="">${val}</a></dd>`).join('')
+                }
             </dl>
         `;
     }
