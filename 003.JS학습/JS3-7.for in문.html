@@ -192,36 +192,36 @@
 
                     // 코드를 변수에 대입
                     hcode += `
-                <section class="cbx">
-                    <div class="minfo">
-                        <!-- 1. 포스터 -->
-                        <div class="photo">
-                            <img src="${mvi[x]["포스터"]}" 
-                            alt="${mvi[x]["제목"]}의 포스터">  
-                        </div>
-                        <div class="cont">
-                            <!-- 2. 제목 -->
-                            <h2 class="tit">
-                                ${mvi[x]["제목"]}</h2>
-                            <!-- 3. 개요 -->
-                            <h3 class="sum">
-                                ★장르 : ${mvi[x]["개요"]}</h3>
-                            <!-- 4. 감독 -->
-                            <h3 class="dir">
-                                ★감독 : ${mvi[x]["감독"]}</h3>
-                            <!-- 5. 출연 -->
-                            <h3 class="act">
-                                ★출연 : ${mvi[x]["출연"]}</h3>
-                        </div>
-                    </div>
-        
-                    <!-- 영화 한마디 -->
-                    <h2 class="showtit">♥ 영화한마디!</h2>
-                    <!-- 6. 문구 -->
-                    <div class="show">
-                        ${wrapSpan(mvi[x]["문구"])}
-                    </div>
-                </section>
+                        <section class="cbx">
+                            <div class="minfo">
+                                <!-- 1. 포스터 -->
+                                <div class="photo">
+                                    <img src="${mvi[x]["포스터"]}" 
+                                    alt="${mvi[x]["제목"]}의 포스터">  
+                                </div>
+                                <div class="cont">
+                                    <!-- 2. 제목 -->
+                                    <h2 class="tit">
+                                        ${mvi[x]["제목"]}</h2>
+                                    <!-- 3. 개요 -->
+                                    <h3 class="sum">
+                                        ★장르 : ${mvi[x]["개요"]}</h3>
+                                    <!-- 4. 감독 -->
+                                    <h3 class="dir">
+                                        ★감독 : ${mvi[x]["감독"]}</h3>
+                                    <!-- 5. 출연 -->
+                                    <h3 class="act">
+                                        ★출연 : ${mvi[x]["출연"]}</h3>
+                                </div>
+                            </div>
+                
+                            <!-- 영화 한마디 -->
+                            <h2 class="showtit">♥ 영화한마디!</h2>
+                            <!-- 6. 문구 -->
+                            <div class="show">
+                                ${wrapSpan(mvi[x]["문구"])}
+                            </div>
+                        </section>
                 
                 `;
                 } //////////// for in ////////////
@@ -267,7 +267,7 @@
     <body>
         <h1 style="text-align: center;">객체를 위한 for문</h1>
         <main class="cont ibx">
-            <h2>무비차트</h2>
+            <h2 style="text-align: center;">무비차트</h2>
             <!-- 영화정보박스 -->
             <div class="wrap"></div>
         </main>

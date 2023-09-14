@@ -34,10 +34,7 @@ for (let x in mdata) {  // x는 속성명
                             <div class="stit">${x}</div>
                             <a href="">전체보기</a>
                             <div class="swrap">
-                                <dl>
-                                    <dt>2차</dt>
-                                    <dd><a href="">3차</a></dd>
-                                </dl>
+                                ${makeCode('흥')}
                             </div>
                         </h2>
                     </aside>
@@ -49,5 +46,16 @@ for (let x in mdata) {  // x는 속성명
 
 // 확인
 console.log("코드:", hcode);
+
+// 내부 for in 문 코드생성 함수 만들기
+function makeCode(obj){ // obj - 전달값
+    console.log('나야나', obj);
+    `
+        <dl>
+            <dt>2차</dt>
+            <dd><a href="">3차</a></dd>
+        </dl>
+    `
+}
 
 // ul>li>a[href='#']{1차}+.smenu>aside.smbx>h2>(.stit{2차}+a{전체보기})+.swrap>dl>dt+dd>a{3차}
