@@ -11,6 +11,10 @@ const domFn = {
     // 이벤트셋팅함수
     addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
 }; /////// domFn 객체 /////////////
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7a1a128597c39efbd183979e85594171ce00af27
 
 // 1. 구현 요구사항
 // GNB메뉴의 데이터를 모두 html DOM으로 구조화하여
@@ -32,7 +36,7 @@ for (let x in mdata) {
                 <div class="smenu">
                     <aside class="smbx">
                         <h2>
-                            <div class="stit">1차</div>
+                            <div class="stit"></div>
                             <a href="">전체보기</a>
                             <div class="swrap">
                                 <dl>
