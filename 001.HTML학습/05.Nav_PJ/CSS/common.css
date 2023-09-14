@@ -3,20 +3,20 @@
 
 /* 속박스 */
 .ibx{
-    max-width: 1600px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 0 15px;
+    outline: 2px dashed yellow;
 }
 
 /* 1. 상단영역 */
 .top-area{
     background-color: #000;
 }
-
 /* 탑메뉴 박스 */
 .top-menu{
     padding-top: 28px;
 }
-
 /* 로고박스 */
 .logo-box{
     text-align: center;
@@ -24,20 +24,36 @@
 
 /***************** GNB박스 *****************/
 .gnb{
-    color: #fff;
+    display: flex;
+    gap: 0 20px;
+    line-height: 60px;
 }
-
 /* 상위메뉴 ul */
 .gnb ul{
-    display: flex;
-}
 
+}
 /* gnb 공통 a */
-.gnb a {
+.gnb>ul>li:first-child>a {
     color: #fff;
 }
-
 /* 서브메뉴 박스 */
 .smenu{
     display: none;
+    position: absolute;
+}
+/* 임시 첫번째 */
+.gnb>ul:first-child .smenu{
+    display: block;
+}
+/* 서브 첫타이틀 */
+.stit{
+    font-size: 30px;
+}
+/* 서브 내부 랩핑박스 */
+.smbx{
+    display: flex;
+}
+/* 서브 메뉴 dl랩핑박스 */
+.swrap{
+    display: flex;
 }

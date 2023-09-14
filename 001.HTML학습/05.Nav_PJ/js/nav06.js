@@ -33,11 +33,11 @@ for (let x in mdata) {  // x는 속성명
                         <h2>
                             <div class="stit">${x}</div>
                             <a href="">전체보기</a>
-                            <div class="swrap">
+                        </h2>
+                        <div class="swrap">
                             <!-- 2차 메뉴 dl생성 -->
                                 ${makeCode(mdata[x])}
-                            </div>
-                        </h2>
+                        </div>
                     </aside>
                 </div>
             </li>
