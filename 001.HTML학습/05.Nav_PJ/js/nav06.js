@@ -34,6 +34,7 @@ for (let x in mdata) {  // x는 속성명
                             <div class="stit">${x}</div>
                             <a href="">전체보기</a>
                             <div class="swrap">
+                            <!-- 2차 메뉴 dl생성 -->
                                 ${makeCode(mdata[x])}
                             </div>
                         </h2>
@@ -67,7 +68,10 @@ function makeCode(obj){ // obj - 객체 전달값
 }
 
 /**************************************************************
-    [ 배열데이터를 변경하여 다시 배열로 만들기 ]
+    [ 배열데이터를 변경하여 다시 배열로 만들기 : map() ]
+    배열변수.map((배열값, 순번, 전체배열)=>{변경코드})
+    -> 결과로 변경된 배열이 리턴됨!
+    _____________________________________________________
     const aa = ['신숙', '상호', '경미'];
     -> 배열데이터는 이름인데 뒤에 "씨"붙여서 보관하기로!
     aa = aa.map(val => val + '씨');
@@ -77,5 +81,7 @@ const aa = ['신숙', '상호', '경미'];
 console.log(aa);
 const bb = aa.map(val => val + '씨');
 console.log(bb);
+const cc = bb.map((val, idx)=>`<div>${idx + '.' + val}</div>`);
+console.log(cc, '배열이니? :', Array.isArray(cc));
 
 // ul>li>a[href='#']{1차}+.smenu>aside.smbx>h2>(.stit{2차}+a{전체보기})+.swrap>dl>dt+dd>a{3차}
