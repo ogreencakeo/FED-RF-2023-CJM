@@ -53,25 +53,25 @@
                 qsa : (x) => document.querySelectorAll(x),
                 qsEl : (el, x) => el.querySelector(x),
                 qsaEl : (el, x) => el.querySelectorAll(x),
-                addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn)
+                addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn),
             };
-
             domFn.addEvt(window, 'load', loadFn);
             function loadFn(){
-                const smenu = domFn.qsa('.smenu');
-                
-                smenu.forEach(ele => {
-                    ele.onmouseover = () => {
+                let smenu = domFn.qsa('.smenu');
+                smenu.forEach(ele=>{
+                    ele.onmouseover = (e) =>{
+                        console.log(ele);
                         let target = domFn.qsEl(ele, 'div');
                         let hv = domFn.qsEl(target, 'ol').offsetHeight;
+                        console.log(hv);
                         target.style.height = hv + 'px';
                         target.style.transition = '.4s ease-out';
                     }
-                    ele.onmouseout = () => {
+                    ele.onmouseout = (e) => {
                         target = domFn.qsEl(ele, 'div');
                         target.style.height = '0';
                     }
-                })
+                });
             }
         </script>
     </head>
