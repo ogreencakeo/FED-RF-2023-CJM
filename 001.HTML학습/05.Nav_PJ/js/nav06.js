@@ -34,7 +34,7 @@ for (let x in mdata) {  // x는 속성명
                             <div class="stit">${x}</div>
                             <a href="">전체보기</a>
                             <div class="swrap">
-                                ${makeCode('흥')}
+                                ${makeCode(mdata[x])}
                             </div>
                         </h2>
                     </aside>
@@ -48,14 +48,34 @@ for (let x in mdata) {  // x는 속성명
 console.log("코드:", hcode);
 
 // 내부 for in 문 코드생성 함수 만들기
-function makeCode(obj){ // obj - 전달값
+function makeCode(obj){ // obj - 객체 전달값
     console.log('나야나', obj);
-    `
-        <dl>
-            <dt>2차</dt>
-            <dd><a href="">3차</a></dd>
-        </dl>
-    `
+    // 코드변수
+    let hcode = '';
+
+    // 객체 반복문 for in 사용!
+    for(let x in obj){  // x - 속성명(2차메뉴)
+        hcode += `
+            <dl>
+                <dt>${x}</dt>
+                <dd><a href="">3차</a></dd>
+            </dl>
+        `;
+    }
+    // 결과리턴
+    return hcode;
 }
+
+/**************************************************************
+    [ 배열데이터를 변경하여 다시 배열로 만들기 ]
+    const aa = ['신숙', '상호', '경미'];
+    -> 배열데이터는 이름인데 뒤에 "씨"붙여서 보관하기로!
+    aa = aa.map(val => val + '씨');
+    -> 결과 : ['신숙씨', '상호씨', '경미씨']
+**************************************************************/
+const aa = ['신숙', '상호', '경미'];
+console.log(aa);
+const bb = aa.map(val => val + '씨');
+console.log(bb);
 
 // ul>li>a[href='#']{1차}+.smenu>aside.smbx>h2>(.stit{2차}+a{전체보기})+.swrap>dl>dt+dd>a{3차}
