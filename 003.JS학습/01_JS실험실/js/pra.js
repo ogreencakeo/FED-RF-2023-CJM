@@ -11,29 +11,22 @@ const domFn = {
 domFn.addEvt(window, 'load', loadFn);
 
 function loadFn(){
-    const slidePg = domFn.qs('.slidePg');
-    let hcode = '';
-    for(let i=1; i<8; i++){
-        hcode += `
-            <li>
-                <img src = "../images/dance/${i}.jpg" alt = "dance">
-            </li>
-        `;
-    }
-    hcode = `<ul>${hcode}<ul>`;
-    slidePg.innerHTML = hcode;
+    
+    const target = domFn.qsa('.gnb li');
+    const mbg = domFn.qs('.mbg');
 
-    const tpg = domFn.qs('.tpg');
-    const target = domFn.qs('.slidePg>ul');
-    domFn.addEvt(window, 'scroll', moveSlide);
-    function moveSlide(){
-        let bTop = domFn.getBCR(tpg);
-        if(bTop>0){
-            target.style.left = '0px';
-        }else if(bTop<=0 && bTop>=-3000){
-            target.style.left = bTop + 'px';
-        }else{
-            target.style.left = '-3000px';
-        }
+    target.forEach(ele => {
+        domFn.addEvt(ele, 'mouseover', overFn);
+        domFn.addEvt(ele, 'mouseout', outFn);
+    });
+
+    function overFn(){
+        let move_left = this.offsetLeft;
+        mbg.style.left = move_left + 'px';
+        mbg.style.opacity = 1;
     }
+    function outFn(){
+        mbg.style.opacity = 0;
+    }
+
 }
