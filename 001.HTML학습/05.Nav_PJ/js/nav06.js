@@ -112,7 +112,8 @@ gnbBox.innerHTML = hcode;
 **************************************************************/
 // 1. 대상선정
 const gnb = domFn.qsa('.gnb>ul>li');
-console.log('대상 :', gnb);
+
+console.log('대상 gnb :', gnb);
 
 // 2. 이벤트 설정하기
 // 이벤트 종류 : mouseover / mouseout
@@ -123,8 +124,16 @@ gnb.forEach(ele => {
 
 // 3. 함수 만들기
 function overFn(){
-    console.log('나야나', this);
+    console.log('오버', this);
+    // 1. 하위 .smenu 높이값 알아오기
+    let hv = domFn.qsEl(this, '.smbx').clientHeight;
+    console.log('높이 :', hv);
+    // 2. 하위 서브메뉴 박스 만큼 .smenu 높이값 주기
+    domFn.qsEl(this, '.smenu').style.height = hv + 'px';
+
 }
 function outFn(){
-    console.log('나야나', this);
+    // console.log('아웃', this);
+    // 서브메뉴 박스 높이값 0만들기!
+    domFn.qsEl(this, '.smenu').style.height = '0';
 }
