@@ -38,13 +38,17 @@
 }
 /* 서브메뉴 박스 */
 .smenu{
-    display: none;
     position: absolute;
+    display: none;
+    outline: 2px dashed orangered;
 }
-/* 임시 첫번째 */
-.gnb>ul:first-child .smenu{
+.gnb>ul>li:hover .smenu{
     display: block;
 }
+/* 임시 첫번째 */
+/* .gnb>ul:first-child .smenu{
+    display: block;
+} */
 /* 서브 첫타이틀 */
 .stit{
     font-size: 30px;
@@ -53,7 +57,26 @@
 .smbx{
     display: flex;
 }
+/* 서브 2차 타이틀박스 */
+.smbx h2{
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+}
 /* 서브 메뉴 dl랩핑박스 */
 .swrap{
     display: flex;
+    gap: 0 70px;
+}
+/* 서브 dl */
+.swrap dl{
+    width: 180px;
+}
+/* 2차메뉴 : dt */
+.srap dt{
+    font-size: 20px;
+}
+/* 3차메뉴 : dd */
+.swrap dd{
+    font-size: 14px;
+    line-height: 2;
 }
