@@ -71,7 +71,7 @@ function makeCode(obj){ // obj - 객체 전달값
     return hcode;
 }
 
-// 최종 GNB 출력하기
+// 4. 최종 GNB 출력하기
 gnbBox.innerHTML = hcode;
 
 /**************************************************************
