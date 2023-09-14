@@ -88,8 +88,16 @@ gnbList.forEach(ele => {
 // 3. 함수만들기
 function overFn(){
     console.log('over :', this);
+    // 1. 오버된 li에 left위치값 읽기
+    let posL = this.offsetLeft;
+    console.log('위치 posL :', posL);
+    // 2. 메뉴배경 보이기 + 움직이기
+    mbg.style.opacity = 1;
+    mbg.style.left = posL + 'px';
 }
 
 function outFn(){
     console.log('out :', this);
+    // 메뉴배경 사라지기
+    mbg.style.opacity = 0;
 }
