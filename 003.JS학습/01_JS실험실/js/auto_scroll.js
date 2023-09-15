@@ -128,15 +128,20 @@ function chgMenu(){
     
     // 메뉴 li를 순회하여 해당순번(pg_num)에 .on 넣기
     // 나머지는 .on 빼기
-    gnbList.forEach((ele, idx) => {
-        if(idx==pg_num) ele.classList.add('on');
-        else ele.classList.remove('on');
-    });
 
-    indicList.forEach((ele, idx) => {
-        if(idx==pg_num) ele.classList.add('on');
-        else ele.classList.remove('on');
-    });
+    // 내부 함수 만들기
+    const comFn = (ele) => {
+        gnbList.forEach((ele, idx) => {
+            if(idx==pg_num) ele.classList.add('on');
+            else ele.classList.remove('on');
+        });
+    
+        indicList.forEach((ele, idx) => {
+            if(idx==pg_num) ele.classList.add('on');
+            else ele.classList.remove('on');
+        });
+    };
+    
 }
 
 
