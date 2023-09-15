@@ -115,6 +115,8 @@ function wheelFn(e){ // 이벤트전달변수(자동)
 
 // 메뉴변경 대상 : .gnb li
 const gnbList = domFn.qsa('.gnb li');
+const indicList = domFn.qsa('.indic li');
+console.log('gnbList :', gnbList, 'indicList :', indicList);
 
 /********************************************************** 
     함수명: chgMenu
@@ -123,9 +125,15 @@ const gnbList = domFn.qsa('.gnb li');
 function chgMenu(){
     // 호출확인
     console.log('바꿔!', pg_num);
+    
     // 메뉴 li를 순회하여 해당순번(pg_num)에 .on 넣기
     // 나머지는 .on 빼기
     gnbList.forEach((ele, idx) => {
+        if(idx==pg_num) ele.classList.add('on');
+        else ele.classList.remove('on');
+    });
+
+    indicList.forEach((ele, idx) => {
         if(idx==pg_num) ele.classList.add('on');
         else ele.classList.remove('on');
     });
