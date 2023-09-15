@@ -30,22 +30,23 @@ let ele_page;
 setTimeout(()=>{window.scrollTo(0,0)},500);
 
 // 2. 이벤트 연결함수 /////////////////
-const domFn = {
-    qs : (x) => document.querySelector(x),
-    qsEl : (el,x) => el.querySelector(x),
-    qsa : (x) => document.querySelectorAll(x),
-    qsaEl : (el,x) => el.querySelectorAll(x),
-    
-    addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
 
-    // 바운딩 top값 리턴함수
-    getBCR : (ele) => ele.getBoundingClientRect().top,
-}; 
+// DOM 함수 객체 //////////////
+const domFn = {
+    // 요소선택함수 ////////
+    qs: (x) => document.querySelector(x),
+    qsEl: (el, x) => el.querySelector(x),
+    qsa: (x) => document.querySelectorAll(x),
+    qsaEl: (el, x) => el.querySelectorAll(x),
+  
+    // 이벤트셋팅함수
+    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
+  }; /////// domFn 객체 /////////////
 
 // 3. 이벤트 등록하기 /////////////////
 // 대상: window
-domFn,addEvt(window, 'DOMContentLoaded', loadFn);
-domFn.addEvt(window, 'wheel', wheelFn);
+domFn.addEvt(window,'wheel',wheelFn);
+domFn.addEvt(window,'DOMContentLoaded',loadFn);
 
 /*************************************** 
     함수명 : loadFn
@@ -107,42 +108,67 @@ function wheelFn(e){ // 이벤트전달변수(자동)
 
     window.scrollTo(0,window.innerHeight*pg_num);
 
-    // 3. 메뉴 변경함수 호출 : 페이지변수 변경 후!
+    // 3. 메뉴 변경함수 호출 : 페이지변수변경후!
     chgMenu();
 
 } /////////// wheelFn 함수 ////////////////
 ///////////////////////////////////////////
 
-// 메뉴변경 대상 : .gnb li
+// 메뉴변경 대상: .gnb li / .indic li
 const gnbList = domFn.qsa('.gnb li');
 const indicList = domFn.qsa('.indic li');
-console.log('gnbList :', gnbList, 'indicList :', indicList);
+console.log(gnbList,indicList);
 
-/********************************************************** 
+// 메뉴처리 대상요소 배열로 묶어주기!
+const menuGrp = [gnbList,indicList];
+
+/******************************************* 
     함수명: chgMenu
     기능 : 마우스 휠작동/메뉴클릭시 메뉴변경
-**********************************************************/
+*******************************************/
 function chgMenu(){
     // 호출확인
-    console.log('바꿔!', pg_num);
-    
-    // 메뉴 li를 순회하여 해당순번(pg_num)에 .on 넣기
-    // 나머지는 .on 빼기
+    console.log('바꿔!',pg_num);
+    // 메뉴li를 순회하여 해당순번(pg_num)에 .on넣기
+    // 나머지는 .on빼기
 
-    // 내부 함수 만들기
-    const comFn = (ele) => {
-        gnbList.forEach((ele, idx) => {
-            if(idx==pg_num) ele.classList.add('on');
-            else ele.classList.remove('on');
-        });
+    // 1. 내부함수 만들기 //////
+    const comFn = (target) => { // target - 메뉴리스트요소
+        target.forEach((ele,idx)=>{
+            if(idx==pg_num)
+                ele.classList.add('on');
+            else
+                ele.classList.remove('on');
+        });        
+    }; /////////// comFn 내부함수 //////
+
+    // 2. 처리할 요소 배열 불러오기 : menuGrp
+    menuGrp.forEach(val=>comFn(val));
+    // forEach()가 gnbList와 indicList를 각각 comFn()에 전달함!
+
+} //////////// chgMenu 함수 //////////////////
+
+/////////////////////////////////////
+// [GNB li 를 클릭시 메뉴 변경하기] ////
+// -> pg_num 을 업데이트 후 chgMenu()함수를 호출한다!
+
+// 메뉴그룹 배열만큼 클릭 기능 만들기 ///
+// for of문 사용!
+for(let x of menuGrp){ // x - gnbList, indicList 순회!
+    x.forEach((ele,idx)=>{
+        domFn.addEvt(ele,'click',()=>{
+            // 1. 전역 페이지변수 업데이트하기
+            pg_num = idx; // 메뉴순번으로 업뎃!
+            console.log('페이지번호:',pg_num);
     
-        indicList.forEach((ele, idx) => {
-            if(idx==pg_num) ele.classList.add('on');
-            else ele.classList.remove('on');
-        });
-    };
-    
-}
+            // 2. 메뉴변경함수 호출
+            chgMenu();
+        }); /////////// addEvt /////////
+    }); ////////// forEach ///////////////
+
+} /////////// for of ///////////
+
+
 
 
 /********************************************************* 
@@ -209,7 +235,7 @@ function touchEnd(e){ // e - 이벤트 전달변수
     let result = pos_start - pos_end;
 
     // 함수호출확인
-    console.log('터치끝~!',pos_end,'결과:',result);
+    // console.log('터치끝~!',pos_end,'결과:',result);
 
     // return값이 차가 0이면 함수나감!
     if(result==0) return;
@@ -236,9 +262,9 @@ function movePage(dir){ // dir은 방향값(1-아랫쪽,0-윗쪽)
     if(pg_num<0) pg_num=0;
     if(pg_num==total_pg) pg_num = total_pg-1;
 
-    // 3. 페이지 이동하기 ///////
-    // offsetTop은 선택요소의 top위치값 리턴함
-    window.scrollTo(0, ele_page[pg_num].offsetTop);
-    console.log('여기야',ele_page[pg_num].offsetTop);
+    // 3. 페이지 이동하기 ///////   
+    // offsetTop 은 선택요소의 top위치값 리턴함! 
+    window.scrollTo(0,ele_page[pg_num].offsetTop);
+    // console.log('여기야!',ele_page[pg_num].offsetTop);
 
 } //////////// movePage함수 /////////////
