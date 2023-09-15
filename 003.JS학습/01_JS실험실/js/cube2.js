@@ -40,6 +40,10 @@ domFn.addEvt(window, 'wheel', rotateMem);
 // 3. 함수만들기
 function rotateMem(){
 
+    // 0. 휠 이벤트 발생 수 조절하기(광휠금지)
+    if(stsWheel) return;
+    stsWheel = 1;
+
     // 1. 휠방향 알아내기 : 휠델타
     let delta = event.wheelDelta;
 
