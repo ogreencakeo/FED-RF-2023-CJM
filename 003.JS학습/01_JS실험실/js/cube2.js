@@ -26,6 +26,8 @@ const domFn = {
 const DEG = 40;
 // 광휠상태변수 (0 - 허용, 1 - 금지)
 let stsWheel = 0;
+// 휠제어 시간
+const TIME_WHEEL = 180;
 // 휠 단위수 (휠할때 증감하는 수)
 let numWheel = 0;
 
@@ -41,8 +43,9 @@ domFn.addEvt(window, 'wheel', rotateMem);
 function rotateMem(){
 
     // 0. 휠 이벤트 발생 수 조절하기(광휠금지)
-    if(stsWheel) return;
-    stsWheel = 1;
+    if(stsWheel) return;    // 막기
+    stsWheel = 1;   // 잠금
+    setTimeout(() => stsWheel = 0, TIME_WHEEL);  //해제
 
     // 1. 휠방향 알아내기 : 휠델타
     let delta = event.wheelDelta;
