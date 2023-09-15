@@ -71,3 +71,20 @@ function loadFn(){
     liveBox.innerHTML = hcode;
 
 } 
+
+//////////////////////////////////////////////////////////////////
+// [ GNB 서브네뮤 셋팅하기 ]
+// 구조 : div.smenu > aside.smbx > h2{1차메뉴} + (ol>li>a{2차메뉴})
+
+// 1. 대상선정 : .gnb > ul > li 
+// 서브메뉴 넣을 li는 하위 a요소의 텍스트가 gnbData 속성명 1차메뉴와
+// 일치하는 경우 하위 메뉴를 넣어준다!
+const gnbList = domFn.qsa('.gnb>ul>li');
+console.log('메뉴 :', gnbList, '/ 데이터 :', gnbData);
+
+// 3. 대상에 하위메뉴 태그 만들기
+gnbList.forEach(ele=>{
+    // 하위 a요소 텍스트 읽기
+    let atxt = domFn.qsEl(ele, 'a').innerText;
+    console.log('텍스트 :', atxt);
+});
