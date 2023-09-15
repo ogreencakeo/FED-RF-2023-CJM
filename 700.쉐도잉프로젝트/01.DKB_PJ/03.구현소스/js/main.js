@@ -125,8 +125,12 @@ console.log('대상 gnb :', gnb);
 // 2. 이벤트 설정하기
 // 이벤트 종류 : mouseover / mouseout
 gnb.forEach(ele => {
-    domFn.addEvt(ele, 'mouseover', overFn);
-    domFn.addEvt(ele, 'mouseout', outFn);
+    // 서브 메뉴가 있을 때만 이벤트 설정하기!
+    // if문에서 undefined / null은 flase처리됨!
+    if(domFn.qsEl(ele, '.smenu')){
+        domFn.addEvt(ele, 'mouseover', overFn);
+        domFn.addEvt(ele, 'mouseout', outFn);
+    }
 });
 
 // 3. 함수 만들기

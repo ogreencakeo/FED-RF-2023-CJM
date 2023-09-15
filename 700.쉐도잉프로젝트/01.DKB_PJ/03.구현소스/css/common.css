@@ -102,6 +102,9 @@ aside.smbx {
 .smbx ol li{
     /* 가로크기 제한 한줄에 4개 */
     flex-basis: 25%;
+    /* 글자 말줄임 셋팅 */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #main {
