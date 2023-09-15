@@ -53,10 +53,10 @@ function rotateMem(){
     // 2. 방향에 따른 휠단위수 증감하기
     if(delta < 0){
         // 휠단위수 증가
-        numWheel++;
+        numWheel--;
     }else{
         // 휠단위수 감소
-        numWheel--;
+        numWheel++;
     }
 
     // 호출확인
