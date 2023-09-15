@@ -86,5 +86,5 @@ console.log('메뉴 :', gnbList, '/ 데이터 :', gnbData);
 gnbList.forEach(ele=>{
     // 하위 a요소 텍스트 읽기
     let atxt = domFn.qsEl(ele, 'a').innerText;
-    console.log('텍스트 :', atxt);
+    console.log('텍스트(atxt) :', atxt, '/ gnbData[atxt]', gnbData[atxt]);
 });
