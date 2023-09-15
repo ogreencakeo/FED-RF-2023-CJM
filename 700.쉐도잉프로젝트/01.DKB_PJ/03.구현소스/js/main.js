@@ -90,7 +90,23 @@ gnbList.forEach(ele=>{
     let gData = gnbData[atxt];
     // console.log('텍스트(atxt) :', atxt, '/ gData :', gData);
     // 3. 해당 서브 데이터가 있을 경우 태그 만들어 넣기
+    // Array.isArray(gData)로 배열여부를 확인함!
+    // 배열값은 태그를 만들어 그자리에 출력 : 배열.map().join('')
     if(gData){  // 데이터 없으면 undefined -> false처리!
         console.log('만들어!', atxt);
+        ele.innerHTML += `
+            <div class="smenu">
+                <aside class = "smbx">
+                    <h2>${atxt}</h2>
+                    <ol>
+                        ${gData.map(val => `
+                            <li>
+                                <a href="#">${val}</a>
+                            </li>
+                        `).join('')}
+                    </ol>
+                </aside>
+            </div>
+        `;
     } 
 });
