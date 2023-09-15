@@ -84,7 +84,13 @@ console.log('메뉴 :', gnbList, '/ 데이터 :', gnbData);
 
 // 3. 대상에 하위메뉴 태그 만들기
 gnbList.forEach(ele=>{
-    // 하위 a요소 텍스트 읽기
+    // 1. 하위 a요소 텍스트 읽기
     let atxt = domFn.qsEl(ele, 'a').innerText;
-    console.log('텍스트(atxt) :', atxt, '/ gnbData[atxt]', gnbData[atxt]);
+    // 2. GNB 데이터 읽기
+    let gData = gnbData[atxt];
+    // console.log('텍스트(atxt) :', atxt, '/ gData :', gData);
+    // 3. 해당 서브 데이터가 있을 경우 태그 만들어 넣기
+    if(gData){  // 데이터 없으면 undefined -> false처리!
+        console.log('만들어!', atxt);
+    } 
 });
