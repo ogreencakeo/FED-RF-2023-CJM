@@ -1,3 +1,7 @@
+/* 네비게이션 유형6 JS - nav06.js */
+// 가로네비 서브별 드롭다운 전체형
+
+// DOM 함수 객체 //////////////
 const domFn = {
     // 요소선택함수 ////////
     qs : (x) => document.querySelector(x),
@@ -9,33 +13,3 @@ const domFn = {
     addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
 }; 
 
-domFn.addEvt(window, 'load', loadFn);
-
-function loadFn(){
-    const gnbList =domFn.qsa('.gnb>ul>li');
-    gnbList.forEach(ele=>{
-        domFn.addEvt(ele, 'click', showSub);
-    });
-
-    function showSub(){
-        let isSub = domFn.qsEl(this, '.smenu');
-
-        if(isSub){
-            let hv = domFn.qsEl(isSub, 'ol').clientHeight;
-            isSub.style.clientHeight = (isSub.clientHeight ==0? hv:0) + 'px';
-
-            gnbList.forEach(ele=>{
-                let result = ele.isSameNode(this);
-                let target = domFn.qsEl(ele, '.smenu');
-                if(!result){
-                    if(target) target.style.height = '0px';
-                }
-            });
-        }else{
-            gnbList.forEach(ele =>{
-                if(domFn.qsEl(ele, '.smenu'))
-                    domFn.qs(ele, '.smenu').style.height = '0px';
-            })
-        }
-    }
-}
