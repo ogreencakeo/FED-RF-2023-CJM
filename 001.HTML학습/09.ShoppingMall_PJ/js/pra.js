@@ -1,39 +1,49 @@
-// DOM 선택함수
-const qs = (x) => document.querySelector(x);
-const qsa = (x) => document.querySelectorAll(x);
+const domFn = {
+    qs : (x) => document.querySelector(x),
+    qsa : (x) => document.querySelectorAll(x),
+    qsEl : (el, x) => el.querySelector(x),
+    qsaEl : (el, x) => el.querySelectorAll(x),
+    addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn)
+};
 
-// addEvent 함수
-// ele - 요소, evt - 이벤트, fn - 함수
-const addEvt = 
-(ele, evt, fn) => ele.addEventListener(evt, fn);
 
-// HTML태그 로딩후 loadFn함수 호출! ///
-addEvt(window,"DOMContentLoaded", loadFn);
+let slide = domFn.qsa('#slide li');
+let abtn = domFn.qsa('.abtn');
+let indic = domFn.qsa('.indic li');
+console.log(indic);
 
-function loadFn(){
-    let snum = 0;
-    let abtn = qsa('.abtn');
-    let slide = qsa('#slide li');
-    let CNT_SLIDE = slide.length;
+let CNT_SLIDE = slide.length;
+let snum = 0;
+slide.forEach((ele, idx) => ele.setAttribute('data-seq', idx));
 
-    abtn.forEach(ele => {
-        addEvt(ele, 'click', goSlide);
+abtn.forEach(ele=>{
+    domFn.addEvt(ele, 'click', goSlide);
+});
+
+
+function goSlide(){
+    console.log(this);
+    let isRight = this.classList.contains('ab2');
+    if(isRight){
+        snum++;
+        if(snum == CNT_SLIDE) snum=0;
+    }else{
+        snum--;
+        if(snum < 0) snum = CNT_SLIDE-1;
+    }
+
+    slide[snum].classList.add('on');
+    slide.forEach(ele=>{
+        if(!ele.isSameNode(slide[snum])){
+            ele.classList.remove('on');
+        }
+    })
+
+    let nowSeq = slide[isRight? 1:0].getAttribute('data-seq');
+    console.log(nowSeq);
+    indic.forEach((ele, idx) => {
+        if(nowSeq == idx) ele.classList.add('on');
+        else ele.classList.remove('on');
     });
 
-    function goSlide(){
-        let isR = this.classList.contains('ab2');
-        if(isR){
-            snum++;
-            if(snum == CNT_SLIDE) snum=0;
-        }else{
-            snum--;
-            if(snum <0 ) snum = CNT_SLIDE-1;
-        }
-        slide[snum].classList.add('on');
-        slide.forEach(ele=>{
-            if(!ele.isSameNode(slide[snum])){
-                ele.classList.remove('on');
-            }
-        });
-    }
 }
