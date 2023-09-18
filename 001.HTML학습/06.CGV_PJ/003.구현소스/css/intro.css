@@ -109,6 +109,6 @@ html, body{
         transform: rotate(-15deg) scale(1.5);
     }
     100%{
-        transform: rotate(15deg) scale(1.5);
+        transform: rotate(15deg) scale(2);
     }
 }
