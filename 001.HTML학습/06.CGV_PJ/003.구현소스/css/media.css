@@ -71,7 +71,10 @@
     .sns-box {
         margin-left: 0;
     }
-
+    /* 맵버튼 숨기기 */
+    .btn-map{
+        display: none;
+    }
     /* 2.2- 포스터 메뉴 */
     .poster-menu {
         width: 70%;
