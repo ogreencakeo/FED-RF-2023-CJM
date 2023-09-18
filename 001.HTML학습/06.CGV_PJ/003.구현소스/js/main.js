@@ -10,7 +10,7 @@ const domFn = {
     
     // 이벤트셋팅함수
     addEvt : (ele,evt,fn) => ele.addEventListener(evt,fn),
-}; /////// domFn 객체 /////////////
+}; 
 
 // 구현1.
 // [ 포스터 메뉴를 클릭하여 메인 유튜브 이미지를 변경한다! ]
@@ -65,5 +65,13 @@ pmenu.forEach(ele=>{
 
 
     });
-}); ////// forEach //////////
+}); 
 
+// 맵버튼 클릭시 맵박스 보이기 //
+// 대상 : 이벤트 - .btn-map, 변경 -.gmap
+// 변경내용 : 맵버튼 클릭시 .gmap에 클래스 on 넣기
+//           닫기 버튼 클릭시 .gmpa에 클래스 on 빼기
+// 1. 대상선정
+const btnMap = domFn.qs('.btn-map');
+const gmap = domFn.qs('.gmap');
+console.log('대상 :', btnMap, gmap);
