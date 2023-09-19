@@ -38,13 +38,9 @@ setTimeout(() => {
 }, 400);
 
 // 0. 스크롤바 트랙을 잡고 위치 이동시 위치값 반영
-dFn.addEvt(window, 'mouseup', ()=>{
-    setPos(window.scrollY);
-});
+dFn.addEvt(window, 'mouseup', ()=> setPos(window.scrollY));
 // 0. 키보드 방향키 이동시 위치값 반영
-dFn.addEvt(window, 'keyup', ()=>{
-    setPos(window.scrollY);
-});
+dFn.addEvt(window, 'keyup', ()=> setPos(window.scrollY));
 
 // 1. 대상선정
 // 1-1. 글자박스
