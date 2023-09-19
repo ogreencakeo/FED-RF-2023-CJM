@@ -60,5 +60,8 @@ console.log(msgFn);
 const titBx = dFn.qs('.tpart');
 
 // 2. 변경 적용
-// (1) 타이틀 출력하기
-titBx.innerHTML = `<h2>${mTit}</h2>`;
+// (1) 타이틀 출력하기 : 큰제목 + 작은제목
+titBx.innerHTML = `
+    <h2>${mTit}</h2>
+    <h3>${sTit}</h3>
+`;
