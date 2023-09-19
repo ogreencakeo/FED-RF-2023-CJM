@@ -58,6 +58,10 @@ console.log(msgFn);
 // 1. 대상선정 : 출력박스 
 // (1) 타이틀 출력박스
 const titBx = dFn.qs('.tpart');
+// (2) 내용 출력박스
+const contBox = dFn.qs('#demo');
+// (3) 영화 정보 출력박스
+const mvBox = dFn.qs('.mvpart');
 
 // 2. 변경 적용
 // (1) 타이틀 출력하기 : 큰제목 + 작은제목
@@ -65,3 +69,26 @@ titBx.innerHTML = `
     <h2>${mTit}</h2>
     <h3>${sTit}</h3>
 `;
+
+// (2) 내용 넣기 : 이름과 나이를 소개하는 메시지 넣기
+contBox.innerHTML = msgFn('공유', 45);
+contBox.innerHTML += msgFn('톰행크스', 59);
+contBox.innerHTML += msgFn('졸리', 48);
+// 이름과 나이가 셋팅된 배열데이터를 이용하여 출력하기
+
+pInfo.forEach(val => contBox.innerHTML += msgFn(val[0], val[1]));
+// (3) 영화정보 뿌리기 
+// ol > li 형식으로 .mvpart박스에 영화정보를 구성함
+// 데이터는 mv변수
+mvBox.innerHTML = "<h2>♥ 영화위시리스트 ♥</h2>";
+mv.forEach(val => {
+    mvBox.innerHTML += `
+        <ol>
+            <li>★제목 : ${val[0]}</li>
+            <li>★장르 : ${val[1]}</li>
+            <li>★감독 : ${val[2]}</li>
+            <li>★주연 : ${val[3]}</li>
+            <li>★한마디 : ${val[4]}</li>
+        </ol>
+    `;
+});
