@@ -54,3 +54,15 @@ dFn.addEvt(window, 'scroll', scrollFn);
 function scrollFn(){
     console.log('스크롤~~~!');
 }
+
+// 3-2. 패럴렉스 이동함수
+function moveEl(elPos, ele, setH){
+    // 전달변수 : 
+    // (1) elPos - 위치값(getBCL값)
+    // (2) ele - 대상요소(패럴렉스 대상)
+    // (3) setH - 움직일 범위수(클수록 빠르게 이동)
+    console.log(
+        '위치값 :', elPos, 
+        '\n대상 :', ele, 
+        '\n범위 :', setH);
+}
