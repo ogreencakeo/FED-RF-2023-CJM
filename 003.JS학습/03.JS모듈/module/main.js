@@ -1,7 +1,33 @@
 // 모듈 연습 메인 JS - main.js
 
 // DOM함수
-import mTitle from "./text_data";
+import dFn from "./dom.js";
+// from 뒤의 파일명 확장자 사용해야함!
+// -> SPA 모듈 개발환경에서는 .js, .jsx 등 확장자 생략가능
+
+// 텍스트 데이터
+// import { mTitle, sTitle, personInfo, mvData } from './text_data.js';
+// 별칭으로 받기 { 원래변수 as 별칭 }
+// -> 별칭을 썼으면 별칭으로 사용해야 함!
+import { 
+    mTitle as mTit,
+    sTitle as sTit, 
+    personInfo as pInfo, 
+    mvData as mv 
+} from "./text_data.js";
+
+// 메시지 구성함수
+import msgFn from './msg_format.js'; 
+// import {message as msgFn} from './msg_format.js'; 
+// default로 내보낸것은 {변수} 형식으로 받을 수 없다.
+
+// import mTitle from "./text_data.js";
+// import zzz from "./text_data.js";
+
+// console.log(zzz('헐'));
+// console.log(dFn);
+// console.log(mTit, sTit, pInfo, mv);
+console.log(msgFn);
 
 /*************************************************** 
     
