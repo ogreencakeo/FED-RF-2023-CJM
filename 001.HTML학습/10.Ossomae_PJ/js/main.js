@@ -22,19 +22,36 @@ abtn.forEach(ele =>{
     dFn.addEvt(ele, 'click', goSlide);
 });
 
+// 광클금지변수(0-허용, 1-금지)
+let stsClick = 0;
+// 잠금시간
+const TIME_SLIDE = 400;
+
 // 4. 함수 만들기
 function goSlide(){
+    // 0. 광클 금지
+    if(stsClick) return; // 돌아가!
+    stsClick = 1; // 잠금!
+    setTimeout(() => stsClick = 0, TIME_SLIDE); // 해제!
+
     // 1. 버튼 구분하기
     let isR = this.classList.contains('rb');
     console.log('고고씽~!', this, 'isR :', isR);
 
+    // 현재 갤러리 하위자식 div요소 집합 새로 읽기
+    // 매번 순서가 바뀌니까 매번 새로 읽어야 함
+    let newList = dFn.qsaEl(gbx, 'div');
+
     // 2. 기능 분기하기
     // 2-1. 오른쪽버튼 : 맨앞 div 맨뒤로 이동
     if(isR){
-
+        // 갤러리부모박스.appendChild(맨앞자식 div)
+        gbx.appendChild(newList[0]);
     }
     // 2-2. 왼쪽버튼 : 맨뒤 div 맨앞으로 이동
     else{
-
+        // 갤러리부모박스.insertBefore(맨뒤자식 div, 맨앞자식 div)
+        // 마지막 컬렉션 번호는 [개수-1]
+        gbx.insertBefore(newList[newList.length-1], newList[0]);
     }
 }
