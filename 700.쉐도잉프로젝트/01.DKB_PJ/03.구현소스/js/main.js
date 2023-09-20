@@ -2,11 +2,11 @@
 
 // 모듈 불러오기
 // DOM함수 모듈
-import dFn from './dom.js';
+import dFn from "./dom.js";
 // 부드러운 스크롤 모듈
-import { startSS, setPos } from './smoothScroll23.js';
+import { startSS, setPos } from "./smoothScroll23.js";
 // 데이터 모듈
-import { gridData, gnbData } from './data_drama.js';
+import { gridData, gnbData } from "./data_drama.js";
 
 // 부드러운 스크롤 적용
 startSS();
@@ -17,14 +17,14 @@ startSS();
 // event.stopPropagataion()
 // 이벤트 객체의 이벤트 버블링 막아주는 메서드임!
 
-
 // 대상 : .desc-bpx
-let desc_box = document.querySelectorAll('.desc-box');
+let desc_box = document.querySelectorAll(".desc-box");
 
 // 모든 캐릭터 설명박스는 이벤트 버블링 막기!!
 //  -> 여기서 마우스휠 됨!!
-desc_box.forEach(ele=>{   // 요소자신
-    ele.onwheel = e => e.stopPropagation();
+desc_box.forEach((ele) => {
+    // 요소자신
+    ele.onwheel = (e) => e.stopPropagation();
 });
 
 /******************************************************
@@ -32,71 +32,78 @@ desc_box.forEach(ele=>{   // 요소자신
     - 배열데이터를 이용하여 HTML 코드 구성
 ******************************************************/
 // 1. 대상선정 : .live-box
-const liveBox = dFn.qs('.live-box');
-console.log('대상 (liveBox) :', liveBox);
+const liveBox = dFn.qs(".live-box");
+console.log("대상 (liveBox) :", liveBox);
 
-// 2. 현장포토 데이터를 기반으로 HTML 코드 만들기
-let hcode = '<ul>';
+// 2. 그리드 스타일 데이터 생성하기 함수
+function makeGrid() {
+    // 2-1. 현장포토 데이터를 기반으로 HTML 코드 만들기
+    let hcode = "<ul>";
 
-// 반복코드 만들기
-// 현장포토 데이터 - data_drama.js에서 가져옴
-gridData[0].forEach(val => {
-    // html 변수에 계속 넣기
-    hcode += `
-        <li>
-            <figure>
-                <img src="images/live_photo/${val.imgName}.jpg" alt="${val.title}">
-                <figcaption>${val.title}</figcaption>
-            </figure>
-        </li>
-    `;
-});
+    // 반복코드 만들기
+    // 현장포토 데이터 - data_drama.js에서 가져옴
+    gridData[0].forEach((val) => {
+        // html 변수에 계속 넣기
+        hcode += `
+            <li>
+                <figure>
+                    <img src="images/live_photo/${val.imgName}.jpg" alt="${val.title}">
+                    <figcaption>${val.title}</figcaption>
+                </figure>
+            </li>
+        `;
+    });
 
-hcode += "</ul>";
-// console.log(hcode);
+    hcode += "</ul>";
+    // console.log(hcode);
 
-// 3. 대상박스에 html 코드 넣기
-liveBox.innerHTML = hcode;
+    // 2-2. 대상박스에 html 코드 넣기
+    liveBox.innerHTML = hcode;
+}
 
 //////////////////////////////////////////////////////////////////
 // [ GNB 서브네뮤 셋팅하기 ]
 // 구조 : div.smenu > aside.smbx > h2{1차메뉴} + (ol>li>a{2차메뉴})
 
-// 1. 대상선정 : .gnb > ul > li 
+// 1. 대상선정 : .gnb > ul > li
 // 서브메뉴 넣을 li는 하위 a요소의 텍스트가 gnbData 속성명 1차메뉴와
 // 일치하는 경우 하위 메뉴를 넣어준다!
-const gnbList = dFn.qsa('.gnb>ul>li');
-console.log('메뉴 :', gnbList, '/ 데이터 :', gnbData);
+const gnbList = dFn.qsa(".gnb>ul>li");
+console.log("메뉴 :", gnbList, "/ 데이터 :", gnbData);
 
 // 3. 대상에 하위메뉴 태그 만들기
-gnbList.forEach(ele=>{
+gnbList.forEach((ele) => {
     // 1. 하위 a요소 텍스트 읽기
-    let atxt = dFn.qsEl(ele, 'a').innerText;
+    let atxt = dFn.qsEl(ele, "a").innerText;
     // 2. GNB 데이터 읽기
     let gData = gnbData[atxt];
     // console.log('텍스트(atxt) :', atxt, '/ gData :', gData);
     // 3. 해당 서브 데이터가 있을 경우 태그 만들어 넣기
     // Array.isArray(gData)로 배열여부를 확인함!
     // 배열값은 태그를 만들어 그자리에 출력 : 배열.map().join('')
-    if(gData){  // 데이터 없으면 undefined -> false처리!
-        console.log('만들어!', atxt);
+    if (gData) {
+        // 데이터 없으면 undefined -> false처리!
+        console.log("만들어!", atxt);
         ele.innerHTML += `
             <div class="smenu">
                 <aside class = "smbx">
                     <h2>${atxt}</h2>
                     <ol>
-                        ${gData.map(val => `
+                        ${gData
+                            .map(
+                                (val) => `
                             <li>
                                 <a href="#">${val}</a>
                             </li>
-                        `).join('')}
+                        `
+                            )
+                            .join("")}
                     </ol>
                 </aside>
             </div>
         `;
-    } 
+    }
 });
-
 
 /**************************************************************
     [ 상위메뉴 li오버시 하위메뉴 보이기 ]
@@ -104,33 +111,32 @@ gnbList.forEach(ele=>{
     변경 대상 : .smenu
 **************************************************************/
 // 1. 대상선정
-const gnb = dFn.qsa('.gnb>ul>li');
+const gnb = dFn.qsa(".gnb>ul>li");
 
-console.log('대상 gnb :', gnb);
+console.log("대상 gnb :", gnb);
 
 // 2. 이벤트 설정하기
 // 이벤트 종류 : mouseover / mouseout
-gnb.forEach(ele => {
+gnb.forEach((ele) => {
     // 서브 메뉴가 있을 때만 이벤트 설정하기!
     // if문에서 undefined / null은 flase처리됨!
-    if(dFn.qsEl(ele, '.smenu')){
-        dFn.addEvt(ele, 'mouseover', overFn);
-        dFn.addEvt(ele, 'mouseout', outFn);
+    if (dFn.qsEl(ele, ".smenu")) {
+        dFn.addEvt(ele, "mouseover", overFn);
+        dFn.addEvt(ele, "mouseout", outFn);
     }
 });
 
 // 3. 함수 만들기
-function overFn(){
-    console.log('오버', this);
+function overFn() {
+    console.log("오버", this);
     // 1. 하위 .smenu 높이값 알아오기
-    let hv = dFn.qsEl(this, '.smbx').clientHeight;
+    let hv = dFn.qsEl(this, ".smbx").clientHeight;
     // console.log('높이 :', hv);
     // 2. 하위 서브메뉴 박스 만큼 .smenu 높이값 주기
-    dFn.qsEl(this, '.smenu').style.height = hv + 'px';
-
+    dFn.qsEl(this, ".smenu").style.height = hv + "px";
 }
-function outFn(){
+function outFn() {
     // console.log('아웃', this);
     // 서브메뉴 박스 높이값 0만들기!
-    dFn.qsEl(this, '.smenu').style.height = '0';
+    dFn.qsEl(this, ".smenu").style.height = "0";
 }
