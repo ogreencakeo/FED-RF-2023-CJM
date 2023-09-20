@@ -11,6 +11,22 @@ import { gridData, gnbData } from "./data_drama.js";
 // 부드러운 스크롤 적용
 startSS();
 
+// 0. 새로고치면 스크롤바 위치캐싱후 맨위로 이동
+setTimeout(() => {
+    // 윈도우 스크롤 맨위로!
+    window.scrollTo(0, 0);
+    // 부드러운 스크롤 위치값 반영!
+    setPos(0);
+    // 안하면 원래 위치로 스크롤시 튐!
+}, 400);
+// 0. 스크롤바 트랙을 잡고 위치이동시 위치값 반영
+dFn.addEvt(window, "mouseup", () => setPos(window.scrollY));
+//////// mouseup /////////////
+
+// 0. 키보드 방향키 이동시 위치값 반영
+dFn.addEvt(window, "keyup", () => setPos(window.scrollY));
+//////// mouseup /////////////
+
 // 부드러운 스크롤 때문에 마우스휠 이벤트막기가 작동되어
 // 캐릭터 설명 박스 작은 스크롤도 작동안됨!
 // 따라서 이벤트 버블링르 막아줘야 함!
@@ -36,10 +52,10 @@ const gridBox = dFn.qsa(".grid-box");
 console.log("대상 (gridBox) :", gridBox);
 
 // 2. 대상 코드넣기 함수 호출 설정하기
-gridBox.forEach((ele, idx)=> makeGrid(ele,idx));
+gridBox.forEach((ele, idx) => makeGrid(ele, idx));
 
 // 3. 그리드 스타일 데이터 생성하기 함수
-function makeGrid(ele, idx) {   
+function makeGrid(ele, idx) {
     // ele - 대상요소 // idx - 순번(데이터순번)
     // 2-1. 현장포토 데이터를 기반으로 HTML 코드 만들기
     let hcode = "<ul>";
@@ -48,12 +64,12 @@ function makeGrid(ele, idx) {
     // 현장포토 데이터 - data_drama.js에서 가져옴
     gridData[idx].forEach((val) => {
         // html 변수에 계속 넣기
-        // 폴더경로는 idx가 0이면 'live_photo' 
+        // 폴더경로는 idx가 0이면 'live_photo'
         // 1이면 'poster_img'로 셋팅함
         hcode += `
             <li>
                 <figure>
-                    <img src="images/${idx? 'poster_img' :'live_photo'}/${val.imgName}.jpg" alt="${val.title}">
+                    <img src="images/${idx ? "poster_img" : "live_photo"}/${val.imgName}.jpg" alt="${val.title}">
                     <figcaption>${val.title}</figcaption>
                 </figure>
             </li>
