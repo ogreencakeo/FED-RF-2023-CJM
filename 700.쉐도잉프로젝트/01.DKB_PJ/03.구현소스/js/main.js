@@ -211,5 +211,15 @@ let preNewData =
     });
 console.log('preNewData :', preNewData);
 
-// 2. 화면 대상에 태그 만들어 넣기
-// 대상선정 : 
+// 2. 대상선정 : .preview-box>div
+const preBox = dFn.qsa('.preview-box>div');
+console.log('preBox :', preBox);
+
+// 3. 대상을 순회하여 태그 넣기
+// 데이터 : 역순정렬을 한 미리보기 데이터 넣기
+preBox.forEach((ele, idx)=>{
+    ele.innerHTML = `
+        <h3>${preNewData[idx].title}</h3>
+        <p>${preNewData[idx].story}</p>
+    `;
+});
