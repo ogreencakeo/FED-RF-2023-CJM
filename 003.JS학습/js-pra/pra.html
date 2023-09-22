@@ -1,172 +1,123 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <title>JS8-2. DOM 메서드</title>
-        <style>
-            .wrap {
-                display: flex;
-                width: 600px;
-                min-height: 600px;
-                margin: 0 auto;
-                padding: 15px;
-                border: 4px dotted lightseagreen;
-            }
-            .wrap > div {
-                outline: 1px solid red;
-                width: 300px;
-            }
 
-            div img {
-                width: 50px;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for문 연습1 - 파란상자에 미니언즈 집어넣기</title>
+    <style>
+        /* 미니언즈 이미지 */
+        .mini {
+            cursor: pointer;
+            /* 손가락모양 */
+            border: 5px dotted #fff;
+        }
 
-            /*서브메뉴 숨기기*/
-            .smenu > div {
-                height: 0;
-                overflow: hidden;
-            }
+        /* 마우스오버시 보더색 변경 */
+        .mini:hover {
+            border-color: red;
+        }
 
-            #div02 {
-                width: 600px;
-                padding: 10px;
-            }
+        /* 파란색 가방 */
+        .Bcase {
+            position: relative;
+            border: 20px ridge blue;
+            min-height: 30vh;
+            /* 최소높이를 주면 설정높이를 유지하다가
+                내용이 많아지면 높이값이 늘어남! */
+            border-radius: 20px;
+            width: 80vw;
+            margin: 10vh auto;
+        }
 
-            #div02 ul {
-                display: flex;
-                /* 플렉스 박스 */
-                flex-wrap: wrap;
+        /* 가상요소 손잡이 */
+        .Bcase::after {
+            content: '';
+            /* absolute는 자동블록 */
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20vw;
+            height: 100px;
+            border: 30px ridge blue;
+            border-radius: 50px;
+            /* 손잡이 부분만 보이게 함 */
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        }
 
-                margin: 0;
-                padding: 10px;
-                list-style: none;
-                text-align: center;
-            }
+        .Bcase img {
+            width: 150px;
+            /* 크기줄임 */
+        }
 
-            #div02 ul li {
-                padding: 10px;
-            }
-        </style>
-        <script>
-            const domFn = {
-                qs : (x) => document.querySelector(x),
-                qsa : (x) => document.querySelectorAll(x),
-                qsEl : (el, x) => el.querySelector(x),
-                qsaEl : (el, x) => el.querySelectorAll(x),
-                addEvt : (ele, evt, fn) => ele.addEventListener(evt, fn),
-            };
-            domFn.addEvt(window, 'load', loadFn);
-            function loadFn(){
-                let smenu = domFn.qsa('.smenu');
-                smenu.forEach(ele=>{
-                    ele.onmouseover = (e) =>{
-                        console.log(ele);
-                        let target = domFn.qsEl(ele, 'div');
-                        let hv = domFn.qsEl(target, 'ol').offsetHeight;
-                        console.log(hv);
-                        target.style.height = hv + 'px';
-                        target.style.transition = '.4s ease-out';
-                    }
-                    ele.onmouseout = (e) => {
-                        target = domFn.qsEl(ele, 'div');
-                        target.style.height = '0';
-                    }
-                });
-            }
-        </script>
-    </head>
+        /* 미니언즈 박스 */
+        h1,
+        .mini-box {
+            text-align: center;
+        }
 
-    <body>
-        <div class="wrap">
-            <div id="div01">
-                마우스오버시 <br />
-                1. 서브메뉴 보이기 <br />
-                2. 링크이동하기
-                <ul>
-                    <li class="smenu">
-                        <a href="#">검색포털사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">Google</a></li>
-                                <li><a href="#">Naver</a></li>
-                                <li><a href="#">Daum</a></li>
-                                <li><a href="#">Nate</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="smenu">
-                        <a href="#">통신사사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">SK</a></li>
-                                <li><a href="#">KT</a></li>
-                                <li><a href="#">Uplus</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="smenu">
-                        <a href="#">영화관사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">CGV</a></li>
-                                <li><a href="#">MEGABOX</a></li>
-                                <li><a href="#">LOTTE CINEMA</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="smenu">
-                        <a href="#">쇼핑몰사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">GMARKET</a></li>
-                                <li><a href="#">11번가</a></li>
-                                <li><a href="#">Auction</a></li>
-                                <li><a href="#">스토어팜</a></li>
-                                <li><a href="#">인터파크</a></li>
-                                <li><a href="#">쿠팡</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="smenu">
-                        <a href="#">스마트폰사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">Apple</a></li>
-                                <li><a href="#">Samsung</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                    <li class="smenu">
-                        <a href="#">게임사이트</a>
-                        <div>
-                            <ol>
-                                <li><a href="#">넷마블</a></li>
-                                <li><a href="#">넥슨</a></li>
-                                <li><a href="#">IMC</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div id="div02">
-                <h2>요소의 생성,삭제,이동하기</h2>
-                <button class="nbt">새리스트생성</button> <br /><br />
-                <button class="mvl">맨뒤이동</button> <br /><br />
-                <button class="mvf">맨앞이동</button>
-                <ul>
-                    <li>
-                        <img src="../images/ab1.jpg" alt="아이언맨" title="아이언맨" />
-                    </li>
-                    <li>
-                        <img src="../images/ab2.jpg" alt="딱딱이" title="딱딱이" />
-                    </li>
-                    <li><img src="../images/ab3.jpg" alt="토르" title="토르" /></li>
-                    <li><img src="../images/ab4.jpg" alt="닥스" title="닥스" /></li>
-                    <li>
-                        <img src="../images/ab5.jpg" alt="스타로드" title="스타로드" />
-                    </li>
-                </ul>
-            </div>
+        /* 미니언즈 정보박스 */
+        .info-box {
+            position: absolute;
+            background-color: rgba(0, 0, 255, 0.534);
+            padding: 15px;
+            border-radius: 0 0 30px 0;
+            font-size: 1.2vw;
+            color: #fff;
+        }
+
+        /* 리셋버튼 */
+        .rbtn {
+            background-color: #000;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+    </style>
+    <!-- 외부 JS 불러오기 -->
+    <!-- 외부 JS 호출은 src속성에 외부 JS경로를 쓴다!
+        주의 : script 사이에 데이터는 작성하지 않는다! 
+        defer를 사용하면 defer(지연)된다. 즉, html body 내부 요소가
+        로딩후 실행한다! -->
+    <script src="./pra.js" defer></script>
+</head>
+
+<body>
+    <h1>for문 연습1 - 파란상자에 미니언즈 집어넣기</h1>
+    <!-- data-cnt는 각 미니언즈를 몇개씩 넣을지에 대한 정보값임 -->
+    <div class="mini-box">
+        <img src="../images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 한개씩 가방에 들어갈꼬얌~!" data-cnt="1" />
+        <img src="../images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 다섯개씩 가방에 들어갈꼬얌~!" data-cnt="5" />
+        <img src="../images/Minions.png" alt="미니언즈" class="mini" title="나를 클릭하면 열개씩 가방에 들어갈꼬얌~!" data-cnt="10" />
+    </div>
+
+    <!-- 
+        [ 데이터를 저장하기위한 속성사용하기 ]
+        개발자가 임의로 만들수 있는 속성은 시작할때 data- 로 쓴다!
+        형식:
+        <요소 data-내가만든이름="값">
+     -->
+
+
+    <!-- 파란상자 -->
+    <div class="Bcase">
+        <!-- 가방정보 및 리셋버튼 박스 -->
+        <div class="info-box">
+            <!-- 현재 미니언즈 개수표시 -->
+            <h2 class="stxt">미니언즈 수 : <span>0</span>개</h2>
+
+            <!-- 리셋을 한다면 이렇게...! -->
+            <button class="rbtn">리셋</button>
+            
         </div>
-    </body>
+        <!-- 미니언즈 들어가는 박스 -->
+        <div class="mini-space">
+
+        </div>
+    </div>
+</body>
+
 </html>
