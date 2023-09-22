@@ -1,0 +1,244 @@
+@charset "utf-8";
+@media screen and (max-width : 1665px) {
+    body > *{
+        margin: 0;
+        padding: 0;
+    }
+    .main-inner-adbox{
+        display: none;
+    }
+}
+@media screen and (max-width : 1250px) {
+    .main-inner-adbox,
+    .mini-mypage,
+    .banner-ad,
+    .header-ad{
+        display: none;
+    }
+    .header-top, .header-inbox{
+        max-width: 80%;
+        transform: translateX(-62px);
+    }
+    .section{
+        height: 300px;
+    }
+
+    /* 메인광고 */
+    .main-ad-box{
+        max-width: 800px;
+    }
+    .section-ad-banner img{
+        max-width: 800px;
+        height: auto;
+    }
+    /* nav */
+    .move-to-exhibition{
+        max-width: 700px;
+    }
+    .move-to-exhibition ul{
+        flex-wrap: wrap;
+        max-width: 800px;
+        /* outline: 1px solid red; */
+        
+    }
+    .move-to-exhibition ul li{
+        flex-basis: calc(100% / 3 - 30px * 2);
+        font-size: min(15vh,40px);
+    }
+    .move-to-exhibition ul li img{
+        transform: scale(1.25);
+    }
+
+    /* 사자버튼 */
+    .saja-event-nav-wrap nav ul li button{
+        font-size: 1.5vw;
+    }
+    .saja-items-div{
+        flex-wrap: wrap;
+        max-width: 970px;
+        /* outline: 1px solid red; */
+    }
+
+    .saja-item-box{
+        margin: 0;
+    }
+
+    .saja-item-exp-name p{
+        font-size: 1.2vw;
+    }
+
+    /* 쇼핑큐레이션 */
+    .shopping-curation nav ul li button{
+        font-size: 1.5vw;
+    }
+
+    /* footer */
+    .company-introduce-wrap{
+        display: none;
+    }
+    .footer-content{
+        height: 350px;
+    }
+
+    .footer-content{
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .footer-content-right-wrap{
+        position: absolute;
+        left: 100%;
+    }
+    .footer-logo{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width : 975px) {
+    /* .section{
+        display: none;
+    /* } */
+    .header{
+        /* margin: 0 auto; */
+        /* width: 100%; */
+        
+    }
+    /* body >* {
+        outline: 1px solid blue;
+    }
+    .header-wrap{
+        max-width: 500px;
+        text-align: center;
+    } */
+    /* 헤더 */
+    /* .header-top{
+        flex-wrap: wrap;
+        
+        position: relative;
+    }
+    .customer-icon{
+        flex-wrap: wrap;
+    }
+    .homeplus-logo img{
+        width: 180px;
+        height: auto;
+        text-align: center;
+    }
+    .search-bar input{
+        display: none;
+    }
+    .customer-icon{
+        width: 280px;
+    }
+    .customer-icon button{
+        position: absolute;
+        top: 0;
+        transform: scale(0.95);
+        outline: 1px solid red;
+
+    }
+    .customer-icon button:first-child{
+        left: 65%;
+    }
+    .customer-icon button:nth-child(2){
+        left: 75%;
+    }
+    .customer-icon button:last-child{
+        position: absolute;
+        top: 0;
+        left: 85%;
+    } 
+     */
+}
+
+
+@media screen and (max-width : 550px) {
+    .header{
+        border-bottom: 0;
+    }
+    .header-wrap{
+        /* max-width: 500px; */
+        padding: 2% 0;
+    }
+    .header-top, .header-inbox{
+        /* transform: translateX(0); */
+        text-align: center;
+    }
+    .header-top{
+        flex-wrap: wrap;
+    }
+    .homeplus-logo img{
+        max-width: 180px;
+        height: auto;
+        /* transform: translateX(6%); */
+    }
+    .search-bar input{
+        max-width: 300px;
+        height: 10px;
+        /* transform: translateX(6%); */
+    }
+    .customer-icon{
+        position: absolute;
+        right: 0;
+    }
+    .customer-icon button{
+        transform: scale(0.7);
+        margin: 0;
+    }
+    .header-inbox {
+        max-width: 370px;
+        
+    }
+    .header-menu ul{
+        flex-wrap: wrap;
+        height: auto;
+        
+    }
+    .catagory-icon,
+    .header-menu nav li{
+        font-size: 12px;
+        flex-basis: calc(100% / 3 - 30px * 2);
+        height: 25px;
+    }
+    .catagory-icon{
+        max-width: 80px;
+        background-image: none;
+        color: #000;
+        font-style: normal;
+    }
+    .catagory-bx ul{
+        height: auto;
+    }
+    .section{
+        display: none;
+    }
+    .move-to-exhibition{
+        max-width: 370px;
+        padding: 2%;
+        margin-top: 2%;
+        /* transform: translateX(1%); */
+    }
+    .move-to-exhibition nav ul{
+        max-width: 370px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    
+    .move-to-exhibition nav ul li{
+        flex-basis: calc(100% / 3);
+        width: 100px;
+        height: auto;
+
+    }
+    
+    .move-to-exhibition nav ul li img{
+        width: 85px;
+        height: 85px;
+    }
+
+    /* 사자 */
+    .saja-content-img img{
+        max-width: 350px;
+        height: auto;
+    }
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>홈플러스-메인페이지</title>
+    <!-- 폰트어썸 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/main.css"/>
+    <!-- JS -->
+    <script src="../js/index.js" defer></script>
+    <script src="../js/nav-data.js" ></script>
+    <!-- 데이터 -->
+    <script src="../js/data.js"></script>
+
+</head>
+<body>
+    <div class="header-ad">
+        <div class="ad-box">
+            <img src="../images/header-ad.png" alt="">
+            <button class="header-ad-btn"></button>
+        </div>
+    </div>
+    <!-- 헤더 -->
+    <div class="header">
+        <div class="header-wrap">
+            <div class="header-top header-inbox">
+                <!-- 로고 -->
+                <div class="homeplus-logo" onClick="location.href='index.html'">
+                    <img src="../images/logo.png" alt="" />
+                </div>
+                <!-- 검색창 -->
+                <div class="search-bar">
+                    <input type="text" name="" id="" placeholder="검색어를 입력하세요 " />
+                    <button></button>
+                </div>
+                <!-- GNB메뉴 -->
+                <div class="customer-icon">
+                    <button></button>
+                    <button></button>
+                    <button>
+                        <span class="basket-check-num1">0</span>
+                    </button>
+                </div>
+            </div>
+            <!-- 메뉴 -->
+            <div class="header-menu header-inbox">
+                <div class="catagory-bx">
+                    <nav>
+                        <ul>
+                            <li><button class="catagory-icon">카테고리</button></li>
+                            <li><a href="#">추석</a></li>
+                            <li><a href="#">신상품</a></li>
+                            <li><a href="#">베스트</a></li>
+                            <li><a href="#">택배배송</a></li>
+                            <li><a href="#">단독특가</a></li>
+                            <li><a href="#">기획전</a></li>
+                            <li><a href="#">전단행사</a></li>
+                            <li><a href="#">자주구매</a></li>
+                        </ul>
+                    </nav>
+                    <div class="catagory-wrap">
+                        <!-- <div class="cata-nav-section1"></div>
+                        <div class="cata-nav-section2"></div>
+                        <div class="cata-nav-section3"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 미니 마이페이지 -->
+    <div class="mini-mypage">
+        <div class="mini-mypage-wrap">
+            <!-- 닉네임 -->
+            <button class="nickname-bx">
+                <img src="../images/nickname.png" alt="닉네임">
+                <span>회원님</span>
+            </button>
+            <!-- 배송 -->
+            <button class="delivery-bx">
+                <img src="../images/delivery-bx.png" alt="배송">
+                <span>배송</span>
+            </button>
+            <!-- 장바구니 -->
+            <button class="shopping-basket-bx">
+                <img src="../images/shopping-basket-bx.png" alt="장바구니">
+                <span class="basket-check-num2">0</span>
+                <span>장바구니</span>
+            </button>
+            <!-- 최근본 상품 -->
+            <!-- <button class="recently-viewed">
+                <span class="recentley-viewed-img"></span>
+                <span>최근 본</span>
+            </button> -->
+            <!-- top -->
+            <button class="top-bx">
+                <span></span>
+                <span>TOP</span>
+            </button>
+            <!-- 왼쪽버튼 -->
+            <!-- <button class="mini-mypage-lbtn"></button> -->
+        </div>
+    </div>
+
+    <!-- section -->
+    <div class="section">
+        <di class="section-wrap section-ad-banner">
+            <section class="main-ad-box">
+                <ul>
+                    <li><img src="../images/ad4.png" alt="메인광고-4" /></li>
+                    <li><img src="../images/ad1.png" alt="메인광고-1" /></li>
+                    <li><img src="../images/ad2.jpg" alt="메인광고-2" /></li>
+                    <li><img src="../images/ad3.jpg" alt="메인광고-3" /></li>
+                </ul>
+                <!-- 슬라이드 버튼 -->
+                <button class="m-leftbtn"></button>
+                <button  class="m-rightbtn"></button>
+            </section>
+
+        </div>
+    </div>
+
+    
+    <!-- 메인 -->
+    <div class="main">
+        <div class="main-wrap">
+            <!-- 기획전 이동 -->
+            <div class="move-to-exhibition main-inbox"></div>
+            <!-- 배너 광고 -->
+            <div class="banner-ad main-inbox">
+                <div class="banner-ad-slider">
+                    <section class="side-content-box">
+                        <ul>
+                            <li><img src="../images/banner-ad1.jpg" alt="광고배너-1" /></li>
+                            <li><img src="../images/banner-ad2.jpg" alt="광고배너-2" /></li>
+                            <li><img src="../images/banner-ad3.jpg" alt="광고배너-3" /></li>
+                            <li><img src="../images/banner-ad4.jpeg" alt="광고배너-4" /></li>
+                        </ul>
+                        <button class="leftbtn"></button>
+                        <button class="rightbtn"></button>
+                    </section>
+                    <!--블릿버튼-->
+                    <ol class="indic">
+                        <li class="on">
+                            <img src="../images/dot1.png" alt="흰색">
+                            <img src="../images/dot2.png" alt="회색">
+                        </li>
+                        <li class="on">
+                            <img src="../images/dot1.png" alt="흰색">
+                            <img src="../images/dot2.png" alt="회색">
+                        </li>
+                        <li class="on">
+                            <img src="../images/dot1.png" alt="흰색">
+                            <img src="../images/dot2.png" alt="회색">
+                        </li>
+                        <li class="on">
+                            <img src="../images/dot1.png" alt="흰색">
+                            <img src="../images/dot2.png" alt="회색">
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- 사자 이벤트 -->
+            <div class="purchase-event">
+                <div class="purchase-event-wrap">
+                    <div class="saja-content-img">
+                        <img src="../images/saja.png" alt="사자이미지" />
+                    </div>
+                    <!-- 사자 - nav -->
+                    <div class="saja-event-nav-wrap">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <button class="nav-btngo">MD추천</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo">신선한</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo">식품</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo">간편한</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo">가공필템</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo">생활용품</button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- 물품 div -->
+                    <div class="saja-itmes-wrappbox">
+                        <div class="saja-items-div"></div>
+                        <!-- 사자 하단 버튼박스 -->
+                        <div class="saja-itmes-btnBx">
+                            <button class="saja-btn-next">
+                                <img src="../images/refresh.svg" alt="" />
+                                <strong>다음상품 1 / 6</strong>
+                                <span>새로보기</span>
+                                <span class="saja-total-btn"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 행사 이벤트 -->
+            <div class="promotion-event">
+                <div class="promotion-event-wrap">
+                    <div class="promotion-event-img-wrap">
+                        <div class="promotion-event-img">
+                            <img src="../images/promotion-event.png" alt="쇼핑큐레이션" />
+                        </div>
+                    </div>
+                    <div class="shopping-curation">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <button class="nav-btngo2">간식타임</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo2">아삭아삭</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo2">맑은피부</button>
+                                </li>
+                                <li>
+                                    <button class="nav-btngo2">캠핑가자</button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="shopping-curation-wrap">
+                        <div class="shopping-curation-box"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-inner-adbox">
+                <img src="../images/main-inner-ad1.jpg" alt="" />
+                <img src="../images/main-inner-ad2.jpg" alt="" />
+                <img src="../images/main-inner-ad3.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+    <!-- 하단 -->
+    <div class="footer">
+        <div class="footer-wrap">
+            <div class="company-introduce-wrap">
+                <div class="introduce-gide-left">
+                    <ul>
+                        <li><a href="#">회사소개</a></li>
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">이용약관</a></li>
+                        <li ><a class="red_span" href="#" >개인정보처리방침</a></li>
+                        <li><a href="#">청소년보호정책</a></li>
+                        <li><a href="#">입점·제휴문의</a></li>
+                        <li><a href="#">고객의견함</a></li>
+                        <li><a href="#">인재채용</a></li>
+                    </ul>
+                </div>
+                <div class="introduce-gide-right">
+                    <ul>
+                        <li><a href="#"></a>매장찾기</li>
+                        <li><a href="#"></a>Family Site</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-content">
+                <div class="footer-content-left">
+                    <h2>홈플러스 주식회사</h2>
+                    <div class="footer-l-content1">
+                        <span>대표이사:</span>
+                        <span>이제훈</span>
+                        <span>주소:</span>
+                        <span>서울특별시 강서구 화곡로 398(등촌동)</span>
+                        <span>사업자등록번호:</span>
+                        <span>220-81-60348</span>
+                    </div>
+                    <div class="footer-l-content2">
+                        <span>통신판매신고번호:</span>
+                        <span>2016-서울강서-0451호</span>
+                        <span>사업자 정보확인</span>
+                        <span>청소년 보호책임자:</span>
+                        <span>조혜영</span>
+                    </div>
+                    <div class="footer-l-content3">
+                        <span>
+                            사이트 내에는 홈플러스㈜에 입점한 개별판매자가 판매하는 상품이 포함되어 있습니다.<br />
+                            해당 상품의 경우 홈플러스㈜는 통신판매중개자로서 판매 당사자가 아니며, 상품정보 및 거래 등에 대한 책임을 지지 않습니다.
+                        </span>
+                    </div>
+                    <div class="footer-l-content4">
+                        <span>소비자피해보상보험</span>
+                        <span>서비스가입사실 확인</span>
+                    </div>
+                    <div class="footer-l-content5">
+                        <span>고객님은 안전거래를 위해 현금 등으로 결제 시 저희 쇼핑몰에서 가입한 구매안전서비스 소비자 피해보상보험 서비스를 이용하실 수 있습니다.</span>
+                    </div>
+                    <div class="footer-l-content6">
+                        <span>Copyright © Homeplus Co., LTD. All Rights Reserved.</span>
+                    </div>
+                </div>
+                <div class="footer-content-right">
+                    <div class="footer-content-right-wrap">
+                        <div class="footer-r-content1">
+                            <span>고객센터</span>
+                            <span>1577-3355</span>
+                        </div>
+                        <div class="footer-r-content2">
+                            <span>업무시간 : 09시 ~ 22시(명절당일 휴무)</span>
+                        </div>
+                        <div class="footer-r-content3">
+                            <span>Email :</span>
+                            <span>onlinemart@homeplus.co.kr</span>
+                        </div>
+                        <div class="footer-r-content4">
+                            <span>분쟁처리</span>
+                            <span>1577-3355</span>
+                        </div>
+                        <div class="footer-r-content5">
+                            <span>Email :</span>
+                            <span>onlinemart@homeplus.co.kr</span>
+                        </div>
+                        <div class="footer-r-content6">
+                            <span>분쟁처리 절차</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-logo">
+                <div class="footer-logo-wrap">
+                    <ul>
+                        <li><img src="../images/footer/logo1.png" alt=""></li>
+                        <li><img src="../images/footer/logo2.png" alt=""></li>
+                        <li><img src="../images/footer/logo3.png" alt=""></li>
+                        <li><img src="../images/footer/logo4.png" alt=""></li>
+                        <li><img src="../images/footer/logo5.png" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
