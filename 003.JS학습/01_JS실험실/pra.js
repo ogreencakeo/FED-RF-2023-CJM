@@ -8,14 +8,13 @@ const domFn = {
 }; 
 
 const stage = domFn.qs('.stage-letters');
-const myText = '무궁화 꽃이 피었습니다.';
-
-let hcode = ''
+let hcode = '';
+const letters = '무궁화 꽃이 피었습니다.';
 let seqNum = 0;
 
-for(let x of myText){
-    if(x == ' ') hcode += '&nbsp;&nbsp;';
-    else hcode += `<span style='transition-delay: ${seqNum*0.2}'>${x}</span>`
+for(let x of letters){
+    if(x == ' ') hcode += `&nbsp;&nbsp;`;
+    else hcode += `<span style = 'transition-delay : ${seqNum*0.02}s'>${x}</span>`;
     seqNum++;
 }
 
