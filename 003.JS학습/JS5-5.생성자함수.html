@@ -112,7 +112,6 @@
         // 객체 확인
         console.log(mi);
 
-        //////////////////// 로드구역 ///////////////////////
         window.addEventListener("DOMContentLoaded", () => {
             const qs = (x) => document.querySelector(x);
             const qsa = (x) => document.querySelectorAll(x);
@@ -128,7 +127,22 @@
                 console.log(addCode);
             }
 
+            // 1. 페이지 요소에 코드 넣기
             qs(".wrap").innerHTML = addCode;
+
+            // 2. 각 코드 생성후 개별박스 클릭시 
+            // 객체메서드 호출하여 메시지창 띄우기
+            // 대상 : .cbx
+            const cbx = qsa('.cbx');
+            
+            // 이벤트 설정
+            cbx.forEach((ele, idx) => {
+                ele.onclick = () => {
+                    alert(mi[idx].함수());
+                };
+            });
+
+            // 기능구현
 
             // 코드생성 함수 : 단일객체로 코드 구성함
             function makeCode(mvi){
