@@ -51,7 +51,7 @@
 
     /* 사자버튼 */
     .saja-event-nav-wrap nav ul li button{
-        font-size: 1.5vw;
+        font-size: 1.6vw;
     }
     .saja-items-div{
         flex-wrap: wrap;
@@ -232,13 +232,20 @@
     }
     
     .move-to-exhibition nav ul li img{
-        width: 85px;
-        height: 85px;
+        /* width: 85px;
+        height: 85px; */
     }
 
     /* 사자 */
     .saja-content-img img{
         max-width: 350px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width : 450px) {
+    .saja-item-box{
+        max-width: 300px;
         height: auto;
     }
 }
