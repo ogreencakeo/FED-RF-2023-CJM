@@ -43,5 +43,16 @@ dFn.addEvt(selBox, 'change', ()=>{
     // 2. 읽어온 value값으로 다국어 셋팅 객체의 값과 매칭하기
     let selData = langCode[selVal];
     console.log('선택데이터 :', selData);
+
+    // 3. 데이터 셋팅하기
+    // 3-1. GNB데이터 셋팅하기
+    gnbList.forEach((ele,idx) => {
+        ele.innerHTML = selData['메뉴'][idx];
+    })
+    // 3-1. 메인이미지 src 데이터 셋팅하기
+    mainImg.src = `images/${selVal}.jpg`;
+
+    // 3-1. 회사주소 데이터 셋팅하기
+    addrBox.innerHTML =  selData['주소'];
 });
 
