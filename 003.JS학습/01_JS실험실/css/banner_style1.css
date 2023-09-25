@@ -75,7 +75,7 @@ ol {
     outline: 5px dotted blue;
 }
 
-#slide {
+.slide {
     display: flex;
     /* 플렉스박스!!! */
     gap: 0 5vw;
@@ -93,7 +93,7 @@ ol {
     height: 100%;
 }
 
-#slide li {
+.slide li {
     flex-shrink: 0;
     /* 부모박스크기만큼 줄어들지 않음 -> 0 */
     flex-basis: 100%;
@@ -103,7 +103,7 @@ ol {
     outline: 2px dashed red;
 }
 
-#slide li img {
+.slide li img {
     /*이미지는 박스에 맞춤!*/
     width: 100%;
     height: 100%;
