@@ -1,8 +1,17 @@
 // DOM 모듈 함수
 import dFn from './dom.js';
 
+// 슬라이드 대상요소 : .banbx
+const banBox = dFn.qsa('.banbx');
+console.log('banBox :', banBox);
+
+// 슬라이드만큼 모두 호출하기!
+banBox.forEach(ele => {
+    slideFn(ele);
+    // 실제 DOM요소를 보낸다.
+});
 // 슬라이드 함수 호출하기
-slideFn('.banbx');
+// slideFn('.banbx');
 
 // 함수명 : slideFn
 function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
@@ -14,12 +23,13 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
 
     // 1. 대상선정
     // 1-1. 슬라이드 부모요소 : 전달된 선택요소 -> selEl
-    const sldWrap = dFn.qs(selEl);
-    // 1-2. 변경대상 : 선택요소 하위.slide
+    // const sldWrap = dFn.qs(selEl);
+    const sldWrap = selEl; // DOM요소를 직접 받음!!
+    // 1-2. 변경대상 : 선택요소 하위 .slide
     const slide = dFn.qsEl(sldWrap, '.slide');
-    // 1-3. 이벤트 대상 : 선택요소 하위.abtn
+    // 1-3. 이벤트 대상 : 선택요소 하위 .abtn
     const abtn = dFn.qsaEl(sldWrap, '.abtn');
-    // 1-4. 블릿박스 대상 : 선택요소 하위.indic li
+    // 1-4. 블릿박스 대상 : 선택요소 하위 .indic li
     let indic = dFn.qsEl(sldWrap, '.indic');
 
     console.log("대상 abtn :", abtn, ", slide :", slide, ', indic :', indic);
@@ -51,6 +61,10 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
 
     // 3
     function goSlide() {
+
+        // a요소 기본이동 막기
+        event.preventDefault();
+
         if(clickSts) return; 
         clickSts = 1; 
         setTimeout(()=>clickSts = 0,TIME_SLIDE); 
