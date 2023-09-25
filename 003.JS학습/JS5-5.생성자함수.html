@@ -62,6 +62,34 @@
         
         */
 
+        // 생성자 함수의 인스턴스 생성시 전달값 셋팅함
+        function MovieInfo(pos, tit, sum, dir, act, des){
+            // 속성 6가지 셋팅
+            this.포스터 = pos;
+            this.제목 = tit;
+            this.개요 = sum;
+            this.감독 = dir;
+            this.출연 = act;
+            this.문구 = des;
+
+            // 메서드 1가지 셋팅 : 영화감독 정보 리턴함!
+            this.함수 = () => 
+                `영화 ${this.제목}의 감독님 이름은 ${this.감독}입니다!`;
+        }
+
+        // 영화정보 배열변수
+        const mi = [];
+
+        // 1. 생성자함수로 객체 만들기
+        mi[0] = new MovieInfo("https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
+                                "조제",
+                                "멜로/로맨스, 드라마",
+                                "김종관",
+                                "한지민, 남주혁",
+                                "조제 보러 오세요");
+        // 객체 확인
+        console.log(mi[0]);
+
 </script>
 </head>
 <body>
