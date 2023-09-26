@@ -95,11 +95,14 @@
         display: none;
     }
     .introduce-gide-right{
-        
+        margin: 0 auto;
+    }
+    .introduce-gide-left{
+        margin: 0 auto;
     }
     .introduce-gide-left ul {
-        flex-wrap: wrap;
-        flex-basis: calc(100% / 3 - 30px * 2);
+        /* flex-wrap: wrap; */
+        /* flex-basis: calc(100% / 3 - 30px * 2); */
     }
 }
 
