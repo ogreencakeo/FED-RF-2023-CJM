@@ -42,10 +42,19 @@ const sel = dFn.qs('#sel');
 const anum = dFn.qs('#anum');
 console.log("mbtn :", mbtn, "showit :", showit, "cont :", cont, 'sel :', sel, 'anum :', anum);
 
-
-// 3. 처음 배열 출력하기 
+// 3. 초기화 작업 : 처음배열출력 / 콤보박스 바인딩
+// 3-1. 처음 배열 출력하기 
 showit.innerText = fruit.join('♥');
 // join() : 전체배열을 사이 구분자를 넣고 문자열 출력
+// 3-2. 전체 과일 콤보박스 바인딩
+// 대상 : #sel / 데이터 : frObj
+
+// 객체는 끕이 높아 forEach를 쓸 수 없다. -> for in
+for(let x in frObj){
+    // x - 객체의 속성
+    // frObj[x] - 객체의 값
+    console.log(x);
+}
 
 // 4. 이벤트 설정하기
 mbtn.forEach((ele) => {
