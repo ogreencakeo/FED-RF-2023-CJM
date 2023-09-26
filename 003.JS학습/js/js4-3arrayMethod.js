@@ -43,10 +43,12 @@ const anum = dFn.qs('#anum');
 console.log("mbtn :", mbtn, "showit :", showit, "cont :", cont, 'sel :', sel, 'anum :', anum);
 
 // 3. 초기화 작업 : 처음배열출력 / 콤보박스 바인딩
-// 3-1. 처음 배열 출력하기 
-showit.innerText = fruit.join('♥');
+// 3-1. 처음 배열 출력하기 함수
+const showArray = () => showit.innerText = fruit.join('♥');
 // join() : 전체배열을 사이 구분자를 넣고 문자열 출력
 
+// 처음 배열 출력함수 최초 호출
+showArray();
 
 // 3-2. 전체과일콤보박스 바인딩
 // 대상 : #sel / 데이터 : frObj
@@ -97,6 +99,15 @@ function showFruit() {
         // 대상 : fruit 배열
         // 읽어올 곳 : #sel 박스 -> 값은 value
         fruit.push(sel.value);
-        console.log('fruit :', fruit);
+    }else if(btxt == '뒷배열삭제요~!'){
+        // 뒷배열 삭제 메서드 : pop()
+        // 대상 : fruit
+        fruit.pop();
+    }else if(btxt == '앞배열삭제요~!'){
+        // 앞배열 삭제 메서드 : shift()
+        // 대상 : fruit
+        fruit.shift();
     }
+    // 배열화면 찍기 함수 호출
+    showArray();
 }
