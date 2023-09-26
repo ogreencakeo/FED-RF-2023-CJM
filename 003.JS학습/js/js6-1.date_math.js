@@ -179,3 +179,47 @@ rimg.forEach(val => {
         </div>
     `;
 });
+
+// 랜덤처리 대상 선정 : .imbx div
+const target = dFn.qsa('.imbx div');
+console.log('target :', target);
+
+/********************************************************
+    함수명 : colorImg
+    기능 : 랜덤하게 선택 박스에 .on 넣기
+********************************************************/
+// 랜덤수 범위 : 0~3 (4개의 배열이므로)
+
+// 2초 간격으로 인터발호출
+setInterval(colorImg, 2000);
+
+// 직전랜덤수 : 초기셋팅은 0~3 사이수가 아닌 수
+let bNum = 1000;
+
+function colorImg(){
+    // 1. 난수 만들기 : 0~3 -> 1~4를 만들고 내림처리
+    let rbmNum = Math.floor(Math.random()*4);
+    console.log('rbmNum :', rbmNum);
+
+    // 2. 직전 랜덤수와 같을 경우 다시 난수발생하기
+    // while(조건 true){코드} 사용하기!
+    // 항상 직전랜덤수는 전역변수로 저장하고 매번 비교한다.
+    while(rbmNum == bNum){  // 현재 랜덤수가 직전 랜덤수와 같냐?
+        // 다시 랜덤 발생
+        rbmNum = Math.floor(Math.random()*4);
+        console.log('다시 랜덤수 rbmNum :', rbmNum);
+    }
+
+    // while문을 빠져나온 경우 랜덤수가 확정이므로 
+    // 이전랜덤수로 저장하여 다음번에 비교할 수 있도록 한다.
+    bNum = rbmNum;
+
+    // 3. 대상에 클래스 on 넣기
+    // 나머지는 빼기
+    target.forEach((ele, idx) => {
+        if(idx == rbmNum)
+            ele.classList.add('on');
+        else
+            ele.classList.remove('on');
+    });
+}
