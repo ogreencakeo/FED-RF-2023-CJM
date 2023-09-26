@@ -35,12 +35,12 @@
 }
 /* 공통 inbox */
 .header-inbox {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .section-inbox {
-    width: 1230px;
+    max-width: 1230px;
 }
 
 .header {

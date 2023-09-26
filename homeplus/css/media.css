@@ -15,7 +15,8 @@
     .header-ad{
         display: none;
     }
-    .header-top, .header-inbox{
+    /* .header-inbox */
+    .header-top{
         max-width: 80%;
         transform: translateX(-62px);
     }
@@ -74,10 +75,12 @@
 
     /* footer */
     .company-introduce-wrap{
-        display: none;
+        /* max-width: 70%; */
+        flex-wrap: wrap;
     }
     .footer-content{
         height: 350px;
+        border-top: 1px solid rgb(238, 238, 238);
     }
 
     .footer-content{
@@ -91,10 +94,23 @@
     .footer-logo{
         display: none;
     }
-
+    .introduce-gide-right{
+        margin: 0 auto;
+    }
+    .introduce-gide-left{
+        margin: 0 auto;
+    }
+    .introduce-gide-left ul {
+        /* flex-wrap: wrap; */
+        /* flex-basis: calc(100% / 3 - 30px * 2); */
+    }
 }
 
 @media screen and (max-width : 975px) {
+    .header-menu ul{
+        /* flex-wrap: wrap; */
+    }
+
     /* .section{
         display: none;
     /* } */
