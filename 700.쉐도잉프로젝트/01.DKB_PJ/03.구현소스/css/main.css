@@ -195,9 +195,7 @@ body > div > * {
 }
 
 /************* 4. 메인영역 : .group-part *************/
-#main {
-    /* background-color: lightgoldenrodyellow; */
-}
+
 /*********** 방송편성소개파트 : .intro-part ***********/
 .main .intro-part .partbox {
     height: 455px;
