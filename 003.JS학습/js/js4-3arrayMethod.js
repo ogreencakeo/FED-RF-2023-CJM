@@ -46,15 +46,22 @@ console.log("mbtn :", mbtn, "showit :", showit, "cont :", cont, 'sel :', sel, 'a
 // 3-1. 처음 배열 출력하기 
 showit.innerText = fruit.join('♥');
 // join() : 전체배열을 사이 구분자를 넣고 문자열 출력
-// 3-2. 전체 과일 콤보박스 바인딩
-// 대상 : #sel / 데이터 : frObj
 
+
+// 3-2. 전체과일콤보박스 바인딩
+// 대상 : #sel / 데이터 : frObj
 // 객체는 끕이 높아 forEach를 쓸 수 없다. -> for in
+// option 태그 변수
+let opTag = '';
 for(let x in frObj){
     // x - 객체의 속성
     // frObj[x] - 객체의 값
     console.log(x);
+    // 내용 넣기
+    opTag += `<option>${x}</option>`;
 }
+// 전체과일콤보박스 바인딩
+sel.innerHTML = opTag;
 
 // 4. 이벤트 설정하기
 mbtn.forEach((ele) => {
@@ -85,5 +92,11 @@ function showFruit() {
 
         // 출력박스에 태그 넣기        
         cont.innerHTML = hcode;
+    }else if(btxt == '뒷배열추가요~!'){
+        // 배열뒤에 추가하기 메서드 : push()
+        // 대상 : fruit 배열
+        // 읽어올 곳 : #sel 박스 -> 값은 value
+        fruit.push(sel.value);
+        console.log('fruit :', fruit);
     }
 }
