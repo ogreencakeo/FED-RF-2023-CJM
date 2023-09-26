@@ -36,7 +36,12 @@ const mbtn = dFn.qsa(".mbtn");
 // 2-2. 변경 대상 : .showit (배열정보출력) / .cont (과일출력박스)
 const showit = dFn.qs(".showit");
 const cont = dFn.qs(".cont");
-console.log("mbtn :", mbtn, "showit :", showit, "cont :", cont);
+// 2-3. 전체과일 콤보 박스 : #sel
+const sel = dFn.qs('#sel');
+// 2-4. 선택과일 콤보 박스(anum = array number) : #anum
+const anum = dFn.qs('#anum');
+console.log("mbtn :", mbtn, "showit :", showit, "cont :", cont, 'sel :', sel, 'anum :', anum);
+
 
 // 3. 처음 배열 출력하기 
 showit.innerText = fruit.join('♥');
