@@ -110,7 +110,7 @@ function showTime(){
 
 // 난수 발생시키기
 let rdm = Math.random();
-console.log(rdn);
+console.log(rdm);
 
 // 1~7 사이 난수발생하기
 // 방법 : 난수에 발생할 최대수 곱하기 -> 올림/내림
@@ -122,6 +122,7 @@ console.log('난수 * 7 올림 :', Math.ceil(rdm));
 
 // 중간난수는?
 // 예) 4~12 사이 난수는?
+console.log('4~12사이 난수 :', Math.ceil(Math.random()*9) + 3);
 /**************************************** 
     [ 내가 원하는 난수 만들기 ]
 
