@@ -71,6 +71,14 @@ function goGame(){
         // 거북위치값 이동셋팅
         t1pos += 16;
         t1.style.left = t1pos + 'px'; 
+        
+        // 거북버튼 키보드 작동 막기
+        // 포커스가 가는 것을 blur처리하면 된다!
+        // this는 클릭된 '거북출발' 버튼임!
+        this.blur();
+        // 초점가게 하는 메서드 -> focus()
+        // 초점 빠지게 하는 메서드 -> blur()
+
         // 토끼출발 호출
         goR1();
     }else if(btxt == '처음으로'){
