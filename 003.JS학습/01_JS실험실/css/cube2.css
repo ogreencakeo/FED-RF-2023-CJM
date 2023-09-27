@@ -28,7 +28,7 @@ body {
 /* 캐릭터 정보 표시 박스 */
 .cat-info {
     position: absolute;
-    top: 5vh;
+    top: 100vh;
     left: 50%;
     transform: translateX(-50%) rotateX(360deg);
     width: 50vw;
@@ -42,6 +42,7 @@ body {
 .cat-info.on {
     top: 5vh;
     transform: translateX(-50%) rotateX(0deg);
+    /* 등장할때만 애니메이션 효과! */
     transition: 0.5s ease-out;
 }
 .cat-info h2 {
@@ -55,8 +56,12 @@ body {
     font-size: 6vh;
     color: goldenrod;
     text-shadow: 2px 2px 3px #000;
+
     /* 겹쳐지는 아래쪽 요소가 블러처리 됨! */
     backdrop-filter: blur(3px);
+
+    /* 아랫쪽 보더 */
+    border-bottom: 2px solid #ccc;
 }
 .cat-info p {
     padding: 2vh;
