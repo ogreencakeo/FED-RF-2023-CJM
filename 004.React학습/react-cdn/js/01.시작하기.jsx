@@ -55,4 +55,5 @@ function MyFristReact(){
 */
 
 ReactDOM.render(<MyFristReact/>, 
-document.querySelector('#mydiv'))
+                document.querySelector('#mydiv')
+);
