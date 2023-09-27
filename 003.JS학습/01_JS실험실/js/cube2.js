@@ -90,6 +90,9 @@ function rotateMem() {
     clearTimeout(autoT);
     // 0.5초후 캐릭터 정보 셋팅함수 호출
     autoT = setTimeout(showInfo, 500);
+
+    // 5. 기본 캐릭터정보 박스 클래스 on 지우기
+    infoBx.classList.remove('on');
 } 
 
 /*****************************************************
@@ -104,7 +107,7 @@ function showInfo(){
         <h2>${mvData[catNum].name}</h2>
         <p>${mvData[catNum].desc}</p>
     `;
-    
+
     // 등장 클래스 on 주기
     infoBx.classList.add('on');
 }
