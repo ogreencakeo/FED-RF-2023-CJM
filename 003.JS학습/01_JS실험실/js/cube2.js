@@ -45,7 +45,7 @@ let autoT;
 const cube = domFn.qs(".cube");
 // 정보표시박스 : .cat-info
 const infoBx = domFn.qs('.cat-info');
-console.log("cube :", cube, ', infoBx :', infoBx);
+console.log("cube :", cube, ' / infoBx :', infoBx);
 
 /// 2. 이벤트 설정하기
 domFn.addEvt(window, "wheel", rotateMem);
@@ -98,4 +98,13 @@ function rotateMem() {
  *****************************************************/
 function showInfo(){
     console.log('mvData[catNum] :',  mvData[catNum]);
+
+    // 정보표시박스에 h2, p 요소 정보와 함께 넣기
+    infoBx.innerHTML = `
+        <h2>${mvData[catNum].name}</h2>
+        <p>${mvData[catNum].desc}</p>
+    `;
+    
+    // 등장 클래스 on 주기
+    infoBx.classList.add('on');
 }
