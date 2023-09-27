@@ -346,6 +346,10 @@ body > div > * {
 .clip-box ul {
     display: flex;
     gap: 0 2%;
+    
+    /* 움직일 */
+    position: relative;
+    left : 0; /* 이동 초기값 */
 }
 
 .clip-box li {
