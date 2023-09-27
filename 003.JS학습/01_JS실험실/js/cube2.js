@@ -38,6 +38,8 @@ let numWheel = 0;
 let catNum = 0;
 // 캐릭터 번호 한계수 (9개니까 한계수8)
 const LIMIT_CNT = 8;
+// 캐릭터 정보함수 호출 타임아웃용 변수
+let autoT;
 
 // 1. 대상선정 : .cube
 const cube = domFn.qs(".cube");
@@ -76,17 +78,22 @@ function rotateMem() {
     // 호출확인
     // console.log("휠!~~~~", delta, numWheel);
     console.log("캐릭터 고유번호 :", catNum);
-    console.log("캐릭터 고유번호 데이터 :", mvData[catNum]);
-
+    
     // 3. 회전대상요소에 각도 적용하기
     // 적용각도 = 단위각도 * 휠단위수
     cube.style.transform = `rotateY(${numWheel * DEG}deg)`;
-} //////////// rotateMem 함수 ///////////
+
+    // 4. 캐릭터가 정지한지 0.5초후 정보를 셋팅함!
+    // 타임아웃 실행 쓰나미 방지 지우기
+    clearTimeout(autoT);
+    // 0.5초후 캐릭터 정보 셋팅함수 호출
+    autoT = setTimeout(showInfo, 500);
+} 
 
 /*****************************************************
     함수명 : showInfo
     기능 : 캐릭터 정보를 화면에 표시한다.
-*****************************************************/
+ *****************************************************/
 function showInfo(){
-    
+    console.log('mvData[catNum] :',  mvData[catNum]);
 }
