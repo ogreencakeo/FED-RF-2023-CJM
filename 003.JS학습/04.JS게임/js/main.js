@@ -47,17 +47,57 @@ let r1pos = 0, t1pos = 0;
 // 토끼위치 : r1pos / 거북위치 : t1pos 
 
 // cg(msg);
-console.log('t1 :', t1, ', r1 :', r1, ', btns :', btns, ', level', level, ', msg :', msg);
+// console.log('t1 :', t1, ', r1 :', r1, ', btns :', btns, ', level', level, ', msg :', msg);
 
 // 2. 이벤트 설정하기 ////////////
 // 대상: 버튼들 - btns변수
-
+btns.forEach(ele => {
+    domFn.addEvt(ele, 'click', goGame);
+});
 
 /*********************************** 
-    함수명: goR1
-    기능: 토끼자동이동(인터발함수)
+    함수명: goGame
+    기능: 버튼별 기능분기
 ***********************************/
+function goGame(){
+    // 1. 버튼 글자 읽기
+    let btxt = this.innerText;
+    console.log('고우~!', btxt);
 
+    // 2. 버튼별 기능 분기하기
+    if(btxt == '토끼출발'){
+        goR1();
+    }
+    if(btxt == '거북출발'){
+        // 거북위치값 이동셋팅
+        t1pos += 16;
+        t1.style.left = t1pos + 'px'; 
+    }
+}
+
+
+/********************************************
+    함수명 : goR1
+    기능 : 토끼자동이동(인터발함수)
+********************************************/
+// 인터발 지우기용 변수
+let autoI;
+
+function goR1(){
+    // console.log(autoI);
+
+    // autoI변수에 할당전 상태는 undefined이므로 false처리됨!
+    // 이때, if문으로 들어가려면 !(NOT)연산자 사용
+    if(!autoI){ // false일때 들어감!
+        // 인터발 실행하기 (인터발 함수)
+        autoI = setInterval(()=>{
+            // console.log(autoI);
+            r1.style.left = ++r1pos + 'px'; 
+        }, level.value);
+        // 실행시간은 #level인 선택박스 값을 읽어온다.
+        // option의 value값은 level.value
+    }    
+}
 
 /***************************************** 
     함수명: whoWinner
