@@ -75,7 +75,8 @@ function rotateMem() {
 
     // 호출확인
     // console.log("휠!~~~~", delta, numWheel);
-    // console.log("캐릭터 고유번호 :", catNum);
+    console.log("캐릭터 고유번호 :", catNum);
+    console.log("캐릭터 고유번호 데이터 :", mvData[catNum]);
 
     // 3. 회전대상요소에 각도 적용하기
     // 적용각도 = 단위각도 * 휠단위수

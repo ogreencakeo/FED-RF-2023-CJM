@@ -60,20 +60,6 @@ body {
     transform-style: preserve-3d;
 }
 
-/* 작동버튼 */
-.btngo {
-    position: fixed;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.btngo:hover {
-    background-color: lime;
-}
-
 /* 큐브 */
 .cube {
     position: absolute;
@@ -92,11 +78,6 @@ body {
     /* transform: rotateY(30deg); */
 
     /* outline: 2px solid red; */
-}
-
-/* 또 하나의 큐브 */
-.cube2 {
-    top: calc(150vh - var(--box-height) / 2);
 }
 
 /* 큐브 각면 공통 */
@@ -175,22 +156,3 @@ body {
     transform: rotateY(calc(40deg * 8)) translateZ(var(--z-size));
 }
 
-/* 큐브회전 클래스 */
-.rotate-cube {
-    /* 애니메이션 */
-    animation: cube-ani 10s linear infinite;
-    /* 애니메이션 멈춤상태 */
-    /* animation-play-state: paused; */
-}
-/* 큐브회전 오버시 멈춤 */
-.rotate-cube:hover {
-    /* 애니메이션 작동상태 */
-    animation-play-state: paused;
-}
-
-/* 큐브회전 키프레임 */
-@keyframes cube-ani {
-    to {
-        transform: rotateY(-360deg);
-    }
-}
