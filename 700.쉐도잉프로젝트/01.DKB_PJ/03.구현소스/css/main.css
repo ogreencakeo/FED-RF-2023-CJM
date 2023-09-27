@@ -346,10 +346,13 @@ body > div > * {
 .clip-box ul {
     display: flex;
     gap: 0 2%;
-    
+
     /* 움직일 */
     position: relative;
     left : 0; /* 이동 초기값 */
+
+    /* 트랜지션 */
+    transition: left .4s ease-in-out;
 }
 
 .clip-box li {
@@ -417,6 +420,8 @@ body > div > * {
 /* 왼쪽버튼 */
 .btn-box button:first-child{
     left: -35px;
+    /* 처음에 안보임 */
+    display: none;
 }
 /* 오른쪽버튼 */
 .btn-box button:last-child{
