@@ -4,6 +4,10 @@
 // DOM메서드 모듈
 import domFn from "./dom.js";
 
+// 메시지 제이슨 불러오기
+import msgTxt from './data_racing.json' assert{type:'json'};
+console.log('msgTxt :', msgTxt);
+
 /********************************************** 
             [ 게임 기능정의 ]
     _________________________________
@@ -137,6 +141,16 @@ function whoWinner(){
         clearInterval(autoI);
         // (2) 거북아 멈춰라!
         t1Stop = 1; // 거북버튼 조작제어 값 업데이트
+
+        // 승자변수
+        let winner;
+        // (3) 승자판별하기
+        if(r1pos > t1pos) winner = "토끼";
+        else if(r1pos < t1pos) winner = "거북";
+        else winner = '비김';
+
+        // (4) 메시지 랜덤으로 커버박스에 넣기
+        // msgTxt에 json으로 부터 데이터 담음!
 
     }
 }
