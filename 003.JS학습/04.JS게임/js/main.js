@@ -67,11 +67,15 @@ function goGame(){
     // 2. 버튼별 기능 분기하기
     if(btxt == '토끼출발'){
         goR1();
-    }
-    if(btxt == '거북출발'){
+    }else if(btxt == '거북출발'){
         // 거북위치값 이동셋팅
         t1pos += 16;
         t1.style.left = t1pos + 'px'; 
+        // 토끼출발 호출
+        goR1();
+    }else if(btxt == '처음으로'){
+        // 페이지 리로드하기
+        location.reload();
     }
 }
 
