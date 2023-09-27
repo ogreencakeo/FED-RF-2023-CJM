@@ -43,7 +43,9 @@ let autoT;
 
 // 1. 대상선정 : .cube
 const cube = domFn.qs(".cube");
-console.log("대상:", cube);
+// 정보표시박스 : .cat-info
+const infoBx = domFn.qs('.cat-info');
+console.log("cube :", cube, ', infoBx :', infoBx);
 
 /// 2. 이벤트 설정하기
 domFn.addEvt(window, "wheel", rotateMem);
