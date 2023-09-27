@@ -68,6 +68,9 @@ function goGame(){
     if(btxt == '토끼출발'){
         goR1();
     }else if(btxt == '거북출발'){
+        // 거북버튼 멈춤 상태값에 따른 조작제어
+        if(t1Stop) return;
+
         // 거북위치값 이동셋팅
         t1pos += 16;
         t1.style.left = t1pos + 'px'; 
@@ -122,6 +125,18 @@ function goR1(){
     기능: 기준값 보다 레이서위치값이 큰경우
         승자를 판별하여 메시지를 보여준다!
 *****************************************/
+let t1Stop = 0; // 거북멈춤값 (1-멈춤, 0-허용)
+
 function whoWinner(){
-    console.log('토끼위치 :', r1pos, ', 거북위치 :', t1pos);
+    // console.log('토끼위치 :', r1pos, ', 거북위치 :', t1pos);
+
+    // 1. 토끼 / 거북의 위치값이 기준값 이상일때
+    // 기준값 : 650px
+    if(r1pos >= 650 || t1pos >= 650){
+        // (1) 토끼야 멈춰라!
+        clearInterval(autoI);
+        // (2) 거북아 멈춰라!
+        t1Stop = 1; // 거북버튼 조작제어 값 업데이트
+
+    }
 }
