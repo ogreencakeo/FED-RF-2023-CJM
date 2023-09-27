@@ -152,5 +152,16 @@ function whoWinner(){
         // (4) 메시지 랜덤으로 커버박스에 넣기
         // msgTxt에 json으로 부터 데이터 담음!
 
+        // 선택 메시지 객체
+        let selMsg = msgTxt[winner];
+        console.log(selMsg);
+
+        // selMsg -> 선택된 메시지 배열
+        // 랜덤수 만들기
+        let rdmNum = Math.floor(Math.random()*selMsg.length);
+        console.log('rdmNum :', rdmNum, ', 개수 :', selMsg.length);
+        console.log('랜덤 메시지 :', selMsg[rdmNum]);
+        
+
     }
 }
