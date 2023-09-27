@@ -104,10 +104,16 @@ function goR1(){
         // 인터발 실행하기 (인터발 함수)
         autoI = setInterval(()=>{
             // console.log(autoI);
+            // 토끼위치 이동
             r1.style.left = ++r1pos + 'px'; 
+
+            // 승자판별함수 호출!
+            whoWinner();
         }, level.value);
         // 실행시간은 #level인 선택박스 값을 읽어온다.
         // option의 value값은 level.value
+
+        
     }    
 }
 
@@ -116,3 +122,6 @@ function goR1(){
     기능: 기준값 보다 레이서위치값이 큰경우
         승자를 판별하여 메시지를 보여준다!
 *****************************************/
+function whoWinner(){
+    console.log('토끼위치 :', r1pos, ', 거북위치 :', t1pos);
+}
