@@ -55,6 +55,7 @@ body {
     font-size: 6vh;
     color: goldenrod;
     text-shadow: 2px 2px 3px #000;
+    /* 겹쳐지는 아래쪽 요소가 블러처리 됨! */
     backdrop-filter: blur(3px);
 }
 .cat-info p {
