@@ -247,7 +247,7 @@ body > div > * {
     transform: translate(-50%, -50%);
     width: 72px;
     height: 72px;
-    background: url(../images/icon_play.png) no-repeat;
+    background: url(../images/icon_player.png) no-repeat;
     cursor: pointer;
 }
 
@@ -349,7 +349,7 @@ body > div > * {
 }
 
 .clip-box li {
-    flex-basis: calc(25% - 2%);
+    flex-basis: calc(25.5% - 2%);
     flex-shrink: 0;
 }
 
@@ -371,7 +371,7 @@ body > div > * {
     transform: translate(-50%, -50%);
     width: 72px;
     height: 72px;
-    background: url(../images/icon_play.png) no-repeat;
+    background: url(../images/icon_player.png) no-repeat;
     cursor: pointer;
 }
 
@@ -388,4 +388,33 @@ body > div > * {
 
 .clip-box {
     overflow: hidden;
+}
+
+.clip-area{
+    position: relative;
+    /* 부모자격 */
+}
+
+/* 양쪽버튼만들기 */
+.btn-box button{
+    position: absolute;
+    z-index: 999;
+    top: 43%;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    line-height: 65px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+/* 왼쪽버튼 */
+.btn-box button:first-child{
+    left: -35px;
+}
+/* 오른쪽버튼 */
+.btn-box button:last-child{
+    right: -35px;
 }
