@@ -12,28 +12,21 @@ setTimeout(() => {
 dFn.addEvt(window, "mouseup", () => setPos(window.scrollY));
 dFn.addEvt(window, "keyup", () => setPos(window.scrollY));
 
-let desc_box = document.querySelectorAll(".desc-box");
-
-desc_box.forEach((ele) => {
-
-    ele.onwheel = (e) => e.stopPropagation();
-});
-
-const gird_box = dFn.qsa('.grid-box');
-gird_box.forEach((ele, idx) => makeGrid(ele, idx));
+const gridBox = dFn.qsa('.grid-box');
+gridBox.forEach((ele, idx) => makeGrid(ele, idx));
 
 function makeGrid(ele, idx){
     let hcode = '<ul>';
-    gridData[idx].forEach((val) => {
+    gridData[idx].forEach(e => {
         hcode += `
             <li>
                 <figure>
-                    <img src = 'images/${idx? "poster_img" : "live_photo"}/${val.imgName}.jpg' alt=${val.imgName}/>
-                    <figcaption>${val.title}</figcaption>
+                    <img src = 'images/${idx? 'poster_img' : 'live_photo'}/${e.imgName}.jpg' alt = ${e.title}/>
+                    <figcaption>${e.title}</figcaption>
                 </figure>
             </li>
-        `;
-    });
+        `; 
+    }); 
     hcode += '</ul>';
     ele.innerHTML = hcode;
 }
@@ -44,8 +37,9 @@ gnbList.forEach(ele => {
     let gnb_data = gnbData[atxt];
     if(gnb_data){
         ele.innerHTML += `
-            <div class = 'smenu'>
-                <aside class = 'smbx'>
+            <div class='smenu'>
+                <div class = 'smbx'>
+                    <h2>${atxt}</h2>
                     <ol>
                         ${gnb_data.map((val)=>
                             `
@@ -55,9 +49,9 @@ gnbList.forEach(ele => {
                             `
                         ).join("")}
                     </ol>
-                </aside>
+                </div>
             </div>
-        `;
+        `
     }
 });
 
@@ -65,7 +59,7 @@ const gnb = dFn.qsa('.gnb ul li');
 gnb.forEach(ele => {
     if(dFn.qsEl(ele, '.smenu')){
         dFn.addEvt(ele, 'mouseover', overFn);
-        dFn.addEvt(ele, 'mouseout', outFn);
+        dFn.addEvt(ele, 'mouseout',outFn );
     }
 });
 
@@ -78,10 +72,20 @@ function outFn(){
     dFn.qsEl(this, '.smenu').style.height = 0 + 'px';
 }
 
-const mvBx = dFn.qs('.intro-mv-img');
+let preNewData = previewData.sort((x, y) => {
+    let a = Number(x.idx);
+    let b = Number(y.idx);
 
-dFn.addEvt(mvBx, 'click', showMv);
+    return a==b? 0:a>b? -1:1;
+});
 
-function showMv(){
-    
-}
+const preBx = dFn.qsa('.preview-box div');
+
+preBx.forEach((ele, idx) => {
+    ele.innerHTML = `
+        <div>
+            <h3>${preNewData[idx].idx}</h3>
+            <p>${preNewData[idx].story}</p>
+        </div>
+    `;
+});
