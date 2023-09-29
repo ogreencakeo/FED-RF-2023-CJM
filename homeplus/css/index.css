@@ -57,6 +57,12 @@ a {
     height: 16px;
     cursor: pointer;
 }
+
+
+.indic li img {
+    position: absolute;
+    /*이미지 겹치게*/
+}
 .indic span{
     cursor: pointer;
     width: 10px;
@@ -65,12 +71,7 @@ a {
     background: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     transition: all 0.3s ease 0s;
-}
-
-
-.indic li img {
-    position: absolute;
-    /*이미지 겹치게*/
+    display: block;
 }
 
 .indic li img:last-child {
