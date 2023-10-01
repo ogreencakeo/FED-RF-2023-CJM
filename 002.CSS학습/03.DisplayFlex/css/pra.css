@@ -1,0 +1,49 @@
+html, body, ul, li, div{
+    padding: 0;
+    margin: 0;
+}
+.cont ul{
+    display: flex;
+    height: 100vh;
+    list-style: none;
+}
+
+.cont>ul>li{
+    position: relative;
+    flex: 1;
+    cursor: pointer;
+    transition: all .4s ease-out;
+}
+
+.cont>ul>li>img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(70%);
+}
+
+.cont>ul>li>img:last-child{
+    top: 80%;
+    width: auto;
+}
+
+.cont>ul>li:hover{
+    flex: 1.5;
+}
+
+.cont > ul > li:first-child {
+    background: url(../images/m01_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(2) {
+    background: url(../images/m02_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(3) {
+    background: url(../images/m03_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(4) {
+    background: url(../images/m04_bg.jpg) no-repeat center/cover;
+}
+.cont > ul > li:nth-child(5) {
+    background: url(../images/m05_bg.jpg) no-repeat center/cover;
+}
