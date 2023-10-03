@@ -19,55 +19,53 @@ const frObj = {
     레몬: "fruits_04",
 };
 
-const mbtn = dFn.qsa('.mbtn');
 const showit = dFn.qs('.showit');
 const cont = dFn.qs('.cont');
+const mbtn = dFn.qsa('.mbtn');
+
 const sel = dFn.qs('#sel');
 const anum = dFn.qs('#anum');
 const delNum = dFn.qs('#delnum');
 
-const showArray = () => showit.innerHTML = fruit.join('/');
-showArray();
-const bindCombo = () => { anum.innerHTML = 
-    fruit.map((ele, idx) => 
-        `
-            <option value="${idx}">${ele}</option>
-        `
-    ).join("")};
+sel.innerHTML = Object.keys(frObj).map((ele)=> `<option>${ele}</option>`).join("");
+
+const arrayShow = () => (showit.innerText = fruit.join('/'));
+arrayShow();
+
+const bindCombo = () => {
+    anum.innerHTML = fruit.map((v, i)=>`<option value=${i}>${v}</option>`).join("");
+}
 bindCombo();
 
-mbtn.forEach(ele => dFn.addEvt(ele, 'click', showFruit));
-
-sel.innerHTML = Object.keys(frObj).map((val) => `<option>${val}</option>`).join("");
+mbtn.forEach(ele => {
+    dFn.addEvt(ele, 'click', showFruit);
+});
 
 function showFruit(){
-    const btxt = this.innerText;
-    // console.log('btxt :', btxt);
-
+    let btxt = this.innerText;
+    let hcode = '';
     if(btxt == '과일주세요~!'){
-        let hcode = '';
-        fruit.forEach(ele => {
+        fruit.forEach(val => {
             hcode += `
-                <li style = 'background: url(./addimg/${frObj[ele]}.png) no-repeat center/cover'/>
-                    ${ele}
+                <li style = 'background : url(./addimg/${frObj[val]}).png no-repeat center/cover'>
+                    ${val}
                 </li>
-            `
+            `;
         });
         cont.innerHTML = `<ul>${hcode}</ul>`;
     }else if(btxt == '뒷배열추가요~!'){
         fruit.push(sel.value);
     }else if(btxt == '앞배열추가요~!'){
         fruit.unshift(sel.value);
-    }else if(btxt == '뒷배열삭제요~!'){
-        fruit.pop();
     }else if(btxt == '앞배열삭제요~!'){
         fruit.shift();
+    }else if(btxt == '뒷배열삭제요~!'){
+        fruit.pop();
     }else if(btxt == '중간배열삭제'){
         fruit.splice(anum.value, delNum.value);
     }else if(btxt == '중간배열삽입'){
-        fruit.splice(anum.value, 0, sel.value);
+        fruit.splice(delNum.value, 0, sel.value);
     }
-
-    showArray();
+    arrayShow();
     bindCombo();
 }
