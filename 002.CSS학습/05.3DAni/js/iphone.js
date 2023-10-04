@@ -13,3 +13,7 @@ import dFn from './dom.js';
     (최초 width:0 -> width:100vw)
 *************************************/
 
+// 1. 대상선정
+// 1-1. 이벤트 대상 : .evt-box div
+const evtBx = dFn.qsa('.evt-box div');
+console.log('대상 :', evtBx);
