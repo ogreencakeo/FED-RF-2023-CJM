@@ -72,13 +72,16 @@ body {
 }
 
 /* 앞면 화면변경박스 */
-.iphone span:nth-child(1) b{
+.iphone span:nth-child(1) b#scene{
     position: absolute;
     top: 47px;
     left: 12px;
     width: 177px;
     height: 305px;
-    background-color: rgba(255, 0, 0, 0.438);
+    /* background-color: rgba(255, 0, 0, 0.438); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
 }
 
 /* 2. 오른쪽면 */
