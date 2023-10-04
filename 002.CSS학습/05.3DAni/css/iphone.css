@@ -177,9 +177,38 @@ body {
     text-shadow: 2px 2px 2px rgb(0 0 0 / .8);
 }
 
-/* 흘러가는 글자 키프레임 */
-@keyframes txt-ani{
+/* 흘러가는 텍스트애니 클래스 */
+.txt-ani1{
+    /* 애니메이션 : 이시이지반방마 */
+    animation: txt-ani1 10s linear infinite;
+}
+
+/* 흘러가는 글자 키프레임1*/
+@keyframes txt-ani1{
     to{
         left: -100%;
+    }
+}
+
+/* 반대방향 글자박스 */
+.f2{
+    top: 15vh;
+}
+
+/* 오른쪽으로 흘러가기 위해서 left를 셋팅! -> 0으로 애니 */
+.f2 .tbx{
+    left: -100%;
+}
+
+/* 흘러가는 텍스트애니 클래스 */
+.txt-ani2{
+    /* 애니메이션 : 이시이지반방마 */
+    animation: txt-ani2 10s linear infinite;
+}
+
+/* 흘러가는 글자 키프레임1*/
+@keyframes txt-ani2{
+    to{
+        left: 0;
     }
 }
