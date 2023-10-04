@@ -1,4 +1,36 @@
-.universal-wrap{
+.universal-logo-wrap{
     position: absolute;
     width: 100vw;
+    overflow: hidden;
+}
+.universal-span-wrap{
+    position: relative;
+    display: flex;
+    left: 0;
+    width: 330%;
+}
+.universal-span-wrap ul{
+    flex: 1;
+    display: flex;
+    list-style: none;
+}
+.universal-span-wrap li{
+    flex: 1;
+    color: orangered;
+    text-shadow: 2px 2px 2px #ccc;
+    font-size: 4vw;
+    text-align: center;
+}
+.universal-span-wrap li:nth-child(2n){
+    color: skyblue;
+}
+
+.logo-ani{
+    animation: text-ani 10s linear infinite;
+}
+
+@keyframes text-ani {
+    to{
+        left: -165%;
+    }
 }
