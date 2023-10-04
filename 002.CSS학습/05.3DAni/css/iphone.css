@@ -1,6 +1,5 @@
 @charset "utf-8";
-/* 움직이는 폰 + 무한글자이동 CSS - iphone.css */
-/* 웹폰트 */
+/* 움직이는 폰 + 무한글자이동 CSS - iphone.css */ /* 웹폰트 */
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 /* font-family: 'Anton', sans-serif; */
@@ -29,6 +28,27 @@ body {
     height: 100vh;
     /* 넘치는 자식요소 숨기기 */
     overflow: hidden;
+
+    /* [ 커서 이미지로 보이기 ]
+    cursor: url(이미지경로),auto;
+    사이즈등의 이유로 안나올 수 있음
+    때를 대비하여 auto/pointer 등 대체항목을 url() 뒤에
+    콤마하고 써야함!
+    - 커서 이미지의 기본위치는 맨위/왼쪽끝 이다
+    - 이위치를 변경하는 옵션이 있다
+    cursor: url(이미지경로) x위치 y위치,auto;
+    예) cursor: url(이미지경로) 10 20,auto;
+    숫자만 써도 px로 처리, 이미지 한계값을 넘어가면 처리안됨!  
+  */
+
+    /* 나오는 케이스 */
+    /* cursor: url(../images/door.png), auto; */
+    cursor: url(../images/door.png) 10 50, auto;
+
+    /* 안나오는 케이스 */
+    /* cursor: url(../images/car.png),auto; */
+    /* cursor: url(../images/car.png),pointer; */
+    /* cursor: url(../images/car.png),move; */
 }
 
 /* 폰박스 */
@@ -70,15 +90,14 @@ body {
     /* z축 밀기 */
     transform: translateZ(calc(var(--phone-side) / 2));
 }
-
 /* 앞면 화면변경박스 */
-.iphone span:nth-child(1) b#scene{
+.iphone span:nth-child(1) b#screen {
     position: absolute;
     top: 47px;
     left: 12px;
-    width: 177px;
+    width: 175px;
     height: 305px;
-    /* background-color: rgba(255, 0, 0, 0.438); */
+    /* background-color: rgba(255, 0, 0, 0.454); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
@@ -93,7 +112,6 @@ body {
     /*  y축회전 : 90도 */
     transform: rotateY(var(--rotate-deg));
 }
-
 /* 3. 왼쪽면 */
 .iphone span:nth-child(3) {
     background-image: url(../images/ip04.png);
@@ -103,7 +121,6 @@ body {
     /*  y축회전 : -90도 */
     transform: rotateY(calc(var(--rotate-deg) * -1));
 }
-
 /* 4. 윗면 */
 .iphone span:nth-child(4) {
     background-image: url(../images/ip06.png);
@@ -260,7 +277,7 @@ left 하나당 크기는 7623px의 절반크기 마이너스 */
 }
 
 /* 아이폰 따라보기 이벤트 박스 */
-.evt-box{
+.evt-box {
     position: fixed;
     top: 0;
     left: 0;
@@ -268,14 +285,13 @@ left 하나당 크기는 7623px의 절반크기 마이너스 */
     width: 100vw;
     height: 100vh;
 
-    /* 플랙스 박스 */
+    /* 플렉스박스 */
     display: flex;
     /* 랩핑박스 */
     flex-wrap: wrap;
 }
-
-.evt-box div{
+.evt-box div {
     width: 20%;
-    height: 50%;
+    height: 33.33%;
     outline: 1px dashed green;
 }
