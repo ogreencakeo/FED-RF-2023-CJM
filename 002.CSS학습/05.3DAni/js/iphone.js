@@ -16,17 +16,17 @@ import dFn from './dom.js';
 // 0. 데이터 셋팅 : x, y축 회전 각도를 배열에 셋팅
 const iDeg = [
     // 상단영역
-    [20, 60], 
-    [20, 30], 
-    [20, 0], 
-    [20, -30], 
-    [20, -60], 
+    [25, -60, "Bart_Simpson.png"], 
+    [25, -30, "simpson.png"], 
+    [25, 0, "Lisa_Simpson.png"], 
+    [25, 30, "Maggie_Simpson.png"], 
+    [25, 60, "Marge_Simpson.png"], 
     // 하단영역
-    [-20, 60], 
-    [-20, 30], 
-    [-20, 0], 
-    [-20, -30], 
-    [-20, -60], 
+    [-25, -60, "capma.png"], 
+    [-25, -30, "elsa.png"], 
+    [-25, 0, "jupiter.png"], 
+    [-25, 30, "seoulCity.jpg"], 
+    [-25, 60, "superman.png"], 
 ];
 
 // 1. 대상선정
@@ -37,4 +37,18 @@ const iphone = dFn.qs('.iphone');
 console.log('evtBx :', evtBx, 'iphone :', iphone);
 
 
-// 2.
+// 2. 이벤트 설정 : 이벤트 종류 - mouseenter(경계선 안에 들어옴)
+evtBx.forEach( (ele, idx) => dFn.addEvt(ele, 'mouseenter', ()=>seeMe(idx)) );
+
+// 3. 함수 만들기
+function seeMe(seq){  // seq - 순번 받기
+    // console.log('나를 봐!', event.currentTarget, seq);
+
+    // 1. 변경 적용하기 : 대상 - .iphone
+    iphone.style.transform = `rotateX(${iDeg[seq][0]}deg) rotateY(${iDeg[seq][1]}deg)`;
+    // 트랜지션 변경하기
+    iphone.style.transition = '.4s ease-out';
+
+    // 2. 변경 적용하기 : 앞면 이미지
+    
+} 

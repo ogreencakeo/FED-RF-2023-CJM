@@ -70,6 +70,17 @@ body {
     /* z축 밀기 */
     transform: translateZ(calc(var(--phone-side) / 2));
 }
+
+/* 앞면 화면변경박스 */
+.iphone span:nth-child(1) b{
+    position: absolute;
+    top: 47px;
+    left: 12px;
+    width: 177px;
+    height: 305px;
+    background-color: rgba(255, 0, 0, 0.438);
+}
+
 /* 2. 오른쪽면 */
 .iphone span:nth-child(2) {
     background-image: url(../images/ip03.png);
@@ -79,6 +90,7 @@ body {
     /*  y축회전 : 90도 */
     transform: rotateY(var(--rotate-deg));
 }
+
 /* 3. 왼쪽면 */
 .iphone span:nth-child(3) {
     background-image: url(../images/ip04.png);
@@ -88,6 +100,7 @@ body {
     /*  y축회전 : -90도 */
     transform: rotateY(calc(var(--rotate-deg) * -1));
 }
+
 /* 4. 윗면 */
 .iphone span:nth-child(4) {
     background-image: url(../images/ip06.png);
