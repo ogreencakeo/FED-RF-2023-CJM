@@ -35,6 +35,8 @@ const evtBx = dFn.qsa('.evt-box div');
 // 1-2. 변경대상 : .iphone
 const iphone = dFn.qs('.iphone');
 console.log('evtBx :', evtBx, 'iphone :', iphone);
+// 1-3. 스크린 : #screen
+const screen = dFn.qs('#screen');
 
 
 // 2. 이벤트 설정 : 이벤트 종류 - mouseenter(경계선 안에 들어옴)
@@ -50,5 +52,5 @@ function seeMe(seq){  // seq - 순번 받기
     iphone.style.transition = '.4s ease-out';
 
     // 2. 변경 적용하기 : 앞면 이미지
-    
+
 } 
