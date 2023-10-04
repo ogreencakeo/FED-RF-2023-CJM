@@ -13,7 +13,28 @@ import dFn from './dom.js';
     (최초 width:0 -> width:100vw)
 *************************************/
 
+// 0. 데이터 셋팅 : x, y축 회전 각도를 배열에 셋팅
+const iDeg = [
+    // 상단영역
+    [20, 60], 
+    [20, 30], 
+    [20, 0], 
+    [20, -30], 
+    [20, -60], 
+    // 하단영역
+    [-20, 60], 
+    [-20, 30], 
+    [-20, 0], 
+    [-20, -30], 
+    [-20, -60], 
+];
+
 // 1. 대상선정
 // 1-1. 이벤트 대상 : .evt-box div
 const evtBx = dFn.qsa('.evt-box div');
-console.log('대상 :', evtBx);
+// 1-2. 변경대상 : .iphone
+const iphone = dFn.qs('.iphone');
+console.log('evtBx :', evtBx, 'iphone :', iphone);
+
+
+// 2.
