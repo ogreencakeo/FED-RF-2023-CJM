@@ -34,3 +34,29 @@
         left: -165%;
     }
 }
+.image-moving{
+    position: relative;
+}
+
+.target-img{
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    top: 20%;
+    left: 20%;
+}
+
+.evt-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.evt-box div{
+    width: 20%;
+    height: 33.33%;
+
+}
