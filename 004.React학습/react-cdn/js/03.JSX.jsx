@@ -86,3 +86,25 @@ ReactDOM.render(myEle4, document.querySelectorAll("#root>div")[3]);
     -> 기존태그는 <div>,<section> 등 원래있는 html태그를 말함
         (단점, 원하는 않는 태그가 삽입됨!!!)
 *****************************************************/
+
+// 5. 내가 원하는 태그 출력해보기 
+// 기본 데이터 (배열)
+const mydata = [
+    {idx:1,name:"김수현",movie:"언제왔니"},
+    {idx:2,name:"장우혁",movie:"형님,형~~~님"},
+    {idx:3,name:"김혜수",movie:"내가쎈언니야"},
+];
+
+// 출력형식 :
+// <li>배우명 : 영화명</li>
+
+const myEle5 = (
+    <React.Fragment>
+        <h2>[ 배우리스트 ]</h2>
+        <ul>
+            {mydata.map(val => <li>{val.name} : {val.movie}</li>)}
+        </ul>
+    </React.Fragment>
+);
+// 다섯번째에 출력하기
+ReactDOM.render(myEle5, document.querySelectorAll("#root>div")[4]);
