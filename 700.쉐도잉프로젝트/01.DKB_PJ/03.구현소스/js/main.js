@@ -359,6 +359,7 @@ const corpData = Object.keys(linkData.corp);
 corpBox.innerHTML = '';
 
 // 내부의 option요소는 배열데이터.map().join('')을 사용!
+// 맵쬬잉
 corpData.forEach(val => {
   corpBox.innerHTML += `
     <optgroup label="${val}">
