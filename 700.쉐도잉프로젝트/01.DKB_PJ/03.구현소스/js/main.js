@@ -348,6 +348,7 @@ linkData.brand.forEach(val => {
   brandBox.innerHTML += `<option value="${val}">${val}</option>`;
 });
 
-// 4-2. 배열사 바로가기 콤보박스 : 
+// 4-2. 배열사 바로가기 콤보박스 
 //      복합바인딩(optgroup>option)
+console.log("Object.keys(linkData.corp) :", Object.keys(linkData.corp));
 
