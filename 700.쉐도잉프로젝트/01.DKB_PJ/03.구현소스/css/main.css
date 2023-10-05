@@ -6,15 +6,6 @@
 @import url(./core.css);
 @import url(./common.css);
 
-/* 공사중표시 */
-body * {
-    /* outline: 2px dashed #ccc; */
-}
-body > div > * {
-    /* outline-color: red; */
-}
-
-
 /* 개별영역 박스 -> 확장형 박스
         -> 개별영역 중앙속박스에 높이값을 주면
         파트박스가 늘어날 경우 높이값에 제한을 받게됨!
