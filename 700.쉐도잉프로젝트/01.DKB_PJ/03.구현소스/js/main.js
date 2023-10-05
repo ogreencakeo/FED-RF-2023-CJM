@@ -350,5 +350,32 @@ linkData.brand.forEach(val => {
 
 // 4-2. 배열사 바로가기 콤보박스 
 //      복합바인딩(optgroup>option)
-console.log("Object.keys(linkData.corp) :", Object.keys(linkData.corp));
+// 데이터는 객체형이므로 속성만 모아 배열로 변환하여 
+// forEach를 사용한다.
+const corpData = Object.keys(linkData.corp);
+// console.log("corpData :", corpData);
+
+// 내부 초기화
+corpBox.innerHTML = '';
+
+
+corpData.forEach(val => {
+  corpBox.innerHTML += `
+    <optgroup label="${val}">
+      ${linkData.corp[val].map(v => 
+        `<option value="${v}">${v}</option>`).
+        join("")}
+    </optgroup>
+  `;
+});
+
+/*
+  [ 복합바인딩 요소 구성 ]
+  <optgroup label="Swedish Cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+*/
+
+
 
