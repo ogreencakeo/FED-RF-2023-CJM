@@ -85,8 +85,7 @@ import dFn from "./dom.js";
     (날짜데이터 자체가 숫자형으로 되어있음)
 
     3. 특정언어의 특수문자일 경우 
-    localeCompare() 메서드로 
-    문자열 비교를 한다!
+    localeCompare() 메서드로 문자열 비교를 한다!
     예) 특수문자 x변수를 y변수와 변환후 비교 
     x.localeCompare(y)
 
