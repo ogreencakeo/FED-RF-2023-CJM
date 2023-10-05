@@ -59,7 +59,7 @@ import dFn from "./dom.js";
         return x == y ? 0 : x > y ? 1 : -1;
     })
 
-    더 줄이기~
+    더 줄이기~ (화살표 함수 사용)
     -> 배열변수.sort((x,y) => x == y ? 0 : x > y ? 1 : -1);
     })
 
