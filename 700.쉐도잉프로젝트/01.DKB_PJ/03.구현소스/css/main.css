@@ -12,6 +12,9 @@
         확장형은 반드시 파트박스에 높이값을 설정한다! */
 
 /************* 2. 캐릭터소개 *************/
+body{
+    overflow-x: hidden;
+}
 #banner {
     background: url(../images/bg_mainvisual2.jpg) no-repeat center/auto 100%;
 }
