@@ -65,7 +65,7 @@
                     -> 하위 백터요소에는 일반 트랜스폼 적용안됨 
                     부모요소인 svg는 적용됨!
                 */
-                transform: rotate(90deg);
+                /* transform: rotate(-90deg); */
             }
 
             /* circle 설정 */
@@ -86,6 +86,13 @@
                     선두께는 선의 중심선으로부터 생김
                 */
                 stroke-width: 20;
+
+                /* 선끝처리 : stroke-linecap 
+                    1) butt : 끝에 중심선이 보임(기본값)
+                    2) square : 끝에 사각형으로 덮음
+                    3) round : 끝에 둥근모양으로 덮음
+                */
+                stroke-linecap: round;
 
                 /* 
                     [데쉬선 속성 : stroke-dasharray] 
@@ -123,11 +130,28 @@
                 stroke-dashoffset: 0;
             }
 
+            /* ////////////////////////////////////////////////////////// */
             /* 2. 블랙위도우 */
             .svg2 {
                 background: url(./images/black.jpg) no-repeat top/cover;
             }
             /* 사각형 svg - rect */
+            .rt1{
+                fill: none;
+                stroke: black;
+                stroke-width: 20;
+                stroke-linecap: round;
+                /* 데쉬선 */
+                stroke-dasharray: 15%;
+                stroke-dashoffset: 102%;
+                /* 트랜지션 */
+                transition: .6s;
+            }
+
+            /* 오버시 선 움직이기 */
+            .svg2:hover .rt1{
+                stroke-dashoffset: 0;
+            }
 
             /* 3. 닥스박스 : 다각형(6각형) */
             .svg3 {
@@ -152,7 +176,8 @@
             <section>
                 <div class="cbx svg1">
                     <svg>
-                        <circle class="c1" cx="150" cy="150" r="140" />
+                        <!-- <circle class="c1" cx="150" cy="150" r="140" /> -->
+                        <circle class="c1" cx="150" cy="150" r="140" transform = "rotate(-90, 150, 150)"/>
                     </svg>
                 </div>
             </section>
@@ -160,7 +185,7 @@
             <section>
                 <div class="cbx svg2">
                     <svg>
-                        
+                        <rect class="rt1" width="280" height="280" x="10" y="10" />
                     </svg>
                 </div>
             </section>
@@ -168,7 +193,7 @@
             <section>
                 <div class="cbx svg3">
                     <svg>
-                        
+                        <polygon class="pg1"  points="150,10 290,100 290,200 150,290 10,200 10,100"/>
                     </svg>
                 </div>
             </section>
