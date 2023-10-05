@@ -59,6 +59,10 @@ import dFn from "./dom.js";
         return x == y ? 0 : x > y ? 1 : -1;
     })
 
+    더 줄이기~
+    -> 배열변수.sort((x,y) => x == y ? 0 : x > y ? 1 : -1);
+    })
+
     -> 리턴값의 의미(오름차순)
     1) if(x>y) return 1; -> x가 y뒤에 옴 (리턴값 양수)
     2) if(x<y) return -1; -> x가 y앞에 옴 (리턴값 음수)
