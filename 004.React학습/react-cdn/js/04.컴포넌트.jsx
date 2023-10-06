@@ -33,3 +33,18 @@
         사용할 수 있는 역할을 함!)
 
 *************************************************/
+
+// [ 클래스형 컴포넌트 만들기 ]
+class Gogh extends React.Component {
+    // render() 메서드 사용하여 리턴함!
+    render(){
+        // html 태그 리턴
+        return(
+            <React.fragment>
+                <h2>안녕 나는 고흐그림이야</h2>
+                <img src = './images/01.png' alt='고흐1'/>
+                {/* 홀로태그는 반드시 스스로 닫아준다! */}
+            </React.fragment>
+        );
+    }
+}
