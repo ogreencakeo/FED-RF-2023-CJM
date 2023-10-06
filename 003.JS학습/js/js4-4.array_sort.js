@@ -281,9 +281,15 @@ function sortingFn(){
     console.log('바꿔! 정렬!', optVal);
 
     // 2. 분기하기
+    // 데이터 대상 : list1 배열
     if(optVal == 1){    // 오름차순
-
+        list1.sort((a, b) => {
+            // a, b는 모두 객체 데이터
+            // 따라서 내부 속성을 구체적으로 비교해야함
+            //  idx, tit, cont 세가지중 하나로 비교
+            a.idx == b.idx? 0 : a.idx > b.idx? 1 : -1;
+        });
     }else if(optVal == 2){  // 내림차순
-        
+
     }
 }
