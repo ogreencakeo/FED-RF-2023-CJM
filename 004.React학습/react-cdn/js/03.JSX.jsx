@@ -47,11 +47,13 @@ ReactDOM.render(myEle2, document.querySelectorAll("#root>div")[1]);
     -> 표현식이란 React변수, 속성, JS문법 등의 내용임
 *****************************************************/
 
+///////////////////////////////////////////////////////
 // 표현식에 쓸 변수
 let num1 = 1000, num2 = 7;
 
 // 3. JSX 표현식 사용하기
 const myEle3 = <h1>리액트는 {num1 * num2}번 사용해도 좋다!</h1>;
+
 // 세번째에 출력하기
 ReactDOM.render(myEle3, document.querySelectorAll("#root>div")[2]);
 
@@ -66,6 +68,8 @@ const myEle4 = (
         </ul>
     </React.Fragment>
 );
+
+/////////////////////////////////////////////////////////////////////
 // 네번째에 출력하기
 ReactDOM.render(myEle4, document.querySelectorAll("#root>div")[3]);
 
@@ -87,6 +91,7 @@ ReactDOM.render(myEle4, document.querySelectorAll("#root>div")[3]);
         (단점, 원하는 않는 태그가 삽입됨!!!)
 *****************************************************/
 
+//////////////////////////////////////////////////////////////
 // 5. 내가 원하는 태그 출력해보기 
 // 기본 데이터 (배열)
 const mydata = [
@@ -97,14 +102,81 @@ const mydata = [
 
 // 출력형식 :
 // <li>배우명 : 영화명</li>
+// 배열변수.map9)을 사용하자 -> 여기서도 맵쬬잉인가?
+// -> JS map()과는 다른 별도의 출력처리가 이루어짐
+// 결론 : map()만 사용하여 바로 출력가능
 
 const myEle5 = (
     <React.Fragment>
         <h2>[ 배우리스트 ]</h2>
         <ul>
-            {mydata.map(val => <li>{val.name} : {val.movie}</li>)}
+            {
+                mydata.map(val => 
+                    <li>
+                        {val.name} : 
+                        {val.movie} : 
+                        {val.idx == 3? "예뻐!★" : "멋쪄!☆"}
+                    </li>
+                    )
+            }
+
         </ul>
     </React.Fragment>
 );
 // 다섯번째에 출력하기
 ReactDOM.render(myEle5, document.querySelectorAll("#root>div")[4]);
+
+////////////////////////////////////////////////////////////////////
+// 6. 홀로태그 출력해 보기 
+/***************************************************** 
+    [ JSX는 홀로태그라도 끝에 닫기를 해줘야한다! ]
+    예) <br> -> <br />
+        <input type="text"> -> <input type="text" />
+*****************************************************/
+const myEle6 = <input type = 'text' value='홀로태그는 스스로 닫아라!' />;
+
+// 여섯번째에 출력하기
+ReactDOM.render(myEle6, document.querySelectorAll("#root>div")[5]);
+
+/////////////////////////////////////////////////////////////////////
+// 7. 속성으로 클래스 셋팅하여 사용하기
+/***************************************************** 
+    [ JSX에서 속성 클래스는 className 으로 표기한다! ]
+    <태그 class="클래스명">
+    class는 JS에서 키워드이므로 사용못함! 대신...
+    <태그 className="클래스명">
+*****************************************************/
+const myEle7 = 
+    <h1 className="myclass">className 속성으로 클래스를 셋팅한다!</h1>;
+
+// 일곱번째에 출력하기
+ReactDOM.render(myEle7, document.querySelectorAll("#root>div")[6]);
+
+/////////////////////////////////////////////////////////////////////
+// 8. JSX외부에서 if문 사용하여 출력하기 
+/***************************************************** 
+    [ JSX에서 조건문 사용하기 - if문 ]
+    리액트는 if명령문을 지원하지만
+    JSX내부에서는 지원하지 않는다!!!
+
+    JSX에서 조건문을 사용하려면?
+    JSX 외부에서 if문을 사용하거나
+    아니면 내부에서 삼항연산자를 사용할 수 있다!
+*****************************************************/
+const x = 10000;
+let txt = '이 돈으로는 충분히 살 수 있어!';
+if(x<10000){
+    txt = '돈이 부족해서 살 수 없어!';
+}
+
+// 출력변수
+const myEle8 = (
+    <div>
+        <h1>현재 내가 가진 돈은 {x}원!</h1>
+        <h1>{txt}</h1>
+    </div>
+);
+
+// 여덟번째에 출력하기
+ReactDOM.render(myEle8, document.querySelectorAll("#root>div")[7]);
+
