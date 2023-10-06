@@ -279,7 +279,10 @@ dFn.addEvt(sel3, 'change', sortingFn);
 function sortingFn(){
     // 1. 선택값 담기
     let optVal = this.value;
-    console.log('바꿔! 정렬!', optVal);
+    
+    // 2. 장렬 기준값 읽기
+    let cta = cta3.value;
+    console.log('바꿔! 정렬!', optVal, ', cta :', cta);
 
     // 2. 분기하기
     // 데이터 대상 : list1 배열
@@ -288,10 +291,12 @@ function sortingFn(){
             // a, b는 모두 객체 데이터
             // 따라서 내부 속성을 구체적으로 비교해야함
             //  idx, tit, cont 세가지중 하나로 비교
-            return a.idx == b.idx? 0 : a.idx > b.idx? 1 : -1;
+            return a[cta] == b[cta]? 0 : a[cta] > b[cta]? 1 : -1;
         });
     }else if(optVal == 2){  // 내림차순
-
+        list1.sort((a, b) => {
+            return a[cta] == b[cta]? 0 : a[cta] > b[cta]? -1 : 1;
+        });
     }
     console.log('list1 :', list1);
 
