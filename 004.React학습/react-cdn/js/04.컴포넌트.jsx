@@ -34,17 +34,69 @@
 
 *************************************************/
 
+/////////////////////////////////////////////////////
 // [ 클래스형 컴포넌트 만들기 ]
 class Gogh extends React.Component {
     // render() 메서드 사용하여 리턴함!
     render(){
         // html 태그 리턴
         return(
-            <React.fragment>
+            <React.Fragment>
                 <h2>안녕 나는 고흐그림이야</h2>
                 <img src = './images/01.png' alt='고흐1'/>
                 {/* 홀로태그는 반드시 스스로 닫아준다! */}
-            </React.fragment>
+            </React.Fragment>
         );
     }
 }
+
+// 첫번째 #root1에 출력하기
+// ReactDOM.render(컴포넌트리턴코드, 찍을요소)
+// 컴포넌트 리턴 코드는 어떻게 쓰나?
+// <컴포넌트명 />
+ReactDOM.render(<Gogh />, document.querySelector('#root1'));
+
+
+//////////////////////////////////////////////
+// [ 함수형 컴포넌트 만들기 ]
+// 첫글자는 대문자
+function IronMan(){
+    return(
+        <div>
+            <h2>안녕! 나는 아이언맨이야!</h2>
+            <img src="./images/ab1.jpg" alt="아이언맨"/>
+        </div>
+    );
+}
+
+// 두번째 #root2에 출력하기
+ReactDOM.render(<IronMan />, document.querySelector('#root2'));
+
+/************************************************* 
+    [ Props 사용하기 ]
+    props는 properties 에서 나온말
+    속성들... 즉, 변수에 값을 할당하여 전달하는 방법
+    함수의 전달값과 같고 속성으로 컴포넌트에 보낸다!
+    -> props는 05번 다음번에 자세히 다룬다!
+*************************************************/
+
+// 내가 좋아하는 색 표시하기 컴포넌트
+function Favorite(헐){
+    return(
+        <h2>
+            내가 좋아하는 색은 {헐.color}이야 <br />
+            그리고 내가 좋아하는 음식은 {헐.food}야 <br />
+            취미는 {헐.hobby}다! 알겠니???
+        </h2>
+    );
+}
+
+// 좋아하는 색과 음식, 취미를 각각 속성명으로 생성하여 
+// 컴포넌트를 호출하면 개별적으로 속성을 구분할 수 있다.
+// 출력 : #root3
+ReactDOM.render(
+    <Favorite color = '빨간색' food = '피자' hobby = '게임'/>,
+    document.querySelector('#root3')
+);
+
+// 함수 컴포넌트에서는 표현식 안에서 {props.호출시 사용한 속성명}
