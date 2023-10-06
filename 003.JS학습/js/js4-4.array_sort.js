@@ -227,7 +227,8 @@ const list1 = [
         tit: "이제 얼마나 남은거니?",
         cont: "음악프로그램에 출연 요청글도 써볼까요?",
     },
-]; /////////////// list1 /////////////
+]; 
+console.log('list1 :', list1);
 
 // 출력대상 : .showList3
 const showList3 = dFn.qs('.showList3');
@@ -287,9 +288,13 @@ function sortingFn(){
             // a, b는 모두 객체 데이터
             // 따라서 내부 속성을 구체적으로 비교해야함
             //  idx, tit, cont 세가지중 하나로 비교
-            a.idx == b.idx? 0 : a.idx > b.idx? 1 : -1;
+            return a.idx == b.idx? 0 : a.idx > b.idx? 1 : -1;
         });
     }else if(optVal == 2){  // 내림차순
 
     }
+    console.log('list1 :', list1);
+
+    // 리스트 코드 반영하기
+    upCode();
 }
