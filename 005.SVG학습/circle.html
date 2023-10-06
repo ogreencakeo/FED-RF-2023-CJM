@@ -52,6 +52,7 @@
                 height: 100%;
             }
 
+             /* ///////////////////////////////////////////////////////////////////// */
             /* 1. 아이언맨 */
             .svg1 {
                 background: url(./images/man.jpg) no-repeat top/cover;
@@ -152,6 +153,7 @@
                 stroke-dashoffset: 0;
             }
 
+            /* ///////////////////////////////////////////////////////////////// */
             /* 3. 닥스박스 : 다각형(6각형) */
             .svg3 {
                 background: url(./images/doc.jpg) no-repeat top/cover;
@@ -172,16 +174,34 @@
                 /* 트랜지션 */
                 transition: 0.6s;
             }
-            /* 오버시 선 보아가 */
+            /* 오버시 선 보이기 */
             .svg3:hover .pg1 {
                 stroke-dashoffset: 0;
             }
 
+            /* ///////////////////////////////////////////////////////// */
             /* 4. 완다 : path */
             .svg4 svg {
                 background: url(./images/wan.jpg) no-repeat top/cover;
             }
             /* 패스 */
+            .pa1{
+                fill: none;
+                stroke: orangered;
+                stroke-width: 20;
+                stroke-linecap: round;
+
+                /* 데쉬선 설정 */
+                stroke-dasharray: 340%;
+                stroke-dashoffset: 340%;
+
+                /* 트랜지션 */
+                transform: .7s ease-out;
+            }
+            /* 완다 오버시 선그리기 */
+            .svg4:hover:hover .pa1{
+                stroke-dashoffset: 0;
+            }
 
             /* 미디어쿼리 */
         </style>
@@ -231,10 +251,11 @@
                                 <stop offset="100%" stop-color="orange" />
                             </linearGradient>
                         </defs>
-                        <polygon 
-                        style="stroke: url(#grad1);"
-                        class="pg1" 
-                        points="150,10 290,100 290,200 150,290 10,200 10,100" />
+                        <polygon
+                            style="stroke: url(#grad1)"
+                            class="pg1"
+                            points="150,10 290,100 290,200 150,290 10,200 10,100"
+                        />
                     </svg>
                 </div>
             </section>
@@ -243,9 +264,10 @@
             <section>
                 <div class="cbx svg4">
                     <svg>
-                        <path>
-                            
-                        </path>
+                        <path
+                            class="pa1"
+                            d="M27.72,33.29c0,0,45.99,49.6,18.04,101c0,0-36.97,45.99-15.33,82.96c0,0,11.72,18.04,24.35,24.35c0,0,21.64,4.51-7.21,37.87c0,0-23.45,24.35,99.2-7.21c0,0,64.93,3.61,78.46-29.76c0,0,81.16-74.85,18.94-101c0,0-35.17-26.15,7.21-53.21c0,0,54.11-54.11-14.43-46.89c0,0-151.5,27.05-120.84-7.21c0,0,17.13-20.74-41.48-8.12C74.61,26.08-2.94,14.35,27.72,33.29z"
+                        />
                     </svg>
                 </div>
             </section>
