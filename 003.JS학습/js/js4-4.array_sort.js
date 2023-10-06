@@ -256,7 +256,7 @@ const upCode = () => {
                 </tr>
             </thead>
             <tbody>
-                ${hcode}
+                ${hcode.join("")}
             </tbody>
         </table>
     `;
@@ -264,3 +264,26 @@ const upCode = () => {
 
 // (3) 요소에 데이터 코드 넣기
 upCode();
+
+// (4) 정렬변경 이벤트 발생시 실제 정렬 변경하기
+// 이벤트 대상 : .sel3
+const sel3 = dFn.qs('.sel3');
+// 정렬기준 대상 : .cta3
+const cta3 = dFn.qs('.cta3');
+
+// 이벤트 설정하기
+dFn.addEvt(sel3, 'change', sortingFn);
+
+// 정렬변경 함수 만들기
+function sortingFn(){
+    // 1. 선택값 담기
+    let optVal = this.value;
+    console.log('바꿔! 정렬!', optVal);
+
+    // 2. 분기하기
+    if(optVal == 1){    // 오름차순
+
+    }else if(optVal == 2){  // 내림차순
+        
+    }
+}
