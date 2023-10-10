@@ -25,9 +25,20 @@ Post방식은 데이터 크기에 제한이 없다!)
     url에는 단 하나의 물음표만 허용됨!!!!
 4. &(엔퍼센드)는 키=값 쌍단위를 구분해주는 구분자
 *********************************************************/
+// 서브 샵페이지를 호출하기 위한 GNB링크 셋팅하기
+// 호출시 Get02.html?키=값 형태로 호출함
+// 1. 대상 : #gnb a
+const gnb = document.querySelectorAll('#gnb a');
 
+// 2. 이벤트 설정
+gnb.forEach(ele => ele.addEventListener('click', goSub));
 
-
+// 3. 함수 만들기
+function goSub(){
+    // 샵명 글자읽기
+    let atxt = this.innerText;
+    console.log('atxt :', atxt, '서브로 가');
+}
 
 /********************************************************* 
     [ url로 보낼때 한글깨짐 방지하기! ]
