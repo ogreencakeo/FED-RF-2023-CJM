@@ -1,47 +1,64 @@
-import Avengers from "./avengers";
-
-function IronMan(){
+function Car(props){
     return(
         <React.Fragment>
-            <h1>안녕 나는 아이언맨이야</h1>
-            <MakeImg iname = 'ab1.jpg'/>
+            <h1>당신의 차는 무슨차죠?</h1>
+            <h2>나의 차는 {props.brand}입니다.</h2>
+        </React.Fragment>
+    );
+}
+
+function Brand(props){
+    return(
+        <React.Fragment>
+            <Car brand = '기아레이' />
+        </React.Fragment>
+    );
+}
+
+function Detail(props){
+    return(
+        <React.Fragment>
+            <h2>
+                모델명은 {props.brand.model}이고
+                차색은 {props.brand.color}입니다.
+            </h2>
+            <img src="images/ray.png" alt="기아그레이"  style={props.brand.opt}/>
         </React.Fragment>
     )
 }
 
-function MakeImg(props){
+function AskMore(props){
+    const carInfo = [
+        {
+            model : '2023년형',
+            color : '라잇블루',
+            opt : {filter : 'hue-rotate(odeg)'}
+        },
+        {
+            model : '2024년형',
+            color : '그린',
+            opt : {filter : 'hue-rotate(180deg)'}
+        },
+        {
+            model : '2023년형',
+            color : '퍼플',
+            opt : {filter : 'hue-rotate(102deg)'}
+        },
+    ];
     return(
-        <img src = {'./images/' + props.iname} />
-    )
+        <React.Fragment>
+            <h1>더 자세히 말씀해주세요?!</h1>
+            <Detail brand = {carInfo[props.num]} />
+        </React.Fragment>
+    );
 }
 
-ReactDOM.render(<IronMan />, document.querySelector('#root1'));
-
-function Favorite(props){
-    return(
-        <h2>
-            내가 좋아하는 색깔 : {props.color}
-            내가 좋아하는 음식 : {props.food}
-            내가 좋아하는 취미 : {props.hobby}
-        </h2>
-    )
-}
-
-ReactDOM.render(<Favorite color='파란색' food = '알리오올리오' hobby = '잠자기' />, document.querySelector('#root2'));
-
-function Who(){
-    return(
-        <div>
-            <h1>김뚝팔씨가 누구야?</h1>
-            <Ans />
-        </div>
-    )
-}
-
-function Ans(){
-    return <h2>김씨가 똑하고 팔이 뿌려졌어</h2>
-}
-
-ReactDOM.render(<Who />, document.querySelector('#root3'));
-
-ReactDOM.render(<Avengers />, document.querySelector('#root5'));
+ReactDOM.render(
+    <div>
+        <Brand />
+        <AskMore num = '0' />
+        <AskMore num = '1' />
+        <AskMore num = '2' />
+    </div>,
+    document.querySelector('#root1')
+);
