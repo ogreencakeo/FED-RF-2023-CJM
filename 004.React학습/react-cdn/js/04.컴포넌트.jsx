@@ -46,7 +46,7 @@ class Gogh extends React.Component {
         return (
             <React.Fragment>
                 <h2>안녕! 나는 고흐그림이야!</h2>
-                <MakeImg iname="01.png" />
+                <MakeImg iname="01.png" ialt="고흐그림" />
                 {/* 홀로태그는 반드시 스스로 닫아준다! */}
             </React.Fragment>
         );
@@ -65,14 +65,14 @@ function IronMan() {
     return (
         <div>
             <h2>안녕! 나는 아이언맨이야!</h2>
-            <MakeImg iname="ab1.jpg" />
+            <MakeImg iname="ab1.jpg" ialt="아이언맨그림" />
         </div>
     );
 } /////////// IronMan 컴포넌트 /////////
 
 // 이미지 생성 컴포넌트 //////////////
 function MakeImg(props) {
-    return <img src={"./images/" + props.iname} alt="아이언맨" />;
+    return <img src={"./images/" + props.iname} alt={props.ialt} />;
 } ///////// MakeImg 컴포넌트 /////////////
 
 // 두번째 #root2 에 출력하기
@@ -151,31 +151,31 @@ ReactDOM.render(<Avengers />, document.querySelector("#root6"));
 ***************************************************/
 /************************************************* 
 [ 바벨을 사용할때 모듈로 파일 호출시 주의사항! ]
-  ____________________________________________
+    ____________________________________________
 
-  설치형이 아닌 CDN방식의 바벨은 호출셋업의 시차로
-  바로 모듈을 호출하면 에러가 발생한다!
-  따라서 모듈을 사용할 파일을 아래와 같은 형식으로
-  메인 html 상단에 호출해 줘야만 한다!!!
+    설치형이 아닌 CDN방식의 바벨은 호출셋업의 시차로
+    바로 모듈을 호출하면 에러가 발생한다!
+    따라서 모듈을 사용할 파일을 아래와 같은 형식으로
+    메인 html 상단에 호출해 줘야만 한다!!!
 
-  -> 상단에 모듈화한 JS를 먼저 불러준다!
+    -> 상단에 모듈화한 JS를 먼저 불러준다!
 
-  <script src="모듈화한js" 
-  data-plugins="transform-es2015-modules-umd" 
-  type="text/babel"></script>
+    <script src="모듈화한js" 
+    data-plugins="transform-es2015-modules-umd" 
+    type="text/babel"></script>
 
-  -> 아래쪽에 모듈을 호출하는 JS를 불러준다!
+    -> 아래쪽에 모듈을 호출하는 JS를 불러준다!
 
-  <script src="모듈을 호출하는 JS" 
-  data-plugins="transform-es2015-modules-umd" 
-  type="text/babel"></script>
+    <script src="모듈을 호출하는 JS" 
+    data-plugins="transform-es2015-modules-umd" 
+    type="text/babel"></script>
 
-  ->>> 위의 호출 속성 중 기본적으로
-  type="text/babel" 은 당연히 해야하고
+    ->>> 위의 호출 속성 중 기본적으로
+    type="text/babel" 은 당연히 해야하고
 
-  ->>> 여기에 더하여 하나의 속성을 추가한다!
-  data-plugins="transform-es2015-modules-umd"
+    ->>> 여기에 더하여 하나의 속성을 추가한다!
+    data-plugins="transform-es2015-modules-umd"
 
-  이 속성과 값이 바벨에서 모듈을 사용하게 하는
-  es2015 즉 ES6버전에서의 모듈문법을 사용하게끔 해준다!
+    이 속성과 값이 바벨에서 모듈을 사용하게 하는
+    es2015 즉 ES6버전에서의 모듈문법을 사용하게끔 해준다!
 *************************************************/
