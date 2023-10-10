@@ -659,7 +659,7 @@ a {
 
 .curation-item-img {
     width: 270px;
-    height: 392px;
+    /* height: 392px; */
 }
 
 .curation-item-img {
@@ -673,7 +673,7 @@ a {
 .curation-img-wrap {
     position: relative;
     width: 270px;
-    height: 270px;
+    /* height: 270px; */
     overflow: hidden;
     cursor: pointer;
 }
@@ -681,7 +681,7 @@ a {
 .curation-img-wrap>section>span>img {
     position: absolute;
     width: 56px;
-    height: 56px;
+    /* height: 56px; */
     top: 0;
     
 }
@@ -727,20 +727,20 @@ a {
 
 .curation-item-explanation {
     width: 270px;
-    height: 128px;
+    /* height: 128px; */
     margin-top: 18px;
 }
 
 .curation-item-exp-name {
     width: 270px;
-    height: 44px;
+    /* height: 44px; */
     font-size: 15px;
     color: rgb(51, 51, 51);
 }
 
 .uration-item-exp-price {
     width: 270px;
-    height: 50px;
+    /* height: 50px; */
 }
 
 .curation-item-exp-price p {
@@ -750,7 +750,7 @@ a {
 
 .curation-item-exp-review {
     width: 270px;
-    height: 18px;
+    /* height: 18px; */
     font-size: 12px;
     color: rgb(153, 153, 153);
 }
