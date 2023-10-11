@@ -139,7 +139,6 @@ function EventShow(){
         </React.Fragment>
     );
 }
-
 //////////////////////////////////////////////////////////////////////
 // 이미지 생성 컴포넌트
 function MakeImg(props){    // isrc - 이미지 경로 /ialt - 이미지 설명
@@ -150,8 +149,8 @@ function MakeImg(props){    // isrc - 이미지 경로 /ialt - 이미지 설명
     console.log('구분속성 props.info :' , props.info);
     return(
         props.info? 
-            <img src = {props.isrc} alt = {props.ialt} id = {props.idnum} title={props.tit} onClick = {moveCar} /> :
-            <img src = {props.isrc} alt = {props.ialt} /> 
+            <img src={props.isrc} alt={props.ialt} id={props.idnum} title={props.tit} onClick={moveCar} /> :
+            <img src={props.isrc} alt={props.ialt} /> 
     );
 }
 
