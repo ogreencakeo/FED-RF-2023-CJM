@@ -74,7 +74,7 @@ function EventShow(){
         
         // 1-2-2. 램프 이미지 넣기
         ReactDOM.render(
-            <MakeImg isrc = 'https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/3168457870/B.png' ialt = '알라딘 램프'/>, lamp
+            <MakeImg isrc = 'https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/3168457870/B.png' ialt = '알라딘 램프' info='false'/>, lamp
         );
 
         // 1-2-3. 램프 이미지 초기 셋팅
@@ -116,7 +116,7 @@ function EventShow(){
         // 페라리 이미지 넣기
         // 대상 : #ferrari
         ReactDOM.render(
-            <MakeImg isrc="https://www.pngplay.com/wp-content/uploads/13/Ferrari-458-Transparent-PNG.png" ialt="페라리" />,
+            <MakeImg isrc="https://www.pngplay.com/wp-content/uploads/13/Ferrari-458-Transparent-PNG.png" ialt="페라리레드" info="ture" idnum="car" tit="클릭하면 시운전해요!" />,
             document.querySelector('#ferrari')
         );
     }; // getFerrari 함수 //////////////////////////////////////////////////////////////
@@ -143,13 +143,41 @@ function EventShow(){
 //////////////////////////////////////////////////////////////////////
 // 이미지 생성 컴포넌트
 function MakeImg(props){    // isrc - 이미지 경로 /ialt - 이미지 설명
+    // 비?집:놀이동산
+    // 페라리와 구분하여 이미지를 별도로 구성하여 리턴함
+    // props.info -> true / false값을 보내서 처리함
+    // true이면 페라리용 이미지태그로 생성함
+    console.log('구분속성 props.info :' , props.info);
     return(
-        props.info? <img src = {props.isrc} alt={props.ialt} /> :
-                    <img src = {props.isrc} alt={props.ialt} id = {props.idnum} />
+        props.info? 
+            <img src = {props.isrc} alt = {props.ialt} id = {props.idnum} title={props.tit} onClick = {moveCar} /> :
+            <img src = {props.isrc} alt = {props.ialt} /> 
     );
-    // return 
 }
 
+// 번갈아 실행체크 변수
+let actOne = 1;
+
+// 일반 함수로 페라리 움직이기 구현
+function moveCar(){
+    console.log('움직여! 페라리!');
+    let car = document.querySelector('#car');
+
+    // 번갈아서 갔다왔다 함!
+    car.style.transform = 
+    actOne?
+        'translateX(150%) scale(2)' :
+        'translateX(0) scale(1)' 
+    ;
+
+    // 트랜지션 셋팅
+    car.style.transition = '2s ease-in-out';
+
+    // 번갈아서 1 / 0 전환
+    actOne? actOne=0 : actOne=1;
+}
+
+///////////////////////////////////////////////////////////////////
 // 최초 컴포넌트 출력하기
 ReactDOM.render(
     <EventShow />,
