@@ -10,8 +10,8 @@
     예) onclick="getIt()" => onClick={getIt}
 *************************************************************/
 
-///////////////////////////////////////////
-// 전체 이벤트 적용할 컴포넌트 구성하기 
+//////////////////////////////////////////////////////////////////////////////////
+// [ 전체 이벤트 적용할 컴포넌트 구성하기 ]
 function EventShow(){
     ////////////////////////////////////////////////////////////////////////////////
     // 1. 컴포넌트에 사용하는 내부용 함수 작성
@@ -50,18 +50,76 @@ function EventShow(){
             `;
         }, 500);
 
-        // 1-1-4. 
-    };
-    
+        // 1-1-4. 램프 가져오기 버튼 3초후 보이기
+        setTimeout(()=> {
+            document.querySelectorAll('button')[0]
+            .style.display = 'inline-block';
+        }, 3000);
+
+
+        // 1-1-5. #ala요소에 이미지 출력하기
+        ReactDOM.render(
+            <MakeImg isrc={lamp} ialt="램프소원빌기" />,
+            document.querySelector('#ala')
+        );
+        
+    };// aladin 함수 ///////////////////////////////
+
     // 1-2. 램프가져오기 함수
     const getLamp = () => {
-                
-    }
+        console.log('나 불렀어? 가져와 램프');
+
+        // 1-2-1. 램프 선택 : 컴포넌트 구성요소에 넣음
+        let lamp = document.querySelector('.lamp');
+        
+        // 1-2-2. 램프 이미지 넣기
+        ReactDOM.render(
+            <MakeImg isrc = 'https://cdn.011st.com/11dims/resize/600x600/quality/75/11src/product/3168457870/B.png' ialt = '알라딘 램프'/>, lamp
+        );
+
+        // 1-2-3. 램프 이미지 초기 셋팅
+        let lampImg = lamp.querySelector('img');
+        lampImg.style.cssText = `
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            border-radius: 50%;
+            transition: 2s;
+        `;
+
+        // 1-2-4. 0.5초후 램프 이미지 중앙이동하기
+        setTimeout(()=>{
+            lampImg.style.cssText = `
+                position: absolute;
+                top: 310px;
+                right: calc(50% - 100px);
+                width: 200px;
+                border-radius: 50%;
+                transform : rotate(720deg);
+                transition: 2s, right 1s 2s;
+            `;
+        },500);
+    
+        // 1-2-5. 소원빌기 버튼 3초후 보이기
+        setTimeout(() => {
+            document.querySelectorAll('button')[1]
+            .style.display = 'inline-block';
+        }, 3000);
+
+    }; // getLamp함수/////////////////////////////////////////////////////////////////
 
     // 1-3. 페라리 가져오기 함수
     const getFerrari = () => {
+        console.log('페라리 줄게');
 
-    }
+        // 페라리 이미지 넣기
+        // 대상 : #ferrari
+        ReactDOM.render(
+            <MakeImg isrc="https://www.pngplay.com/wp-content/uploads/13/Ferrari-458-Transparent-PNG.png" ialt="페라리" />,
+            document.querySelector('#ferrari')
+        );
+    }; // getFerrari 함수 //////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////////////
     // 2. 컴포넌트 리턴은 가장 아랫쪽에서 함
@@ -74,13 +132,22 @@ function EventShow(){
                     aladin('./images/ala4.jpg')}}/>
             </div>
             {/* 램프가 들어갈 요소 */}
-            <div className = 'lamp'>
-                {/* 버튼들 */}
-                <button onClick = {getLamp}>램프가져오기~!</button> <br/>
-                <button onClick = {getFerrari}>소원빌기~ 페라리주세요</button>
-            </div>
+            <div className = 'lamp'></div>
+            {/* 버튼들 */}
+            <button onClick = {getLamp}>램프가져오기~!</button> <br/>
+            <button onClick = {getFerrari}>소원빌기~ 페라리주세요</button>
         </React.Fragment>
     );
+}
+
+//////////////////////////////////////////////////////////////////////
+// 이미지 생성 컴포넌트
+function MakeImg(props){    // isrc - 이미지 경로 /ialt - 이미지 설명
+    return(
+        props.info? <img src = {props.isrc} alt={props.ialt} /> :
+                    <img src = {props.isrc} alt={props.ialt} id = {props.idnum} />
+    );
+    // return 
 }
 
 // 최초 컴포넌트 출력하기
