@@ -101,6 +101,9 @@ function goDrag(ele){   // ele - 드래그 대상요소
             console.log(`mvx, mvy : ${mvx}, ${mvy}`);
             console.log(`rx, ry : ${rx}, ${ry}`);
             console.log(`lx, ly : ${lx}, ${ly}`);
+        }else{
+            // 3-3.5. 마우슨 포인터 쥔손 모양 변경하기
+            ele.style.cursor = 'grabbing';
         }
     };
 
