@@ -13,7 +13,7 @@
 ///////////////////////////////////////////
 // 전체 이벤트 적용할 컴포넌트 구성하기 
 function EventShow(){
-
+    ////////////////////////////////////////////////////////////////////////////////
     // 1. 컴포넌트에 사용하는 내부용 함수 작성
     // 1-1. 소원이 무엇이냐 실행 함수
     const aladin = lamp => {    // lamp - 알라딘 주인공 이미지 경로
@@ -34,10 +34,36 @@ function EventShow(){
 
         // 1-1-3. 0.5초후 CSS변경으로 타이틀 등장하기
         setTimeout(()=>{
-            
-        }, 500);
-    };
+            tit.style.cssText = `
+                width: 50%;
+                padding: 50px 0;
+                margin: 0 auto;
+                border: 2px solid lime;
+                transition: all 2s 1s;
+                opacity: 1;
 
+                border-radius: 50%;
+                transform: translateY(-200px);
+                font-size: 40px;
+                color: white;
+                background-color: rgba(0,0,0,.5);
+            `;
+        }, 500);
+
+        // 1-1-4. 
+    };
+    
+    // 1-2. 램프가져오기 함수
+    const getLamp = () => {
+                
+    }
+
+    // 1-3. 페라리 가져오기 함수
+    const getFerrari = () => {
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
     // 2. 컴포넌트 리턴은 가장 아랫쪽에서 함
     return(
         <React.Fragment>
@@ -46,6 +72,12 @@ function EventShow(){
                 <img src ="https://images.chosun.com/resizer/SFIqPKffr3HQHoHFOxKvnN-L2YU=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/NVMCI5M33KHBCY4JVHDPWRCBYY.jpg" alt="지니"
                 onMouseOver={()=>{
                     aladin('./images/ala4.jpg')}}/>
+            </div>
+            {/* 램프가 들어갈 요소 */}
+            <div className = 'lamp'>
+                {/* 버튼들 */}
+                <button onClick = {getLamp}>램프가져오기~!</button> <br/>
+                <button onClick = {getFerrari}>소원빌기~ 페라리주세요</button>
             </div>
         </React.Fragment>
     );
