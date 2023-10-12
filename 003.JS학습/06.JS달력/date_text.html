@@ -8,7 +8,9 @@
         // 콘솔찍기 함수
         const cg = x => console.log(x);
         // 날짜 찍기 형식 변경 함수(yyyy-mm-dd시간)
-        const fm = x => x.toISOString(x); 
+        const fm = x => x.toISOString();
+        // 요일변경배열
+        const week = ['일', '월', '화', '수', '목', '금', '토']; 
 
         // 달력 객체 생성(인스턴스 생성!)
 
@@ -43,7 +45,7 @@
         // 3. 전달 끝날짜 요일
         // -> 요일정보는 getDay()
         // 0부터 시작 (일요일부터 시작)
-        cg('전달끝날짜요일:' + test.getDay());
+        cg('전달끝날짜요일:' + week[test.getDay()]);
 
 
     </script>
