@@ -11,7 +11,7 @@ const Dfn = {
         ${x.getFullYear()
         }-${Dfn.addZero(x.getMonth()+1)
         }-${Dfn.addZero(x.getDate())
-        } (${week[x.getDay()]})
+        }(${week[x.getDay()]})
     `
 };  // dFn 객체
 
