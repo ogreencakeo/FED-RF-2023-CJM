@@ -6,9 +6,14 @@
     <title>JS Date 객체 사용 테스트</title>
     <script>
         // 콘솔찍기 함수
-        const cg = x => console.log(x);
+        const cg = x => document.write(`<h1>${x}</h1>`);
         // 날짜 찍기 형식 변경 함수(yyyy-mm-dd시간)
-        const fm = x => x.toISOString();
+        const fm = x => `
+                            ${test.getFullYear()
+                            }-${test.getMonth()+1 <10? '0'+(test.getMonth()+1) : test.getMonth()+1
+                            }-${test.getDate() <10? '0'+test.getDate() : test.getDate()
+                            } (${week[test.getDay()]})
+                        `
         // 요일변경배열
         const week = ['일', '월', '화', '수', '목', '금', '토']; 
 
@@ -20,40 +25,47 @@
         const tempDate = new Date();
 
         // 기본출력
-        cg('1. 기본출력 :', myDate);
+        // cg('1. 기본출력 :', myDate);
 
         // 달력구성에 필요한 정보들 ///////////
-        // 1. 전달 끝날짜
+        // 1. 전달 끝날짜00
         // 2. 전달 끝날짜 요일
         // 3. 현재달 첫날짜 (요일정보 때문에 구함!)
         // 4. 현재달 끝날짜
 
         // -> 전달 끝날짜, 첫날짜 알아오기
-        // new Date(년도, 월, 0-끝날짜/1-첫날짜)
+        // new Date(년도, 월, 0-현재달끝날짜/1-전달다음날첫날짜)
+        // 전달값
+        // (1) 년도
+        // (2) 월
+        // (3) 0 - 현재달끝날짜 / 1 - 다음달첫날짜
         
         // 1. 올해 2월 끝날짜
+        // let test = new Date(2023, 2, 0);
         let test = new Date(2023, 2, 0);
-        cg('2023년 2월끝날짜' + test);
+        cg('2023년 2월끝날짜:' + fm(test)); // 2023년 2월끝날짜: 2023-02-28 (화)
 
         // 2. 전달 끝날짜 : 월 정보를 숫자로 가져오면 전달이 됨!
         test = new Date(
                         tempDate.getFullYear(), 
                         tempDate.getMonth(), 
                         0);
-        cg('전달끝날짜:' + fm(test));
+        cg('전달끝날짜:' + fm(test)); // 전달끝날짜: 2023-09-30 (토)
 
         // 3. 전달 끝날짜 요일
         // -> 요일정보는 getDay()
         // 0부터 시작 (일요일부터 시작)
-        cg('전달끝날짜요일:' + week[test.getDay()]);
+        cg('전달끝날짜요일:' + week[test.getDay()]); // 전달끝날짜요일:토
 
         // 4. 현재달 첫날짜
-        test = new Date(tempDate.getFullYear(), tempDate.getMonth(), 0);
-        cg('현재달첫날짜:' + fm(test));
+        // new Date(년도, 월, 0-현재달끝날짜 / 1-다음달첫날짜)
+        // 현재달 첫날짜는 전달로 처리하면 나옴!
+        test = new Date(tempDate.getFullYear(), tempDate.getMonth(), 1);
+        cg('현재달첫날짜:' + fm(test)); // 현재달첫날짜: 2023-10-01 (일)
         
         // 5. 현재달 끝날짜
-        test = new Date(tempDate.getFullYear(), tempDate.getMonth()+1, 1);
-        cg('현재달끝날짜:')
+        test = new Date(tempDate.getFullYear(), tempDate.getMonth()+1, 0);
+        cg('현재달끝날짜:'+ fm(test)); // 현재달끝날짜: 2023-10-31 (화)
 
     </script>
 </head>
