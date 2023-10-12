@@ -1,6 +1,7 @@
 let pm = location.href;
+
 if(pm.indexOf('?') == -1){
-    alert('잘못된 접근');
+    alert('지정상적인 접근');
     location.href = 'pra.html';
 }
 
@@ -8,7 +9,6 @@ pm = pm.split('?')[1];
 pm = pm.split('=')[1];
 
 pm = decodeURIComponent(pm);
-console.log(pm);
 
 let sdata = {
     레드샵: {
@@ -31,11 +31,11 @@ let sdata = {
         배경색: "green",
         이미지: "shop_green.jpg",
     },
-};
+}; 
 
 const title = document.querySelector('#title');
 const main = document.querySelector('#main');
 
 title.innerText = pm;
-title.style.backgroundColor = sdata[pm].배경색;
 main.style.backgroundImage = `url(images/${sdata[pm].이미지})`;
+title.style.backgroundColor = sdata[pm].배경색;

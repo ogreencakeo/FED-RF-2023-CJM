@@ -5,6 +5,12 @@
     - 리액트에서는 조건부로 구성요소를 렌더링 할 수 있다! 
 ********************************************************/
 
+// 이미지경로 배열
+const devImg = [
+    "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/HYAONH6EGJBKIU5CJWWF343MKE.jpg",
+    "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202208/24/BoiledMovie/20220824133926904mopw.png"
+];
+
 // 선택적으로 로딩하도록 컴포넌트를 2개 만들기
 // 1번 컴포넌트
 function MakeDev(){
@@ -49,11 +55,6 @@ function Developer(props){
 
 }   // Developer 컴포넌트
 
-// 이미지경로 배열
-const devImg = [
-    "https://cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/HYAONH6EGJBKIU5CJWWF343MKE.jpg",
-    "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202208/24/BoiledMovie/20220824133926904mopw.png"
-];
 
 // 컴포넌트 호출하기1 : 개발자 찍기
 ReactDOM.render(

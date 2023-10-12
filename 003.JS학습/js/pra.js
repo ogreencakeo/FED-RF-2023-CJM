@@ -1,71 +1,106 @@
-import dFn from './dom.js';
+class MovieInfo {
+    constructor(pos, tit, sum, dir, act, des) {
+        this.포스터 = pos;
+        this.제목 = tit;
+        this.개요 = sum;
+        this.감독 = dir;
+        this.출연 = act;
+        this.문구 = des;
+    }
 
-const fruit = ["배", "사과", "용과", "딸기"];
-
-const frObj = {
-    배: "fruits_01",
-    사과: "fruits_02",
-    용과: "fruits_14",
-    딸기: "fruits_09",
-    두리안: "fruits_17",
-    바나나: "fruits_15",
-    수박: "fruits_12",
-    파인애플: "fruits_13",
-    망고: "fruits_24",
-    오렌지: "fruits_03",
-    체리: "fruits_05",
-    멜론: "fruits_11",
-    블루베리: "fruits_20",
-    레몬: "fruits_04",
-};
-
-const showit = dFn.qs('.showit');
-const cont = dFn.qs('.cont');
-const mbtn = dFn.qsa('.mbtn');
-
-const sel = dFn.qs('#sel');
-const anum = dFn.qs('#anum');
-const delNum = dFn.qs('#delnum');
-
-sel.innerHTML = Object.keys(frObj).map((ele)=> `<option>${ele}</option>`).join("");
-
-const arrayShow = () => (showit.innerText = fruit.join('/'));
-arrayShow();
-
-const bindCombo = () => {
-    anum.innerHTML = fruit.map((v, i)=>`<option value=${i}>${v}</option>`).join("");
+    myMethod(txt) {
+        return `
+            영화 ${this.포스터}의 
+            감족님 이름은 ${this.감독}
+            나의 응원은 ${txt}
+        `;
+    }
 }
-bindCombo();
 
-mbtn.forEach(ele => {
-    dFn.addEvt(ele, 'click', showFruit);
+const mv = [];
+
+mv[0] = new MovieInfo(
+    "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
+    "조제",
+    "멜로/로맨스, 드라마",
+    "김종관",
+    "한지민, 남주혁",
+    "조제 보러 오세요"
+);
+
+mv[1] = new MovieInfo(
+    "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
+    "영웅",
+    "드라마, 뮤지컬",
+    "윤제균",
+    "정성화, 김고은",
+    "누가 죄인인가"
+);
+
+mv[2] = new MovieInfo();
+mv[2].포스터 =
+    "https://movie-phinf.pstatic.net/20221227_112/16721270739480lDiS_JPEG/movie_image.jpg?type=m203_290_2";
+mv[2].제목 = "교섭";
+mv[2].개요 = "드라마";
+mv[2].감독 = "임순례";
+mv[2].출연 = "황정민(정재호), 현빈(박대식)";
+mv[2].문구 = "아쌀라말라이쿰";
+
+let hcode = '';
+for (let y of mv) {
+    hcode += makeCode(y)
+}
+
+const wrap = document.querySelector('.wrap');
+wrap.innerHTML = hcode;
+
+const cbx = document.querySelectorAll('.cbx');
+cbx.forEach((ele, idx) => {
+    ele.addEventListener('click', ()=>{
+        alert(mv[idx].myMethod(mv[idx].문구));
+    });
 });
 
-function showFruit(){
-    let btxt = this.innerText;
-    let hcode = '';
-    if(btxt == '과일주세요~!'){
-        fruit.forEach(val => {
-            hcode += `
-                <li style = 'background : url(./addimg/${frObj[val]}).png no-repeat center/cover'>
-                    ${val}
-                </li>
-            `;
-        });
-        cont.innerHTML = `<ul>${hcode}</ul>`;
-    }else if(btxt == '뒷배열추가요~!'){
-        fruit.push(sel.value);
-    }else if(btxt == '앞배열추가요~!'){
-        fruit.unshift(sel.value);
-    }else if(btxt == '앞배열삭제요~!'){
-        fruit.shift();
-    }else if(btxt == '뒷배열삭제요~!'){
-        fruit.pop();
-    }else if(btxt == '중간배열삭제'){
-        fruit.splice(anum.value, delNum.value);
-    }else if(btxt == '중간배열삽입'){
-        fruit.splice(delNum.value, 0, sel.value);
+function makeCode(mvi) {
+    return `
+    <section class="cbx">
+        <div class="minfo">
+            <!-- 1. 포스터 -->
+            <div class="photo">
+                <img src="${mvi.포스터}" 
+                alt="${mvi["제목"]}의 포스터">  
+            </div>
+            <div class="cont">
+                <!-- 2. 제목 -->
+                <h2 class="tit">
+                    ${mvi["제목"]}</h2>
+                <!-- 3. 개요 -->
+                <h3 class="sum">
+                    ★장르 : ${mvi["개요"]}</h3>
+                <!-- 4. 감독 -->
+                <h3 class="dir">
+                    ★감독 : ${mvi["감독"]}</h3>
+                <!-- 5. 출연 -->
+                <h3 class="act">
+                    ★출연 : ${mvi["출연"]}</h3>
+            </div>
+        </div>
+
+        <!-- 영화 한마디 -->
+        <h2 class="showtit">♥ 영화한마디!</h2>
+        <!-- 6. 문구 -->
+        <div class="show">
+            ${wrapSpan(mvi["문구"])}
+        </div>
+    </section>
+    `
+}
+
+function wrapSpan(txt) {
+    let hcode = "";
+    for (let x of txt) {
+        if (x == " ") hcode += "&nbsp;&nbsp;";
+        else hcode += `<span>${x}</span>`;
     }
-    arrayShow();
-    bindCombo();
+    return hcode;
 }
