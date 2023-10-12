@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Date 객체 사용 테스트</title>
+    <script>
+        // 콘솔찍기 함수
+        const cg = x => console.log(x);
+        // 날짜 찍기 형식 변경 함수(yyyy-mm-dd시간)
+        const fm = x => x.toISOString(x); 
+
+        // 달력 객체 생성(인스턴스 생성!)
+
+        // 최종변경 날짜객체
+        const myDate = new Date();
+        // 변경할 날짜객체
+        const tempDate = new Date();
+
+        // 기본출력
+        cg('1. 기본출력 :', myDate);
+
+        // 달력구성에 필요한 정보들 ///////////
+        // 1. 전달 끝날짜
+        // 2. 전달 끝날짜 요일
+        // 3. 현재달 첫날짜
+        // 4. 현재달 끝날짜
+
+        // -> 전달 끝날짜, 첫날짜 알아오기
+        // new Date(년도, 월, 0-끝날짜/1-첫날짜)
+        
+        // 1. 올해 2월 끝날짜
+        let test = new Date(2023, 2, 0);
+        cg('2023년 2월끝날짜' + test);
+
+        // 2. 전달 끝날짜 : 월 정보를 숫자로 가져오면 전달이 됨!
+        test = new Date(
+                        tempDate.getFullYear(), 
+                        tempDate.getMonth(), 
+                        0);
+        cg('전달끝날짜:' + fm(test));
+
+        // 3. 전달 끝날짜 요일
+        // -> 요일정보는 getDay()
+        // 0부터 시작 (일요일부터 시작)
+        cg('전달끝날짜요일:' + test.getDay());
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
