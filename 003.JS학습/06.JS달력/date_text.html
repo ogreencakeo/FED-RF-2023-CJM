@@ -25,7 +25,7 @@
         // 달력구성에 필요한 정보들 ///////////
         // 1. 전달 끝날짜
         // 2. 전달 끝날짜 요일
-        // 3. 현재달 첫날짜
+        // 3. 현재달 첫날짜 (요일정보 때문에 구함!)
         // 4. 현재달 끝날짜
 
         // -> 전달 끝날짜, 첫날짜 알아오기
@@ -47,6 +47,13 @@
         // 0부터 시작 (일요일부터 시작)
         cg('전달끝날짜요일:' + week[test.getDay()]);
 
+        // 4. 현재달 첫날짜
+        test = new Date(tempDate.getFullYear(), tempDate.getMonth(), 0);
+        cg('현재달첫날짜:' + fm(test));
+        
+        // 5. 현재달 끝날짜
+        test = new Date(tempDate.getFullYear(), tempDate.getMonth()+1, 1);
+        cg('현재달끝날짜:')
 
     </script>
 </head>
