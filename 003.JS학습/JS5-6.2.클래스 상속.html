@@ -164,7 +164,7 @@
             /////////////////////////////////////////////////////
 
             // 1. CGV 클래스 활용하기 ////////////////////////////
-            const cgvInfo = new CGV(
+            const cgvInfo  = new CGV(
                 "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
                 "조제",
                 "멜로/로맨스, 드라마",
@@ -176,11 +176,25 @@
                 300
             ); 
 
+            ///////////////////////////////////////////////////////////////////////////
+            // 3. MegaBox 클래스 활용하기 ////////////////////////////
+            const megaInfo = new MegaBox(
+                "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
+                "영웅",
+                "드라마, 뮤지컬",
+                "윤제균",
+                "정성화, 김고은",
+                "누가 죄인인가",
+                "롤리팝과 먹는 새로운 롤리팝콘 출시!!!",
+                50
+            ); 
+
             // 객체확인
-            console.log('CGV 객체 확인 : ', cgvInfo);
+            console.log('CGV 객체 확인 : ', megaInfo);
 
             
             window.addEventListener('load', ()=>{
+                ///////////////////////////////////////////////////
                 // 2. cgvInfo 객체 화면 출력
                 // <div class = "cgv-info"><ol><li>...</li></ol></div>
                 let hcode = `
@@ -219,7 +233,8 @@
                     </li>
                 `;
 
-                // 극장수용인원 업데이트
+                
+                // 2-4. 극장수용인원 업데이트
                 // setter에서 데이터 유효성 검사함!
                 cgvInfo.people = "멍멍";
                 // cgvInfo.people = 500;
@@ -234,7 +249,67 @@
                 hcode += '</h2></ol></div>';
                 // 2-2. body에 직접 출력
                 document.body.innerHTML = hcode;
+
+
+                ///////////////////////////////////////////////////
+                // 4. cgvInfo 객체 화면 출력
+                // <div class = "cgv-info"><ol><li>...</li></ol></div>
+                hcode = `
+                    <div class = "mega-info">
+                        <h1> [ 메가박스 상영관 영화 안내 ] </h1>
+                        <h2>
+                            <ol>
+                `;
+
+                // 2-1-2.
+                cgvPoster = x => `<img src="${x}" alt="포스터 데이터">`
+                
+                // 2-1. 객체를 배열화하여 forEach사용!
+                // Object.keys(객체) ->  속성만 배열화
+                // 2-1-1.
+                Object.keys(megaInfo).forEach(v=>{
+                    hcode += `<li>${v=='포스터'? cgvPoster(megaInfo[v]) : megaInfo[v]}</li>`;
+                });
+
+                // 2-3. CGV 객체 메서드 호출하기
+                // : 상속된 부모 메서드와 함께 구현됨
+                hcode += `
+                    <li>
+                        🌭 메시지 : ${megaInfo.show('메가박스는 항상 훌륭합니다.')}
+                    </li>
+                `;
+
+                // 수용인원을 Getter / Setter 사용하여 표현하기
+
+                // CGV극장 수용 인원 보고
+                // megaInfo.수용인원 -> megaInfo.hallNum
+                // 원본 속성은 은닉하고 겟터를 통하여 읽어옴!
+                hcode += `
+                    <li>
+                        🥓 2023년도 메가박스 극장상영관수 ${megaInfo.hallNum}개입니다.
+                    </li>
+                `;
+
+                
+                // 2-4. 극장수용인원 업데이트
+                // setter에서 데이터 유효성 검사함!
+                megaInfo.hallNum = "멍멍";
+                // megaInfo.hallNum = 500;
+
+                // CGV극장 수용 변경 보고
+                hcode += `
+                    <li>
+                        🥓 2023년도 메가박스 극장상영관수 ${megaInfo.hallNum}개가 되었습니다!
+                    </li>
+                `;
+
+                hcode += '</h2></ol></div>';
+                // 2-2. body에 추가 출력
+                document.body.innerHTML += hcode;
             });
+
+            
+
         </script>
         <style></style>
     </head>
