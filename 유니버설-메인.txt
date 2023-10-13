@@ -50,3 +50,6 @@ pickUp10 : {
     img : "main/pickup/picup10.jpg",
     holdingTime : "개최기간：2022년3월 29일(화) ~ <br/> (일본어 페이지 한정)",
 }
+
+(유익한 정보)
+
