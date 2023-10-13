@@ -38,7 +38,7 @@ function Developer(props){
             <React.Fragment>
                 {/* MakeDev 컴포넌트 선택 출력 */}
                 <MakeDev />
-                <MakeImg isrc = {props.isrc} ialt = {props.ialt} ititle = {props.itit} />
+                <MakeImg isrc = {props.disrc} ialt = {props.ialt} ititle = {props.itit} />
             </React.Fragment>
         )
     } // if
@@ -58,7 +58,7 @@ function Developer(props){
 
 // 컴포넌트 호출하기1 : 개발자 찍기
 ReactDOM.render(
-    <Developer isDev={true} isrc={devImg[0]} ialt="개발자 공유"  ititle="프론트엔드 개발자 공유입니다!" />,
+    <Developer isDev={true} disrc={devImg[0]} ialt="개발자 공유"  ititle="프론트엔드 개발자 공유입니다!" />,
     document.querySelector('#root1')
 );
 // 컴포넌트 호출하기2 : 비개발자 찍기
@@ -66,3 +66,37 @@ ReactDOM.render(
     <Developer isDev={false} isrc={devImg[1]} ialt="주먹왕 마동석"  ititle="개발자가 뭡니까?" />,
     document.querySelector('#root2')
 );
+
+/******************************************************* 
+    2. if문이 아닌 조건 표현하기
+    -> 조건식 && JSX표현식
+    조건이 true일때만 && 뒤의 JSX표현식이 출력됨!
+*******************************************************/
+
+// 개발자의 취향을 알아보자
+// 음식리스트
+const foods = ["스파게티","짜파게티","냉면","짜장면","마라탕"];
+
+// 2-2. 반복 리스트를 위한 컴포넌트
+function FoodList(props){ // 음식명은 fname에 담아서 전달한다.
+    return <li>개발자는 {props.fname} 좋아해</li>;
+}
+
+// 2-1. 제목을 찍기위한 타이틀 컴포넌트
+function Title(props){  // 컴포넌트 호출시 tit를 셋팅함
+    return <h1>👨‍🔧개발자👩‍🔧가 좋아하는 {props.tit}</h1>;
+}
+
+
+// 2-3. 개발자 선호 음식 리스트 출력 컴포넌트
+function WishList(props){   // wlist 속성에 담아서 보내준다.
+    // 2-3-1. 위시리스트 담기
+    const myFood = props.wlist;
+    // 코드 리턴
+    return(
+        <React.Fragment>
+            <Title tit = '음식' />
+            {/* 음식 위시리스트의 길이가 0보다 클때만 출력 */}
+        </React.Fragment>
+    );
+}
