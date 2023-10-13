@@ -4,6 +4,7 @@
 const Dfn = {
     qs : x => document.querySelector(x),
     qsa : x => document.querySelectorAll(x),
+    addEvt : (ele, evt ,fn) => ele.addEventListener(evt, fn),
     cg : x => console.log(x),
     addZero : x => x<10? '0'+x : x,
     // 날짜 찍기 형식 변경 함수(yyyy-mm-dd시간)
@@ -123,15 +124,23 @@ function makeDallyeok(){
         Dfn.cg('날짜배열 : '+ dateSet);
 
         ///////////////////////////////////////////////////////////////////////
-        // 2-3. 날짜 배열로 날짜태그 구성하여 출력하기7일 
-        // 7일 * 6주 = 42개
+        // 2-3. 날짜 배열로 날짜태그 구성하기 /////////////
+        // 2-3-1. 7일 * 6주 = 42개
         for(let i=0; i<42; i++){
-            hcode += `
-                <div class="date">
-                    ${dateSet[i]}
-                </div>
-            `;
-        }  
+            // 오늘날짜와 같은 경우 클래스 'today'넣기
+            if(
+                // 2-3-2. 년, 월, 일이 모두 일치하는 오늘만 표시
+                // 오늘날짜 == 배열값날짜 AND 현재달 == 선택달 AND 현재년도==선택년도
+                (today.getDate()==dateSet[i]) && (today.getMonth()==currDate.getMonth()) && (today.getFullYear()==currDate.getFullYear())
+            ){
+                hcode += `<div class="date today"> ${dateSet[i]} </div> `;
+            }else{   
+                hcode += `<div class="date"> ${dateSet[i]} </div> `;
+            }
+        } 
+        
+        // 2-3-2. 날짜 태그 출력하기 ////////////////
+        dates.innerHTML = hcode;
 
         // dates.innerHTML = dateSet.map((v, i)=>
         //     i<42? `
@@ -141,6 +150,22 @@ function makeDallyeok(){
         //     ` : ``).join('');
 
     };  // initDallyeok함수 ///////////////
+
+    // 2-4. 이전 달력 출력하기 함수
+    const prevCalendar = () => {
+        console.log('이전달력 고고!');
+    };  
+
+    // 2-5. 다음 달력 출력하기 함수
+    const nextCalendar = () => {
+        console.log('다음달력 고고!');
+    };  
+
+    // 2-6. 이벤트 설정하기
+    // 2-6-1. 이전버튼에 함수 연결하기
+    Dfn.addEvt(Dfn.qs('.btnL'), 'click', prevCalendar);
+    // 2-6.2. 다음버튼에 함수 연결하기
+    Dfn.addEvt(Dfn.qs('.btnR'), 'click', nextCalendar);
 
     // 초기셋팅함수 호출
     initDallyeok();
