@@ -107,7 +107,7 @@
                 // 객체를 배열화하여 forEach사용!
                 // Object.keys(객체) ->  속성만 배열화
                 Object.keys(cgvInfo).forEach(v=>{
-                    hcode += `<li>${v}</li>`;
+                    hcode += `<li>${v} : ${cgvInfo[v]}</li>`;
                 });
 
                 hcode += '</ol></div>';
