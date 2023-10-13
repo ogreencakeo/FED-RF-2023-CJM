@@ -4,6 +4,8 @@
 const Dfn = {
     qs : x => document.querySelector(x),
     qsa : x => document.querySelectorAll(x),
+    qsEl: (el, x) => el.querySelector(x),
+    qsaEl: (el, x) => el.querySelectorAll(x),
     addEvt : (ele, evt ,fn) => ele.addEventListener(evt, fn),
     cg : x => console.log(x),
     addZero : x => x<10? '0'+x : x,
@@ -174,7 +176,32 @@ function makeDallyeok(){
                 // 2-7-5. 날짜 읽기
                 let nowD = ele.innerText;
                 
-                console.log(`${Dfn.addZero(nowM)}-${Dfn.addZero(nowM)}-${Dfn.addZero(nowD)}`);
+                console.log(`${Dfn.addZero(nowY)}-${Dfn.addZero(nowM)}-${Dfn.addZero(nowD)}`);
+                console.log(ele.querySelector('span'));
+
+                // 2-7-6. 전달 / 다음달 구분하기
+                let isSpan = Dfn.qsEl(ele, 'span');
+                console.log('isSpan :', isSpan);
+                // span이 있으면 true 처리됨
+                if(isSpan){
+                    // span의 클래스가 'bm' / 'am' 인지 구분하기
+                    let isAM = isSpan.classList.contains('am');
+                    if(isAM){   // 다음달이므로 1 더함
+                        nowM++;
+                        if(nowM==13) {
+                            nowM = 1; // 13월은 1월로 처리
+                            nowY++; // 1월은 다음해로 처리
+                        }
+                    }else{  // 'bm'일 경우 즉, 전달
+                        nowM--;
+                        if(nowM==0){
+                            // 0월은 12월로 처리
+                            nowM = 12;
+                            // 12월은 전해로 처리
+                            nowY--;
+                        }
+                    }
+                }
 
             });
         }); 
