@@ -176,7 +176,6 @@ function makeDallyeok(){
                 // 2-7-5. 날짜 읽기
                 let nowD = ele.innerText;
                 
-                console.log(`${Dfn.addZero(nowY)}-${Dfn.addZero(nowM)}-${Dfn.addZero(nowD)}`);
                 console.log(ele.querySelector('span'));
 
                 // 2-7-6. 전달 / 다음달 구분하기
@@ -202,6 +201,7 @@ function makeDallyeok(){
                         }
                     }
                 }
+                console.log(`${Dfn.addZero(nowY)}-${Dfn.addZero(nowM)}-${Dfn.addZero(nowD)}`);
 
             });
         }); 
