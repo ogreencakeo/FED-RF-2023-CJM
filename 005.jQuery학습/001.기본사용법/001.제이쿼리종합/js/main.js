@@ -53,7 +53,7 @@ const msgTxt  = [
     // 6번방
     "",
     // 7번방
-    "",
+    [`여긴없겠지?`, `악, 여기도!!!`],
     // 8번방
     `와~! 아늑하다!<br /> 옆방으로 가보자!`,
     // 9번방
@@ -163,7 +163,7 @@ btns.first() // 첫번째 버튼
                     msg.html(msgTxt).delay(1000).fadeIn(300);
         
                     //
-                    console.log("미니언즈 콜백함수 this :", this);
+                    console.log("미니언즈 콜백함수 this :", this); // button
                     
                     // 다음 버튼 보이기
                     showNextBtn(this);
@@ -180,26 +180,45 @@ btns.first() // 첫번째 버튼
     .click(
         // () => {
         function () {   // 하위이벤트함수 this의미
-            // 버튼별 콜백함수 만들기
+            // 5-1. 버튼별 콜백함수 만들기
             let fn = 
                 // function(){ // this가 mi임
                 () => { 
-                    // 좀비 나타나기 (2초후)
-                    room.eq(9).find('.mz')
-                        .delay(2000)
+                    // 5-1-1. 좀비 나타나기 (2초후)
+                    room.eq(9).find('.mz').delay(2000)
                         .fadeIn(400,()=>{
-                            // 콜백함수
+                            // 5-1-2. 콜백함수
                             // 메시지 보이기
-                            msg.html(msgTxt[9])
-                            .css({left : '-89%'})
-                            .fadeIn(300)
-                            // 다음 버튼 보이기
+                            msg.html(msgTxt[9]).css({left : '-89%'}).fadeIn(300)
+                            // 5-1-3. 다음 버튼 보이기
                             showNextBtn(this);
                         }); // fadeIn 함수
                 };  ///// 콜백함수 //////////
             // 미니언즈 공통함수 호출
             actMini(this, 9, fn);
         }
-    );
+    )
     //////////////////////////////////////////////////////////////////
-    // [ 5. "옆방으로!" 버튼 클릭시 ]
+    // [ 6. "윗층으로 도망가!" 버튼 클릭시 ].next() // 세번째 버튼
+    .next() // 세번째 버튼
+    .click(
+        // () => {
+        function () {  
+            let fn = 
+                () => { 
+                    // 6-1. 메시지 보이기 : 7번방 첫번째 메시지
+                    msg.text(msgTxt[7][0]).fadeIn(300);
+
+                    // 6-2. 좀비 보이기
+                    // find() 자손 선택 / children() 직계자식 선택
+                    room.eq(7).find('.mz')
+                    .delay(1000).fadeIn(400, ()=>{
+                        // 6-2-1. 콜백함수 : 좀비 등장후 메시지 변경하기 - 두번째 메시지
+                        msg.text(msgTxt[7][1]);
+                        // 6-2-2. 다음 버튼 보이기
+                        showNextBtn(this);
+                    }); // fadeIn
+                };  
+            actMini(this, 7, fn);
+        }
+    );
