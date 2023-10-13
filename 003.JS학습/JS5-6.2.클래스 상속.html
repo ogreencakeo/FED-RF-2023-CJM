@@ -108,8 +108,11 @@
                 // Object.keys(객체) ->  속성만 배열화
                 Object.keys(cgvInfo).forEach(v=>{
                     hcode += `<li>${v}</li>`;
-                })
+                });
 
+                hcode += '</ol></div>';
+                // body에 직접 출력
+                document.body.innerHTML = hcode;
             });
         </script>
         <style></style>
