@@ -154,6 +154,10 @@ function makeDallyeok(){
     // 2-4. 이전 달력 출력하기 함수
     const prevCalendar = () => {
         console.log('이전달력 고고!');
+        // 이전달로 변경하여 initDallyeok() 호출
+        // getMonth() 월 가져오기 / setMonth() 월 셋팅하기
+        currDate.setMonth(currDate.getMonth()-1);
+        initDallyeok();
     };  
 
     // 2-5. 다음 달력 출력하기 함수
