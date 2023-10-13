@@ -38,6 +38,8 @@ function makeDallyeok(){
     const dates = Dfn.qs('.dates');
     // 1-6. 날짜 넣을 배열 변수
     const dateSet = [];
+    // 1-7. html 코드 저장 변수
+    let hcode = '';
 
     // Dfn.cg(yearTit);
     // Dfn.cg(monthTit);
@@ -123,12 +125,20 @@ function makeDallyeok(){
         ///////////////////////////////////////////////////////////////////////
         // 2-3. 날짜 배열로 날짜태그 구성하여 출력하기7일 
         // 7일 * 6주 = 42개
-        dates.innerHTML = dateSet.map((v, i)=>
-            i<42? `
+        for(let i=0; i<42; i++){
+            hcode += `
                 <div class="date">
-                    ${v}
+                    ${dateSet[i]}
                 </div>
-            ` : ``).join('');
+            `;
+        }  
+
+        // dates.innerHTML = dateSet.map((v, i)=>
+        //     i<42? `
+        //         <div class="date">
+        //             ${v}
+        //         </div>
+        //     ` : ``).join('');
 
     };  // initDallyeok함수 ///////////////
 
