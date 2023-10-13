@@ -47,7 +47,10 @@ const msgTxt  = [
     // 3번방
     "",
     // 4번방
-    "",
+    [   
+        ['무', '무.', '무.서', '무.서.', '무.서.워', '무.서.워.', '무.서.워..', '무.서.워...'],
+        `아~악! 물렸다!<br>어서 치료주사방으로!`
+    ],
     // 5번방
     "",
     // 6번방
@@ -160,7 +163,7 @@ btns.first() // 첫번째 버튼
                 // function(){ // this가 mi임
                 () => {    // this가 싸고 있는 버튼요소임
                     // 메시지 변경 + 메시지 보이기
-                    msg.html(msgTxt).delay(1000).fadeIn(300);
+                    msg.html(msgTxt[8]).delay(1000).fadeIn(300);
         
                     //
                     console.log("미니언즈 콜백함수 this :", this); // button
@@ -244,23 +247,49 @@ btns.first() // 첫번째 버튼
         }
     )
     //////////////////////////////////////////////////////////////////
-    // [ 8. "다시옆방으로!" 버튼 클릭시 ].next() // 네번째 버튼
-    .next() // 세번째 버튼
+    // [ 8. "다시옆방으로!" 버튼 클릭시 ].next() // 다섯번째 버튼
+    .next() // 다섯번째 버튼
     .click(
-        // () => {
         function () {  
             let fn = 
                 () => { 
-                    // 7-1. 첫번째 메시지 보이기
-                    // 이미 보이지만 delay()를 쓰기 위해 다시 fadeIn()
-                    msg.html(msgTxt[6][0]).fadeIn(200).delay(1000)
-                    .fadeIn(200, ()=> {  // 1.2초후 다시 실행
-                        // 7-2. 두번째 메시지 보이기
-                        msg.html(msgTxt[6][1]);
-                        // 7-3. 다음버튼 보이기
-                        showNextBtn(this);
+                    // 8-1. 무.서.워... 메시지
+                    msg.html(msgTxt[4][0][0]).fadeIn(200)
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][1])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][2])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][3])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][4])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][5])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][6])})
+                    .delay(500).fadeIn(200, ()=>{ msg.html(msgTxt[4][0][7])})
+
+                    // 8-2. 무서워 대사후 좀비 올라와 달겨들기
+                    .delay(500).fadeIn(200, ()=>{ 
+                        room.eq(7).find('.mz').animate({
+                            // 8-3. 윗층으로 올라옴
+                            // 8-3-1. li 높이값 만큼
+                            bottom : room.eq(7).height()+'px'
+                        }, 500, 'easeOutElastic')
+                        .delay(500) // 8-4. 기다림
+                        .animate({
+                            // 8-4-1. right값을 li width값 만큼 이동(120%보정)
+                            right : room.eq(7).width()*1.2 + 'px'
+                        }, 1000, 'easeOutBounce', ()=>{
+                            // 8-4-2. 물린후 대사
+                            msg.html(msgTxt[4][1]);
+                            // 8-4-3. 미니언즈 좀비 이미지 변경 (1초후)
+                            setTimeout(()=>{
+                                // 흑백변경 : 필터 (그레이 스케일)
+                                mi.find('img')
+                                .attr('src', 'images/mz1.png')
+                                .css({filter : 'grayscale(100%)'});
+
+                                // 8-5. 다음 버튼 보이기
+                                showNextBtn(this)
+                            }, 1200);
+                        })
                     });
                 };  
-            actMini(this, 6, fn);
+            actMini(this, 4, fn);
         }
     )
