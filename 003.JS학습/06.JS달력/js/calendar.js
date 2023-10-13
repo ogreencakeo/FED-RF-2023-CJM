@@ -50,6 +50,13 @@ function makeDallyeok(){
     // 2. 함수 만들기
     // 2-1. 달력 초기화구성 함수
     const initDallyeok = () => {
+        // 2-1-0. 변수 초기화
+        // 날짜 배열 초기화 : splice(시작순번, 개수)
+        // 배열변수.splice(0) 첫배열부터 모두 지움
+        dateSet.splice(0);
+        // html코드변수 초기화
+        hcode = '';
+
         // 현재년
         let cYr = currDate.getFullYear();
         // 현재달
@@ -149,27 +156,46 @@ function makeDallyeok(){
         //         </div>
         //     ` : ``).join('');
 
+        // Dfn.cg(dateSet);
+        // Dfn.cg(hcode);
+
+        // 2-7. 날짜 정보를 사용하도록 셋팅하기
+        // 2-7-1. 대상 : .date -> 위에서 새로 담겼으므로 새로 읽음
+        let newDate = Dfn.qsa('.date');
+        // console.log('newDate :', newDate); // 0~41
+
+        // 2-7-2. 각 날짜 .date요소에 링크 설정하기
+        newDate.forEach(ele=>{
+            Dfn.addEvt(ele, 'click', ()=>{
+                // 2-7-3. 년도 읽기
+                let nowY = yearTit.innerText;
+                // 2-7-4. 월 읽기
+                let nowM = monthTit.innerText;
+                // 2-7-5. 날짜 읽기
+                let nowD = ele.innerText;
+                
+                console.log(`${Dfn.addZero(nowM)}-${Dfn.addZero(nowM)}-${Dfn.addZero(nowD)}`);
+
+            });
+        }); 
+
     };  // initDallyeok함수 ///////////////
 
-    // 2-4. 이전 달력 출력하기 함수
-    const prevCalendar = () => {
+    // 2-4. 이전/다음 달력 출력하기 함수
+    const chgvCalendar = (num) => {    // num이 1이면 다음, -1이면 이전
         console.log('이전달력 고고!');
-        // 이전달로 변경하여 initDallyeok() 호출
+        // 이전/다음달로 변경하여 initDallyeok() 호출
         // getMonth() 월 가져오기 / setMonth() 월 셋팅하기
-        currDate.setMonth(currDate.getMonth()-1);
+        currDate.setMonth(currDate.getMonth()+num);
         initDallyeok();
     };  
 
-    // 2-5. 다음 달력 출력하기 함수
-    const nextCalendar = () => {
-        console.log('다음달력 고고!');
-    };  
 
     // 2-6. 이벤트 설정하기
-    // 2-6-1. 이전버튼에 함수 연결하기
-    Dfn.addEvt(Dfn.qs('.btnL'), 'click', prevCalendar);
-    // 2-6.2. 다음버튼에 함수 연결하기
-    Dfn.addEvt(Dfn.qs('.btnR'), 'click', nextCalendar);
+    // 2-6-1. 이전버튼에 함수 연결하기 : 달을 빼기 위해 -1 전달 
+    Dfn.addEvt(Dfn.qs('.btnL'), 'click', ()=>chgvCalendar(-1));
+    // 2-6.2. 다음버튼에 함수 연결하기 : 달을 더하기 위해 1 전달 
+    Dfn.addEvt(Dfn.qs('.btnR'), 'click', ()=>chgvCalendar(1));
 
     // 초기셋팅함수 호출
     initDallyeok();
