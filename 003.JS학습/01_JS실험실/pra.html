@@ -1,26 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/pra.css">
-    <script type="module" src="./js/pra.js"></script>
+    <title>원 페이지 자동 스크롤 레이아웃</title>
+    <style>
+        /* 기본 초기화 */
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin: 0;
+            padding: 0;
+        }
+/* 
+        html,
+        body {
+            overflow: hidden;
+        } */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html, body{
+            overflow: hidden;
+        }
+
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            tab-size: 0 0 2px #777;
+        }
+
+        /* 공통 레이아웃 클래스 */
+        /* 속박스 */
+        .inbox {
+            max-width: 2000px;
+            margin: 0 auto;
+            /* outline: 2px dashed red; */
+        }
+
+        /* 페이지 속박스 */
+        .page .inbox {
+            position: relative;
+            height: 100vh;
+        }
+
+        /* 상단영역 고정하기 */
+        #header {
+            position: fixed;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            /* 가장위 설정 */
+            z-index: 999;
+        }
+
+        .header {
+            position: relative;
+            height: 80px;
+        }
+
+        #logo {
+            width: 250px;
+            height: 100%;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #logo img {
+            width: 100%;
+            margin-top: -24px;
+        }
+
+        .gnb {
+            position: absolute;
+            top: 40px;
+            right: 2%;
+        }
+
+        .gnb ul {
+            display: flex;
+        }
+
+        .gnb li {
+            margin: 0 7px;
+        }
+
+        .gnb a:hover,
+        .gnb li.on a {
+            display: inline-block;
+            color: lime;
+            text-decoration: overline;
+            transform: scale(1.1);
+        }
+
+        .pg1 {
+            background-image: url(./images/auto_scroll/pic1.png);
+        }
+
+        .pg2 {
+            background-image: url(./images/auto_scroll/pic2.png);
+        }
+
+        .pg3 {
+            background-image: url(./images/auto_scroll/pic3.png);
+        }
+
+        .pg4 {
+            background-image: url(./images/auto_scroll/pic4.png);
+        }
+
+        .pg5 {
+            background-image: url(./images/auto_scroll/pic5.png);
+        }
+
+        .pg6 {
+            background-image: url(./images/auto_scroll/pic6.png);
+        }
+
+        .pg7 {
+            background-image: url(./images/auto_scroll/pic7.png);
+        }
+
+        .bg-com{
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .indic{
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5%;
+            width: 20px;
+        }
+        .indic li{
+            width: 100%;
+            height: 10px;
+            margin: 3px 0;
+            cursor: pointer;
+        }
+        .indic a{
+            display: block;
+            width: 100%;
+            height: 2px;
+            margin-top: 4px;
+            background-color: #ccc;
+            box-shadow: 1px 1px 1px #777;
+            transition: width 0.4s;
+        }
+
+        .indic span{
+            display: none;
+        }
+        .indic li:hover a,
+        .indic li.on a{
+            width: 150%;
+            background-color: #fff;
+        }
+    </style>
+    <script src="./js/pra.js" defer></script>
 </head>
+
 <body>
-    <header class="top-area">
-        <nav class="gnb">
-            <div class="mbg"></div>
-            <ul></ul>
-        </nav>
-    </header>
-    <div class="pg"></div>
-    <div class="pg"></div>
-    <div class="pg tpg">
-        <div class="slidePg"></div>
+    <!-- 1. 상단영역 : 고정메뉴 -->
+    <div id="header">
+        <header class="inbox header">
+            <h1 id="logo">
+                <a href="#">
+                    <img src="images/auto_scroll/logo.png" alt="">
+                </a>
+            </h1>
+            <nav class="gnb">
+                <ul>
+                    <li class="on">
+                        <a href="#pg1">아수라</a>
+                    </li>
+                    <li>
+                        <a href="#pg2">고산자</a>
+                    </li>
+                    <li>
+                        <a href="#pg3">인천상륙작전</a>
+                    </li>
+                    <li>
+                        <a href="#pg4">봉이김선달</a>
+                    </li>
+                    <li>
+                        <a href="#pg5">비밀은없다</a>
+                    </li>
+                    <li>
+                        <a href="#pg6">아가씨</a>
+                    </li>
+                    <li>
+                        <a href="#pg7">탐정홍길동</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     </div>
-    <div class="pg"></div>
-    <div class="pg"></div>
-    <div class="pg"></div>
+    <!-- 2. 페이지영역 -->
+    <div id="content">
+        <main>
+            <!-- 2-1. 페이지 -->
+            <section id="pg1" class="page">
+                <div class="inbox bg-com pg1">
+
+                </div>
+            </section>
+
+            <!-- 2-2. 페이지 -->
+            <section id="pg2" class="page">
+                <div class="inbox bg-com pg2">
+
+                </div>
+            </section>
+
+            <!-- 2-3. 페이지 -->
+            <section id="pg3" class="page">
+                <div class="inbox bg-com pg3">
+
+                </div>
+            </section>
+
+            <!-- 2-4. 페이지 -->
+            <section id="pg4" class="page">
+                <div class="inbox bg-com pg4">
+
+                </div>
+            </section>
+
+            <!-- 2-5. 페이지 -->
+            <section id="pg5" class="page">
+                <div class="inbox bg-com pg5">
+
+                </div>
+            </section>
+
+            <!-- 2-6. 페이지 -->
+            <section id="pg6" class="page">
+                <div class="inbox bg-com pg6">
+
+                </div>
+            </section>
+            <!-- 2-6. 페이지 -->
+            <section id="pg7" class="page">
+                <div class="inbox bg-com pg7">
+
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- 하단영역 -->
+    <div id="footer">
+        <footer class="inbox">
+
+        </footer>
+    </div>
+    <nav class="indic">
+        <ul>
+            <li class="on">
+                <a href="#pg1"><span>아수라</span></a>
+            </li>
+            <li>
+                <a href="#pg2"><span>고산자</span></a>
+            </li>
+            <li>
+                <a href="#pg3"><span>인천상륙작전</span></a>
+            </li>
+            <li>
+                <a href="#pg4"><span>봉이김선달</span></a>
+            </li>
+            <li>
+                <a href="#pg5"><span>비밀은없다</span></a>
+            </li>
+            <li>
+                <a href="#pg6"><span>아가씨</span></a>
+            </li>
+            <li>
+                <a href="#pg7"><span>탐정홍길동</span></a>
+            </li>
+        </ul>
+
+    </nav>
 </body>
+
 </html>
