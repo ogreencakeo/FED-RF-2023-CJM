@@ -5,40 +5,84 @@ const devImg = [
 ];
 
 function MakeDev(){
-    return <h1>나는 개발자야</h1>
+    return <h1>나는 개발자야!</h1>;
 }
 
 function LostDev(){
-    return <h1>개발자가 뭐니</h1>
-}
-
-function MakeImg(props){
-    return <img src={props.isrc} alt={props.ialt} title={props.tit}/> 
+    return <h1>개발자가 뭐지?</h1>;
 }
 
 function Developer(props){
-    const isNow = props.info;
-    if(isNow){
+    const info = props.inDev;
+    if(info){
         return(
             <React.Fragment>
                 <MakeDev />
-                <MakeImg isrc={props.isrc} ialt={props.ialt} tit={props.tit} />
+                <MakeImg isrc={props.psrc} ialt ={props.palt} />
             </React.Fragment>
-        );
+        )
     }
+
     return(
-        <React.Fragment>
-            <LostDev />
-            <MakeImg isrc={props.isrc} ialt={props.ialt} tit={props.tit} />
-        </React.Fragment>
-    );
+            <React.Fragment>
+                <LostDev />
+                <MakeImg isrc={props.lsrc} ialt ={props.lalt} />
+            </React.Fragment>
+    )
+}
+
+function MakeImg(props){
+    return(
+        <img src={props.isrc} alt={props.ialt} />
+    )
 }
 
 ReactDOM.render(
-    <Developer info={true} isrc={devImg[0]} ialt='개발자 공유' tit='개발자에 오신것을 환영합니다.' />,
+    <Developer inDev = {true} psrc={devImg[0]} palt='개발자 공유' />,
     document.querySelector('#root1')
 )
+
 ReactDOM.render(
-    <Developer info={false} isrc={devImg[1]} ialt='주먹왕 마동석' tit='개발이뭐녀구' />,
+    <Developer inDev = {false} lsrc={devImg[1]} lalt='주먹왕 마동석' />,
     document.querySelector('#root2')
 )
+
+const foods = ['스파게티', '짜파게티', '냉면', '짜장면', '마라탕'];
+
+
+function FoodList(props){
+    return <li>개발자가 좋아하는 음식은 {props.name}입니다.</li>;
+}
+
+function FoodTit(props){
+    return <h1>개발자가 좋아하는 {props.tit}</h1>
+}
+
+function WishList(props){
+    const myFood = props.wlist;
+    return(
+        <React.Fragment>
+            <FoodTit tit = '음식' />
+            {
+                myFood.length > 0 &&
+                <div>
+                    <h1>개발자가 좋아하는 음식은 {myFood.length}개입니다.</h1>
+                    <ul>
+                        {
+                            myFood.map(val => <FoodList name={val}/>)
+                        }
+                    </ul>
+                </div>
+            }
+            {
+                myFood.length == 0 &&
+                <h2>아직 개발자 음식 리스트가 업데이트 되지 않았습니다.</h2>            
+            }
+        </React.Fragment>
+    )
+}
+
+ReactDOM.render(
+    <WishList wlist = {foods} />,
+    document.querySelector('#root3')
+);
