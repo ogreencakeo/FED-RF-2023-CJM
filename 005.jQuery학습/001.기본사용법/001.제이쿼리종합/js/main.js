@@ -102,8 +102,8 @@ $(".mz").hide();
 // [ 2. 버튼 셋팅하기 ]
 // 대상 : .btns button -> btns변수
 // 2.1 버튼들.숨겨().첫번째().보여()
-// btns.hide().first().show();
-btns.hide().eq(7).show();
+btns.hide().first().show();
+// btns.hide().eq(7).show();
 
 //////////////////////////////////////////////////////////////////////
 // [ 3. 미니언즈 공통 기능 함수 ]
@@ -415,7 +415,7 @@ btns.first() // 첫번째 버튼
                 }, 4000, "easeInOutCirc", function(){
                     // 애니후 콜백함수
                     // 12-5. 끝쪽에서 조종사를 좀비로 변경하는 이미지 변경
-                    $(this).arr('src', 'images/heli3.png');
+                    $(this).attr('src', 'images/heli3.png');
                 })
                 .delay(300) // 0.3초후
                 .animate({
@@ -438,6 +438,43 @@ btns.first() // 첫번째 버튼
                         // parent() -> 부모요소인 .building
                         // -> JS의 parentElement와 유사함!
                     }, 6000);
+
+                    // 추가구현 : 시간(6초+건물기다리고 무너진시간 8초)+
+                    // 건물 무너진후 좀비 하나 올라와 오른쪽으로 사라지기
+                    setTimeout(()=>{
+                        // 건물 기울기 원상복귀(이유 : 좀비가 똑바로 보이게)
+                        room.parent().attr('style', 'transform : rotate(0deg) !important')
+                        // 9번방 좀비 지표로 올라오기 / 기다리기 / 오른쪽으로 나가기
+                        room.eq(9).find('.mz')
+                        .animate({
+                            bottom:'594%'
+                        }, 3000)
+                        .delay(3000)
+                        .animate({
+                            right : '-240%'
+                        }, 5000, ()=>{
+                            // 마지막 좀비 퇴장후 'THE END' 화면 중앙 보이기
+                            // body에 append 하여 태그 출력하기
+                            $('body').append(
+                                '<h1 class="ending">THE END</h1>'
+                            )
+                            $('.ending').css({
+                                position : 'fixed',
+                                top : '50%',
+                                left : '50%',
+                                transform : 'translate(-50%, -50%)',
+                                margin : '0',
+                                padding : '0',
+                                color : 'white',
+                                fontSize : '20vh',
+                                textShadow:'0 0 5px #000',
+                                fontFamily:'Vladimir'
+                            }).hide()   // 숨기기
+                            .fadeIn(1000)   // 페이드 애니로 보이기
+                            .animate({color : 'red'}, 1000);    // 글자색 바꾸기 애니
+                        });
+                    }, 20000);
+
                 }); // animate ////////////////////////
             };  
             actMini(this, 0, fn);
