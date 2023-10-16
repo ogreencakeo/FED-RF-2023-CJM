@@ -460,8 +460,19 @@ function searchingFn(){
     // 단, 그 변수 데이터는 정렬시에 사용하도록 한다.
     // -> newList변수
     newList = res;
-
 }
+
+// 4-7. 전체 리스트 돌아가기 버튼 클릭시 기능구현
+// 대상 : .fbtn
+dFn.addEvt(dFn.qs('.fbtn'), 'click', ()=>{
+    // 4-7-1. newList를 원본 list2로 업데이트
+    newList = list2;
+    upCode(newList, showList4);
+
+    // 4-7-2. 검색어 초기화
+    dFn.qs('#stxt').value = '';
+    
+});
 
 
 ///////////////////////////////////////////////////////////////
