@@ -459,4 +459,5 @@ btns.first() // 첫번째 버튼
                 backgroundColor : 'pink',
                 color : 'yellow'
             });
-        }); // hover 메서드
+        }
+    ); // hover 메서드
