@@ -102,7 +102,8 @@ $(".mz").hide();
 // [ 2. 버튼 셋팅하기 ]
 // 대상 : .btns button -> btns변수
 // 2.1 버튼들.숨겨().첫번째().보여()
-btns.hide().first().show();
+// btns.hide().first().show();
+btns.hide().eq(4).show();
 
 //////////////////////////////////////////////////////////////////////
 // [ 3. 미니언즈 공통 기능 함수 ]
@@ -275,22 +276,37 @@ btns.first() // 첫번째 버튼
                             // 8-4-1. right값을 li width값 만큼 이동(120%보정)
                             right : room.eq(7).width()*1.2 + 'px'
                         }, 1000, 'easeOutBounce', ()=>{
-                            // 8-4-2. 물린후 대사
-                            msg.html(msgTxt[4][1])
-                            .css({left : '-46%'});
-                            // 8-4-3. 미니언즈 좀비 이미지 변경 (1초후)
+                            // 8-4-2. 미니언즈 이미지 흑백처리 (1초후)
+                            setTimeout(()=>{
+                                mi.find('img')
+                                .css({filter : 'grayscale(100%)'});
+                                // 8-4-3. 물린후 대사
+                                msg.html(msgTxt[4][1])
+                                .css({left : '-84%'});
+                            }, 1000);
+                            // 8-4-4. 미니언즈 좀비 이미지 변경 (2초후)
                             setTimeout(()=>{
                                 // 흑백변경 : 필터 (그레이 스케일)
                                 mi.find('img')
-                                .attr('src', 'images/mz1.png')
-                                .css({filter : 'grayscale(100%)'});
+                                .attr('src', 'images/mz1.png');
 
                                 // 8-5. 다음 버튼 보이기
                                 showNextBtn(this)
-                            }, 1200);
+                            }, 2000);
                         })
                     });
                 };  
             actMini(this, 4, fn);
+        }
+    )
+    //////////////////////////////////////////////////////////////////
+    // [ 9. "치료주사방으로!" 버튼 클릭시 ].next() // 여석번째 버튼
+    .next() // 여섯번째 버튼
+    .click(
+        function () {  
+            let fn = () => { 
+                
+            };  
+            actMini(this, 2, fn);
         }
     )
