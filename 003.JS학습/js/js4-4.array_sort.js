@@ -469,10 +469,21 @@ dFn.addEvt(dFn.qs('.fbtn'), 'click', ()=>{
     newList = list2;
     upCode(newList, showList4);
 
-    // 4-7-2. 검색어 초기화
-    dFn.qs('#stxt').value = '';
-    
+    // 4-7-2. 검색 초기화
+    initSearch();
 });
+
+// 4-8. 초기화 함수 : 검색선택박스 초기화
+function initSearch(){
+    // 4-8-1. 검색어 초기화
+    dFn.qs('#stxt').value = '';
+
+    // 4-8-2. 검색어 기준 선택 초기화
+    dFn.qs('').value = '';
+
+    // 4-8-3. 정렬 초기화
+    dFn.qs('').value = '';
+}
 
 
 ///////////////////////////////////////////////////////////////
