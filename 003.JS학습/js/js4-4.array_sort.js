@@ -409,6 +409,9 @@ const list2 = [
     },
 ]; 
 
+// 검색/정렬용 변수 -> 검색시 newList 변수 업데이트!
+let newList = list2;
+
 // 4-3. 리스트 초기호출
 // 위의 upCode() 함수를 호출하여 페이지 찍기
 upCode(list2, showList4);
@@ -416,7 +419,8 @@ upCode(list2, showList4);
 // 4-4. sel4 이벤트 설정하기
 // 데이터와 출력 타겟부터 설정후 정렬함수 호출!
 dFn.addEvt(sel4, 'change', ()=>{
-    targetData = list2;
+    // 정렬용 데이터는 원본 list2쓰지 않고 newList 사용
+    targetData = newList;
     targetEle = showList4;
 });
 dFn.addEvt(sel4, 'change', sortingFn);
@@ -450,7 +454,15 @@ function searchingFn(){
 
     // 4-6-4. 출력하기 : upCode()
     upCode(res, showList4);
+
+    // 4-6-5. 원본 데이터는 그대로 두고 새로운 변수를 선언하여
+    // 그 변수의 값을 업데이트 함
+    // 단, 그 변수 데이터는 정렬시에 사용하도록 한다.
+    // -> newList변수
+    newList = res;
+
 }
+
 
 ///////////////////////////////////////////////////////////////
 // 샘플 버튼으로 데이터를 검색한 결과를 콘솔에 찍어본다
