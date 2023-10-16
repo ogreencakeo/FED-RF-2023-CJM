@@ -479,10 +479,10 @@ function initSearch(){
     dFn.qs('#stxt').value = '';
 
     // 4-8-2. 검색어 기준 선택 초기화
-    dFn.qs('').value = '';
+    dFn.qs('.cta4').value = 'idx';
 
     // 4-8-3. 정렬 초기화
-    dFn.qs('').value = '';
+    dFn.qs('.sel4').value = '0';
 }
 
 
