@@ -388,8 +388,13 @@ const list2 = [
         cont: "당근마켓이 정말로 싸고 좋다구~!",
     },
     {
+        idx: 58,
+        tit: "당근마켓에 가자",
+        cont: "당근마켓이 항상 좋은건 아니야~! ㅜㅜ",
+    },
+    {
         idx: 74,
-        tit: "점심에 뭐먹지?",
+        tit: "점심에 뭐먹지? 당근이지!",
         cont: "오스틴님 생일 서포트 안내",
     },
     {
@@ -431,6 +436,45 @@ function searchingFn(){
     let cta = dFn.qs('.cta4').value;
     console.log('입력문자(stxt) :', stxt, ', 검색기준(cta) :', cta);
 
-    // 4-6-3. 
+    // 4-6-3. 다중값 리턴 LIKE 검색 : 원본 데이터(list2)로 검색
+    // filter() + indexOf() 사용
+    let res = list2.filter(v=>{
+        // v[객체속성명] -> v[cta]
+        // -> cta변수에 idx/tit/cont 중 하나 들어옴
+        // indexOf(검색어) -> indexOf(stxt변수)
+        // 숫자형 데이터일 경우 에러가 발생하므로 
+        // String(숫자데이터) -> 문자형 변환
+        if(String(v[cta]).indexOf(stxt)!= -1) return true;
+    }); // filter ///////////////////////
+    console.log('검색결과 (res) :', res);
 }
 
+// 샘플 버튼으로 데이터를 검색한 결과를 콘솔에 찍어본다
+dFn.addEvt(dFn.qs('.sample'), 'click', ()=>{
+    // 1. find() 확인하기 : 데이터 정확히 일치해야함
+    let res1 = list2.find(v=>{
+        // 데이터가 일치하면 배열의 값을 리턴함
+        if(v.tit == '당근마켓에 가자') return true;
+        // 데이터가 완벽하게 일치 하지 않으면 undefined 리턴
+        // if(v.tit == '당근마켓에가자') return true;
+    })
+    console.log('검색어(res1) :', res1);
+
+    // 2. find() LIKE 검색하기 ; 데이터 일부로 찾음
+    // indexOf() 결과가 -1이 아니면 내용이 있으므로 처리
+    // find()의 특성상 처음 만나는 데이터 하나면 리턴함
+    let res2 = list2.find(v=>{
+        // 데이터가 일치하면 배열의 값을 리턴함
+        if(v.tit.indexOf('다')!= -1) return true;
+    })
+    console.log('검색어 다 (res2) :', res2);
+
+    // 3. filter() Like 검색하기
+    // filter()는 해당 결과를 배열로 리턴함 (여러개 수집)
+    let res3 = list2.filter(v=>{
+        if(v.tit.indexOf('당근')!=-1) return true;
+        // if(v.tit.indexOf('머스캣')!=-1) return true;
+        // 검색결과가 없으면 빈배열이 리턴됨(배열.length == 0)
+    })
+    console.log('검색어 당근 (res3) :', res3);
+});
