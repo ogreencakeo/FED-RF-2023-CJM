@@ -366,8 +366,24 @@ btns.first() // 첫번째 버튼
     .click(
         function () {  
             let fn = () => { 
-                // 10-1. 메시지 보이기
+                // 11-1. 메시지 보이기\
+                msg.html(msgTxt[1]).fadeIn(300)
+                // 11-2. 다음 버튼 보이기
+                showNextBtn(this);
             };  
             actMini(this, 1, fn);
+        }
+    )
+    //////////////////////////////////////////////////////////////////
+    // [ 12. "헬기를 호출!" 버튼 클릭시 ].next() // 아홉번째 버튼
+    .next() // 아홉번째 버튼
+    .click(
+        function () {  
+            let fn = () => { 
+                // 12-1. 메시지 보이기
+                msg.html(msgTxt[0]).fadeIn(300);
+                
+            };  
+            actMini(this, 0, fn);
         }
     )
