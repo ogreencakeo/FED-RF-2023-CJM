@@ -1,147 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        class MovieInfo{
-            constructor(pos, tit, sum, dir, act, des){
-                this.포스터 = pos;
-                this.제목 = tit;
-                this.개요 = sum;
-                this.감독 = dir;
-                this.출연 = act;
-                this.문구 = des;
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS4-4. 배열의 정렬과 검색</title>
+        <style>
+            /* 타이틀 */
+            .tit,
+            .stit {
+                text-align: center;
             }
-            // 영화 조제의 감독님 이름은 김종관, 나의 응원은 CGV는 항상 훌륭합니다. ,
-
-            공통메서드(txt){
-                return `
-                    영화 ${this.제목}의 감독님 이름은 ${this.감독}, 나의 응원은 ${txt}
-                `;
+            .showNum img {
+                height: 100px;
             }
-        }
-
-        class CGV extends MovieInfo{
-            constructor(pos, tit, sum, dir, act, des, msg, num){
-                super(pos, tit, sum, dir, act, des, msg, num);
-                this.메시지 = msg;
-                this.수용인원 = num;
+            .showNum2 span {
+                font-size: 64px;
+                display: inline-block;
+                margin: 0 10px;
+                font-family: "궁서";
+                color: darkgreen;
             }
-
-            showCGV(txt){
-                return(
-                    super.공통메서드(txt) + ' , CGV안내 : ' + this.메시지
-                );
+            /* 구분박스 */
+            .sbx {
+                margin: 20px auto;
+                padding: 20px;
+                border: 5px dotted lightseagreen;
+                max-width: 1000px;
             }
-
-            get cgvNum(){
-                return this.수용인원;
+            .cont {
+                text-align: center;
             }
-
-            set cgvNum(num){
-                if(isNaN(num)){
-                    num = 300;
-                }else{
-                    this.수용인원 = num;
-                }
+            /* 선택박스의 박스 */
+            .selbx {
+                text-align: center;
             }
-        }
-        class MegaBox extends MovieInfo{
-            constructor(pos, tit, sum, dir, act, des, msg, num){
-                super(pos, tit, sum, dir, act, des, msg, num);
-                this.팝콘소식 = msg;
-                this.수용인원 = num;
+            .sbx select,
+            input,
+            button {
+                margin-bottom: 15px;
+                font-size: 24px;
             }
 
-            showMEAGA(txt){
-                return(
-                    super.공통메서드(txt) + ' , Meaga안내 : ' + this.팝콘소식
-                );
+            .sbx table {
+                width: 700px;
+                border-collapse: collapse;
+                border-top: 2px solid #222;
+                margin: 0 auto;
             }
 
-            get megaNum(){
-                return this.수용인원;
+            .sbx table th {
+                padding: 10px;
+                border-bottom: 2px solid #555;
+                background-color: #ccc;
             }
-
-            set megaNum(num){
-                if(isNaN(num)){
-                    num = 300;
-                }else{
-                    this.수용인원 = num;
-                }
+            .sbx table td {
+                padding: 10px 0;
+                border-bottom: 1px solid #888;
             }
-        }
+            .sbx tbody tr:nth-child(even) {
+                background-color: #eeeeee;
+            }
+            .sbx tbody tr td:first-child {
+                text-align: center;
+            }
+            .sbx tbody tr:last-child td {
+                border-bottom: 2px solid #222;
+            }
+        </style>
+        <script type="module" src="./js/pra.js"></script>
+    </head>
+    <body>
+        <h1 class="tit">[ 🏢배열의 정렬🏰 ]</h1>
 
-        const cgvInfo = new CGV(
-            "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
-            "조제",
-            "멜로/로맨스, 드라마",
-            "김종관",
-            "한지민, 남주혁",
-            "조제 보러 오세요",
-            "CGV는 항상 영화팬들과 함께합니다~!",
-            300
-        );
-        const meagaInfo = new MegaBox(
-            "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
-            "영웅",
-            "드라마, 뮤지컬",
-            "윤제균",
-            "정성화, 김고은",
-            "누가 죄인인가",
-            " 롤리팝과 먹는 새로운 롤리팝콘 출시!!!",
-            50
-        );
+        <h2 class="stit">🌊숫자로만된 배열의 정렬</h2>
+        <div class="sbx">
+            <div class="selbx">
+                <select name="sel" id="sel" class="sel">
+                    <option value="0">정렬선택</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                </select>
+            </div>
+            <div class="showNum cont"></div>
+        </div>
 
-        window.addEventListener('load', ()=>{
-            let hcode = `
-                <div class='cgv-info'>
-                    <h1>[ CGV 상영관 영화 안내 ]</h1>
-                    <ol>
-                        <h2>
-            `;
+        <h2 class="stit">🛕문자데이터 배열의 정렬</h2>
+        <div class="sbx">
+            <div class="selbx">
+                <select name="sel2" id="sel2" class="sel2">
+                    <option value="0">정렬선택</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                </select>
+            </div>
+            <div class="showNum2 cont"></div>
+        </div>
 
-            let cgvPoster = (x) => `<img src="${x}" alt="영화포스터" />`;
-            Object.keys(cgvInfo).forEach(ele => {
-                hcode += `<li>${ele=='포스터'? cgvPoster(cgvInfo[ele]):cgvInfo[ele]}</li>`;
-            });
+        <h2 class="stit">👨‍👩‍👦‍👦객체데이터 배열의 정렬</h2>
+        <div class="sbx">
+            <div class="selbx">
+                <select name="cta3" id="cta3" class="cta3">
+                    <option value="idx">번호</option>
+                    <option value="tit">제목</option>
+                    <option value="cont">내용</option>
+                </select>
+                <select name="sel3" id="sel3" class="sel3">
+                    <option value="0">정렬선택</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                </select>
+            </div>
+            <div class="showList3"></div>
+        </div>
 
-            hcode += `<li> 메시지 : ${cgvInfo.showCGV('CGV는 항상 훌륭합니다.')}</li>`;
+        <h2 class="stit">🏸객체데이터 검색후 배열의 정렬</h2>
+        <div class="sbx">
+            <div class="selbx">
+                <select name="cta4" id="cta4" class="cta4">
+                    <option value="idx">번호</option>
+                    <option value="tit">제목</option>
+                    <option value="cont">내용</option>
+                </select>
+                <select name="sel4" id="sel4" class="sel4">
+                    <option value="0">정렬선택</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                </select>
+                <input id="stxt" type="text" maxlength="50" />
+                <button class="sbtn">검색</button>
+                <button class="sample">샘플</button>
+                <button class="fbtn">FL</button>
+            </div>
+            <div class="showList4"></div>
+        </div>
 
-            hcode += `<li>2022년 CGV 극장 수용인원은 ${cgvInfo.cgvNum}명이었습니다!</li>`;
-            cgvInfo.cgvNum = 500;
-            hcode += `<li>2022년 CGV 극장 수용인원은 ${cgvInfo.cgvNum}명이 되었습니다!</li>`;
-
-            document.body.innerHTML = hcode;
-
-            /////////////////////////////////
-
-            hcode = `
-                <div class='meaga-info'>
-                    <h1>[ CGV 상영관 영화 안내 ]</h1>
-                    <ol>
-                        <h2>
-            `;
-
-            Object.keys(meagaInfo).forEach(ele => {
-                hcode += `<li>${ele=='포스터'? cgvPoster(meagaInfo[ele]):meagaInfo[ele]}</li>`;
-            });
-
-            hcode += `<li> 메시지 : ${meagaInfo.showMEAGA('MEAGA는 항상 훌륭합니다.')}</li>`;
-
-            hcode += `<li>2022년 mega 극장 수용인원은 ${meagaInfo.megaNum}명이었습니다!</li>`;
-            meagaInfo.megaNum = 800;
-            hcode += `<li>2022년 meaga 극장 수용인원은 ${meagaInfo.megaNum}명이 되었습니다!</li>`;
-
-            document.body.innerHTML += hcode;
-
-        });
-
-    </script>
-</head>
-<body>
-    
-</body>
+        <h2 class="stit">🏸객체원본 배열로 변환하기</h2>
+        <div class="sbx">
+            <div class="selbx">
+                <select name="cta5" id="cta5" class="cta5">
+                    <option value="idx">번호</option>
+                    <option value="tit">tit</option>
+                    <option value="cont">cont</option>
+                </select>
+                <select name="sel5" id="sel5" class="sel5">
+                    <option value="0">정렬선택</option>
+                    <option value="1">오름차순</option>
+                    <option value="2">내림차순</option>
+                </select>
+            </div>
+            <div class="showList5"></div>
+        </div>
+    </body>
 </html>
