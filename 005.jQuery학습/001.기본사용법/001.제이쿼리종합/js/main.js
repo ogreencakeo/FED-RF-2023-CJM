@@ -442,4 +442,21 @@ btns.first() // 첫번째 버튼
             };  
             actMini(this, 0, fn);
         }
-    )
+    ) /* 헬기를 호출 버튼 끝 - 모든버튼 마무리 */
+
+    // 간판에 마우스 오버/아웃시 색상 변경하기
+    // hover(함수1, 함수2)
+    // -> 오버시 함수1 호출, 아웃시 함수2 호출
+    $('.tit').hover(
+        function(){     // over
+            $(this).css({
+                backgroundColor : 'blue',
+                color : 'cyan'
+            });
+        }, 
+        function(){     // out
+            $(this).css({
+                backgroundColor : 'pink',
+                color : 'yellow'
+            });
+        }); // hover 메서드
