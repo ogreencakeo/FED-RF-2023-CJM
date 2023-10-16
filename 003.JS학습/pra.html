@@ -1,78 +1,147 @@
 <!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS5-5.1. JS클래스</title>
-        <style>
-            h1,
-            .btns,
-            .show {
-                text-align: center;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class MovieInfo{
+            constructor(pos, tit, sum, dir, act, des){
+                this.포스터 = pos;
+                this.제목 = tit;
+                this.개요 = sum;
+                this.감독 = dir;
+                this.출연 = act;
+                this.문구 = des;
             }
-            button {
-                font-size: 30px;
+            // 영화 조제의 감독님 이름은 김종관, 나의 응원은 CGV는 항상 훌륭합니다. ,
+
+            공통메서드(txt){
+                return `
+                    영화 ${this.제목}의 감독님 이름은 ${this.감독}, 나의 응원은 ${txt}
+                `;
+            }
+        }
+
+        class CGV extends MovieInfo{
+            constructor(pos, tit, sum, dir, act, des, msg, num){
+                super(pos, tit, sum, dir, act, des, msg, num);
+                this.메시지 = msg;
+                this.수용인원 = num;
             }
 
-            .minfo {
-                display: flex;
-                /* 자식요소 박스 옆으로 흐르게! */
-                /* outline: 1px solid red; */
-                width: 500px;
-                margin: 0 auto;
+            showCGV(txt){
+                return(
+                    super.공통메서드(txt) + ' , CGV안내 : ' + this.메시지
+                );
             }
 
-            .wrap {
-                /* 플렉스박스 */
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 20px;
-            }
-            .cbx {
-                margin: 10px;
-                padding: 10px;
-                border: 4px double gray;
-                border-radius: 10px;
+            get cgvNum(){
+                return this.수용인원;
             }
 
-            .photo img {
-                height: 200px;
-                margin-right: 20px;
+            set cgvNum(num){
+                if(isNaN(num)){
+                    num = 300;
+                }else{
+                    this.수용인원 = num;
+                }
+            }
+        }
+        class MegaBox extends MovieInfo{
+            constructor(pos, tit, sum, dir, act, des, msg, num){
+                super(pos, tit, sum, dir, act, des, msg, num);
+                this.팝콘소식 = msg;
+                this.수용인원 = num;
             }
 
-            /* 영화한마디 글자박스 */
-            .showtit {
-                /* display: none; */
-                text-align: center;
+            showMEAGA(txt){
+                return(
+                    super.공통메서드(txt) + ' , Meaga안내 : ' + this.팝콘소식
+                );
             }
 
-            .show span {
-                display: inline-block;
-                /* 가로,세로 등 디자인 적용+한줄에 나옴 */
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                /* 원 */
-                border: 2px solid #d30000;
-                background-color: #00f;
-                font-size: 20px;
-                color: #fff;
-
-                /* 동그라미 박스 정중앙 */
-                text-align: center;
-                line-height: 30px;
-                text-align: center;
+            get megaNum(){
+                return this.수용인원;
             }
-        </style>
-        <script src="./js/pra.js"></script>
-    </head>
-    <body>
-        <h1 style="text-align: center">클래스로 만든 객체</h1>
-        <main class="cont ibx">
-            <h2 style="text-align: center">무비차트</h2>
-            <!-- 영화정보박스 -->
-            <div class="wrap"></div>
-        </main>
-    </body>
+
+            set megaNum(num){
+                if(isNaN(num)){
+                    num = 300;
+                }else{
+                    this.수용인원 = num;
+                }
+            }
+        }
+
+        const cgvInfo = new CGV(
+            "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
+            "조제",
+            "멜로/로맨스, 드라마",
+            "김종관",
+            "한지민, 남주혁",
+            "조제 보러 오세요",
+            "CGV는 항상 영화팬들과 함께합니다~!",
+            300
+        );
+        const meagaInfo = new MegaBox(
+            "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
+            "영웅",
+            "드라마, 뮤지컬",
+            "윤제균",
+            "정성화, 김고은",
+            "누가 죄인인가",
+            " 롤리팝과 먹는 새로운 롤리팝콘 출시!!!",
+            50
+        );
+
+        window.addEventListener('load', ()=>{
+            let hcode = `
+                <div class='cgv-info'>
+                    <h1>[ CGV 상영관 영화 안내 ]</h1>
+                    <ol>
+                        <h2>
+            `;
+
+            let cgvPoster = (x) => `<img src="${x}" alt="영화포스터" />`;
+            Object.keys(cgvInfo).forEach(ele => {
+                hcode += `<li>${ele=='포스터'? cgvPoster(cgvInfo[ele]):cgvInfo[ele]}</li>`;
+            });
+
+            hcode += `<li> 메시지 : ${cgvInfo.showCGV('CGV는 항상 훌륭합니다.')}</li>`;
+
+            hcode += `<li>2022년 CGV 극장 수용인원은 ${cgvInfo.cgvNum}명이었습니다!</li>`;
+            cgvInfo.cgvNum = 500;
+            hcode += `<li>2022년 CGV 극장 수용인원은 ${cgvInfo.cgvNum}명이 되었습니다!</li>`;
+
+            document.body.innerHTML = hcode;
+
+            /////////////////////////////////
+
+            hcode = `
+                <div class='meaga-info'>
+                    <h1>[ CGV 상영관 영화 안내 ]</h1>
+                    <ol>
+                        <h2>
+            `;
+
+            Object.keys(meagaInfo).forEach(ele => {
+                hcode += `<li>${ele=='포스터'? cgvPoster(meagaInfo[ele]):meagaInfo[ele]}</li>`;
+            });
+
+            hcode += `<li> 메시지 : ${meagaInfo.showMEAGA('MEAGA는 항상 훌륭합니다.')}</li>`;
+
+            hcode += `<li>2022년 mega 극장 수용인원은 ${meagaInfo.megaNum}명이었습니다!</li>`;
+            meagaInfo.megaNum = 800;
+            hcode += `<li>2022년 meaga 극장 수용인원은 ${meagaInfo.megaNum}명이 되었습니다!</li>`;
+
+            document.body.innerHTML += hcode;
+
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
 </html>

@@ -1,74 +1,64 @@
-import dom from './dom.js';
-import dFn from './dom.js'
+const domFn = {
+    qs: (x) => document.querySelector(x),
+    qsEl: (el, x) => el.querySelector(x),
+    qsa: (x) => document.querySelectorAll(x),
+    qsaEl: (el, x) => el.querySelectorAll(x),
+    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
+}; 
 
-const atxt = [
-    "Let's explore",
-    "Let's meet",
-    "Let's attend",
-    "Let's dance"
-];
+let sts_wheel = 0;
+let pg_num = 0;
+let ele_pg;
+let total_pg;
 
-const slidePg = dFn.qs('.slidePg');
-let hcode = '';
+domFn.addEvt(window, 'wheel', wheelFn);
+domFn.addEvt(window, 'laod', loadFn);
 
-for(let i=1; i<8; i++){
-    hcode += `
-        <li>
-            <img src = './images/dance/${i}.jpg' alt='dance'/>
-        </li>
-    `;
+function loadFn(){
+    ele_pg = domFn.qsa('.page');
+    total_pg = ele_pg.length;
 }
 
-slidePg.innerHTML = `<ul>${hcode}</ul>`;
+setTimeout(()=>{window.scrollTo(0, 0)}, 500);
 
-const tpg = dFn.qs('.tpg');
-const slide_ul = dFn.qsEl(slidePg,'ul');
+function wheelFn(e){
+    if(sts_wheel) return;
+    sts_wheel = 1;
+    setTimeout(()=>{sts_wheel=0}, 500);
 
-dFn.addEvt(window, 'scroll', scrollMove);
+    let delta = e.wheelDelta;
+    
+    if(delta < 0) pg_num++;
+    else pg_num--;
 
-function scrollMove(){
-    let bTop = dFn.getBCR(tpg);
-    if(bTop > 0){
-        slide_ul.style.left = '0px';
-    }else if(bTop<=0 && bTop>=-3000){
-        slide_ul.style.left = bTop + 'px';
-    }else{
-        slide_ul.style.left = '-3000px';
-    }
+    if(pg_num<0) pg_num=0;
+    if(pg_num==total_pg) pg_num = total_pg-1;
+
+    window.scrollTo(0, window.innerHeight*pg_num);
+
+    chgMenu();
 }
 
+const gnbList = domFn.qsa('.gnb li');
+const indicList = domFn.qsa('.indic li');
 
+const menuGrp = [gnbList, indicList];
 
-let gnbCode = '';
-const gnb_ul = dFn.qs('.gnb ul');
-
-for(let x of atxt){
-    gnbCode += `
-        <li>
-            <a href = "#">${x}</a>
-        </li>
-    `;
+function chgMenu(){
+    const comFn = (target) => {
+        target.forEach((ele, idx) => {
+            if(idx == pg_num) ele.classList.add('on');
+            else ele.classList.remove('on');
+        });
+    };
+    menuGrp.forEach(val => comFn(val));
 }
 
-gnb_ul.innerHTML = `<ul>${gnbCode}</ul>`;
-
-
-
-const gnbList = dFn.qsaEl(gnb_ul, 'li');
-const mbg = dFn.qs('.mbg');
-
-gnbList.forEach((ele)=>{
-    dFn.addEvt(ele, 'mouseover', overFn);
-    dFn.addEvt(ele, 'mouseout', outFn);
-})
-
-function overFn(){
-    let posL = this.offsetLeft;
-    mbg.style.opacity = 1;
-    mbg.style.left = posL + 'px';
-}
-
-function outFn(){
-    mbg.style.opacity = 0;
-
+for(let x of menuGrp){
+    x.forEach((ele, idx) => {
+        domFn.addEvt(ele, 'click', ()=>{
+            pg_num = idx;
+            chgMenu();
+        });
+    });
 }
