@@ -89,6 +89,51 @@ import dFn from "./dom.js";
     예) 특수문자 x변수를 y변수와 변환후 비교 
     x.localeCompare(y)
 
+    *************************************************************
+
+    [ 배열의 검색 : find() / filter() / indexOf() ]
+
+    1. find() 메서드
+    (1) 검색후 첫번째 일치값 하나만을 리턴
+    (2) 결과가 없으면 undefined 리턴(if문에서 false처리!)
+    (3) 콜백함수구성 : function(val,idx,obj){}
+        1) val : 처리중 배열의 값
+        2) idx : 처리중 배열의 순번
+        3) obj : 처리중 배열전체
+    (4) 리턴데이터 : 배열의 값 하나(값의 데이터형)
+    (5) 활용케이스 : 아이디검사 결과 리턴
+    (6) 코드예 :
+        변수 = 배열.find(v=>{
+            if(v[속성명].indexOf(검색어)!==-1) return true;
+        })
+        -> 배열을 자동순회하여 if문에 해당되는 데이터가 있으면
+        return true 하여 할당된 변수에 저장하고 문장이 바로 끝난다!
+
+
+    2. filter() 메서드
+    (1) 검색후 모든 일치값을 리턴
+    (2) 결과가 없으면 빈배열 리턴([]->배열.length 값이 0)
+    (3) 콜백함수구성 : function(val,idx,obj){}
+        1) val : 처리중 배열의 값
+        2) idx : 처리중 배열의 순번
+        3) obj : 처리중 배열전체
+    (4) 리턴데이터 : 배열형데이터(하나여도 배열값으로 넘어옴!)
+    (5) 활용케이스 : 검색리스트 결과 리턴
+    (6) 코드예 :
+        변수 = 배열.filter(v=>{
+            if(v[속성명].indexOf(검색어)!==-1) return true;
+        })
+        -> 배열을 자동순회하여 if문에 해당되는 데이터가 있으면
+        return true 하여 다른값이 계속 나올때까지 배열로 값을
+        할당변수에 저장한다!(배열을 전체순회함!)
+
+    3. LIKE 검색방법 : 값의 일부만 넣어도 검색되는 방법
+    -> indexOf(값) 을 사용함!
+    결과값으로 문자열의 위치순번을 리턴하는데
+    만약 없으면 -1을 리턴하므로 이것을 이용하여 
+    조건문에 -1이 아닌경우가 검색결과가 있는 경우가 됨!
+    예) 
+    if(문자열.indexOf(검색문자열)!==-1){결과리턴}
 
 ******************************************************/
 
@@ -363,10 +408,29 @@ const list2 = [
 // 위의 upCode() 함수를 호출하여 페이지 찍기
 upCode(list2, showList4);
 
-// sel4 이벤트 설정하기
+// 4-4. sel4 이벤트 설정하기
 // 데이터와 출력 타겟부터 설정후 정렬함수 호출!
 dFn.addEvt(sel4, 'change', ()=>{
     targetData = list2;
     targetEle = showList4;
 });
 dFn.addEvt(sel4, 'change', sortingFn);
+
+// 4-5. 검색기능 버튼 클릭 이벤트 설정하기
+// 이벤트대상 : .sbtn
+dFn.addEvt(dFn.qs('.sbtn'), 'click', searchingFn );
+
+// 4-6. 검색 함수 만들기
+function searchingFn(){
+    // 4-6-1. 검색어 읽어오기
+    // 대상 : #stxt
+    let stxt = dFn.qs('#stxt').value;
+
+    // 4-6-2. 검색 대상 항목 읽어오기
+    // 대상 : .cta4
+    let cta = dFn.qs('.cta4').value;
+    console.log('입력문자(stxt) :', stxt, ', 검색기준(cta) :', cta);
+
+    // 4-6-3. 
+}
+
