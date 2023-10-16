@@ -447,8 +447,12 @@ function searchingFn(){
         if(String(v[cta]).indexOf(stxt)!= -1) return true;
     }); // filter ///////////////////////
     console.log('검색결과 (res) :', res);
+
+    // 4-6-4. 출력하기 : upCode()
+    upCode(res, showList4);
 }
 
+///////////////////////////////////////////////////////////////
 // 샘플 버튼으로 데이터를 검색한 결과를 콘솔에 찍어본다
 dFn.addEvt(dFn.qs('.sample'), 'click', ()=>{
     // 1. find() 확인하기 : 데이터 정확히 일치해야함
