@@ -383,6 +383,18 @@ btns.first() // 첫번째 버튼
                 // 12-1. 메시지 보이기
                 msg.html(msgTxt[0]).fadeIn(300);
                 
+                // 12-2. 1번방 단체 좀비들 달겨들기
+                room.eq(1).find('.mz')
+                .fadeIn(300)
+                .animate({
+                    right : room.eq(1).width() + 'px'
+                }, 3000, "easeInCirc")
+
+                // 12-3. 헬기 등장
+                $('.heli')
+                .animate({
+                    left : '23%'
+                }, 4000, "easeOutBack")
             };  
             actMini(this, 0, fn);
         }
