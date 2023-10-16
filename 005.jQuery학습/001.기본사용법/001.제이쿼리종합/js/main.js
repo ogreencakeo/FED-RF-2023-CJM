@@ -305,7 +305,21 @@ btns.first() // 첫번째 버튼
     .click(
         function () {  
             let fn = () => { 
-                
+                // 9-1. 주사기 돌리기(animate는 트랜스폼 적용안됨)
+                $('.inj')
+                    // animate는 트랜스폼 적용안됨 따라서 CSS로 처리
+                //     .css({
+                //         transform:'rotate(-150deg)',    // 반시계 방향
+                //         transition : '.5s .5s',     // 0.5초후 0.5초간 애니
+                //         zIndex : '9999'      // 미니언즈(999)보다 위
+                // });
+
+                /*
+                    jquery.rotate.js 는
+                    jQuery animate메서드에 transform rotate를 사용할 수 있도록 
+                    해주는 플러그인임!
+                    [ 사용법(animate css설정에 씀)-> rotate:"각도deg" ]
+                */
             };  
             actMini(this, 2, fn);
         }
