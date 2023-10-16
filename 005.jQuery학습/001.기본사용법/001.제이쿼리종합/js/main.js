@@ -103,7 +103,7 @@ $(".mz").hide();
 // 대상 : .btns button -> btns변수
 // 2.1 버튼들.숨겨().첫번째().보여()
 // btns.hide().first().show();
-btns.hide().eq(5).show();
+btns.hide().eq(7).show();
 
 //////////////////////////////////////////////////////////////////////
 // [ 3. 미니언즈 공통 기능 함수 ]
@@ -395,14 +395,50 @@ btns.first() // 첫번째 버튼
                 .animate({
                     left : '25%',
                     rotate : '20deg'
-                }, 3500, "easeOutQuint")
+                }, 3000, "easeOutQuint")
                 .animate({
                     left : '23%',
                     rotate : '0deg' 
-                }, 500, "easeInOutSine", 
-                ()=>{   // 헬기 이동완료후 콜백함수
-
+                }, 500, "easeInOutBack", 
+                function(){   
+                    // 12-4. 헬기 이동완료후 콜백함수
+                    // 12-4-1. 헬기 이미지 변경하기(this->function(){}사용시)
+                    console.log(this);
+                    $(this).attr('src',' images/heli2.png');
+                    // 12-4-2. 원본 이미지 사라지기
+                    mi.hide();
                 })
+                .delay(500) // 0.5초 쉬었다가 
+                .animate({
+                    left : '70%', // 다시 오른쪽 끝으로
+                    rotate : '15deg'
+                }, 4000, "easeInOutCirc", function(){
+                    // 애니후 콜백함수
+                    // 12-5. 끝쪽에서 조종사를 좀비로 변경하는 이미지 변경
+                    $(this).arr('src', 'images/heli3.png');
+                })
+                .delay(300) // 0.3초후
+                .animate({
+                    left : '100%'
+                }, 1000, 'linear',()=>{
+                    // 헬기 나간후
+                    // 12-6. 간판 떨어지기
+                    let tit = $('.tit')
+                    // 12-6-1. 1단계 : 클래스 'on' 주기
+                    tit.addClass('on');
+                    // 12-6-2. 2단계 : 클래스 'on2' 주기(3초후)
+                    setTimeout(()=>{
+                        tit.addClass('on2');
+                    }, 3000);
+                    // 12-7. 건물 무너지기 : 건물흔들리기 + 무너지기
+                    // - 간판 떨어진 후 (6초후)
+                    // 1단계 : 건물흔들리기 (클래스 'on')
+                    setTimeout(()=>{
+                        room.parent().addClass('on');
+                        // parent() -> 부모요소인 .building
+                        // -> JS의 parentElement와 유사함!
+                    }, 6000);
+                }); // animate ////////////////////////
             };  
             actMini(this, 0, fn);
         }
