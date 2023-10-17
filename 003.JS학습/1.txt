@@ -1,0 +1,27 @@
+//  [ 에러처리구간 : try문 ] 
+                try{
+                    if (score.trim() == "") {
+                        throw '내용을 입력해주세요!';
+                    }
+                }catch(err){
+                    // [ 에러처리 : catch문 ]
+                    // err 전달변수에 throw로 던진 값 들어옴
+                    console.log('에러메시지', err);
+
+                }
+
+---------------------------------------------------------------------------
+                if (score.trim() == "") {
+                    validateFn("값을 꼭 입력하세요!");
+                    return;
+                } 
+
+                if (isNaN(score)) {
+                    validateFn("숫자만 입력하세요!");
+                    return;
+                }
+
+                if (score < 0 || score > 100) {
+                    validateFn("0부터 100사이의 숫자만 입력하세요!");
+                    return;
+                } 
