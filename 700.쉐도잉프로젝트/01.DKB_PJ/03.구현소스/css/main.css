@@ -439,3 +439,33 @@ body{
 .sub-cont a{
     color: #fff;
 }
+
+/* 닫기버튼 */
+.cbtn{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+
+    background: none;
+    border: none;
+    font-size: 80px;
+    color: #fff;
+
+    cursor: pointer;
+}
+
+/* 서브 내부박스 */
+.sub-inbox{
+    outline: 2px dashed yellow;
+    min-height: 100vh;
+
+}
+/* 제목박스 */
+.sub-inbox h1{
+    font-size: 4rem;
+    text-align: center;
+}
+/* 내용박스 */
+.sub-item{
+    font-size: 3rem;
+}

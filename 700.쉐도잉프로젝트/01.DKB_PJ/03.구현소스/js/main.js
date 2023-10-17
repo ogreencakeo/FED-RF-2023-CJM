@@ -389,7 +389,7 @@ corpData.forEach(val => {
 // 1. 서브컨텐츠 보이기 기능구현
 // (1) 대상선정 
 // 이벤트 대상 : .sub-view-box 하위 .partbox 또는 li
-const subViewBox = $('.sub-view-box .partbox, .sub-view-box li');
+const subViewBox = $('.sub-view-box .partbox,.sub-view-box li');
 // 변경대상 : .sub-cont
 const subContBox = $('.sub-cont')
 console.log('subViewBox :', subViewBox, ', subContBox :', subContBox);
@@ -398,10 +398,23 @@ console.log('subViewBox :', subViewBox, ', subContBox :', subContBox);
 subViewBox.click(function(){
   console.log('나야나!', this);
 
+  // 1. 제목 읽어오기
+  let subTit = $(this).parent('.sub-view-box').prev().text();
+  // 나자신.부모들(특정클래스).이전형제().글자읽기();
+
   // 1. 서브 박스 내용 넣기
   subContBox.html(`
     <button class="cbtn">×</button>
+    <div class="sub-inbox inbox">
+      <h1>${subTit}</h1>
+      <div class="sub-item">
+        내용이양
+      </div>
+    </div>
   `);
+
+  // 2. 닫기버튼 이벤트 설정
+  $('.cbtn').click(()=>subContBox.hide());
 
   // 9999. 서브박스 보이기
   subContBox.show();
