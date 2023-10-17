@@ -584,3 +584,22 @@ const list3 ={
     },
 };
 
+// 5-2. 객체 데이터를 배열로 변경하기
+// 5-2-1. 1단계 : 객체속성을 키배열로 변환하기
+// -> Object.keys(객체) -> 속성 값으로 구성된 배열
+let myKey  = Object.keys(list3);
+// console.log('myKey :', myKey);
+// console.log('myKey 정렬 :', myKey.reverse());
+
+// 5-2-2. 키배열을 객체의 값으로 대체하여 원하는 값 배열 만들기
+let myVal = myKey.map(v=>list3[v]);
+console.log('값배열 :', myVal); // Array(4)
+// 1, 2단계를 한번에 값배열 만들기
+let newList3  = Object.keys(list3).map(v=>list3[v]);
+console.log('새로운 값배열 : ', newList3);
+
+// 5-3. 출력 대상 선정 : .showList5
+const showList5 = dFn.qs('.showList5');
+
+// 5-4. 초기출력하기 : upCode()
+upCode(newList3, showList5);
