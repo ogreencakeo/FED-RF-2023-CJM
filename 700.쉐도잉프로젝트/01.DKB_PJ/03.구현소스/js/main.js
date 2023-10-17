@@ -405,7 +405,7 @@ subViewBox.click(function(){
   // 2. 내용 읽어오기
   let subItem  = $(this).text();
 
-  // 1. 서브 박스 내용 넣기
+  // 3. 서브 박스 내용 넣기
   subContBox.html(`
     <button class="cbtn">×</button>
     <div class="sub-inbox inbox">
