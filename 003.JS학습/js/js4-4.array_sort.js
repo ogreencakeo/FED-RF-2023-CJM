@@ -161,6 +161,8 @@ import dFn from "./dom.js";
         (4) 객체값으로 구성되는 배열일 경우 아래와 같이 변환한다
         -> 객체를 변환후 map으로 값을 다시 담아준다!
         객체변수 = 객체
+
+        [ 한번에 값배열로 변환 : 오브젝트.키쓰.맵! ]
         새변수 = Object.keys(객체변수).map(v=>객체변수[v])
 
     3. 새로구성한 객체 변환 배열로 기존 배열 메서드를 사용하여
@@ -594,7 +596,7 @@ let myKey  = Object.keys(list3);
 // 5-2-2. 키배열을 객체의 값으로 대체하여 원하는 값 배열 만들기
 let myVal = myKey.map(v=>list3[v]);
 console.log('값배열 :', myVal); // Array(4)
-// 1, 2단계를 한번에 값배열 만들기
+// 1, 2단계를 한번에 값배열 만들기 : 오브젝트-키쓰-맵
 let newList3  = Object.keys(list3).map(v=>list3[v]);
 console.log('새로운 값배열 : ', newList3);
 
