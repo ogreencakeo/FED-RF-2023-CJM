@@ -85,14 +85,26 @@
                     jshow.style.backgroundPosition = "-50% 0%";
                 }; 
 
+                //  [ 에러처리구간 : try문 ] 
                 try{
-                    if (score.trim() == "") {
+                    if (score.trim() == "") { // 앞뒤공백 제거
                         throw '내용을 입력해주세요!';
+                    }else if(isNaN(score)){ // 숫자인지 여부 검사
+                        throw '숫자만 입력하세요!';
+                    }else if(score < 0 || score > 100){ // 숫자 범위 검사
+                        throw '0부터 100사이의 숫자만 입력하세요!!';
                     }
                 }catch(err){
                     // [ 에러처리 : catch문 ]
                     // err 전달변수에 throw로 던진 값 들어옴
                     console.log('에러메시지', err);
+
+                    // 에러처리 함수 호출
+                    validateFn(err);
+
+                    // catch문에 왔다는 것은 에러발생 했다는 것!
+                    // 여기서 코드를 빠져나감 처리
+                    return;
 
                 }
 
