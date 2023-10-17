@@ -430,7 +430,12 @@ body{
     width: 100vw;
     height: 100vh;
     background-color: #000;
+    color: #fff;
     z-index: 999999;
     overflow: hidden;
     display: none;
+}
+
+.sub-cont a{
+    color: #fff;
 }
