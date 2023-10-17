@@ -38,7 +38,7 @@ function Developer(props){
             <React.Fragment>
                 {/* MakeDev 컴포넌트 선택 출력 */}
                 <MakeDev />
-                <MakeImg isrc = {props.disrc} ialt = {props.ialt} ititle = {props.itit} />
+                <MakeImg isrc = {props.disrc} ialt = {props.ialt} itit = {props.itit} />
             </React.Fragment>
         )
     } // if
@@ -49,7 +49,7 @@ function Developer(props){
         <React.Fragment>
             {/* MakeDev 컴포넌트 선택 출력 */}
             <LostDev />
-            <MakeImg isrc = {props.isrc} ialt = {props.ialt} ititle = {props.itit} />
+            <MakeImg isrc = {props.isrc} ialt = {props.ialt} itit = {props.itit} />
         </React.Fragment>
     )
 
@@ -58,12 +58,12 @@ function Developer(props){
 
 // 컴포넌트 호출하기1 : 개발자 찍기
 ReactDOM.render(
-    <Developer isDev={true} disrc={devImg[0]} ialt="개발자 공유"  ititle="프론트엔드 개발자 공유입니다!" />,
+    <Developer isDev={true} disrc={devImg[0]} ialt="개발자 공유"  itit="프론트엔드 개발자 공유입니다!" />,
     document.querySelector('#root1')
 );
 // 컴포넌트 호출하기2 : 비개발자 찍기
 ReactDOM.render(
-    <Developer isDev={false} isrc={devImg[1]} ialt="주먹왕 마동석"  ititle="개발자가 뭡니까?" />,
+    <Developer isDev={false} isrc={devImg[1]} ialt="주먹왕 마동석"  itit="개발자가 뭡니까?" />,
     document.querySelector('#root2')
 );
 
@@ -198,4 +198,61 @@ function WishList2(props){
 ReactDOM.render(
     <WishList2 wlist={movs} />,
     document.querySelector('#root4')
+);
+
+/********************************************************** 
+    4. 조건 연산자(삼항연산자)를 사용하여 조건부 랜더링하기 
+**********************************************************/
+// 명화 데이터
+const worksrc = {
+    "피카소":"https://m.theartin.net/web/product/big/201907/30c5a0fdd153bfdfdc8f19b2f4166fa8.jpg",
+    "모네":"https://dimg.donga.com/wps/NEWS/IMAGE/2015/12/11/75316598.3.jpg"
+};
+
+// 개발자가 좋아하는 그림(명화) 찍기
+// 4-1. 타이틀과 그림찍기 컴포넌트
+// 구성 : 작가이름 + 작품이미지
+// 데이터 : 작가이름(painter), 이미지 경로(작가이름의 객체 worksrc), 작품명(wname)
+function MakeWork(props){
+    return(
+        <div>
+            <h2>{props.painter}</h2>
+            <img src={worksrc[props.painter]} alt={props.wname} title={props.wname} 
+                style={{width : '400px'}} />
+        </div>
+    );
+}
+
+// 4-2. 전체 출력 컴포넌트
+// 구성 : 전체타이틀(Tittle 컴포넌트 사용) + 변경버튼
+//      + 작가와 그림 출력(MakeWork 컴포넌트)
+// 특이사항 : 변경버튼 클릭시 MakeWork 컴포넌트의 데이터를 변경하여 다시 출력하도록 함 (Hook 사용)
+function ExpCom(props){
+    // 작품변경 전달 변수 : props.isChange
+    // isChange의 값은 true / false
+    let result = props.isChange;
+
+    // 변경버튼 호출 함수
+    const againFn = () => {
+        console.log('다시변경해');
+    };
+
+    return(
+        <React.Fragment>
+            {/* 4-2-1. 큰 제목*/}
+            <Title tit='명화' />
+            {/* 4-2-2. 변경버튼 : 클릭시 again함수를 호출함 */}
+            <button onClick={againFn}>작가변경</button>
+            {/* 4-2-3. 작품출력 : 3항연산자로 작품 변경하기 */}
+            {
+
+            }
+        </React.Fragment>
+    );
+}
+
+// 4-3. 개발자가 좋아하는 명화 출력하기
+ReactDOM.render(
+    <ExpCom />,
+    document.querySelector('#root5')
 );
