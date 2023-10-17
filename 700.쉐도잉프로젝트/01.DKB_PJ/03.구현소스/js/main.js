@@ -399,8 +399,11 @@ subViewBox.click(function(){
   console.log('나야나!', this);
 
   // 1. 제목 읽어오기
-  let subTit = $(this).parent('.sub-view-box').prev().text();
+  let subTit = $(this).parents('.sub-view-box').prev().text();
   // 나자신.부모들(특정클래스).이전형제().글자읽기();
+
+  // 2. 내용 읽어오기
+  let subItem  = $(this).text();
 
   // 1. 서브 박스 내용 넣기
   subContBox.html(`
@@ -408,7 +411,7 @@ subViewBox.click(function(){
     <div class="sub-inbox inbox">
       <h1>${subTit}</h1>
       <div class="sub-item">
-        내용이양
+        ${subItem}
       </div>
     </div>
   `);
