@@ -234,7 +234,9 @@ function ExpCom(props){
 
     // 변경버튼 호출 함수
     const againFn = () => {
-        console.log('다시변경해');
+        // Not 연산자 !(느낌표)는 true/false를 반대로 전환
+        result = !result;
+        console.log('다시변경해 :', result);
     };
 
     return(
@@ -245,7 +247,9 @@ function ExpCom(props){
             <button onClick={againFn}>작가변경</button>
             {/* 4-2-3. 작품출력 : 3항연산자로 작품 변경하기 */}
             {
-
+                result ? 
+                    <MakeWork painter='피카소' wname='우는여인'/> : 
+                    <MakeWork painter='모네' wname='양산을 쓴 여인'/> 
             }
         </React.Fragment>
     );
@@ -253,6 +257,6 @@ function ExpCom(props){
 
 // 4-3. 개발자가 좋아하는 명화 출력하기
 ReactDOM.render(
-    <ExpCom />,
+    <ExpCom isChange={false} />,
     document.querySelector('#root5')
 );
