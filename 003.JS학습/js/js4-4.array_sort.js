@@ -603,3 +603,22 @@ const showList5 = dFn.qs('.showList5');
 
 // 5-4. 초기출력하기 : upCode()
 upCode(newList3, showList5);
+
+// 5-5. 정렬기능 이벤트 설정하기 : sortingFn()
+// 이벤트 대상 : .sel5
+
+// 데이터 맵핑하기
+dFn.addEvt(dFn.qs('.sel5'), 'change', ()=>{
+    // 타겟 데이터 설정
+    targetData = newList3;
+    // 타겟 출력요소
+    targetEle = showList5;
+});
+
+// change 이벤트 연결설정
+dFn.addEvt(dFn.qs('.sel5'), 'change', sortingFn);
+
+// 검색 기준 선택박스 변경시 정렬선택 초기화 하기
+dFn.addEvt(dFn.qs('.cta5'), 'change', ()=>{
+    dFn.qs('.sel5').value = '0';
+});
