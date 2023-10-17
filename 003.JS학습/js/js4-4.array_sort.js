@@ -624,3 +624,4 @@ dFn.addEvt(dFn.qs('.sel5'), 'change', sortingFn);
 dFn.addEvt(dFn.qs('.cta5'), 'change', ()=>{
     dFn.qs('.sel5').value = '0';
 });
+
