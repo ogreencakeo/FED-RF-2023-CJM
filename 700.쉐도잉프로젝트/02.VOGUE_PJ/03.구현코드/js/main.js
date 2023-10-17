@@ -32,13 +32,22 @@ hideBox.each((idx, ele)=>{
 let winH = $(window).height()/3 * 2;
 console.log('윈도우 높이값 :', winH);
 
+// 스크롤 메뉴 적용대상 : .top-area
+const topArea = $('#top-area');
+
 $(window).scroll(()=>{
-    console.log('스크롤~~~~!');
+    // 세로방향 스크롤 위치값
+    let scTop = $(window).scrollTop();
+    console.log('스크롤~~~~!', scTop);
+
+    // 1. 스크롤 위치값이 100을 초과하면 슬림 상단 클래스 넣기
+    if(scTop > 100) topArea.addClass('on');
+    else topArea.removeClass('on');
 
     hideBox.each((idx, ele) => {
         if(idx!=0){
             let val = dFn.getBCR(ele);
-            // console.log(`대상요소 getBCR값[${idx}] :`, dFn.getBCR(ele));
+            // 2. console.log(`대상요소 getBCR값[${idx}] :`, dFn.getBCR(ele));
             if(val < winH) $(ele).addClass('on');
         }
     });
