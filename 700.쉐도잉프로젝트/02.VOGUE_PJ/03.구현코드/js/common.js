@@ -16,7 +16,7 @@ startSS();
 
 // 대상성정 : .common-area
 const comArea = dFn.qsa('.common-area');
-console.log('tData :', tData, ', comArea :', comArea);
+// console.log('tData :', tData, ', comArea :', comArea);
 
 // 상단영역 html 넣기
 comArea[0].innerHTML = tData.topArea;
