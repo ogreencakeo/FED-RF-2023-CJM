@@ -328,6 +328,11 @@ dFn.addEvt(sel3, 'change', ()=>{
 });
 dFn.addEvt(sel3, 'change', sortingFn);
 
+// 검색 기준 선택박스 변경시 정렬선택 초기화 하기
+dFn.addEvt(dFn.qs('.cta3'), 'change', ()=>{
+    dFn.qs('.sel3').value = '0';
+});
+
 // 정렬변경함수의 데이터 및 출력요소 셋팅변수
 let targetData = list1;
 let targetEle = showList3;
