@@ -1,106 +1,185 @@
-class MovieInfo {
-    constructor(pos, tit, sum, dir, act, des) {
-        this.포스터 = pos;
-        this.제목 = tit;
-        this.개요 = sum;
-        this.감독 = dir;
-        this.출연 = act;
-        this.문구 = des;
-    }
+import dfn from './dom.js';
 
-    myMethod(txt) {
-        return `
-            영화 ${this.포스터}의 
-            감족님 이름은 ${this.감독}
-            나의 응원은 ${txt}
-        `;
-    }
+const arrNumber = [4, 5, 8, 10, 2, 1, 9, 3, 7, 6];
+const arrString = ["파", "타", "하", "가", "바", "사", "다", "라", "차"];
+
+const showNum = dfn.qs('.showNum');
+const showNum2 = dfn.qs('.showNum2');
+const selBox = dfn.qs('#sel');
+const selBox2 = dfn.qs('#sel2');
+
+const showScreen = () => {
+    (showNum.innerHTML = arrNumber.map(
+        val => `<img src="./images/num/num_0${val}.png" />`
+    ).join(""));
 }
+showScreen();
 
-const mv = [];
-
-mv[0] = new MovieInfo(
-    "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
-    "조제",
-    "멜로/로맨스, 드라마",
-    "김종관",
-    "한지민, 남주혁",
-    "조제 보러 오세요"
-);
-
-mv[1] = new MovieInfo(
-    "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
-    "영웅",
-    "드라마, 뮤지컬",
-    "윤제균",
-    "정성화, 김고은",
-    "누가 죄인인가"
-);
-
-mv[2] = new MovieInfo();
-mv[2].포스터 =
-    "https://movie-phinf.pstatic.net/20221227_112/16721270739480lDiS_JPEG/movie_image.jpg?type=m203_290_2";
-mv[2].제목 = "교섭";
-mv[2].개요 = "드라마";
-mv[2].감독 = "임순례";
-mv[2].출연 = "황정민(정재호), 현빈(박대식)";
-mv[2].문구 = "아쌀라말라이쿰";
-
-let hcode = '';
-for (let y of mv) {
-    hcode += makeCode(y)
-}
-
-const wrap = document.querySelector('.wrap');
-wrap.innerHTML = hcode;
-
-const cbx = document.querySelectorAll('.cbx');
-cbx.forEach((ele, idx) => {
-    ele.addEventListener('click', ()=>{
-        alert(mv[idx].myMethod(mv[idx].문구));
-    });
+dfn.addEvt(selBox, 'change', function(){
+    let optVal = this.value;
+    if(optVal == 1){
+        arrNumber.sort((a,b) => a==b? 0:a>b? 1:-1);
+    }else if(optVal==2){
+        arrNumber.sort((a,b) => a==b? 0:a>b? -1:1);
+    }
+    showScreen();
 });
 
-function makeCode(mvi) {
-    return `
-    <section class="cbx">
-        <div class="minfo">
-            <!-- 1. 포스터 -->
-            <div class="photo">
-                <img src="${mvi.포스터}" 
-                alt="${mvi["제목"]}의 포스터">  
-            </div>
-            <div class="cont">
-                <!-- 2. 제목 -->
-                <h2 class="tit">
-                    ${mvi["제목"]}</h2>
-                <!-- 3. 개요 -->
-                <h3 class="sum">
-                    ★장르 : ${mvi["개요"]}</h3>
-                <!-- 4. 감독 -->
-                <h3 class="dir">
-                    ★감독 : ${mvi["감독"]}</h3>
-                <!-- 5. 출연 -->
-                <h3 class="act">
-                    ★출연 : ${mvi["출연"]}</h3>
-            </div>
-        </div>
-
-        <!-- 영화 한마디 -->
-        <h2 class="showtit">♥ 영화한마디!</h2>
-        <!-- 6. 문구 -->
-        <div class="show">
-            ${wrapSpan(mvi["문구"])}
-        </div>
-    </section>
-    `
+const showScreen2 = () => {
+    showNum2.innerHTML = arrString.map(val => `<span>${val}</span>`).join("");
 }
 
-function wrapSpan(txt) {
-    let hcode = "";
-    for (let x of txt) {
-        if (x == " ") hcode += "&nbsp;&nbsp;";
-        else hcode += `<span>${x}</span>`;
+showScreen2();
+
+dfn.addEvt(selBox2, 'change', function(){
+    let optVal = this.value;
+    if(optVal == 1){
+        arrString.sort((a,b) => (a==b? 0:a>b? 1:-1));
+    }else if(optVal == 2){
+        arrString.sort((a,b) => (a==b? 0:a>b? -1:1));
     }
-    return hcode;
+    showScreen2();
+});
+
+const list1 = [
+    {
+        idx: 8,
+        tit: "나는 구누?",
+        cont: "공동구매) 슬로건 공구 (계좌와 네이버폼)",
+    },
+    {
+        idx: 4,
+        tit: "여기는 어디?",
+        cont: "총공 공지] 오늘부터 일 2회, 총공 진행합니다",
+    },
+    {
+        idx: 1,
+        tit: "나야나",
+        cont: "연합 갈라 서포트 계좌오픈",
+    },
+    {
+        idx: 15,
+        tit: "이제 얼마나 남은거니?",
+        cont: "음악프로그램에 출연 요청글도 써볼까요?",
+    },
+]; 
+
+const showList3 = dfn.qs('.showList3');
+
+const upCode = (data, exBox) => {
+    let hcode = data.map(val => 
+        `
+            <tr>
+                <td>${val.idx}</td>
+                <td>${val.tit}</td>
+                <td>${val.cont}</td>
+            </tr>
+        `
+    );
+
+    exBox.innerHTML = `
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+            <tbody>
+                ${hcode.join("")}
+            </tbody>
+        </table>
+    `;
+}
+
+upCode(list1, showList3);
+
+const sel3 = dfn.qs('.sel3');
+
+dfn.addEvt(sel3, 'change', function(){
+    targetData = list1;
+    targetEle = showList3;
+});
+dfn.addEvt(sel3, 'change', sortingFn);
+
+let targetData = list1;
+let targetEle = showList3;
+
+function sortingFn(){
+    let optVal = this.value;
+    let cta = this.previousElementSibling.value;
+    if(optVal == 1){
+        targetData.sort((a,b) =>{
+            return a[cta] == b[cta]? 0:a[cta]>b[cta]? 1:-1;
+        });
+    }else if(optVal == 2){
+        targetData.sort((a,b) =>{
+            return a[cta] == b[cta]? 0:a[cta]>b[cta]? -1:1;
+        });
+    }
+
+    upCode(targetData,targetEle);
+}
+
+const sel4 = dfn.qs('.sel4');
+const showList4 = dfn.qs('.showList4');
+const list2 = [
+    {
+        idx: 15,
+        tit: "당근마켓에 가자",
+        cont: "당근마켓이 정말로 싸고 좋다구~!",
+    },
+    {
+        idx: 58,
+        tit: "당근마켓에 가자",
+        cont: "당근마켓이 항상 좋은건 아니야~! ㅜㅜ",
+    },
+    {
+        idx: 74,
+        tit: "점심에 뭐먹지? 당근이지!",
+        cont: "오스틴님 생일 서포트 안내",
+    },
+    {
+        idx: 18,
+        tit: "직돌이는 쉬고싶다~!",
+        cont: "활동정지에 대한 파생글 무통보 삭제 및 경고",
+    },
+    {
+        idx: 104,
+        tit: "올해는 다른 회사로 이직한다!",
+        cont: "⚜️갈라콘 서포트에 많은 참여 부탁드립니다!",
+    },
+]; 
+
+let newList = list2;
+upCode(list2, showList4);
+
+dfn.addEvt(sel4, 'change', ()=>{
+    targetData = newList;
+    targetEle = showList4;
+});
+dfn.addEvt(sel4, 'change', sortingFn);
+
+dfn.addEvt(dfn.qs('.sbtn'), 'click', searchingFn);
+
+function searchingFn(){
+    let stxt = dfn.qs('.#stxt').value;
+    let cta = dfn.qs('.cta4').value;
+    let res = list2.filter(v=>{
+        if(String(v[cta]).indexOf(stxt) != -1) return true;
+    });
+    upCode(res, showList4);
+
+    newList = res;
+}
+
+dfn.addEvt(dfn.qs('.fbtn'), 'click', ()=>{
+    newList = list2;
+    upCode(newList, showList4);
+    initSearch();
+});
+
+function initSearch(){
+    dfn.qs('#stxt').value = '';
+    dfn.qs('.cta4').value = 'idx';
+    dfn.qs('.sel4').value = '0';
 }
