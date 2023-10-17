@@ -185,8 +185,10 @@ function WishList2(props){
                     </ul>
                 </div>
             }
+            {/* 다른 조건은 아랫쪽에 다른 중괄호안에 표현 */}
             {
-                
+                mymv.length == 0 &&
+                <h2>아직 개발자 영화 리스트가 업데이트 되지 않았습니다.</h2>
             }
         </React.Fragment>
     );
