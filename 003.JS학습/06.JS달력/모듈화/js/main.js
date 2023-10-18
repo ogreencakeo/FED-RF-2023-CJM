@@ -39,8 +39,14 @@ calBox.mouseenter(function(){
         let myData = $(this).next().val();
         console.log('날짜정보요소 :', $(this).next());
 
+        // 달력 인스턴스 생성시 노출된 속성/메서드 중
+        // addZero() - 한자리 숫자 앞에 0추가 기능
+        // week[] - 한글 요일 변환 배열
+        // 를 생성된 인스턴스 dc2로부터 얻을 수 있다.
         myData = myData.split('/');
-        myData = myData[0] + '년 ' + myData[1] + '월 ' + myData[2] + '일 (' +
+        console.log(myData);
+        myData = myData[0] + '년 ' + dc2.addZero(myData[1]) + '월 ' + dc2.addZero(myData[2]) + '일 (' +
+                dc2.weekList[myData[3]] + '요일)';
 
         // 출력 : 해당달력의 부모의 이전 text박스
         $(this).parents('.calendar').parent().prev().val(myData);

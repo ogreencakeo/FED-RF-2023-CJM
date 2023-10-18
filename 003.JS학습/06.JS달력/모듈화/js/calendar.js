@@ -29,7 +29,7 @@ function MakeDallyeok(selEl) {
     //////////////////////////////////////////////////////////////
     // 생성자함수 속성/메서드 공개 연습하기 /////////////////////////
     // 요일정보 변환 배열
-    this.week = ["일", "월", "화", "수", "목", "금", "토"];
+    this.weekList = ["일", "월", "화", "수", "목", "금", "토"];
 
     // 한자릿수 날짜 앞에 0추가 메서드
     this.addZero = (x) => (x < 10 ? "0" + x : x);
@@ -221,8 +221,8 @@ function MakeDallyeok(selEl) {
                 }
 
                 // 날짜구성하기 : yyyy-mm-dd
-                let setDate = 
-                `${nowY}-${Dfn.addZero(nowM)
+                let setDate = `${nowY
+                }-${Dfn.addZero(nowM)
                 }-${Dfn.addZero(nowD)}`;
 
                 // 요일셋팅하기 : 해당날짜의 요일 getDay()
@@ -234,9 +234,8 @@ function MakeDallyeok(selEl) {
                 // 히든필드에 날짜정보 넣기: 날짜정보공개
                 // 활용도를 높이기 위해 일반 구분자로 정보 공개
                 // 예) 년도/월/일/요일 -> 2023/10/20/2
-                dateInfo.value = `
-                    ${nowY}/${nowM}/${nowD}/${setDay}
-                `;
+                dateInfo.value = 
+                `${nowY}/${nowM}/${nowD}/${setDay}`;
                 // setDate+`(${week[setDay]})`
 
             }); // click함수 /////
