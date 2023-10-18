@@ -12,4 +12,9 @@ console.log('대상 :', btnAct);
 
 btnAct.click(function(){
     console.log('나 버튼!', $(this).text());
+
+    // 2-1. 버튼별 분기하기
+    if($(this).text() == '펭수1'){
+        
+    }
 });
