@@ -295,8 +295,8 @@ function insertHcode() {
                 <div class="dates">
                 </div>
             </section>
-            <!-- 달력날짜 저장용 히든필드 -->
-            <input type="text" class="date-info" />
+            <!-- 달력날짜 저장용 히든필드 : type="hidden" -->
+            <input type="hidden" class="date-info" />
 
         </div>
     `;
