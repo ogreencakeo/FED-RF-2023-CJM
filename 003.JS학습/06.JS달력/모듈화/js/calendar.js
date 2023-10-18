@@ -21,11 +21,16 @@ const Dfn = {
 // 요일변경배열
 const week = ['일', '월', '화', '수', '목', '금', '토']; 
 
-// 달력함수 호출
-makeDallyeok();
+// 달력함수 호출 -> 이젠 여기서 안함!
+// makeDallyeok();
 
-function makeDallyeok(selEl){   // selEl - 달력 넣을 요소
+function makeDallyeok(selEl){   
+    // selEl - 달력 넣을 요소(선택자만 보냄)
     Dfn.cg('달력만들어!');
+
+    //////////////////////////////////////////////////////////////
+    // 0. 달력 컴포넌트 HTML 넣기
+    Dfn.qs(selEl).innerHTML = insertHcode();
 
     //////////////////////////////////////////////////////////////
     // 1. 변수셋팅 
@@ -227,6 +232,7 @@ function makeDallyeok(selEl){   // selEl - 달력 넣을 요소
     // 초기셋팅함수 호출
     initDallyeok();
 
+    
 }   // makeDallyeok함수 //////////////////////////////
 
 //////////////////////////////////////////////////////////////
@@ -266,4 +272,7 @@ function insertHcode(){
             </section>
         </div>
     `;
-}
+} // insertHcode함수 ///////////////////////////////
+
+// 달력 내보내기 ///////////////////////////////
+export default makeDallyeok;
