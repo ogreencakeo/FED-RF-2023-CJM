@@ -72,4 +72,5 @@
     caution4 : "",
     caution5 : "",
     caution6 : "",
+    caution7 : "",
 },
