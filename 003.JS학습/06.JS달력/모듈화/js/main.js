@@ -5,4 +5,7 @@ import makeDallyeok from "./calendar.js";
 
 // 달력 컴포넌트 함수 호출하여 달력 셋팅하기
 // 대상 : .dalcom
-makeDallyeok('.dalcom');
+document.querySelectorAll('.dalcom').forEach(ele => {
+    // console.log(ele);
+    // makeDallyeok(ele);
+});

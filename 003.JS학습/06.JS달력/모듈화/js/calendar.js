@@ -29,7 +29,7 @@ function makeDallyeok(selEl){
     Dfn.cg('달력만들어!');
 
     //////////////////////////////////////////////////////////////
-    // 0. 달력 컴포넌트 HTML 넣기
+    // 0. 달력 컴포넌트 HTML 넣기 : 다중처리로!
     Dfn.qs(selEl).innerHTML = insertHcode();
 
     //////////////////////////////////////////////////////////////
@@ -39,11 +39,11 @@ function makeDallyeok(selEl){
     // 1-2. 오늘 날짜 객체
     const today = new Date();
     // 1-3. 년도요소 : .yearTit
-    const yearTit = Dfn.qs('.yearTit');
+    const yearTit = Dfn.qs(selEl + '.yearTit');
     // 1-4. 월요소 : .yearTit
-    const monthTit = Dfn.qs('.monthTit');
+    const monthTit = Dfn.qs(selEl + '.monthTit');
     // 1-5. 일요소 : .yearTit
-    const dates = Dfn.qs('.dates');
+    const dates = Dfn.qs(selEl + '.dates');
     // 1-6. 날짜 넣을 배열 변수
     const dateSet = [];
     // 1-7. html 코드 저장 변수
@@ -168,7 +168,7 @@ function makeDallyeok(selEl){
 
         // 2-7. 날짜 정보를 사용하도록 셋팅하기
         // 2-7-1. 대상 : .date -> 위에서 새로 담겼으므로 새로 읽음
-        let newDate = Dfn.qsa('.date');
+        let newDate = Dfn.qsa(selEl + '.date');
         // console.log('newDate :', newDate); // 0~41
 
         // 2-7-2. 각 날짜 .date요소에 링크 설정하기
@@ -225,14 +225,13 @@ function makeDallyeok(selEl){
 
     // 2-6. 이벤트 설정하기
     // 2-6-1. 이전버튼에 함수 연결하기 : 달을 빼기 위해 -1 전달 
-    Dfn.addEvt(Dfn.qs('.btnL'), 'click', ()=>chgvCalendar(-1));
+    Dfn.addEvt(Dfn.qs(selEl + '.btnL'), 'click', ()=>chgvCalendar(-1));
     // 2-6.2. 다음버튼에 함수 연결하기 : 달을 더하기 위해 1 전달 
-    Dfn.addEvt(Dfn.qs('.btnR'), 'click', ()=>chgvCalendar(1));
+    Dfn.addEvt(Dfn.qs(selEl + '.btnR'), 'click', ()=>chgvCalendar(1));
 
     // 초기셋팅함수 호출
     initDallyeok();
 
-    
 }   // makeDallyeok함수 //////////////////////////////
 
 //////////////////////////////////////////////////////////////
