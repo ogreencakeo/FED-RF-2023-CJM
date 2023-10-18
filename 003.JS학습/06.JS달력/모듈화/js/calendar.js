@@ -224,8 +224,14 @@ function MakeDallyeok(selEl) {
                 console.log(setDate+`(${week[setDay]})`);
 
                 // 히든필드에 날짜정보 넣기: 날짜정보공개
-                dateInfo.value = setDate+`(${week[setDay]})`
-            });
+                // 활용도를 높이기 위해 일반 구분자로 정보 공개
+                // 예) 년도/월/일/요일 -> 2023/10/20/2
+                dateInfo.value = `
+                    ${nowY}/${nowM}/${nowD}/${setDay}
+                `;
+                // setDate+`(${week[setDay]})`
+
+            }); // click함수 /////
 
         });
     }; // initDallyeok함수 ///////////////
