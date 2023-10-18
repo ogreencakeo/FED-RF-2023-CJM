@@ -90,7 +90,67 @@ const movies = [
     {year : '2023', mname : '가디언즈 오브 갤럭시3'},
 ];
 
+function MovieList(props){
+    return <li>{props.year}년도 {props.mname}</li>
+}
 
+function WishList2(props){
+    const mwlist = props.mList;
+    return(
+        <React.Fragment>
+            <Title tit = '음식' />
+            {
+                mwlist.length > 0&&
+                <div>
+                    <h2>개발자가 좋아하는 영화는 최근 {mwlist.length}년간 아래와 같습니다.</h2>
+                    <ul>
+                        {
+                            mwlist.map(val => <MovieList year={val.year} mname={val.mname} />)
+                        }
+                    </ul>
+                </div>
+            }
+            {
+                mwlist.length == 0&&
+                <h2>개발자 영화가 아직 업데이트 되지 않았습니다.</h2>
+            }
+        </React.Fragment>
+    )
+}
+
+const worksrc = {
+    "피카소":"https://m.theartin.net/web/product/big/201907/30c5a0fdd153bfdfdc8f19b2f4166fa8.jpg",
+    "모네":"https://dimg.donga.com/wps/NEWS/IMAGE/2015/12/11/75316598.3.jpg"
+};
+
+function MakeWork(props){
+    return(
+        <div>
+            <h2>{props.painter}</h2>
+            <img src={worksrc[props.painter]} alt={props.work} 
+            tittle={props.work} style={{width : '400px'}} />
+        </div>
+    )
+}
+
+function ExpCom(props){
+    const [result, setResult] = React.useState(props.isChange);
+    const againFn = () => {
+        setResult(!result);
+    }
+    return(
+        <React.Fragment>
+            <Title tit='명화' />
+            <button onClick={againFn}>작가변경</button>
+            {
+                result ?
+                <MakeWork painter='피카소' work='우는광대' />:
+                <MakeWork painter='모네' work='양산을 든 여인' />
+
+            }
+        </React.Fragment>
+    )
+}
 
 ReactDOM.render(
     <Developer info={true} isrc={devImg[0]} itit='개발자 공유' ialt='개발자 세계' />,
@@ -104,4 +164,13 @@ ReactDOM.render(
     <WishList f_info={foods} />,
     document.querySelector('#root3')
 );
+ReactDOM.render(
+    <WishList2 mList={movies} />,
+    document.querySelector('#root4')
+);
+ReactDOM.render(
+    <ExpCom isChange={false} />,
+    document.querySelector('#root5')
+);
+
 
