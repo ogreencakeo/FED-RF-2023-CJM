@@ -3,152 +3,120 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>JS4-4. 배열의 정렬과 검색</title>
-        <style>
-            /* 타이틀 */
-            .tit,
-            .stit {
-                text-align: center;
+        <title>JS5-6.2. JS클래스 상속 + 겟터, 셋터</title>
+        <script>
+            class MovieInfo{
+                constructor(pos, tit, sum, dir, act, des){
+                    this.포스터 = pos;
+                    this.제목 = tit;
+                    this.개요 = sum;
+                    this.감독 = dir;
+                    this.출연 = act;
+                    this.문구 = des;
+                }
+                공통메서드(txt){
+                    return  `영화의 ${this.제목}의 감독님 이름${this.감독}, 나의 응원은 ${txt}`; 
+                }
             }
-            .showNum img {
-                height: 100px;
+            
+            class CGV extends MovieInfo{
+                constructor(pos, tit, sum, dir, act, des, num, msg){
+                    super(pos, tit, sum, dir, act, des);
+                    this.수용인원 = num;
+                    this.메시지 = msg;
+                }
+
+                showCGV(txt){
+                    return super.공통메서드(txt) + ', CGV안내 :' + this.메시지;
+                }
+
+                get People(){
+                    return this.수용인원;
+                }
+
+                set People(n){
+                    if(isNaN(n)){
+                        n = 30;
+                    }else{
+                        this.수용인원 = n;
+                    }
+                }
             }
-            .showNum2 span {
-                font-size: 64px;
-                display: inline-block;
-                margin: 0 10px;
-                font-family: "궁서";
-                color: darkgreen;
-            }
-            /* 구분박스 */
-            .sbx {
-                margin: 20px auto;
-                padding: 20px;
-                border: 5px dotted lightseagreen;
-                max-width: 1000px;
-            }
-            .cont {
-                text-align: center;
-            }
-            /* 선택박스의 박스 */
-            .selbx {
-                text-align: center;
-            }
-            .sbx select,
-            input,
-            button {
-                margin-bottom: 15px;
-                font-size: 24px;
+            
+            class MegaBox extends MovieInfo{
+                constructor(pos, tit, sum, dir, act, des, num, msg){
+                    super(pos, tit, sum, dir, act, des);
+                    this.수용인원 = num;
+                    this.팝콘소식 = msg;
+                }
+
+                showMega(txt){
+                    return super.공통메서드(txt) + ', MegaBox 팝콘소식 :' + this.팝콘소식;
+                }
+
+                get hallNum(){
+                    return this.수용인원;
+                }
+                set hallNum(n){
+                    if(isNaN(n)){
+                        n = 100;
+                    }else{
+                        this.수용인원 = n;
+                    }
+                }
             }
 
-            .sbx table {
-                width: 700px;
-                border-collapse: collapse;
-                border-top: 2px solid #222;
-                margin: 0 auto;
-            }
+            const cgvInfo1 = new CGV(
+                "https://movie-phinf.pstatic.net/20221213_158/1670910727328mpqYu_JPEG/movie_image.jpg?type=m203_290_2",
+                "영웅",
+                "드라마, 뮤지컬",
+                "윤제균",
+                "정성화, 김고은",
+                "누가 죄인인가",
+                50, 
+                "CGV는 항상 영화팬들과 함께합니다~!"
+            );
 
-            .sbx table th {
-                padding: 10px;
-                border-bottom: 2px solid #555;
-                background-color: #ccc;
-            }
-            .sbx table td {
-                padding: 10px 0;
-                border-bottom: 1px solid #888;
-            }
-            .sbx tbody tr:nth-child(even) {
-                background-color: #eeeeee;
-            }
-            .sbx tbody tr td:first-child {
-                text-align: center;
-            }
-            .sbx tbody tr:last-child td {
-                border-bottom: 2px solid #222;
-            }
-        </style>
-        <script type="module" src="./js/pra.js"></script>
+            const megaInfo1 = new MegaBox(
+                "https://movie-phinf.pstatic.net/20201116_276/1605491658399poUOC_JPEG/movie_image.jpg?type=m99_141_2",
+                "조제",
+                "멜로/로맨스, 드라마",
+                "김종관",
+                "한지민, 남주혁",
+                "조제 보러 오세요",
+                300,
+                "롤리팝과 먹는 새로운 롤리팝콘 출시!!!"
+            );
+
+            window.addEventListener('load', ()=>{
+                let hcode = '<h1>[ CGV 상영관 영화 안내 ]</h1><ul>';
+                let posterImg = (x)=> `<img src="${x}"/>`
+                Object.keys(cgvInfo1).forEach(ele=> hcode+= `
+                    <li>${ele == '포스터'? posterImg(cgvInfo1.포스터) : cgvInfo1[ele]}</li>
+                `)
+                hcode += `<li>${ cgvInfo1.showCGV('CGV는 항상 훌륭합니다.')}</li>`
+                hcode += `<li>🥓 2022년 CGV 극장 수용인원은 ${cgvInfo1.수용인원}이었습니다!</li>`
+                cgvInfo1.수용인원 = 300;
+    
+                hcode += `<li>🥓 2022년 CGV 극장 수용인원은 ${cgvInfo1.수용인원}명이 되었습니다!</li>`;
+                hcode += '</ul>'
+
+
+                hcode += '<h1>[ Meaga 상영관 영화 안내 ]</h1><ul>';
+                let poster = (x) => `<img src=${x} />`
+                Object.keys(megaInfo1).forEach(ele => hcode+= `<li>
+                        ${ ele=='포스터'? poster(megaInfo1.포스터) : megaInfo1[ele]}
+                    </li>`);
+                hcode += `<li>${megaInfo1.showMega('mega는 항상 훌륭합니다.')}</li>`
+                hcode += `<li>🥓 2022년 CGV 극장 수용인원은 ${megaInfo1.수용인원}이었습니다!</li>`
+                megaInfo1.수용인원 = 500;
+    
+                hcode += `<li>🥓 2022년 CGV 극장 수용인원은 ${megaInfo1.수용인원}명이 되었습니다!</li>`;
+                hcode += '</ul>'
+                document.body.innerHTML += hcode;
+            });
+        </script>
+        <style></style>
     </head>
-    <body>
-        <h1 class="tit">[ 🏢배열의 정렬🏰 ]</h1>
-
-        <h2 class="stit">🌊숫자로만된 배열의 정렬</h2>
-        <div class="sbx">
-            <div class="selbx">
-                <select name="sel" id="sel" class="sel">
-                    <option value="0">정렬선택</option>
-                    <option value="1">오름차순</option>
-                    <option value="2">내림차순</option>
-                </select>
-            </div>
-            <div class="showNum cont"></div>
-        </div>
-
-        <h2 class="stit">🛕문자데이터 배열의 정렬</h2>
-        <div class="sbx">
-            <div class="selbx">
-                <select name="sel2" id="sel2" class="sel2">
-                    <option value="0">정렬선택</option>
-                    <option value="1">오름차순</option>
-                    <option value="2">내림차순</option>
-                </select>
-            </div>
-            <div class="showNum2 cont"></div>
-        </div>
-
-        <h2 class="stit">👨‍👩‍👦‍👦객체데이터 배열의 정렬</h2>
-        <div class="sbx">
-            <div class="selbx">
-                <select name="cta3" id="cta3" class="cta3">
-                    <option value="idx">번호</option>
-                    <option value="tit">제목</option>
-                    <option value="cont">내용</option>
-                </select>
-                <select name="sel3" id="sel3" class="sel3">
-                    <option value="0">정렬선택</option>
-                    <option value="1">오름차순</option>
-                    <option value="2">내림차순</option>
-                </select>
-            </div>
-            <div class="showList3"></div>
-        </div>
-
-        <h2 class="stit">🏸객체데이터 검색후 배열의 정렬</h2>
-        <div class="sbx">
-            <div class="selbx">
-                <select name="cta4" id="cta4" class="cta4">
-                    <option value="idx">번호</option>
-                    <option value="tit">제목</option>
-                    <option value="cont">내용</option>
-                </select>
-                <select name="sel4" id="sel4" class="sel4">
-                    <option value="0">정렬선택</option>
-                    <option value="1">오름차순</option>
-                    <option value="2">내림차순</option>
-                </select>
-                <input id="stxt" type="text" maxlength="50" />
-                <button class="sbtn">검색</button>
-                <button class="sample">샘플</button>
-                <button class="fbtn">FL</button>
-            </div>
-            <div class="showList4"></div>
-        </div>
-
-        <h2 class="stit">🏸객체원본 배열로 변환하기</h2>
-        <div class="sbx">
-            <div class="selbx">
-                <select name="cta5" id="cta5" class="cta5">
-                    <option value="idx">번호</option>
-                    <option value="tit">tit</option>
-                    <option value="cont">cont</option>
-                </select>
-                <select name="sel5" id="sel5" class="sel5">
-                    <option value="0">정렬선택</option>
-                    <option value="1">오름차순</option>
-                    <option value="2">내림차순</option>
-                </select>
-            </div>
-            <div class="showList5"></div>
-        </div>
-    </body>
+    <body></body>
 </html>
