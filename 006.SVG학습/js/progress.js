@@ -34,7 +34,26 @@ btnAct.one('click', function(){
     ///////////////////////////////////////////////////////////////
     // 4. 두번째 버튼은 내부에서 재귀호출하기
     else if(btxt == '팽수2'){
-        // 4-1. 퍼센트 수치 증가하기
+        // 4-0. 바텍스트 요소
+        let barTxt = lineper.find('.ltxt b');
+
+        // 4-1-1. 퍼센트 수치 증가하기
+        let num = barTxt.text();
+
+        // 4-1. 반복실행부분 함수화 하기
+        const progBar = () => {
+            num++;
+            // 4-1-2. 퍼센트 수치 반영
+            barTxt.text(num);
+        };
+
+        // 최초 호출
+        progBar();
+
+        // 재귀 호출
+        setTimeout(()=>{
+            if(num<100) progBar();
+        }, 40);
     }
 });
 
