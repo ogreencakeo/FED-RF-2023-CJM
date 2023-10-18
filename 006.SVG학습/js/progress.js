@@ -50,8 +50,24 @@ btnAct.one('click', function(){
             barTxt.text(num);
             // 4-1-3. 진행바 수치와 같이 증가하기
             barBox.css({ width : num + '%' });
+
+            // 4-1-4. 100% 도달시 음악 재생하기
+            if(num==100){
+                console.log('음악틀어~~');
+                // 이미 페이지에 삽입된 오디오를 재생시킨다.
+                // 비디오 / 오디오 재생 메서드 : play()
+                // 비디오 / 오디오 멈춤 메서드 : pause()
+                // 비디오 / 오디오 요소는 제이쿼리에서 get() 메서드를 사용하여 선택함
+                // $(선택요소).get(0).play() 또는
+                // $(선택요소)[0].play()
+                // $('#myaud').get(0).play();
+                $('#myaud')[0].play();
+
+                // 비교 JS 코드 : get() 안씀
+                // document.querySelector('#myaud').play();
+            }
             
-            // 재귀 호출
+            // 4-1-5. 재귀 호출
             setTimeout(()=>{
                 if(num<100) progBar();
             }, 40);
