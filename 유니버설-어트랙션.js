@@ -9,11 +9,8 @@
 
 */
 
-
-
-
-const attraction_wrap = [
-    {
+const attraction_wrap = {
+    "attraction_idx":{
         idx : "1",
         name : "42nd 스트리트 스튜디오 ~그리팅 갤러리~",
         image : "attraction1",
@@ -26,7 +23,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "2",
         name : "그로버 콘스트럭션 컴퍼니" ,
         image : "attraction2",
@@ -39,7 +36,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "3",
         name : "날아라 스누피" ,
         image : "attraction3",
@@ -52,7 +49,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "4",
         name : "더 플라잉 다이너소어" ,
         image : "attraction4",
@@ -65,7 +62,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "5",
         name : "마리오 카트: 쿠파의 도전장™" ,
         image : "attraction5",
@@ -79,7 +76,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "6",
         name : "만나기",
         image : "attraction6",
@@ -93,7 +90,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "7",
         name : "몹피의 럭키 댄스 파티",
         image : "attraction7",
@@ -106,7 +103,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "8",
         name : "몹피의 벌룬 여행",
         image : "attraction8",
@@ -119,7 +116,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "9",
         name : "미니언 그리팅",
         image : "attraction9",
@@ -132,7 +129,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "10",
         name : "미니언 랠리",
         image : "attraction10",
@@ -145,7 +142,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "11",
         name : "미니언 메이헴",
         image : "attraction11",
@@ -158,7 +155,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "12",
         name : "미니언즈 피버 디스코 그리팅",
         image : "attraction12",
@@ -171,7 +168,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "13",
         name : "바나나 카바나",
         image : "attraction13",
@@ -184,7 +181,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "14",
         name : "버블 비트 블록",
         image : "attraction14",
@@ -197,7 +194,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx":{
         idx : "15",
         name : "버트와 애니의 원더 더 시",
         image : "attraction15",
@@ -210,7 +207,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx16":{
         idx : "16",
         name : "버트와 어니의 프로숍 게임 플레이스",
         image : "attraction16",
@@ -223,7 +220,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx17":{
         idx : "17",
         name : "빅드 비드 탑 서커스",
         image : "attraction17",
@@ -236,7 +233,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx18":{
         idx : "18",
         name : "빅 버드 빅 네스트",
         image : "attraction18",
@@ -249,7 +246,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx19":{
         idx : "19",
         name : "세서미 빅 드라이브",
         image : "attraction19",
@@ -262,7 +259,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx20":{
         idx : "20",
         name : "세서미 스트리트 4-D 무비 매직™",
         image : "attraction20",
@@ -275,7 +272,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "1",
     },
-    {
+    "attraction_idx21":{
         idx : "21",
         name : "슈렉 4-D 어드벤처",
         image : "attraction21",
@@ -288,7 +285,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "1",
     },
-    {
+    "attraction_idx22":{
         idx : "22",
         name : "스누피 사운드 스테이지 어드벤처™",
         image : "attraction22",
@@ -301,7 +298,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx23":{
         idx : "23",
         name : "스페이스 킬러",
         image : "attraction23",
@@ -314,7 +311,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx24":{
         idx : "24",
         name : "스페이스 판타지 더 라이드",
         image : "attraction24",
@@ -327,7 +324,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx25":{
         idx : "25",
         name : "씽 온 투어",
         image : "attraction25",
@@ -340,7 +337,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx26":{
         idx : "26",
         name : "애머티 보드워크 게임",
         image : "attraction26",
@@ -353,7 +350,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx27":{
         idx : "27",
         name : "애비의 매지컬 트리",
         image : "attraction27",
@@ -366,7 +363,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx28":{
         idx : "28",
         name : "애비의 매지컬 파티",
         image : "attraction28",
@@ -379,7 +376,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx29":{
         idx : "29",
         name : "어니의 러버 덕 레이스",
         image : "attraction29",
@@ -392,7 +389,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx30":{
         idx : "30",
         name : "어메이징 어드벤처 오브 스파이더맨 더 라이드 4K3D",
         image : "attraction30",
@@ -405,7 +402,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx31":{
         idx : "31",
         name : "엘모의 고 고 스케이트보드",
         image : "attraction31",
@@ -418,7 +415,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx32":{
         idx : "32",
         name : "엘모의 리틀 드라이브",
         image : "attraction32",
@@ -431,7 +428,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx33":{
         idx : "33",
         name : "엘모의 버블 버블",
         image : "attraction33",
@@ -444,7 +441,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx34":{
         idx : "34",
         name : "올리밴더스의 가게™",
         image : "attraction34",
@@ -457,7 +454,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx35":{
         idx : "35",
         name : "완드 스터디",
         image : "attraction35",
@@ -470,7 +467,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx36":{
         idx : "36",
         name : "요시 어드벤처™",
         image : "attraction36",
@@ -483,7 +480,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx37":{
         idx : "37",
         name : "워터 가든",
         image : "attraction37",
@@ -496,7 +493,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx38":{
         idx : "38",
         name : "워터 월드",
         image : "attraction38",
@@ -509,7 +506,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx39":{
         idx : "39",
         name : "유니버설 몬스터 라이브 록큰롤 쇼",
         image : "attraction39",
@@ -522,7 +519,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx40":{
         idx : "40",
         name : "유니버설 스펙터클 나이트 퍼레이드~베스트 오브 할리우드~",
         image : "attraction40",
@@ -535,7 +532,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx41":{
         idx : "41",
         name : "유니버설 원더랜드 필 더 리듬",
         image : "attraction41",
@@ -548,7 +545,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx42":{
         idx : "42",
         name : "죠스",
         image : "attraction42",
@@ -561,7 +558,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx43":{
         idx : "43",
         name : "쥬라기 공원 다이너소어 미트&그리트",
         image : "attraction43",
@@ -574,7 +571,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx44":{
         idx : "44",
         name : "쥬라기 공원 다이너소어 미트&그리트",
         image : "attraction44",
@@ -587,7 +584,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx45":{
         idx : "45",
         name : "지팡이 마법",
         image : "attraction45",
@@ -600,7 +597,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx46":{
         idx : "46",
         name : "쿠키 몬스터 슬라이드",
         image : "attraction46",
@@ -613,7 +610,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx47":{
         idx : "47",
         name : "트리위저드 스피릿 랠리",
         image : "attraction47",
@@ -626,7 +623,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx48":{
         idx : "48",
         name : "파워 업 밴드™ 키 챌린지",
         image : "attraction48",
@@ -639,7 +636,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx49":{
         idx : "49",
         name : "파워 오브 팝: 트렌딩",
         image : "attraction49",
@@ -652,7 +649,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx50":{
         idx : "50",
         name : "페스티발 인 더 파크",
         image : "attraction50",
@@ -665,7 +662,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx51":{
         idx : "51",
         name : "프로그 콰이어",
         image : "attraction51",
@@ -678,7 +675,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx52":{
         idx : "52",
         name : "프리즈 레이 슬라이더",
         image : "attraction52",
@@ -691,7 +688,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx53":{
         idx : "53",
         name : "플라이트 오브 더 히포그리프™",
         image : "attraction53",
@@ -704,7 +701,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx54":{
         idx : "54",
         name : "플레잉 위드 원숭이 조지™",
         image : "attraction54",
@@ -717,7 +714,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx55":{
         idx : "55",
         name : "피에스타 라티나",
         image : "attraction55",
@@ -730,7 +727,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx56":{
         idx : "56",
         name : "할리우드 드림 더 라이드",
         image : "attraction56",
@@ -743,7 +740,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx57":{
         idx : "57",
         name : "할리우드 드림 더 라이드~백드롭~",
         image : "attraction57",
@@ -756,7 +753,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx58":{
         idx : "58",
         image : "attraction58",
         name : "해리 포터 앤드 더 포비든 저니™",
@@ -770,7 +767,7 @@ const attraction_wrap = [
         caution6 : "1",
         caution7 : "0",
     },
-    {
+    "attraction_idx59":{
         idx : "59",
         image : "attraction59",
         name : "헬로키티 리본 컬렉션",
@@ -783,7 +780,7 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-    {
+    "attraction_idx60":{
         idx : "60",
         image : "attraction60",
         name : "헬로키티 컵케이크 드림",
@@ -796,4 +793,15 @@ const attraction_wrap = [
         caution6 : "0",
         caution7 : "0",
     },
-]
+}
+const option1 = {
+    "서비스 전체" : [
+
+    ],
+    "예약 탑승" : [
+
+    ],
+    "포토 서비스" : [
+
+    ]
+}
