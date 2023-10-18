@@ -69,4 +69,6 @@ $('.dalcom input').click(function(){
 });
 
 // 2. 달력 처음에 숨기기 + 떠날때 숨기기
-myCal.hide();
+myCal.hide().mouseleave(function(){
+    $(this).hide();
+});
