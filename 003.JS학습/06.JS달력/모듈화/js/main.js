@@ -45,7 +45,9 @@ calBox.mouseenter(function(){
         // 를 생성된 인스턴스 dc2로부터 얻을 수 있다.
         myData = myData.split('/');
         console.log(myData);
-        myData = myData[0] + '년 ' + dc2.addZero(myData[1]) + '월 ' + dc2.addZero(myData[2]) + '일 (' +
+        myData = myData[0] + '년 ' 
+                + dc2.addZero(myData[1]) + '월 ' 
+                + dc2.addZero(myData[2]) + '일 (' +
                 dc2.weekList[myData[3]] + '요일)';
 
         // 출력 : 해당달력의 부모의 이전 text박스
@@ -54,3 +56,17 @@ calBox.mouseenter(function(){
         // parenets(특정요소) 부모들중 특정 요소
     });
 });
+
+/////////////////////////////////////////////////////////////////////
+// 달력 박스 보이기 / 숨기기 처리
+// 대상 : .calendar
+const myCal = $(".calendar");
+
+// 1. 보이기 : input박스를 클릭하면 보임
+$('.dalcom input').click(function(){
+    // input 다음에 하위 .calendar 찾아서 보여! show()
+    $(this).next().find('.calendar').show();
+});
+
+// 2. 달력 처음에 숨기기 + 떠날때 숨기기
+myCal.hide();

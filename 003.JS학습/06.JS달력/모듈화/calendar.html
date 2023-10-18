@@ -20,11 +20,22 @@
                 height: 50px;
                 border: 3px dotted orangered;
             }
+            .dalcom input{
+                padding: 7px;
+                font-size: 24px;
+            }
             /* 달력 조정은 트랜스폼으로 */
             .calendar{
                 transform: scale(.6);
                 transform-origin: left top;
+                /* display: none; */
             }
+            /* CSS 자체로 달력 보이기 : input에 포커스 가상 클래스
+            -> 그러나 너무 빨리 사라져서 이벤트 정보 처리가 미처 되기전에 없어지므로 
+            CSS로는 하지 못함 */
+            /* .dalcom input:focus + div > .calendar{
+                display: block;
+            } */
         </style>
     </head>
     <body>
