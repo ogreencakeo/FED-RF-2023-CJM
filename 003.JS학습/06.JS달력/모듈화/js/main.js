@@ -39,6 +39,9 @@ calBox.mouseenter(function(){
         let myData = $(this).next().val();
         console.log('날짜정보요소 :', $(this).next());
 
+        myData = myData.split('/');
+        myData = myData[0] + '년 ' + myData[1] + '월 ' + myData[2] + '일 (' +
+
         // 출력 : 해당달력의 부모의 이전 text박스
         $(this).parents('.calendar').parent().prev().val(myData);
         // parenet() 한단계 위의 부모요소
