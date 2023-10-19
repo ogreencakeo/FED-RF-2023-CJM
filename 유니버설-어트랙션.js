@@ -857,7 +857,8 @@ const characteristic = {
         "attraction_idx41", "attraction_idx46", "attraction_idx52", "attraction_idx54", "attraction_idx59", "attraction_idx60"
     ],
     "어린이와 함께 즐기기" : [
-        "attraction_idx1"
+        "attraction_idx1", "attraction_idx3", "attraction_idx6", "attraction_idx8", "attraction_idx9", "attraction_idx12", "attraction_idx17", "attraction_idx19", "attraction_idx21",
+        "attraction_idx33", "attraction_idx34", "attraction_idx36", "attraction_idx40", "attraction_idx41", "attraction_idx42", "attraction_idx54", "attraction_idx59", "attraction_idx60" 
     ],
     "물에 젖을 수 있음" : [
 

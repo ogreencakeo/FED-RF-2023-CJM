@@ -19,15 +19,9 @@ function MainComponent(){
             {/* 3. 상품리스트박스 */}
             <div className="gwrap">
                 <ol class="glist">
-                    <li>
-                        <img src="./images/vans/vans_1.jpg" alt="신발" />
-                    </li>
-                    <li>
-                        반스명:Shine1
-                    </li>
-                    <li>
-                        가격: 32,400원
-                    </li>
+                    <li><img src="./images/vans/vans_1.jpg" alt="신발" /></li>
+                    <li>반스명:Shine1</li>
+                    <li>가격: 32,400원</li>
                 </ol>
             </div>
         </React.Fragment>
