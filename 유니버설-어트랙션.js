@@ -864,6 +864,77 @@ const characteristic = {
         "attraction_idx29", "attraction_idx33", "attraction_idx37", "attraction_idx38", "attraction_idx42", "attraction_idx44", "attraction_idx52"
     ],
     "절규/스릴 만점" : [
+        "attraction_idx4", "attraction_idx5", "attraction_idx11", "attraction_idx24", "attraction_idx30", "attraction_idx31", "attraction_idx38", "attraction_idx42",  "attraction_idx44",
+        "attraction_idx53", "attraction_idx56", "attraction_idx57", "attraction_idx58"
+    ]
+};
+
+// 신장 제한
+const height_restrictions = {
+    "제한 없음" : [
+
+    ],
+    "신장 제한 122cm 이상" : [
+
+    ],
+    "신장 제한 122cm 이상 및 195cm 이하" : [
+
+    ],
+    "신장 제한 132cm 이상" : [
+
+    ],
+    "신장 제한 132cm 이상 및 198cm 이하" : [
+
+    ],
+    "신장 제한 없음" : [
+
+    ]
+};
+
+// 어트랙션 타입
+const attraction_type = {
+    "라이드 어트랙션" : [
+
+    ],
+    "쇼 어트랙션" : [
+
+    ],
+    "스테이지 쇼 &  스트리트 쇼" : [
+
+    ],
+    "플레이랜드·기타" : [
+
+    ],
+    "게임" : [
+
+    ]
+
+} ;
+
+// 서포트
+const support = {
+    "전부" : [
+
+    ],
+    "안내견 동반 가능" : [
+
+    ],
+    "가발 착용 가능" : [
+
+    ], 
+    "싱글 라이더 사용 가능" : [
+
+    ],
+    "차일드 스위치 사용 가능" : [
+
+    ],
+    "임산부 가능" : [
+
+    ],
+    "휠체어 가능" : [
+
+    ],
+    "자막 표시 안경 이용 가능(일본어)" : [
 
     ]
 };
