@@ -145,6 +145,9 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
 const dtg = dFn.qsa('.dtg');
 dtg.forEach(ele => goDrag(ele));
 
+// 위치이동 차이 결과변수 result x -> 슬라이드와 공유
+let rx = 0;
+
 function goDrag(ele){   
     // ele 드래그 대상 요소(.slide임)
 
@@ -153,7 +156,8 @@ function goDrag(ele){
     // 처음 위치는 슬라이드 최초 left위치값으로 읽어옴
     let lx = ele.offsetLeft, ly = 0;
     let mvx, mvy;
-    let rx, ry;
+    // let rx, ry; // 위치이동 차이값은 슬라이드 오른쪽 이동시 보정 값으로 
+    // 슬라이드 이동파트에서 써야하므로 함수 바깥에 선언하여 공유한다.
 
 
     const dTrue = () => drag = true;
@@ -222,7 +226,7 @@ function goDrag(ele){
 
     dFn.addEvt(ele, 'touchend', ()=>{
         dFalse();
-        // 모바일도 마찬가지임
+        // 모바일도 마찬가지임.
         // lastPoint();
     });
 
