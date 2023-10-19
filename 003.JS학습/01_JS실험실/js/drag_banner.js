@@ -161,7 +161,11 @@ function goDrag(ele){
 
     const dMove = (e) => {
         // console.log('드래그 상태:', drag);
+
         if(drag){
+            // 슬라이드의 드래그 상태일때는 트랜지션을 없앰
+            ele.style.transition = 'none';
+
             mvx = e.pageX || e.touches[0].screenX;
             // mvy = e.pageY || e.touches[0].screenY;
 
@@ -206,14 +210,20 @@ function goDrag(ele){
 
     dFn.addEvt(ele, 'mouseup', ()=>{
         dFalse();
-        lastPoint();
+
+        // 슬라이드 드래그는 마지막 위치 업데이트 불필요
+        // 왜? 자유드래그와 달리 슬라이드는 마지막에 항상 특정 위치에 
+        // 가있기 때문, 그리고 중간에 업데이트를 하면 슬라이드가 튐
+        // lastPoint();
+        
         // 드래그 이동 판별 함수 호출 : ele -> 선택한 슬라이드
         goWhere(ele);
     });
 
     dFn.addEvt(ele, 'touchend', ()=>{
         dFalse();
-        lastPoint();
+        // 모바일도 마찬가지임
+        // lastPoint();
     });
 
     dFn.addEvt(ele, 'mousemove', dMove);
