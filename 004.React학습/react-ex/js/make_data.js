@@ -10,10 +10,10 @@ let bb = '';
 for(let x=1; x<19; x++){
     bb += `
         {
-            "idx":${x},
-            "gname": ${gname[rdm(4)]},
-            "category": ${category[rdm(3)]},
-            "gprice": ${print[rdm(5)]}
+            "idx": "${x}",
+            "gname": "${gname[rdm(4)]}",
+            "category": "${category[rdm(3)]}",
+            "gprice": "${gprice[rdm(5)]}"
         },
     `;
 }
