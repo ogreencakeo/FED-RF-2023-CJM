@@ -141,15 +141,17 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // 1. 드래그 적용 이벤트 설정하기
+// dtg는 .slide와 일치함
 const dtg = dFn.qsa('.dtg');
 dtg.forEach(ele => goDrag(ele));
 
 function goDrag(ele){   
+    // ele 드래그 대상 요소(.slide임)
 
     let drag = false;
     let fx, fy;
     // 처음 위치는 슬라이드 최초 left위치값으로 읽어옴
-    let lx = dFn.qs('.slide').offsetLeft, ly = 0;
+    let lx = ele.offsetLeft, ly = 0;
     let mvx, mvy;
     let rx, ry;
 
@@ -158,7 +160,7 @@ function goDrag(ele){
     const dFalse = () => drag = false;
 
     const dMove = (e) => {
-        console.log('드래그 상태:', drag);
+        // console.log('드래그 상태:', drag);
         if(drag){
             mvx = e.pageX || e.touches[0].screenX;
             // mvy = e.pageY || e.touches[0].screenY;
@@ -205,6 +207,8 @@ function goDrag(ele){
     dFn.addEvt(ele, 'mouseup', ()=>{
         dFalse();
         lastPoint();
+        // 드래그 이동 판별 함수 호출 : ele -> 선택한 슬라이드
+        goWhere(ele);
     });
 
     dFn.addEvt(ele, 'touchend', ()=>{
@@ -217,7 +221,7 @@ function goDrag(ele){
     dFn.addEvt(ele, 'mouseleave', dFalse);
 }
 
-///////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
 // 함수명 : goWhere
 // 기능 : 드래그시 왼쪽 / 오른쪽 이동 판별
 // 호출 : 드래그시 mouseup / touchend 이벤트에서 호출
@@ -225,5 +229,32 @@ function goWhere(target){
     // target - 드래그 대상(슬라이드 요소)
     // 1. 현재 드래그 대상  left 위치값
     let tgLeft = target.offsetLeft;
-    console.log('슬라이드 LEFT :', tgLeft);
-}   // goWhere 함수
+    
+    // 2. 기준 위치 값 : 부모박스를 기준한 -220%의 left 위치값
+    let pointLeft = target.parentElement.clientWidth * 2.2;
+    // parentElement 상위 부모요소로 이동
+    // clientWidth 박스의 가로 크기값 
+    // 220%이므로 2.2를 곱하면 된다.
+
+    console.log('슬라이드 LEFT :', tgLeft, '\n기준 left (pointLeft): ', -pointLeft);
+
+    // 3. 방향 판별하기 : 기준값에 특정값을 더하고 뺌
+    // 3-1. 왼쪽방향 이동(오른쪽 버튼 클릭과 동일)
+    if(tgLeft < -pointLeft - 50){
+        console.log('왼쪽방향으로~');
+        // 오른쪽버튼 클릭 이벤트 발생하기
+        // 상대적으로 현재위치에서 찾음
+        dFn.qsEl(target.parentElement, '.ab2').click();
+    }
+    // 3-2. 오른쪽방향 이동(왼쪽 버튼 클릭과 동일)
+    else if(tgLeft > -pointLeft + 50){
+        console.log('오른쪽방향으로~');
+        // 왼쪽버튼 클릭 이벤트 발생하기
+        // 상대적으로 현재위치에서 찾음
+        dFn.qsEl(target.parentElement, '.ab1').click();
+    }
+    // 3-3. 중간영역은 제자리로 돌아옴
+    else{
+        console.log('제자리로~!');
+    }
+}  
