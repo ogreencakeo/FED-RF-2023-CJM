@@ -222,7 +222,7 @@ const attraction_wrap = {
     },
     "attraction_idx17":{
         idx : "17",
-        name : "빅드 비드 탑 서커스",
+        name : "빅 버드 비드 탑 서커스",
         image : "attraction17",
         explanation : "빅서커스 단장이 된 빅 버드. 빅 버드의 지시에 따라 동물들이 어슬렁어슬렁 주변을 돌고 있네요. 이 많은 동물을 타고 함께 빙글빙글.",
         caution1 : "1",
@@ -573,7 +573,7 @@ const attraction_wrap = {
     },
     "attraction_idx44":{
         idx : "44",
-        name : "쥬라기 공원 다이너소어 미트&그리트",
+        name : "쥬라기 공원 더 라이드",
         image : "attraction44",
         explanation : "태고의 공룡과 만나는 탐험에 예상 밖의 트러블 발생. 포효하며 날뛰는 T-렉스에 절체절명, 도망치기 위해 25.9m 밑으로 곤두박질!",
         caution1 : "0",
@@ -794,6 +794,8 @@ const attraction_wrap = {
         caution7 : "0",
     },
 }
+
+// 찾고 싶은 항목
 const option1 = {
     "서비스 전체" : [
         "attraction_idx3", "attraction_idx8", "attraction_idx31", "attraction33", "attraction_idx1", "attraction_idx4", "attraction_idx6", "attraction_idx30", "attraction_idx36", "attraction_idx42", "attraction_idx43", "attraction_idx58", "attraction_idx59"
@@ -806,6 +808,7 @@ const option1 = {
     ]
 }
 
+// 에어리어
 const area = {
     "에어리어" : [
 
@@ -817,25 +820,49 @@ const area = {
         "attraction_idx34", "attraction_idx35", "attraction_idx45", "attraction_idx47", "attraction_idx51", "attraction_idx53", "attraction_idx58"
     ],
     "미니언 파크" : [
-
+        "attraction_idx9", "attraction_idx10", "attraction_idx11", "attraction_idx13", "attraction_idx23", "attraction_idx52"
     ],
     "유니버설 원더랜드" : [
-
+        "attraction_idx2", "attraction_idx3", "attraction_idx7", "attraction_idx8", "attraction_idx15", "attraction_idx16" , "attraction_idx17", "attraction_idx18", "attraction_idx19", "attraction_idx22", "attraction_idx27", "attraction_idx28", "attraction_idx29", "attraction_idx31", "attraction_idx32", "attraction_idx33", "attraction_idx37", "attraction_idx41", "attraction_idx46", "attraction_idx59", "attraction_idx60"
     ],
     "할리우드" : [
-
+        "attraction_idx12", "attraction_idx20", "attraction_idx21", "attraction_idx24", "attraction_idx25", "attraction_idx39", "attraction_idx40", "attraction_idx49", "attraction_idx54", "attraction_idx56",  "attraction_idx57"
     ],
     "뉴욕" : [
-
+        "attraction_idx1", "attraction_idx14", "attraction_idx30", "attraction_idx50", "attraction_idx55" 
     ],
     "쥬라기 공원" : [
-
+        "attraction_idx4", "attraction_idx43", "attraction_idx44"
     ],
     "애머티 빌리지" : [
-
+        "attraction_idx26", "attraction_idx42"
     ],
     "워터 월드" : [
+        "attraction_idx38"
+    ]
+}
+
+// 어트랙션 특징
+const characteristic = {
+    "전부" : [
+
+    ],
+    "3D & 4D" : [
+        "attraction_idx20", "attraction_idx21", "attraction_idx30"
+    ],
+    "어린이에게 추천" : [
+        "attraction_idx1", "attraction_idx2", "attraction_idx3", "attraction_idx6", "attraction_idx7", "attraction_idx8", "attraction_idx9", "attraction_idx11", "attraction_idx12",
+        "attraction_idx15", "attraction_idx17", "attraction_idx18", "attraction_idx19", "attraction_idx20", "attraction_idx21", "attraction_idx22", "attraction_idx25", "attraction_idx27",
+        "attraction_idx28", "attraction_idx29", "attraction_idx31", "attraction_idx32", "attraction_idx33", "attraction_idx34", "attraction_idx36", "attraction_idx37", "attraction_idx40",
+        "attraction_idx41", "attraction_idx46", "attraction_idx52", "attraction_idx54", "attraction_idx59", "attraction_idx60"
+    ],
+    "어린이와 함께 즐기기" : [
+        "attraction_idx1"
+    ],
+    "물에 젖을 수 있음" : [
+
+    ],
+    "절규/스릴 만점" : [
 
     ]
-
-}
+};

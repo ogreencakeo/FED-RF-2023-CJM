@@ -85,7 +85,7 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
             // slide.style.left = '-330%';
             // rx는 드래그시 이동한 수치임(보정해야 안튐) 
             slide.style.left = 
-                (slide.parentElement.clientWidth*3.3-rx) + 'px';
+                -(slide.parentElement.clientWidth*3.3-rx) + 'px';
             
                 slide.style.transition = 'none';
         
@@ -187,10 +187,10 @@ function goDrag(ele){
             dtg.forEach(ele=> ele.style.zIndex=0);
             ele.style.zIndex = 1;
 
-            console.log(`fx, fy : ${fx}, ${fy}`);
-            console.log(`mvx, mvy : ${mvx}, ${mvy}`);
-            console.log(`rx, ry : ${rx}, ${ry}`);
-            console.log(`lx, ly : ${lx}, ${ly}`);
+            // console.log(`fx, fy : ${fx}, ${fy}`);
+            // console.log(`mvx, mvy : ${mvx}, ${mvy}`);
+            // console.log(`rx, ry : ${rx}, ${ry}`);
+            // console.log(`lx, ly : ${lx}, ${ly}`);
         }
 
         ele.style.cursor = drag? 'grabbing' : 'grab';
@@ -233,6 +233,7 @@ function goDrag(ele){
         dFalse();
         // 모바일도 마찬가지임.
         // lastPoint();
+        goWhere(ele);
     });
 
     dFn.addEvt(ele, 'mousemove', dMove);
