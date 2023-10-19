@@ -80,9 +80,14 @@ function slideFn(selEl) {   // selEl : 선택 슬라이드 부모 요소
             rightSlide();
         }else{  
             slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
+            
             // left값 -330% 바꾸기 : 들어올 위치 준비
-            slide.style.left = '-330%';
-            slide.style.transition = 'none';
+            // slide.style.left = '-330%';
+            // rx는 드래그시 이동한 수치임(보정해야 안튐) 
+            slide.style.left = 
+                (slide.parentElement.clientWidth*3.3-rx) + 'px';
+            
+                slide.style.transition = 'none';
         
             setTimeout(()=> {
                 // left값 -220%
