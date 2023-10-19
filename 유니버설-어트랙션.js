@@ -10,7 +10,7 @@
 */
 
 const attraction_wrap = {
-    "attraction_idx":{
+    "attraction_idx1":{
         idx : "1",
         name : "42nd 스트리트 스튜디오 ~그리팅 갤러리~",
         image : "attraction1",
@@ -23,7 +23,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx2":{
         idx : "2",
         name : "그로버 콘스트럭션 컴퍼니" ,
         image : "attraction2",
@@ -36,7 +36,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx3":{
         idx : "3",
         name : "날아라 스누피" ,
         image : "attraction3",
@@ -49,7 +49,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx4":{
         idx : "4",
         name : "더 플라잉 다이너소어" ,
         image : "attraction4",
@@ -62,7 +62,7 @@ const attraction_wrap = {
         caution6 : "1",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx5":{
         idx : "5",
         name : "마리오 카트: 쿠파의 도전장™" ,
         image : "attraction5",
@@ -76,7 +76,7 @@ const attraction_wrap = {
         caution6 : "1",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx6":{
         idx : "6",
         name : "만나기",
         image : "attraction6",
@@ -90,7 +90,7 @@ const attraction_wrap = {
         caution6 : "1",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx7":{
         idx : "7",
         name : "몹피의 럭키 댄스 파티",
         image : "attraction7",
@@ -103,7 +103,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx8":{
         idx : "8",
         name : "몹피의 벌룬 여행",
         image : "attraction8",
@@ -116,7 +116,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx9":{
         idx : "9",
         name : "미니언 그리팅",
         image : "attraction9",
@@ -129,7 +129,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx10":{
         idx : "10",
         name : "미니언 랠리",
         image : "attraction10",
@@ -142,7 +142,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx11":{
         idx : "11",
         name : "미니언 메이헴",
         image : "attraction11",
@@ -155,7 +155,7 @@ const attraction_wrap = {
         caution6 : "1",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx12":{
         idx : "12",
         name : "미니언즈 피버 디스코 그리팅",
         image : "attraction12",
@@ -168,7 +168,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx13":{
         idx : "13",
         name : "바나나 카바나",
         image : "attraction13",
@@ -181,7 +181,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx14":{
         idx : "14",
         name : "버블 비트 블록",
         image : "attraction14",
@@ -194,7 +194,7 @@ const attraction_wrap = {
         caution6 : "0",
         caution7 : "0",
     },
-    "attraction_idx":{
+    "attraction_idx15":{
         idx : "15",
         name : "버트와 애니의 원더 더 시",
         image : "attraction15",
@@ -796,12 +796,46 @@ const attraction_wrap = {
 }
 const option1 = {
     "서비스 전체" : [
-
+        "attraction_idx3", "attraction_idx8", "attraction_idx31", "attraction33", "attraction_idx1", "attraction_idx4", "attraction_idx6", "attraction_idx30", "attraction_idx36", "attraction_idx42", "attraction_idx43", "attraction_idx58", "attraction_idx59"
     ],
     "예약 탑승" : [
-
+        "attraction_idx3", "attraction_idx8", "attraction_idx31", "attraction33"
     ],
     "포토 서비스" : [
+        "attraction_idx1", "attraction_idx4", "attraction_idx6", "attraction_idx30", "attraction_idx36", "attraction_idx42", "attraction_idx43", "attraction_idx58", "attraction_idx59" 
+    ]
+}
+
+const area = {
+    "에어리어" : [
+
+    ],
+    "슈퍼 닌텐도 월드™" : [
+        "attraction_idx5", "attraction_idx6", "attraction_idx36", "attraction_idx48"
+    ],
+    "위저딩 월드 오브 해리 포터™" : [
+        "attraction_idx34", "attraction_idx35", "attraction_idx45", "attraction_idx47", "attraction_idx51", "attraction_idx53", "attraction_idx58"
+    ],
+    "미니언 파크" : [
+
+    ],
+    "유니버설 원더랜드" : [
+
+    ],
+    "할리우드" : [
+
+    ],
+    "뉴욕" : [
+
+    ],
+    "쥬라기 공원" : [
+
+    ],
+    "애머티 빌리지" : [
+
+    ],
+    "워터 월드" : [
 
     ]
+
 }
