@@ -1,18 +1,22 @@
 @charset "utf-8";
 
-/* 외부 CSS합치기 */
+/* 외부CSS합치기 */
 @import url(./reset.css);
 @import url(./common.css);
 
 /* 네비게이션 유형6 CSS - nav06.css */
+html,body{
+    overflow-x: hidden;
+}
 
 /* 배너전체박스 */
 .banbx {
     /*슬라이드부모*/
-    position: absolute;
+    position: relative;
+    margin-top: 50px;
     /* 부모는? .page */
-    top: 50%;
-    transform: translateY(-50%);
+    /* top: 50%;
+    transform: translateY(-50%); */
     /* 세로중앙! */
     left: 25vw;
     width: 50vw;
@@ -20,7 +24,7 @@
     /* border: 2px solid red; */
     box-sizing: border-box;
     
-    outline: 5px dotted blue;
+    /* outline: 5px dotted blue; */
 }
 
 .slide {
@@ -56,13 +60,13 @@
     /* 가로크기를 부모박스 크기에 맞춤! */
     /* height 값은 flex박스 자식요소에서
     등분할시 자동 100%임! */
-    outline: 2px dashed red;
+    /* outline: 2px dashed red; */
 
     /* 필터로 밝기조절(어둡게) */
     filter: brightness(70%);
     
     /* 트랜지션 */
-    transition: .4s ease-in-out;
+    transition: .4s ease-out;
 }
 /* 3번째가 주인공이므로 원래밝기로 조금 크게변경! */
 .slide li:nth-child(3){
@@ -85,6 +89,7 @@
     top: 50%;
     transform: translateY(-50%);
     /* Y축 중앙이동 */
+    z-index: 10;
 
     /* background-color: #000; */
     background-image: url(../images/img_nav06/main.png);
@@ -95,13 +100,13 @@
 
 /*왼쪽버튼*/
 .ab1 {
-    left: -9.5vw;
+    left: -4.9vw;
     background-position: -26px -124px;
 }
 
 /*오른쪽버튼*/
 .ab2 {
-    right: -9.5vw;   
+    right: -4.9vw;    
     background-position: -166px -53px;
 }
 
@@ -112,6 +117,7 @@
     height: 0;
     overflow: hidden;
 }
+
 
 /*블릿버튼*/
 .indic {
