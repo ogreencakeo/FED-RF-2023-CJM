@@ -256,5 +256,7 @@ function goWhere(target){
     // 3-3. 중간영역은 제자리로 돌아옴
     else{
         console.log('제자리로~!');
+        target.style.left = '-220%';
+        target.style.transition = 'left .2s ease-in-out';
     }
 }  
