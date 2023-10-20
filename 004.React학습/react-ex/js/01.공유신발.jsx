@@ -19,6 +19,10 @@ function MainComponent(){
     // 데이터 구분값으로 배열 순번을 생각하여 처음에 로딩될 데이터가
     // 0번째 즉, 첫번째 배열 순번 데이터를 불러올 순번값을 셋팅한다.
     const [dataNum, setDataNum] = React.useState(0);
+
+    // 테스트 후 후크상태 변수
+    const [test, setTest] = React.useState(0);
+
     console.log('최초값 :', dataNum);
 
     // 가상돔에서 실제돔에 반영후 DOM에 구현할 
@@ -41,6 +45,21 @@ function MainComponent(){
     React.useEffect(()=>{
         console.log('useEffect 빈 배열 옵션');
     }, []);
+    
+    // 의존성 test 옵션 useEffect
+    // -> 페이지로딩후 단 한번만 실행함
+    React.useEffect(()=>{
+        console.log('useEffect 빈 배열 옵션 test');
+        console.log('----------------------');
+    }, [test]);
+
+    // 의존성 배열 옵션 useEffect
+    // -> 페이지로딩후 단 한번만 실행함
+    React.useEffect(()=>{
+        console.log('useEffect 빈 배열 옵션 dataNum');
+        console.log('----------------------');
+    }, [dataNum]);
+    // 의존성이 다수일 경우 [] 배열형태의 옵션에 콤마로 연결하여 등록해준다.
 
     // 랜더링 후 화면출력전 상태
     React.useLayoutEffect(()=>{
@@ -49,13 +68,19 @@ function MainComponent(){
         // $('.btn-gong').hide();
     });
 
+    // 의존성 테스트 함수
+    const testFn = () => {
+        setTest(test? 0 : 1);
+        console.log('test 후크변수 변경', test);
+    };  // testFn함수 
+
     // 데이터 변경 호출 함수
     const chgData = () => {
         console.log('바꿔');
         // 데이터 키 후크변수를 업데이트함
         setDataNum(dataNum? 0 : 1)
         console.log('업데이트 값 :', dataNum);
-    }
+    };
 
     // 최종 리턴 코드
     // 함수, 변수, 구현소스는 모두 return 위쪽에 코딩!
@@ -75,12 +100,15 @@ function MainComponent(){
             </section>
             {/* 3. 데이터 변경 버튼 */}
             <button onClick={chgData} className="btn-gong">{dataNum? "공유" : "효진" }초이스 바로가기</button>
+            <button onClick={testFn}>의존성 테스트</button>
             {/* 4. 상품리스트 박스 */}
             <div className="gwrap">
                 <GoodsCode idx={dataNum? 1 : 0} />
             </div>
         </React.Fragment>
     );
+
+    
 }
 
 /////////////////////////////////////////////////////////////////////////
