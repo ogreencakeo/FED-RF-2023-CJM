@@ -38,6 +38,18 @@
             width: 100%;
             height: 100%;
         }
+
+        /* 커서 없앰 */
+        body{
+            cursor: none;
+        }
+
+        /* 커서 이미지 */
+        #cs-img{
+            position: absolute;
+            width: 5vw;
+            z-index: 99999;
+        }
         
     </style>
     <script src="js/jquery-1.8.1.min.js"></script>
@@ -89,6 +101,27 @@
             // -> 대상에서 pageX, pageY 이벤트 마우스 포인터 위치값으로 구함
             let mPosX, mPosY;
 
+            // 커서용 이미지요소
+            const csImg = $('#cs-img');
+
+            // 커서 이미지 이름배열
+            const csName = [
+                'arrowbird', 'cursor', 'strtail', 'Tail2.gif-c200', 'yoshi-cursor'
+            ];
+
+            // 커서용 숫자변수
+            let csNum = 0;
+
+            // 일정 시간 간격으로 커서 이미지 변경하기
+            setInterval(()=>{
+                // 이미지 경로 속성 변경하기 : attr(속성, 값)
+                csImg.attr('src', `./images/cursor/${csName[csNum]}.gif`);
+                // 다음을 위해 숫자 증가
+                csNum++;
+                // 배열 개수와 같아지면 첫번호로 가라
+                if(csNum == csName.length) csNum = 0;
+            }, 3000); 
+
             // [ 2-5. 실제 이동값으로 적용하기 ]
             // 이벤트 대상 : #cover -> cover변수
             cover.mousemove(e=>{
@@ -116,6 +149,16 @@
                     top : iPosY + 'px',
                     left : iPosX + 'px'
                 });
+
+                // 2-5-4. 커서 이미지 마우스 포인터 위치로 이동하기
+                csImg.css({
+                    top : mPosY + 'px',
+                    left : mPosX + 'px'
+                });
+
+                // 예컨데 커서 방향을 위치에 따라 변경하기
+                if(mPosY < 300) csImg.css({transform : 'ratateY(180deg)'})
+                else csImg.css({transform : 'ratateY(0deg)'})
             }); 
         })
     </script>
@@ -127,6 +170,9 @@
         <!-- 이벤트 발생 구역 -->
         <div id="cover"></div>
     </div>
-    
+    <!-- 커서용 이미지 -->
+    <div>
+        <img id="cs-img" src="./images/cursor/strtail.gif" alt="커서">
+    </div>
 </body>
 </html>

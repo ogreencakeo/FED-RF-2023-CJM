@@ -1,3 +1,4 @@
+// [ vans신발 데이터 생성 ]
 export default [
     {
         "idx": "1",
@@ -123,5 +124,11 @@ export default [
         "gname": "반스어얼리",
         "category": "man",
         "gprice": "48000"
+    },
+    {
+        "idx": "19",
+        "gname": "반스스타일",
+        "category": "woman",
+        "gprice": "55000"
     },
 ]

@@ -1,5 +1,8 @@
 // 01.공유신발 JSX
 import myData from './data.js';
+import myData2 from './data2.js';
+
+console.log('여성의류 myDta2 :', myData2);
 
 /////////////////////////////////////////////////////////////////////////
 // 메인 컴포넌트  
