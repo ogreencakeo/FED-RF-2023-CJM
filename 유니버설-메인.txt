@@ -3,7 +3,8 @@ pickUp1 : {
     title : "할로윈 호러 나이트",
     img : "main/pickup/picup1.jpg",
     holdingTime : "개최기간：2023년9월 8일(금) ~ 11월 5일(일)",
-    content :
+    content : "역대 최다 좀비&최고로 흉악한 호러의 총집결!
+    뱃속 깊은 곳에서 터져 나오는 절규로 뼛속까지 상쾌하게!"
 }
 pickUp2 : {
     title : "하하하! 할로윈 파티",
