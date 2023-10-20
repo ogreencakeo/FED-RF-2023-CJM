@@ -3,52 +3,62 @@ pickUp1 : {
     title : "할로윈 호러 나이트",
     img : "main/pickup/picup1.jpg",
     holdingTime : "개최기간：2023년9월 8일(금) ~ 11월 5일(일)",
+    content :
 }
 pickUp2 : {
     title : "하하하! 할로윈 파티",
     img : "main/pickup/picup2.jpg",
     holdingTime : "개최기간：2023년9월 7일(목) ~ 11월 5일(일)",
+    content :
 }
 pickUp3 : {
     title : "“슈퍼 닌텐도 월드™”",
     img : "main/pickup/picup3.jpg",
     holdingTime : "현재 운영 중!",
+    content :
 }
 pickUp4 : {
     title : "“NO LIMIT! 퍼레이드”",
     img : "main/pickup/picup4.jpg",
     holdingTime : "개최기간：2023년3월 1일(수) ~",
+    content :
 }
 pickUp5 : {
     title : "매지컬 크리처스 인카운터 ~마법 생물과의 만남~",
     img : "main/pickup/picup5.jpg",
     holdingTime : "개최기간：2023년3월 17일(금) ~ 12월 31일(일)",
+    content :
 }
 pickUp6 : {
     title : "“주술회전 더 리얼 4-D”",
     img : "main/pickup/picup6.jpg",
     holdingTime : "개최기간：2022년9월 16일(금) ~ 2023년11월 5일(일)",
+    content :
 }
 pickUp7 : {
     title : "NO LIMIT! 크리스마스",
     img : "main/pickup/picup7.jpg",
     holdingTime : "개최기간：2023년11월 21일(화) ~ 2024년1월 8일(월)",
+    content : "USJ의 크리스마스는 모든 것이 새롭고 자극적! 지금만 즐길 수 있는 겨울 장식과 흥분되는 마리오의 세계에서 전력을 다해 놀며 “YEAH!” 눈으로 곱게 화장한 마법 세계에서 마법 생물들과 소통하며 “YEAH!” 밤에는 새롭게 장식한 특대형 트리 아래, 엄청나게 화려한 크리스마스 파티에서 빛나는 굿즈를 손에 들고 자신이 직접 반짝반짝 빛나는 빛이 되어 “OH! YEAH!” 넋 놓고 바라만 보는 건 재미없지! 이곳만의 최고로 핫한 크리스마스에 온몸으로 뛰어들자!",
 }
 pickUp8 : {
     title : "NO LIMIT! 카운트다운 2024",
     img : "main/pickup/picup8.jpg",
     holdingTime : "개최기간：2023년12월 31일 (일) 19:00 ~ 2024년1월 1일 (월) 21:00",
+    content :
 }
 
 pickUp9 : {
     title : "‘스파이더맨 더 라이드’ 파이널 이벤트",
     img : "main/pickup/picup9.jpg",
     holdingTime : "개최기간：2023년7월 4일(화) ~ 2024년1월 22일(월)",
+    content :
 }
 pickUp10 : {
     title : "“NO LIMIT!”",
     img : "main/pickup/picup10.jpg",
     holdingTime : "개최기간：2022년3월 29일(화) ~ <br/> (일본어 페이지 한정)",
+    content :
 }
 
 (유익한 정보)
