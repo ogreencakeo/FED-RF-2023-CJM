@@ -102,10 +102,17 @@
                 // 마최 => mTopMax, mLeftMax
                 // 이최 => iTopMax, iLeftMax
 
-                // 2-5-2. 이미지 Y축 이동값
+                // 2-5-2. 이미지 Y축 이동값 (top값 연결), X축 이동값 (left값 연결)
                 let iPosY = mPosY * iTopMax / mTopMax;
                 let iPosX = mPosX * iLeftMax / mLeftMax;
-                
+
+                // 2-5-3. 실제 이미지 위치이동 적용하기
+                // 대상 : .imgbox -> imgBox변수
+                imgBox.css({
+                    top : iPosY + 'px',
+                    top : iPosX + 'px'
+                });
+
             }); 
         })
     </script>
