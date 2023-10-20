@@ -42,13 +42,28 @@
     </style>
     <script src="js/jquery-1.8.1.min.js"></script>
     <script src="js/jquery-ui-1.10.4.min.js"></script>
-    
+    <script>
+        // 제이쿼리 코드 구역
+        $(()=>{     
+            // 요구사항 : 화면 범위에서 마우스를 포인터가 움직일때 큰 이미지 박스가 
+            // 범위 안에서 비율에 맞게 애니메이션 되며 위치를 이동함
+
+            // 1. 대상 선정 
+            // 1-1. 이벤트 대상 : #cover
+            const cover = $('#cover')
+            // 1-2. 변경 대상 : #imgbox
+            const imgBox = $('#imgbox');
+
+            console.log('대상 cover :', cover, ', imgBox :', imgBox);
+        })
+    </script>
     
 </head>
 <body>
-   <!--전체부모박스-->
+    <!--전체부모박스-->
     <div id="wrap">
         <div id="imgbox"></div>
+        <!-- 이벤트 발생 구역 -->
         <div id="cover"></div>
     </div>
     
