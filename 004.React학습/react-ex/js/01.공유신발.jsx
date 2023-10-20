@@ -32,6 +32,13 @@ function MainComponent(){
 
     console.log('컴포넌트 그냥 구역 :', document.querySelector('.img-box'));
 
+    // [ 컴포넌트가 뿌려지기 애니메이션 적용하기 ]
+    React.useLayoutEffect(initFn);
+
+    // 처음 한번만 타이틀 글자 커졌다가 작아지기
+    React.useEffect(firstOneFn, [])
+
+    // [ useEffect 테스트 코드 ] ////////////////////////////////////////////////////////////////
     // 순수 useEffect
     // -> 매번 업데이트 시에도 실행함
     React.useEffect(()=>{
@@ -130,7 +137,6 @@ function GoodsCode(props){  // idx - 데이터 배열 순번
         </ol>
     );
 }
-
 
 // 메인컴포넌트 출력하기
 ReactDOM.render(
