@@ -1,6 +1,7 @@
 // 01.공유신발 JSX
 import myData from './data.js';
 import myData2 from './data2.js';
+import { initFn, firstOneFn } from './act_effect.js';
 
 // 두개의 데이터를 배열로 구성
 const twoData = [myData, myData2];
@@ -32,10 +33,13 @@ function MainComponent(){
 
     console.log('컴포넌트 그냥 구역 :', document.querySelector('.img-box'));
 
-    // [ 컴포넌트가 뿌려지기 애니메이션 적용하기 ]
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    // [ 리액트 컴포넌트 렌더링 후 실행함수 호출하기 ]
+
+    // [ 1. 컴포넌트가 뿌려지기 애니메이션 적용하기 ]
     React.useLayoutEffect(initFn);
 
-    // 처음 한번만 타이틀 글자 커졌다가 작아지기
+    // 2. 처음 한번만 타이틀 글자 커졌다가 작아지기
     React.useEffect(firstOneFn, [])
 
     // [ useEffect 테스트 코드 ] ////////////////////////////////////////////////////////////////
