@@ -46,14 +46,15 @@ function MainComponent(){
         console.log('useEffect 빈 배열 옵션');
     }, []);
     
-    // 의존성 test 옵션 useEffect
+    // 의존성 test 배열 옵션 useEffect
     // -> 페이지로딩후 단 한번만 실행함
     React.useEffect(()=>{
         console.log('useEffect 빈 배열 옵션 test');
         console.log('----------------------');
     }, [test]);
+    // 의존성이 다수일 경우 [] 배열형태의 옵션에 콤마로 연결하여 등록해준다.
 
-    // 의존성 배열 옵션 useEffect
+    // 의존성 dataNum 배열 옵션 useEffect
     // -> 페이지로딩후 단 한번만 실행함
     React.useEffect(()=>{
         console.log('useEffect 빈 배열 옵션 dataNum');
