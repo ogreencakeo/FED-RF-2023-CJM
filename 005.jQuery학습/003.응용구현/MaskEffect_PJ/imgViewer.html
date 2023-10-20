@@ -66,13 +66,15 @@
                 left : cLeft + 'px'
             });
 
-            /////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////
             // 2-4. 이미지박스 움직일 값을 위한 비례식 만들기
             // 마우스 최대값 : 마우스 이동값 = 이미지 최대값 : 이미지 실제 이동값
             // 마최 : 마이 = 이최 : 이이
             // 이이 = 마이 * 이최 / 마최
 
             // 2-4-1. 이미지 최대 이동값 구하기 : top / left
+            // 작은수에서 큰수를 빼서 마이너스 값으로 구함
+            // 아래에서 비례식 계산시 자연스럽게 마이너스 결과가 나옴
             let iTopMax = $(window).height() - imgBox.height();
             let iLeftMax = $(window).width() - imgBox.width();
             // 2-4-2. 마우스 최대 이동값 구하기 : top / left
@@ -106,17 +108,17 @@
                 let iPosY = mPosY * iTopMax / mTopMax;
                 let iPosX = mPosX * iLeftMax / mLeftMax;
 
+                console.log('최종 위치 iposX :', iPosX, ', iposY', iPosY);
+
                 // 2-5-3. 실제 이미지 위치이동 적용하기
                 // 대상 : .imgbox -> imgBox변수
                 imgBox.css({
                     top : iPosY + 'px',
                     top : iPosX + 'px'
                 });
-
             }); 
         })
     </script>
-    
 </head>
 <body>
     <!--전체부모박스-->
