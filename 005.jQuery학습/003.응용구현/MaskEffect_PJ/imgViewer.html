@@ -95,6 +95,17 @@
                 mPosY = e.pageY;
 
                 console.log(`mPosX : ${mPosX}, mPosY : ${mPosY}`);
+
+                // 2-5-2. 비례식 적용하기
+                // 이이 = 마이 * 이최 / 마최
+                // 마이 => mPosX, mPosYs
+                // 마최 => mTopMax, mLeftMax
+                // 이최 => iTopMax, iLeftMax
+
+                // 2-5-2. 이미지 Y축 이동값
+                let iPosY = mPosY * iTopMax / mTopMax;
+                let iPosX = mPosX * iLeftMax / mLeftMax;
+                
             }); 
         })
     </script>
