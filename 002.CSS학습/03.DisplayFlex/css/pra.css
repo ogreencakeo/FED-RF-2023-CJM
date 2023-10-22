@@ -1,38 +1,60 @@
-html, body, ul, li, div{
-    padding: 0;
+@charset "utf-8";
+/* 요소 리셋 CSS - reset.css 
+-> 초기화대상: 기본셋팅이 되어 있는 요소들 */
+
+/* 1. 마진,패딩 초기화 */
+html,body,h1,h2,h3,h4,h5,h6,p,figure,
+ul,ol,dl,dt,dd{
     margin: 0;
+    padding: 0;
 }
+
+/* 2. 리스트 초기화 */
+ul,ol{
+    list-style: none;
+    /* 블릿,숫자없앰 */
+}
+
+/* 3. root - html 글자크기셋팅 */
+html{
+    font-size: 10px;
+    /* rem단위 계산 편의상 10px */
+}
+
 .cont ul{
     display: flex;
     height: 100vh;
-    list-style: none;
 }
 
-.cont>ul>li{
+.cont ul li{
     position: relative;
     flex: 1;
     cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+
+.cont ul li::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.5;
     transition: all .4s ease-out;
 }
 
-.cont>ul>li>img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(70%);
+
+.const ul li:hover{
+    width: 100%;
+}
+.cont ul li:hover::before{
+    opacity: 0;
 }
 
-.cont>ul>li>img:last-child{
-    top: 80%;
-    width: auto;
-}
-
-.cont>ul>li:hover{
-    flex: 1.5;
-}
-
-.cont > ul > li:first-child {
+.cont ul li:first-child{
     background: url(../images/m01_bg.jpg) no-repeat center/cover;
 }
 .cont > ul > li:nth-child(2) {
@@ -46,4 +68,11 @@ html, body, ul, li, div{
 }
 .cont > ul > li:nth-child(5) {
     background: url(../images/m05_bg.jpg) no-repeat center/cover;
+}
+
+.cont ul li img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

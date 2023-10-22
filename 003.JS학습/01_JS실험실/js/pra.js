@@ -1,64 +1,100 @@
-const domFn = {
-    qs: (x) => document.querySelector(x),
-    qsEl: (el, x) => el.querySelector(x),
-    qsa: (x) => document.querySelectorAll(x),
-    qsaEl: (el, x) => el.querySelectorAll(x),
-    addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
-}; 
+import dfn from './dom.js';
 
-let sts_wheel = 0;
-let pg_num = 0;
-let ele_pg;
-let total_pg;
+const banbox = dfn.qsa('.banbox');
+banbox.forEach(ele => {
+    slideFn(ele);
+});
 
-domFn.addEvt(window, 'wheel', wheelFn);
-domFn.addEvt(window, 'laod', loadFn);
+function slideFn(selEl){
+    let clickSts = 0;
+    const TIME_SLIDE = 400;
 
-function loadFn(){
-    ele_pg = domFn.qsa('.page');
-    total_pg = ele_pg.length;
-}
+    const sldWrap = selEl;
+    const slide = dfn.qsEl(sldWrap, '.slide');
+    const abtn = dfn.qsaEl(sldWrap, '.abtn');
+    let indic = dfn.qsEl(sldWrap, '.indix');
 
-setTimeout(()=>{window.scrollTo(0, 0)}, 500);
+    let sldCnt = dfn.qsaEl(slide, 'li').length;
 
-function wheelFn(e){
-    if(sts_wheel) return;
-    sts_wheel = 1;
-    setTimeout(()=>{sts_wheel=0}, 500);
+    for(let i=0; i<sldCnt; i++){
+        indic.innerHTML += `
+            <li ${i==0? 'class:"on"' : ''} >
+                <span>○</span>
+                <span>●</span>
+            </li>
+        `;
+    }
 
-    let delta = e.wheelDelta;
-    
-    if(delta < 0) pg_num++;
-    else pg_num--;
+    indic = dfn.qsaEl(slide, '.indic li');
 
-    if(pg_num<0) pg_num=0;
-    if(pg_num==total_pg) pg_num = total_pg-1;
+    slide.querySelectorAll('li').forEach(
+        (ele, idx) => ele.setAttribute('data-seq', idx)
+    );
 
-    window.scrollTo(0, window.innerHeight*pg_num);
+    abtn.forEach((ele) => dfn.addEvt(ele, 'click', goSlide));
 
-    chgMenu();
-}
+    function goSlide(){
+        event.preventDefault();
+        if(clickSts) return;
+        clickSts = 1;
+        setTimeout(()=>clickSts = 0, TIME_SLIDE);
 
-const gnbList = domFn.qsa('.gnb li');
-const indicList = domFn.qsa('.indic li');
+        let isRight = this.classList.contains('ab2');
+        let eachOne = slide.querySelectorAll('li');
 
-const menuGrp = [gnbList, indicList];
+        if(isRight){
+            rightSlide();
+        }else{
+            slide.insertBefore(eachOne[eachOne.length-1], eachOne[0]);
+            slide.style.left = '-330%';
+            slide.style.transition = 'none';
+            setTimeout(()=>{
+                slide.style.left = '-220%';
+                slide.style.transition = TIME_SLIDE + 'ms ease-in-out';
+            }, 0);
+        }
+        chgIndic(isRight);
+        clearAuto();
+    }
 
-function chgMenu(){
-    const comFn = (target) => {
-        target.forEach((ele, idx) => {
-            if(idx == pg_num) ele.classList.add('on');
+    function chgIndic(isRight){
+        let nowSeq = slide.qsa('li')[isRight? 1:0].getAttribute('data-seq');
+
+        indic.forEach((ele, idx) => {
+            if(idx == nowSeq) ele.classList.add('on');
             else ele.classList.remove('on');
         });
-    };
-    menuGrp.forEach(val => comFn(val));
-}
+    }
 
-for(let x of menuGrp){
-    x.forEach((ele, idx) => {
-        domFn.addEvt(ele, 'click', ()=>{
-            pg_num = idx;
-            chgMenu();
-        });
-    });
+    function rightSlide(){
+        slide.style.left = '-330%';
+        slide.style.transition = TIME_SLIDE + 'ms ease-in-out';
+        
+        setTimeout(()=>{
+            slide.appendChild(slide.qsa('li')[0]);
+            slide.style.left = '-220%';
+            slide.style.transition = 'none';
+        }, TIME_SLIDE);
+    }
+
+    let autoI;
+    let autoT;
+
+    function slideAuto(){
+        autoI = setInterval(()=>{
+            rightSlide();
+            chgIndic(1);
+            abtn[1].click();
+        }, 3000);
+    }
+
+    slideAuto();
+
+    function clearAuto(){
+        clearInterval(autoI);
+        clearTimeout(autoT);
+
+        autoT = setTimeout(slideAuto, 5000);
+    }
+
 }
