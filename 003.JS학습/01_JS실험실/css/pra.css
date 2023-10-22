@@ -4,7 +4,10 @@
     height: 100vh;
     /* overflow: hidden; */
 }
+html, body{
 
+    overflow: hidden;
+}
 .banbx{
     position: absolute;
     top: 50%;
