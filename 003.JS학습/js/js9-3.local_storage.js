@@ -109,11 +109,24 @@ function localSFn() {
     }
 }
 
+// 처음에 바인딩 함수 호출하여 게시판 보이기
+bindData();
+
 // 객체가 없으면 로컬스토리지에 생성하기
 function makeObj() {
     console.log('배열 / 객체 만들기');
     // 게시판 형식의 객체를 생성함
     let obj = [
+        {
+            idx: 1,
+            tit: "내가 왕이 될 상인가?",
+            cont: "이정재형은 진정 왕이십니다.",
+        },
+        {
+            idx: 1,
+            tit: "내가 왕이 될 상인가?",
+            cont: "이정재형은 진정 왕이십니다.",
+        },
         {
             idx: 1,
             tit: "내가 왕이 될 상인가?",
@@ -133,18 +146,17 @@ function makeObj() {
 
 // 화면에 게시판 리스트를 데이터에 맞게 바인딩하기
 function bindData(){
-    // 로컬 스토리지 데이터 : 문자형(string)
+    // 1-4. 로컬 스토리지 데이터 : 문자형(string)
     let localData = localStorage.getItem('minfo');
     // [{"idx":1,"tit":"내가 왕이 될 상인가?","cont":"이정재형은 진정 왕이십니다."}] 
     // string
     console.log('localData :', localData, ', type :', typeof(localData));
     
-     
 
     // 바인딩 데이터 변수
     let bindCode = '';
 
-    // 데이터 존재 여부 확인하기
+    // 1-5. 데이터 존재 여부 확인하기
     if(localData){  // null이 아니면 true
         // 문자형을 배열로 형변환해야 함
         // 로컬 스토리지 데이터 배열객체형 변환 
@@ -164,10 +176,18 @@ function bindData(){
                     <a href="#" onclick="delRec(${i})">×</a>
                 </td>
             </tr>
-        `).join('')
+        `).join(''); // 태그를 연결자없는 배열전체로 저장
+    }
+    // 데이터가 없는 경우
+    else{
+        bindCode = `
+            <tr colspan = '4' style='text-align : center'>
+                <td>데이터가 없습니다....</td>
+            </tr>
+        `;
     }
 
-    // 화면에 테이블 요소로 데이터 바인딩 구성하기
+    // 1-6. 화면에 테이블 요소로 데이터 바인딩 구성하기
     let hcode = `
         <table>
             <tr>
@@ -181,6 +201,13 @@ function bindData(){
         </table>
     `;
 
+    // 1-7. 화면 출력 : 대상 - .board
+    dfn.qs('.board').innerHTML = hcode;
+}
+
+// 삭제 처리 함수
+function delRec(idx){
+    console.log('지울 순번 (idx) :', idx);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
