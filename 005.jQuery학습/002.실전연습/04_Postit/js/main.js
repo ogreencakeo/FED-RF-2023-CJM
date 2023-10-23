@@ -98,14 +98,37 @@ $(()=>{
             // 4-8. 동영상 박스에 유튜브 iframe 넣기
             // html()로 넣으면 닫기 버튼 지워짐
             // 맨뒤에 요소 추가는 append() 메서드
-            let data = target.attr('data-mv');
+            // 동영상 아이디 정보는 드래그된 요소(target)의 data-mv 속성의 값으로 셋팅되어 있다.
+            // 속성값 읽어오기는 선택요소.attr(속성명)
+            let mvId = target.attr('data-mv');
             mbox.append(`
-                <iframe src="https://www.youtube.com/embed/${data}?autoplay=1" allow="autoplay"
+                <iframe src="https://www.youtube.com/embed/${mvId}?autoplay=1" allow="autoplay"
                 style="width:100%; height:100%; border:none;"></iframe>
             `)
 
             // 4-9. 동영상 박스 숨기고 1초후 slideDown으로 보이기
             .hide().delay(1000).slideDown(2000);
+
+            // 4-10. 닫기 버튼 셋팅 및 클릭시 동영상 닫기
+            mbox.find('a').css({
+                position: "absolute",
+                top: "50px",
+                right: "50px",
+                width: "50px",
+                height: "50px",
+                textDecoration: "none",
+                font: "bold 48px Verdana",
+                color: "#fff",
+                textShadow: "0 0 5px #777",
+            })
+            .click(function(){
+                // 닫기버튼 a 요소 클릭시
+                // 4-11. mbox 닫기
+                mbox.slideUp(1000, function(){
+                    // 4-12. 자기자신 없애기 (this는 mbox)
+                    $(this).remove(); // 태그 제거
+                });
+            });
 
         }, // drop 이벤트 옵션 메서드 
 
