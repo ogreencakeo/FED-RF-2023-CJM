@@ -98,10 +98,14 @@ $(()=>{
             // 4-8. 동영상 박스에 유튜브 iframe 넣기
             // html()로 넣으면 닫기 버튼 지워짐
             // 맨뒤에 요소 추가는 append() 메서드
+            let data = target.attr('data-mv');
             mbox.append(`
-                <iframe src="https://www.youtube.com/embed/miSL86dtqis?autoplay=1" allow="autoplay"
+                <iframe src="https://www.youtube.com/embed/${data}?autoplay=1" allow="autoplay"
                 style="width:100%; height:100%; border:none;"></iframe>
-            `);
+            `)
+
+            // 4-9. 동영상 박스 숨기고 1초후 slideDown으로 보이기
+            .hide().delay(1000).slideDown(2000);
 
         }, // drop 이벤트 옵션 메서드 
 
