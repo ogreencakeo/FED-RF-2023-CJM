@@ -58,6 +58,13 @@ $(()=>{
             // 4-1. 드롭된 요소의 이미지 src를 읽어오기
             let isrc = target.find('img').attr('src');
             console.log('이미지 경로 (isrc) :', isrc);
+
+            // 4-2. 드롭 영역의 배경 이미지 변경하기
+            // this - 드롭박스
+            $(this).css({
+                backgroundImage : `url(${isrc})`
+            });
+            
         }, // drop 이벤트 옵션 메서드 
 
     });
