@@ -64,7 +64,14 @@ $(()=>{
             $(this).css({
                 backgroundImage : `url(${isrc})`
             });
-            
+
+            // 4-3. 드롭된 요소 사라지기
+            target.hide();
+
+            // 4-4. 드롭된 요소의 자식 p태그의 글자 읽어오기
+            let ptxt = target.find('p').text();
+            console.log('ptxt :', ptxt);
+
         }, // drop 이벤트 옵션 메서드 
 
     });
