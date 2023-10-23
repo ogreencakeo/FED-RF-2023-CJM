@@ -42,6 +42,19 @@ $(()=>{
         $(this).removeClass('invert');
     }); 
 
+    //////////////////////////////////////////////////////////
+    // 4. 드롭 대상 박스에 드롭될때 동영상 보여주기
+    // droppable() 메서드 : 드롭되는 요소 처리
+    // 이벤트 대상 : .dropshow
+    $('.dropshow').droppable({
+        drop : function(evt, ele){
+            // evt - 이벤트 전달변수
+            // ele - 드롭관련 객체
+            console.log('나, 빠졌다~!');
+        }, // drop 이벤트 옵션 메서드 
+        
+    });
+
 }); // draggable 메서드 //////////////
 
 
