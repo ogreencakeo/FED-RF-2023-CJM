@@ -56,8 +56,20 @@ import dfn from "./dom.js";
 // 1-1. 버튼 기능 이벤트 대상 : .local-box button
 const btnLocal = dfn.qsa('.local-box button');
 console.log('btnLocal : ', btnLocal);
+
 // 1-2. 버튼에 이벤트 설정
 btnLocal.forEach(ele => dfn.addEvt(ele, 'click', localSFn));
+// -> 개별 로컬 스토리지 삭제 이벤트 설정하기
+dfn.qsa('.local ol li').forEach((ele, idx) => {
+    // 로컬스토리지 키명 배열
+    const keyName = ["lname", "lrole", "lcat"];
+    ele.onclick = function(){
+        // 개별 로컬스토리지 키 삭제
+        console.log('삭제할 키 (keyName[idx]) :', keyName[idx]);
+        localStorage.removeItem(keyName[idx]);
+    };
+});
+
 // 1-3. 로컬쓰 처리 함수 만들기
 function localSFn(){
     // 1-3-1. 버튼 텍스트 읽기
@@ -83,6 +95,7 @@ function localSFn(){
         // 해당 url로 관리되는 로컬쓰를 모두 지움 : clear
         localStorage.clear();
         // 개별 로컬쓰로 지우는 방법은 : removeItem(키명)
+
     }else if(btxt == '보여줘'){
         dfn.qs('.local .nm').innerText = localStorage.getItem('lname')
         dfn.qs('.local .role').innerText = localStorage.getItem('lrole')
