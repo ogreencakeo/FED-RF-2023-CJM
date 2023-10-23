@@ -83,6 +83,10 @@ function localSFn(){
         // 해당 url로 관리되는 로컬쓰를 모두 지움 : clear
         localStorage.clear();
         // 개별 로컬쓰로 지우는 방법은 : removeItem(키명)
+    }else if(btxt == '보여줘'){
+        dfn.qs('.local .nm').innerText = localStorage.getItem('lname')
+        dfn.qs('.local .role').innerText = localStorage.getItem('lrole')
+        dfn.qs('.local .cat').innerText = localStorage.getItem('lcat')
     }
 }
 
