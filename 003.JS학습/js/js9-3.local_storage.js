@@ -67,11 +67,18 @@ function localSFn(){
     if(btxt == '처음'){
         // 로컬 스토리지 읽기 : localStorage.getItem(키명)
         // 만약 값이 셋팅안됐으면 null 값이 나옴
-        console.log('로컬쓰 lname :', localStorage.getItem('lname'));
-        // 로컬스토리지 셋팅 -> localStorage.setItem(키명, 값)
+        // console.log('로컬쓰 lname :', localStorage.getItem('lname'));
 
+        // 로컬 스토리지 셋팅
+        // -> localStorage.setItem(키명, 값)
         localStorage.setItem('lname', '이정재');
+        localStorage.setItem('lrole', '박평호');
+        localStorage.setItem('lcat', '조직내 스파이를 색출하는 해외팀 안기부 팀장');
+
         console.log('로컬쓰 lname :', localStorage.getItem('lname'));
+        console.log('로컬쓰 lrole :', localStorage.getItem('lrole'));
+        console.log('로컬쓰 lcat :', localStorage.getItem('lcat'));
+
     }else if(btxt == '전체삭제'){
         // 해당 url로 관리되는 로컬쓰를 모두 지움 : clear
         localStorage.clear();
