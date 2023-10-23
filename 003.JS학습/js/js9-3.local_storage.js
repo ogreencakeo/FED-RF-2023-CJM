@@ -70,11 +70,12 @@ function localSFn(){
         console.log('로컬쓰 lname :', localStorage.getItem('lname'));
         // 로컬스토리지 셋팅 -> localStorage.setItem(키명, 값)
 
-        // localStorage.setItem('lname', '이정재');
-        // console.log('로컬쓰 lname :', localStorage.getItem('lname'));
+        localStorage.setItem('lname', '이정재');
+        console.log('로컬쓰 lname :', localStorage.getItem('lname'));
     }else if(btxt == '전체삭제'){
         // 해당 url로 관리되는 로컬쓰를 모두 지움 : clear
         localStorage.clear();
+        // 개별 로컬쓰로 지우는 방법은 : removeItem(키명)
     }
 }
 
