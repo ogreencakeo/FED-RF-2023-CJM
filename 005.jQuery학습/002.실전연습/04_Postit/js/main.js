@@ -127,6 +127,12 @@ $(()=>{
                 mbox.slideUp(1000, function(){
                     // 4-12. 자기자신 없애기 (this는 mbox)
                     $(this).remove(); // 태그 제거
+                    // 4-13. 드롭된 요소 (target) 다시 보이기
+                    // 동시에 원래 자기 위치로 돌아오기
+                    target.show().css({
+                        top : '0',
+                        left : '0'
+                    });
                 });
             });
 
