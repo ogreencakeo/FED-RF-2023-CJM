@@ -119,7 +119,9 @@ function localSFn(){
         // 실제 객체는 입력되지 않는다.
         // -> 왜? 로컬스토리지는 문자형만 받으니까
         // 그래서 배열 / 객체를 문자 데이터화 해서 넣는다.
-        localStorage.setItem('minfo', obj);
+        // JSON.stringify(배열/객체)
+        // localStorage.setItem('minfo', obj);
+        localStorage.setItem('minfo', JSON.stringify(obj));
     }
 }
 
