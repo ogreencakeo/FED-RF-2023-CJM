@@ -132,8 +132,13 @@ $(()=>{
                     target.show().css({
                         top : '0',
                         left : '0'
-                    });
-                });
+                    }); 
+                    // 4-14. 드롭박스 초기화
+                    $('.dropshow').text('여기에 드롭하세요~~!')
+                    .css({
+                        backgroundImage : 'url(addimg/effect2.jpg)'
+                    })
+                }); // slideUp
             });
 
         }, // drop 이벤트 옵션 메서드 
