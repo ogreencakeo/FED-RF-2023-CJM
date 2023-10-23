@@ -133,23 +133,38 @@ function makeObj() {
 
 // 화면에 게시판 리스트를 데이터에 맞게 바인딩하기
 function bindData(){
-    // 로컬 스토리지 데이터
+    // 로컬 스토리지 데이터 : 문자형(string)
     let localData = localStorage.getItem('minfo');
     // [{"idx":1,"tit":"내가 왕이 될 상인가?","cont":"이정재형은 진정 왕이십니다."}] 
     // string
     console.log('localData :', localData, ', type :', typeof(localData));
     
-    // 로컬 스토리지 데이터 배열객체형 변환 -> JSON.parse()
-    localData = JSON.parse(localData);
-    // type : object
-    console.log('localData :', localData, ', type :', typeof(localData)); 
+     
 
     // 바인딩 데이터 변수
     let bindCode = '';
 
     // 데이터 존재 여부 확인하기
     if(localData){  // null이 아니면 true
-        // bindCode = localData
+        // 문자형을 배열로 형변환해야 함
+        // 로컬 스토리지 데이터 배열객체형 변환 
+        // -> JSON.parse(문자형 배열 객체)
+        localData = JSON.parse(localData);
+        // type : object , 배열임
+        console.log('localData :', localData, ', type :', typeof(localData), ', 배열인가 ? :', Array.isArray(localData));
+        
+        // 배열이니까 map() 사용하여 태그 만들기
+        // 맵쬬잉 map().join('')
+        bindCode = localData.map((v, i)=>`
+            <tr>
+                <td>${v.idx}</td>
+                <td>${v.tit}</td>
+                <td>${v.cont}</td>
+                <td>
+                    <a href="#" onclick="delRec(${i})">×</a>
+                </td>
+            </tr>
+        `).join('')
     }
 
     // 화면에 테이블 요소로 데이터 바인딩 구성하기
@@ -162,6 +177,7 @@ function bindData(){
                 <th>삭제</th>
             </tr>
             <!-- 데이터에 따른 반복 바인딩 -->
+            ${bindCode}
         </table>
     `;
 
