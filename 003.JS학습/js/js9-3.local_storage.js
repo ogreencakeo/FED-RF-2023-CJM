@@ -8,6 +8,7 @@ import dfn from "./dom.js";
     [ JS 로컬스토리지 : localStorage ]
     - window하위객체 window.localStorage
     -> window는 주로 생략함!
+    -> 개발자 모드 'Application' 탭에서 확인 가능!
 
     1. 정의 : 
         브라우저별 로컬 어플리케이션 영역에 저장되는 
@@ -34,6 +35,7 @@ import dfn from "./dom.js";
         (6) 개수 : length
 
     [ JS 세션 스토리지 : sessionStorage ]
+    -> 로컬스토리리지와 세션 스토리지의 메서드는 동일함!
     -> 로컬스토리지와 차이점은?
     -> 브라우저가 닫히면 데이터가 사라진다!
     (로컬세션의 개념은 서버세션과 달리 하나의 브라우저탭을
@@ -105,3 +107,53 @@ function localSFn(){
 
 /////////////////////////////////////////////////////////////////////
 // [ 2. 세션 스토리지 연습 ]
+// 2-1. 버튼 기능 이벤트 대상 : .session-box button
+const btnSession = dfn.qsa('.session-box button');
+console.log('btnSession : ', btnSession);
+
+// 2-2. 버튼에 이벤트 설정
+btnSession.forEach(ele => dfn.addEvt(ele, 'click', sessionSFn));
+// -> 개별 세션 스토리지 삭제 이벤트 설정하기
+dfn.qsa('.session ol li').forEach((ele, idx) => {
+    // 세션스토리지 키명 배열
+    const keyName = ["lname", "lrole", "lcat"];
+    ele.onclick = function(){
+        // 개별 세션스토리지 키 삭제
+        console.log('삭제할 키 (keyName[idx]) :', keyName[idx]);
+        sessionStorage.removeItem(keyName[idx]);
+    };
+});
+
+// 2-3. 세션쓰 처리 함수 만들기
+function sessionSFn(){
+    // 2-3-1. 버튼 텍스트 읽기
+    let btxt = this.innerText;
+    console.log('세션쓰 :', btxt);
+    // 2-3-2. 버튼별 기능 분기하기
+    if(btxt == '처음'){
+        // 세션 스토리지 읽기 : sessionStorage.getItem(키명)
+        // 만약 값이 셋팅안됐으면 null 값이 나옴
+        // console.log('세션쓰 lname :', sessionStorage.getItem('lname'));
+
+        // 세션 스토리지 셋팅
+        // -> sessionStorage.setItem(키명, 값)
+        sessionStorage.setItem('lname', '정우성');
+        sessionStorage.setItem('lrole', '김정도역');
+        sessionStorage.setItem('lcat', '국내팀 안개부 팀장, 박평호랑 사이 나쁨');
+
+        console.log('세션쓰 lname :', sessionStorage.getItem('lname'));
+        console.log('세션쓰 lrole :', sessionStorage.getItem('lrole'));
+        console.log('세션쓰 lcat :', sessionStorage.getItem('lcat'));
+
+    }else if(btxt == '전체삭제'){
+        // 해당 url로 관리되는 세션쓰를 모두 지움 : clear
+        sessionStorage.clear();
+        // 개별 세션쓰로 지우는 방법은 : removeItem(키명)
+
+    }else if(btxt == '보여줘'){
+        dfn.qs('.session .nm').innerText = sessionStorage.getItem('lname')
+        dfn.qs('.session .role').innerText = sessionStorage.getItem('lrole')
+        dfn.qs('.session .cat').innerText = sessionStorage.getItem('lcat')
+    }
+}
+
