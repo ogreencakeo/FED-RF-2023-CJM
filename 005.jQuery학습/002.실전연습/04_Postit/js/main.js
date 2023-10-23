@@ -72,6 +72,9 @@ $(()=>{
             let ptxt = target.find('p').text();
             console.log('ptxt :', ptxt);
 
+            // 4-5. 드롭 영역에 글자 넣기
+            $(this).text(ptxt + ' 당첨~!!!');
+
         }, // drop 이벤트 옵션 메서드 
 
     });
