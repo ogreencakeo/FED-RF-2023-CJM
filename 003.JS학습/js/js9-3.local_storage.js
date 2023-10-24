@@ -230,14 +230,25 @@ function insData(){
     let orgData = localStorage.getItem('minfo');
     // 3-3-2. 제이슨 파싱
     orgData = JSON.parse(orgData);
-    // 3-3-3. 입력된 데이터 추가하기 : 배열 push() 메서드
+
+    // 3-3-3. 자동 증가번호 처리하기
+    // 배열을 오름차순으로 정렬하여 맨끝 배열데이터의 idx값을 읽어온 후
+    // 숫자화 하여 +1 처리함
+    // 3-3-3-1. 배열 오름차순 처리 
+    // 배열.sort((a, b) => {return a==b? 0:a>b? 1:-1})
+    // 배열.sort((a, b) => {return a.idx==b.idx? 0:a.idx>b.idx? 1:-1})
+    orgData.sort((a, b)=> {
+        return(a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
+    }); // sort
+
+    // 3-3-4. 입력된 데이터 추가하기 : 배열 push() 메서드
     // 자동 증가번호는 배열개수 + 1
-    orgData.push(
-                {'idx' : orgData.length+1, 
+    orgData.push({
+                'idx' : orgData.length+1, 
                 'tit' : tit, 
-                'cont' : cont}
-    );
-    // 3-3-4. 배열/객체 데이터를 문자화하여 로컬쓰에 넣기
+                'cont' : cont
+    });
+    // 3-3-5. 배열/객체 데이터를 문자화하여 로컬쓰에 넣기
     // JSON.stringfy()
     localStorage.setItem('minfo', JSON.stringify(orgData));
 
