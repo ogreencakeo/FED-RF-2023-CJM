@@ -83,6 +83,29 @@ dfn.addEvt(dfn.qs('#sbtn'), 'click', insData);
 
 function insData(){
 
+    let tit = dfn.qs('#tit').value;
+    let cont = dfn.qs('#cont').value;
+
+    if(tit.trim()=='' || cont.trim()==''){
+        alert('입력데이터가 없습니다. 모두 입력하세요');
+        return;
+    }
+
+    let orgData = localStorage.getItem('minfo');
+    if(!orgData){
+        localStorage.setItem('minfo', '[]');
+        orgData = localStorage.getItem('minfo');
+    }
+    orgData = JSON.parse(orgData);
+    if(orgData.length != 0){
+        orgData.sort((a, b) => {
+            return (a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
+        });
+    }
+
+    let lastArr = orgData.length == 0?
+        0:
+
 }
 
 function delRec(idx){
@@ -98,3 +121,28 @@ function delRec(idx){
     }
 
 }
+
+const modSel =dfn.qs('#sel');
+const modTit =dfn.qs('#tit2');
+const moCont =dfn.qs('#cont2');
+const moBtn =dfn.qs('#mobtn');
+
+function bindMode(){
+    let orgData = localStorage.getItem('minfo');
+    if(!orgData){
+        localStorage.setItem('minfo', '[]');
+        orgData = localStorage.getItem('minfo');
+    }
+
+    orgData = JSON.parse(orgData);
+
+    modSel.innerHTML = `<option value='show'>항목선택</option>`;
+    orgData.forEach(v=>{
+        modSel.innerHTML += `
+            <option value="${v.idx}">${v.tit}</option>
+        `
+    });
+    
+}
+
+bindMode();
