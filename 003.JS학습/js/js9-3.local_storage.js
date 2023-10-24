@@ -228,6 +228,13 @@ function insData(){
     // 3-3. 입력처리하기
     // 3-3-1. 로컬쓰 데이터 가져오기 : minfo
     let orgData = localStorage.getItem('minfo');
+
+    // 만약 minfo 로컬쓰가 null이면 빈 배열로 생성하기
+    if(!orgData) {
+        // 빈 배열로 생성하기
+        localStorage.setItem('minfo', '[]');
+    }
+
     // 3-3-2. 제이슨 파싱
     orgData = JSON.parse(orgData);
 
