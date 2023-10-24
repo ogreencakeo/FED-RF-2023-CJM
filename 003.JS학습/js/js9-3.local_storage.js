@@ -244,13 +244,15 @@ function insData(){
     // 3-3-3-1. 배열 오름차순 처리 
     // 배열.sort((a, b) => {return a==b? 0:a>b? 1:-1})
     // 배열.sort((a, b) => {return a.idx==b.idx? 0:a.idx>b.idx? 1:-1})
+    // 배열 값이 있을 때만 정렬적용!
     if(orgData.length != 0){
         orgData.sort((a, b)=> {
             return(a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
         }); // sort
     }
     // 3-3-3-2. idx 값으로 마지막 배열값 읽기
-    let lastArr = orgData[orgData.length-1].idx; 
+    let lastArr = orgData.length == 0?
+        0 : orgData[orgData.length-1].idx; 
     console.log('정렬결과 :', orgData, '\n 마지막 idx 값 (lastArr) :', lastArr);
 
     
