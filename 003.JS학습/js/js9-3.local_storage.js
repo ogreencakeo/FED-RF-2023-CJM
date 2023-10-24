@@ -242,11 +242,38 @@ function insData(){
     localStorage.setItem('minfo', JSON.stringify(orgData));
 
     console.log('입력처리 함 (orgData) :', orgData);
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // 4. 리스트 업데이트 하기
+    bindData();
 }
 
-// 삭제 처리 함수 /////////////////////////////
+// 5. 삭제 처리 함수 //////////////////////////////////////////////////////////////////////////////
 function delRec(idx){
     console.log('지울 순번 (idx) :', idx);
+    // 5-1-1. a 요소 기본이동 막기
+    event.preventDefault();
+    // 5-1-2. 로컬쓰 데이터 가져오기 : minfo
+    let orgData = localStorage.getItem('minfo');
+    // 5-2. 제이슨 파싱
+    orgData = JSON.parse(orgData);
+
+    // 5-3. 특정 데이터 배열항목 삭제
+    // splice(순번, 개수) -> 특정순번부터 몇개 지움
+    // 여기서는 1개 삭제 이므로 splice(순번, 1)
+    // confirm(메시지)
+    // -> 확인, 취소 중 확인 클릭시 true 리턴함 / 취소는 false를 리턴함
+    if(confirm('정말 정말 정말로 지우시게요???')){
+        orgData.splice(idx, 1);
+        console.log('제거 후 배열 :', orgData);
+
+        // 5-4. 배열/객체 데이터를 문자화하여 로컬쓰에 넣기
+        // JSON.stringfy()
+        localStorage.setItem('minfo', JSON.stringify(orgData));
+
+        // 5-5. 리스트 업데이트 하기
+        bindData();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
