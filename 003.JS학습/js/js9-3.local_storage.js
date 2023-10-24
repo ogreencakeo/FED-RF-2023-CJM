@@ -207,6 +207,7 @@ function bindData(){
         dfn.addEvt(ele, 'click', ()=>delRec(ele.getAttribute('data-idx'))));
 }
 
+////////////////////////////////////////////////////////////////////////////////////
 // 입력 처리함수 호출 이벤트 설정하기
 dfn.addEvt(dfn.qs('#sbtn'), 'click', insData);
 
@@ -223,10 +224,9 @@ function insData(){
         alert('입력데이터가 없습니다. 모두 입력하세요');
         return;
     }
-
+    
     // 3-3. 입력처리하기
     console.log('입력처리 함');
-
 }
 
 // 삭제 처리 함수 /////////////////////////////
