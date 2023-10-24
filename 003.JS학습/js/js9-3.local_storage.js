@@ -329,6 +329,8 @@ const modSel = dfn.qs('#sel');
 const modTit =dfn.qs('#tit2');
 // 1-3. 내용 입력박스
 const modCont =dfn.qs('#cont2');
+// 1-4. 수정버튼
+const moBtn = dfn.qs('#mobtn');
 
 
 // 2. 데이터 바인딩하기
@@ -408,7 +410,14 @@ function setMod(){
     modTit.value = selRec.tit;
     modCont.value = selRec.cont;
     
-    
+}
+
+// 5. 수정버튼 클릭 이벤트 설정하기
+dfn.addEvt(moBtn, 'click', modifyData);
+
+// 6. 수정 내용 반영 함수 만들기
+function modifyData(){
+    console.log('수정할꼬양~!');
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

@@ -78,3 +78,23 @@ function bindData(){
     dfn.qsa('.board .del-link a').forEach(ele =>
         dfn.addEvt(ele, 'click', ()=> delRec(ele.getAttribute('data-idx'))));
 }
+
+dfn.addEvt(dfn.qs('#sbtn'), 'click', insData);
+
+function insData(){
+
+}
+
+function delRec(idx){
+    event.preventDefault();
+    let orgData = localStorage.getItem('minfo');
+    orgData = JSON.parse(orgData);
+
+    if(confirm('정말정말 삭제하시겠습니까?')){
+        orgData.splice(idx, 1);
+
+        bindData();
+        bindMode();
+    }
+
+}
