@@ -89,9 +89,10 @@ function localSFn() {
         localStorage.setItem("lrole", "박평호");
         localStorage.setItem("lcat", "조직내 스파이를 색출하는 해외팀 안기부 팀장");
 
-        console.log("로컬쓰 lname :", localStorage.getItem("lname"));
-        console.log("로컬쓰 lrole :", localStorage.getItem("lrole"));
-        console.log("로컬쓰 lcat :", localStorage.getItem("lcat"));
+        // 로컬스토리지.key(순번) -> 키 이름을 리턴한다.
+        console.log('두번째(1) 키 명은? (localStorage.key(1)) :', localStorage.key(1),
+        '\n 전체 개수 :', localStorage.length);
+
     } else if (btxt == "전체삭제") {
         // 해당 url로 관리되는 로컬쓰를 모두 지움 : clear
         localStorage.clear();
@@ -103,7 +104,9 @@ function localSFn() {
     }
     // 객체를 생성하여 로컬 스토리지에 넣기
     else if (btxt == "처리") {
+        // 로컬쓰에 'minfo'가 없으면 makeObj() 호출
         if (!localStorage.getItem("minfo")) makeObj();
+
         // 바인딩 함수 호출
         bindData();
     }
@@ -117,11 +120,6 @@ function makeObj() {
     console.log('배열 / 객체 만들기');
     // 게시판 형식의 객체를 생성함
     let obj = [
-        {
-            idx: 1,
-            tit: "내가 왕이 될 상인가?",
-            cont: "이정재형은 진정 왕이십니다.",
-        },
         {
             idx: 1,
             tit: "내가 왕이 될 상인가?",
@@ -172,8 +170,8 @@ function bindData(){
                 <td>${v.idx}</td>
                 <td>${v.tit}</td>
                 <td>${v.cont}</td>
-                <td>
-                    <a href="#" onclick="delRec(${i})">×</a>
+                <td class="del-link">
+                    <a href="#" data-idx="${i}">×</a>
                 </td>
             </tr>
         `).join(''); // 태그를 연결자없는 배열전체로 저장
@@ -203,14 +201,26 @@ function bindData(){
 
     // 1-7. 화면 출력 : 대상 - .board
     dfn.qs('.board').innerHTML = hcode;
+
+    // 1-8. 화면 출력 후 지우기 링크 셋팅하기
+    dfn.qsa('.board .del-link a').forEach(ele => 
+        dfn.addEvt(ele, 'click', ()=>delRec(ele.getAttribute('data-idx'))));
 }
 
-// 삭제 처리 함수
+// 입력 처리함수 호출 이벤트 설정하기
+dfn.addEvt(dfn.qs('#sbtn'), 'click', insData);
+
+// 입력 처리함수 /////////////////////////////
+function insData(){
+    console.log('입력이양');
+    // 1. 입력항목 읽어오기
+
+}
+
+// 삭제 처리 함수 /////////////////////////////
 function delRec(idx){
     console.log('지울 순번 (idx) :', idx);
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // [ 2. 세션 스토리지 연습 ]
