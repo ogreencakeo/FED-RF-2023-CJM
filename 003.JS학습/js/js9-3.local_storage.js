@@ -244,14 +244,16 @@ function insData(){
     // 3-3-3-1. 배열 오름차순 처리 
     // 배열.sort((a, b) => {return a==b? 0:a>b? 1:-1})
     // 배열.sort((a, b) => {return a.idx==b.idx? 0:a.idx>b.idx? 1:-1})
-    orgData.sort((a, b)=> {
-        return(a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
-    }); // sort
+    if(orgData.length != 0){
+        orgData.sort((a, b)=> {
+            return(a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
+        }); // sort
+    }
     // 3-3-3-2. idx 값으로 마지막 배열값 읽기
     let lastArr = orgData[orgData.length-1].idx; 
-
     console.log('정렬결과 :', orgData, '\n 마지막 idx 값 (lastArr) :', lastArr);
 
+    
     // 3-3-4. 입력된 데이터 추가하기 : 배열 push() 메서드
     // 자동 증가번호는 배열개수 + 1
     orgData.push({
