@@ -97,6 +97,7 @@ function insData(){
         orgData = localStorage.getItem('minfo');
     }
     orgData = JSON.parse(orgData);
+
     if(orgData.length != 0){
         orgData.sort((a, b) => {
             return (a.idx==b.idx? 0:a.idx>b.idx? 1:-1);
@@ -104,7 +105,17 @@ function insData(){
     }
 
     let lastArr = orgData.length == 0?
-        0:
+        0 : orgData[orgData.length-1].idx;
+    
+    orgData.push({
+        'idx' : lastArr+1,
+        'tit' : tit,
+        'cont' : cont
+    })
+    localStorage.setItem('minfo', JSON.stringify(orgData));
+
+    bindData();
+    bindMode();
 
 }
 
@@ -124,8 +135,8 @@ function delRec(idx){
 
 const modSel =dfn.qs('#sel');
 const modTit =dfn.qs('#tit2');
-const moCont =dfn.qs('#cont2');
-const moBtn =dfn.qs('#mobtn');
+const modCont =dfn.qs('#cont2');
+const modBtn =dfn.qs('#mobtn');
 
 function bindMode(){
     let orgData = localStorage.getItem('minfo');
@@ -146,3 +157,51 @@ function bindMode(){
 }
 
 bindMode();
+
+dfn.addEvt(modSel, 'change', setMode);
+
+function setMod(){
+    let optVal = this.value;
+    if(optVal == 'show') return;
+    let orgData = localStorage.getItem('minfo');
+    if(!orgData){
+        localStorage.setItem('minfo', []);
+        orgData = localStorage.getItem('minfo');
+    }
+
+    orgData = JSON.parse(orgData);
+
+    let selRec = orgData.find(v=>{
+        if(v.idx == optVal) return true;
+    });
+
+    modTit.value = selRec.tit;
+    modCont.value = selRec.cont;
+}
+
+dfn.addEvt(modBtn, 'click', modifyData);
+
+function modifyData(){
+    if(modSel.value == 'show') return;
+    let selIdx = modSel.value;
+    let orgData = localStorage.getItem('minfo');
+    if(!orgData){
+        localStorage.setItem('minfo', []);
+        orgData = localStorage.getItem('minfo');
+    }
+
+    orgData = JSON.parse(orgData);
+
+    orgData.find(v=>{
+        if(v.idx == selIdx){
+            v.tit = modTit.value;
+            v.xont = modCont.value;
+        }
+    })
+
+    localStorage.setItem('minfo', JSON.stringify(orgData));
+
+    bindData();
+
+    bindMode();
+}
