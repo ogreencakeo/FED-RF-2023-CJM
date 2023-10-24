@@ -224,9 +224,24 @@ function insData(){
         alert('입력데이터가 없습니다. 모두 입력하세요');
         return;
     }
-    
+
     // 3-3. 입력처리하기
-    console.log('입력처리 함');
+    // 3-3-1. 로컬쓰 데이터 가져오기 : minfo
+    let orgData = localStorage.getItem('minfo');
+    // 3-3-2. 제이슨 파싱
+    orgData = JSON.parse(orgData);
+    // 3-3-3. 입력된 데이터 추가하기 : 배열 push() 메서드
+    // 자동 증가번호는 배열개수 + 1
+    orgData.push(
+                {'idx' : orgData.length+1, 
+                'tit' : tit, 
+                'cont' : cont}
+    );
+    // 3-3-4. 배열/객체 데이터를 문자화하여 로컬쓰에 넣기
+    // JSON.stringfy()
+    localStorage.setItem('minfo', JSON.stringify(orgData));
+
+    console.log('입력처리 함 (orgData) :', orgData);
 }
 
 // 삭제 처리 함수 /////////////////////////////
