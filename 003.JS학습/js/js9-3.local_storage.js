@@ -233,6 +233,8 @@ function insData(){
     if(!orgData) {
         // 빈 배열로 생성하기
         localStorage.setItem('minfo', '[]');
+        // 초기 로컬쓰 재할당
+        orgData = localStorage.getItem('minfo');
     }
 
     // 3-3-2. 제이슨 파싱
@@ -274,7 +276,7 @@ function insData(){
     bindData();
 }
 
-// 5. 삭제 처리 함수 //////////////////////////////////////////////////////////////////////////////
+// 5. 삭제 처리 함수 //////////////////////////////////////////////////////////////////////////
 function delRec(idx){
     console.log('지울 순번 (idx) :', idx);
     // 5-1-1. a 요소 기본이동 막기
