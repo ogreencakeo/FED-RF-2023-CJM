@@ -210,10 +210,22 @@ function bindData(){
 // 입력 처리함수 호출 이벤트 설정하기
 dfn.addEvt(dfn.qs('#sbtn'), 'click', insData);
 
-// 입력 처리함수 /////////////////////////////
+// 3. 입력 처리함수 /////////////////////////////
 function insData(){
     console.log('입력이양');
-    // 1. 입력항목 읽어오기
+    // 3-1. 입력항목 읽어오기
+    let tit = dfn.qs('#tit').value;
+    let cont = dfn.qs('#cont').value;
+
+    // 3-2. 만약 하나라도 비었다면 돌아가!
+    // trim() 앞뒤 공백 제거 -> 스페이스바만 쳐도 불통과 처리
+    if(tit.trim()=="" || cont.trim()==""){
+        alert('입력데이터가 없습니다. 모두 입력하세요');
+        return;
+    }
+
+    // 3-3. 입력처리하기
+    console.log('입력처리 함');
 
 }
 
