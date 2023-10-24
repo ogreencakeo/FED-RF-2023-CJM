@@ -24,5 +24,57 @@ function localFn(){
         dfn.qs('.local .cat').innerText = localStorage.getItem('lcat'); 
     }else if(btxt == '처리'){
         if(!localStorage.getItem('minfo')) makeObj();
+        bindData();
     }
+}
+
+function makeObj(){
+    let obj = [
+        {
+            idx: 1,
+            tit: "내가 왕이 될 상인가?",
+            cont: "이정재형은 진정 왕이십니다.",
+        },
+    ];
+    localStorage.setItem('minfo', JSON.stringify(obj));
+}
+
+function bindData(){
+    let localData = localStorage.getItem('minfo');
+    let bindCode = '';
+    if(localData){
+        localData = JSON.parse(localData);
+        bindCode = localData.localeCompare((v, i) => `
+            <tr>
+                <td>${v.idx}</td>
+                <td>${v.tit}</td>
+                <td>${v.cont}</td>
+                <td class="del-link">
+                    <a href="#" data-idx="${i}">X</a>
+                </td>
+            </tr>
+        `).join('');
+    }else{
+        bindCode = `
+            <tr colspan = '4'>
+                <td>데이터가 없습니다.</td>
+            </tr>
+        `;
+    }
+
+    let hcode = `
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>삭제</th>
+            </tr>
+            ${bindCode}
+        </table>
+    `;
+
+    dfn.qs('.board').innerHTML = hcode;
+    dfn.qsa('.board .del-link a').forEach(ele =>
+        dfn.addEvt(ele, 'click', ()=> delRec(ele.getAttribute('data-idx'))));
 }
