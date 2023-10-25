@@ -1,6 +1,8 @@
 // 01.공유신발 JSX
 import myData from './data.js';
 import myData2 from './data2.js';
+
+// JS 기능함수 : 순수 JS 함수 호출임
 import { initFn, firstOneFn } from './act_effect.js';
 
 // 두개의 데이터를 배열로 구성
@@ -9,7 +11,7 @@ const twoData = [myData, myData2];
 // console.log('데이터 :', twoData);
 
 /////////////////////////////////////////////////////////////////////////
-// 메인 컴포넌트  
+// [ 메인 컴포넌트 ] 
 // 메인의 의미는? 다른 구성요소 컴포넌트들을 모아 
 // 최종적으로 랜더링하는 구성 컴포넌트를 말한다.
 function MainComponent(){
@@ -19,7 +21,14 @@ function MainComponent(){
     // dataNum은 데이터를 구분하는 번호저장 후크변수다.
     // 데이터 구분값으로 배열 순번을 생각하여 처음에 로딩될 데이터가
     // 0번째 즉, 첫번째 배열 순번 데이터를 불러올 순번값을 셋팅한다.
+    
+    // [ 후크 상태관리 변수 셋팅 ] /////////////////////////////////////
+    // 1. 데이터 순번값을 셋팅함!
     const [dataNum, setDataNum] = React.useState(0);
+    // 2. 리스트 / 상세보기 상태관리 변수
+    const [subView, setSubView] = React.useState(0);
+    //////////////////////////////////////////////////////////////////////////////////
+
 
     // 테스트 후 후크상태 변수
     const [test, setTest] = React.useState(0);
@@ -33,7 +42,7 @@ function MainComponent(){
 
     console.log('컴포넌트 그냥 구역 :', document.querySelector('.img-box'));
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
     // [ 리액트 컴포넌트 렌더링 후 실행함수 호출하기 ]
 
     // [ 1. 컴포넌트가 뿌려지기 애니메이션 적용하기 ]
@@ -42,7 +51,7 @@ function MainComponent(){
     // 2. 처음 한번만 타이틀 글자 커졌다가 작아지기
     React.useEffect(firstOneFn, [])
 
-    // [ useEffect 테스트 코드 ] ////////////////////////////////////////////////////////////////
+    // [ useEffect 테스트 코드 ] /////////////////////////////////////////////////////////
     // 순수 useEffect
     // -> 매번 업데이트 시에도 실행함
     React.useEffect(()=>{
@@ -86,6 +95,13 @@ function MainComponent(){
         console.log('test 후크변수 변경', test);
     };  // testFn함수 
 
+    /***************************************************************************** 
+        함수명 : chgData
+        상태변수 : dataNum / setDataNum
+        기능 : 상태관리변수 중 데이터 선택 번호
+        업데이트를 하여 화면에 상품 리스트를 
+        업데이트 한다.
+    *****************************************************************************/
     // 데이터 변경 호출 함수
     const chgData = () => {
         console.log('바꿔');
@@ -113,9 +129,20 @@ function MainComponent(){
             {/* 3. 데이터 변경 버튼 */}
             <button onClick={chgData} className="btn-gong">{dataNum? "공유" : "효진" }초이스 바로가기</button>
             <button onClick={testFn}>의존성 테스트</button>
-            {/* 4. 상품리스트 박스 */}
+            {/*********************************************************************** 
+                4. 상품리스트 박스 
+                상태관리변수를 생성하여 
+                리스트 / 상세보기를 전환한다!
+            ***********************************************************************/}
             <div className="gwrap">
-                <GoodsCode idx={dataNum? 1 : 0} />
+                {/* <GoodsCode idx={dataNum? 1 : 0} /> */}
+                
+                {/* 상품 리스트 컴포넌트 출력 */}
+                {   subView==0 && 
+                    <GoodsCode idx={dataNum} />}
+                {/* 상품 상세보기 컴포넌트 출력 */}
+                {   subView==1 && 
+                    <SubViewCode idx={dataNum} />}
             </div>
         </React.Fragment>
     );
@@ -124,12 +151,18 @@ function MainComponent(){
 }
 
 /////////////////////////////////////////////////////////////////////////
+// 상품 html 코드 구성 컴포넌트 
 // 서브 컴포넌트 ( 자식 컴포넌트 - 부모 컴포넌트로 부터 데이터를
 // props 속성을 통하여 전달받는다. )
-// 상품 html 코드 구성 컴포넌트 
+
+/***************************************************************************
+    서브 컴포넌트 1 : GoddsCode
+    상품 리스트 HTML 코드 구성 컴포넌트
+***************************************************************************/
 function GoodsCode(props){  // idx - 데이터 배열 순번
     // 선택데이터 
     const selData = twoData[props.idx];
+    // 코드 리턴 파트
     return selData.map((v)=> 
         <ol class="glist">
             <li><img src={props.idx?
@@ -138,6 +171,33 @@ function GoodsCode(props){  // idx - 데이터 배열 순번
                     alt = {props.idx? "드레스" : "신발"} /></li>
             <li>{v.gname}</li>
             <li>가격: {v.gprice}원</li>
+        </ol>
+    );
+}
+
+/***************************************************************************
+    서브 컴포넌트 2 : SubViewCode
+    상품 상세보기 HTML 코드 구성 컴포넌트
+***************************************************************************/
+function SubViewCode(props){
+    // props.idx - 선택 데이터 순번(신발 / 드레스)
+     // 선택데이터 
+    const selData = twoData[props.idx][0];
+    // -> 전체 선택 배열 중에 [특정 배열 값 순번]
+
+     // 코드 리턴 파트
+    return(
+        <ol>
+            <li><img src={props.idx?
+                    "./images/gallery/" + selData.idx +".jpg" :
+                    "./images/vans/vans_" + selData.idx + ".jpg" }
+                    alt = {props.idx? "드레스" : "신발"} />
+            </li>
+            <li>
+                상품명 : {selData.gname} <br />
+                가격: {selData.gprice}원<br />
+                <button>리스트로 가기</button>
+            </li>
         </ol>
     );
 }
