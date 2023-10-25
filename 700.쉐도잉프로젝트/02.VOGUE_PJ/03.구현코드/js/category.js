@@ -60,7 +60,7 @@ function setValue(){
     // 5-1. 배경 이미지를 셋팅을 위한 mian요소에 클래스 넣기
     // pm에 담아놓은 이름으로 넣어준다.
     // 대상 : .main-area 
-    $('.main-area').addClass(pm.replace(' & ', ' - '));
+    $('.main-area').addClass(pm.replace(' & ', '-'));
 
     // 5-2. 카테고리 타이틀 변경하기
     $('.cat-tit').text(selData.제목);

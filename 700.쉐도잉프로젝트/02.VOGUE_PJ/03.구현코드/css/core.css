@@ -131,6 +131,11 @@ font-family: 'Roboto Condensed', sans-serif;
     color: #fff;
 }
 
+/* 런웨이파트 타이틀 중 small 요소 */
+.cbx h2 small{
+    font-size: 14px;
+}
+
 /* 4. 스크롤 등장액션 클래스 */
 .scAct {
     transform: translateY(20%);
