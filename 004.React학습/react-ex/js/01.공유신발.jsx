@@ -114,6 +114,8 @@ function MainComponent(){
         // 데이터 키 후크변수를 업데이트함
         setDataNum(dataNum? 0 : 1)
         console.log('업데이트 값 :', dataNum);
+        // 상세보기에서 넘어와도 항상 리스트보기로 전환
+        setSubView(0);
     };
 
     /***************************************************************************** 
@@ -229,6 +231,8 @@ function SubViewCode(props){
     const selData = twoData[props.idx];
 
     // 선택데이터 /////////////////////////////////////////////
+    // 배열.find(v=>{if(조건)return true})
+    // -> 전달된 고유 idx와 같은 배열 데이터 하나를 리턴함
     const selItem = selData.find(v=>{
         if(v.idx == props.itemNum) return true;
     })
@@ -237,13 +241,13 @@ function SubViewCode(props){
 
      // 코드 리턴 파트
     return(
-        <ol>
+        <ol style={{display : 'flex', listStyle : 'none'}}>
             <li><img src={props.idx?
                     "./images/gallery/" + selItem.idx + ".jpg" :
                     "./images/vans/vans_" + selItem.idx + ".jpg" }
                     alt = {props.idx? "드레스" : "신발"} />
             </li>
-            <li>
+            <li style={{lineHeight : '8', padding : '10px'}}>
                 상품명 : {selItem.gname} <br />
                 가격: {selItem.gprice}원<br />
                 <button onClick={()=> props.chgFn(0, 0)}>리스트로 가기</button>
