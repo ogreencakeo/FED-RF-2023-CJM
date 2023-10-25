@@ -53,4 +53,44 @@ $(()=>{
         </a>
     `);
 
+    // sns파트 a요소에 툴팁 넣기
+    // 새로 추가된 a요소까지 다시 선택하여 
+    // each() 메서드로 돌면서 글자를 읽어와서 
+    // title 속성으로 넣는다. -> attr('title', 값)
+    $('.sns a').each((idx, ele)=>{
+        // ele - 각 a요소
+        $(ele).attr('title', $(ele).text().trim());
+    })
+
+    // 위에서 이어서 a요소에 링크 설정하기
+    .click(function(){
+        // 1. 클릭시 해당 요소 텍스트 읽기
+        let atxt = $(this).text().trim();
+        console.log('sns 파트메뉴 (atxt) :', atxt);
+
+        // 2. 이동할 페이지 주소 할당
+        let url;
+        switch(atxt){
+            case '인스타그램' : 
+                url = 'https://www.instagram.com/VOGUEKOREA/';
+                break;
+            case '페이스북' : 
+                url = 'https://www.facebook.com/VOGUEkr';
+                break;
+            case '트위터' : 
+                url = 'https://twitter.com/VogueKorea';
+                break;
+            case '유튜브' : 
+                url = 'https://www.youtube.com/user/VogueKorea';
+                break;
+            case '카카오스토리' : 
+                url = 'https://story.kakao.com/ch/voguekr';
+                break;
+        }
+        // 3. 페이지 이동하기
+        // window.open(주소) - 새창열기(브라우저 탭메뉴)
+        window.open(url);
+    });
+
+
 }); //////////// jQB ///////////////////
