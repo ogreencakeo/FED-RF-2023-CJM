@@ -27,6 +27,10 @@ function MainComponent(){
     const [dataNum, setDataNum] = React.useState(0);
     // 2. 리스트 / 상세보기 상태관리 변수
     const [subView, setSubView] = React.useState(0);
+    // 3. 선택 아이템 고유번호 상태관리 변수
+    const [selItem, setSelItem] = React.useState(0);
+    // 4. JS 효과 적용 여부 상태관리 변수
+    const [effectOK, setEffectOK] = React.useState(1);
     //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -46,10 +50,10 @@ function MainComponent(){
     // [ 리액트 컴포넌트 렌더링 후 실행함수 호출하기 ]
 
     // [ 1. 컴포넌트가 뿌려지기 애니메이션 적용하기 ]
-    React.useLayoutEffect(initFn);
+    React.useLayoutEffect(()=>{if(effectOK)initFn()});
 
     // 2. 처음 한번만 타이틀 글자 커졌다가 작아지기
-    React.useEffect(firstOneFn, [])
+    React.useEffect(()=>{if(effectOK)firstOneFn()}, [])
 
     // [ useEffect 테스트 코드 ] /////////////////////////////////////////////////////////
     // 순수 useEffect
@@ -114,14 +118,24 @@ function MainComponent(){
 
     /***************************************************************************** 
         함수명 : chgSubView
-        상태변수 : subView / setSubView
+        상태변수 : 
+            (1) 뷰 전환 : subView / setSubView
+            (2) 선택 아이템 :selItem / setSelItem
+            (3) 효과여부 : effectOK / setEffectOK
         기능 : 상태관리변수 중 리스트/상세보기
         선택변수를 업데이트 하여 실제뷰를 전환함
     *****************************************************************************/
     const chgSubView = (num, idx) => {
+        // a요소 기본이동 막기
+        event.preventDefault();
         console.log('뷰바꿔! (num) :', num, ', 고유번호 (idx) :', idx);
-        // 리스트/상세보기 뷰 상태관리변수 변경하기
+
+        // 1. 리스트/상세보기 뷰 상태관리변수 변경하기
         setSubView(num);
+        // 2. 선택아이템 고유번호 변경
+        setSelItem(idx);
+        // 3. JS 효과상태 변경
+        setEffectOK(0);
     };
 
     // 최종 리턴 코드
@@ -141,7 +155,7 @@ function MainComponent(){
                 </div>
             </section>
             {/* 3. 데이터 변경 버튼 */}
-            <button onClick={chgData} className="btn-gong">{dataNum? "공유" : "효진" }초이스 바로가기</button>
+            <button onClick={()=>{chgData();setEffectOK(1);}} className="btn-gong">{dataNum? "공유" : "효진" }초이스 바로가기</button>
             <button onClick={testFn}>의존성 테스트</button>
             {/*********************************************************************** 
                 4. 상품리스트 박스 
@@ -161,7 +175,10 @@ function MainComponent(){
                     자식 컴포넌트는 props.속성명() 방식으로 호출
                 */}
                 {   subView==1 && 
-                    <SubViewCode idx={dataNum} chgFn={chgSubView} />}
+                    <SubViewCode 
+                    idx={dataNum} 
+                    chgFn={chgSubView} 
+                    itemNum={selItem} />}
             </div>
         </React.Fragment>
     );
@@ -206,8 +223,10 @@ function SubViewCode(props){
     // props.chgFn() 함수로 사용가능! 
     // -> 부모 chgSubView() 함수를 호출하는 것임!
     // -> 프롭스 다운, 프롭스 펑션 업/다운
-    // 선택데이터 
-    const selData = twoData[props.idx][0];
+    // props.itemNum - 선택 아이템 번호
+
+    // 선택데이터 /////////////////////////////////////////////
+    const selData = twoData[props.idx][Number(props.itemNum)-1];
     // -> 전체 선택 배열 중에 [특정 배열 값 순번]
 
      // 코드 리턴 파트
