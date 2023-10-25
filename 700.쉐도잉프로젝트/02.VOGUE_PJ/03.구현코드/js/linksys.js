@@ -88,6 +88,9 @@ $(()=>{
                 break;
         }
         // 3. 페이지 이동하기
+        if(atxt=='로그인' || atxt=='회원가입' || atxt=='갤러리'){
+            location.href = url;
+        }
         // window.open(주소) - 새창열기(브라우저 탭메뉴)
         window.open(url);
     });
