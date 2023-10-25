@@ -93,6 +93,8 @@ function MainComponent(){
     const testFn = () => {
         setTest(test? 0 : 1);
         console.log('test 후크변수 변경', test);
+
+        // setSubView(1);
     };  // testFn함수 
 
     /***************************************************************************** 
@@ -108,6 +110,18 @@ function MainComponent(){
         // 데이터 키 후크변수를 업데이트함
         setDataNum(dataNum? 0 : 1)
         console.log('업데이트 값 :', dataNum);
+    };
+
+    /***************************************************************************** 
+        함수명 : chgSubView
+        상태변수 : subView / setSubView
+        기능 : 상태관리변수 중 리스트/상세보기
+        선택변수를 업데이트 하여 실제뷰를 전환함
+    *****************************************************************************/
+    const chgSubView = (num) => {
+        console.log('뷰바꿔!', num);
+        // 리스트/상세보기 뷰 상태관리변수 변경하기
+        setSubView(num);
     };
 
     // 최종 리턴 코드
@@ -139,10 +153,15 @@ function MainComponent(){
                 
                 {/* 상품 리스트 컴포넌트 출력 */}
                 {   subView==0 && 
-                    <GoodsCode idx={dataNum} />}
-                {/* 상품 상세보기 컴포넌트 출력 */}
+                    <GoodsCode idx={dataNum} chgFn={chgSubView} />}
+                {/* 
+                    상품 상세보기 컴포넌트 출력 
+                    부모의 함수 chgSubView를 props로 전달함 
+                    변수명에 할당하는 방식으로 전달
+                    자식 컴포넌트는 props.속성명() 방식으로 호출
+                */}
                 {   subView==1 && 
-                    <SubViewCode idx={dataNum} />}
+                    <SubViewCode idx={dataNum} chgFn={chgSubView} />}
             </div>
         </React.Fragment>
     );
@@ -164,14 +183,16 @@ function GoodsCode(props){  // idx - 데이터 배열 순번
     const selData = twoData[props.idx];
     // 코드 리턴 파트
     return selData.map((v)=> 
-        <ol class="glist">
-            <li><img src={props.idx?
-                    "./images/gallery/" + v.idx +".jpg" :
-                    "./images/vans/vans_" + v.idx + ".jpg" }
-                    alt = {props.idx? "드레스" : "신발"} /></li>
-            <li>{v.gname}</li>
-            <li>가격: {v.gprice}원</li>
-        </ol>
+        <a href = "#" onClick={()=>props.chgFn(1)}>
+            <ol class="glist">
+                <li><img src={props.idx?
+                        "./images/gallery/" + v.idx +".jpg" :
+                        "./images/vans/vans_" + v.idx + ".jpg" }
+                        alt = {props.idx? "드레스" : "신발"} /></li>
+                <li>{v.gname}</li>
+                <li>가격: {v.gprice}원</li>
+            </ol>
+        </a>
     );
 }
 
@@ -181,7 +202,10 @@ function GoodsCode(props){  // idx - 데이터 배열 순번
 ***************************************************************************/
 function SubViewCode(props){
     // props.idx - 선택 데이터 순번(신발 / 드레스)
-     // 선택데이터 
+    // props.chgFn() 함수로 사용가능! 
+    // -> 부모 chgSubView() 함수를 호출하는 것임!
+    // -> 프롭스 다운, 프롭스 펑션 업/다운
+    // 선택데이터 
     const selData = twoData[props.idx][0];
     // -> 전체 선택 배열 중에 [특정 배열 값 순번]
 
@@ -196,7 +220,7 @@ function SubViewCode(props){
             <li>
                 상품명 : {selData.gname} <br />
                 가격: {selData.gprice}원<br />
-                <button>리스트로 가기</button>
+                <button onClick={()=> props.chgFn(0)}>리스트로 가기</button>
             </li>
         </ol>
     );
