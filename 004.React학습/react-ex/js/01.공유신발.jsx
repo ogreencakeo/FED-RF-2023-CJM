@@ -118,8 +118,8 @@ function MainComponent(){
         기능 : 상태관리변수 중 리스트/상세보기
         선택변수를 업데이트 하여 실제뷰를 전환함
     *****************************************************************************/
-    const chgSubView = (num) => {
-        console.log('뷰바꿔!', num);
+    const chgSubView = (num, idx) => {
+        console.log('뷰바꿔! (num) :', num, ', 고유번호 (idx) :', idx);
         // 리스트/상세보기 뷰 상태관리변수 변경하기
         setSubView(num);
     };
@@ -183,7 +183,8 @@ function GoodsCode(props){  // idx - 데이터 배열 순번
     const selData = twoData[props.idx];
     // 코드 리턴 파트
     return selData.map((v)=> 
-        <a href = "#" onClick={()=>props.chgFn(1)}>
+        /* props.chgFn(뷰상태 1, 상품 고유번호 idx) */
+        <a href = "#" onClick={()=>props.chgFn(1, v.idx)}>
             <ol class="glist">
                 <li><img src={props.idx?
                         "./images/gallery/" + v.idx +".jpg" :
@@ -220,7 +221,7 @@ function SubViewCode(props){
             <li>
                 상품명 : {selData.gname} <br />
                 가격: {selData.gprice}원<br />
-                <button onClick={()=> props.chgFn(0)}>리스트로 가기</button>
+                <button onClick={()=> props.chgFn(0, 0)}>리스트로 가기</button>
             </li>
         </ol>
     );
