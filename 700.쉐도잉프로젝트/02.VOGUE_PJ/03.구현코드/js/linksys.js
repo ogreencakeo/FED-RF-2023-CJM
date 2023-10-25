@@ -38,7 +38,19 @@ $(()=>{
         - after(요소) -> 선택요소 뒤에 형제요소 추가
     ***********************************************************/
 
-    $('.sns a:last').before(`<헐></헐>`);
-    $('.sns a:last').after(`<크></크>`);
+    // $('.sns a:last').before(`<헐></헐>`);
+    // $('.sns a:last').after(`<크></크>`);
+
+    $('.sns a:last').before(`
+        <a href="#" class="fi fi-laptop">
+            <span class="ir">로그인</span>
+        </a>
+        <a href="#" class="fi fi-user-secret">
+            <span class="ir">회원가입</span>
+        </a>
+        <a href="#" class="fi fi-camera">
+            <span class="ir">갤러리</span>
+        </a>
+    `);
 
 }); //////////// jQB ///////////////////
