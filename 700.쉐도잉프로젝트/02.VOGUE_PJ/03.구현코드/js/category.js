@@ -66,30 +66,24 @@ function setValue(){
     $('.cat-tit').text(selData.제목);
 
     // 5-3. 메뉴 변경하기 
-    // 대상 : .lnb
+    // 5-3-1. 대상 : .lnb
     let lnb = $('.lnb');
-    // 메뉴 데이터 : selData.메뉴
+    // 5-3-2. 메뉴 데이터 : selData.메뉴
     let mData = selData.메뉴;
-    
-
-    // 메뉴 없음에 따라 분기하기 
+    // 5-3-3. 메뉴 리턴 함수
+    const retMenu = () => 
+        mData.map(v=>`<li><a href="#">${v}</a></li>`).join('')
+    // 5-3-4. 메뉴 없음에 따라 분기하기 
     if(mData == '없음'){    // lnb 없애기
         lnb.remove();
     }else{  // 메뉴 만들기
-        lnb.html(
-            `
-            <ul>
-                ${
-                    mData.map(v=>`
-                        <li>
-                            <a href="#">${v}</a>
-                        </li>
-                    `).join('')
-                }
-            </ul>
-            `
-        );
+        lnb.html(`<ul>${retMenu()}</ul>`);
     }
 
-
+    // 5-4. 서브 섹션 타이틀 넣기
+    // $(선택자).each((순번, 요소)=>{구현부})
+    // 대상 : .cat-cont-area h2
+    $('.cat-cont-area h2').each((idx, ele)=>{
+        $(ele).html(selData.타이틀[idx]);
+    });
 } ////////////// setValue 함수 ///////////
