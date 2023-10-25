@@ -86,6 +86,15 @@ $(()=>{
             case '카카오스토리' : 
                 url = 'https://story.kakao.com/ch/voguekr';
                 break;
+            case '로그인' : 
+                url = 'login';
+                break;
+            case '회원가입' : 
+                url = 'member';
+                break;
+            case '갤러리' : 
+                url = 'gallery';
+                break;
         }
 
         // 3. 페이지 이동하기
