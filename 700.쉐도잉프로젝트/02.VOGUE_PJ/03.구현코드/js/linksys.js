@@ -71,6 +71,7 @@ $(()=>{
         // 2. 이동할 페이지 주소 할당
         let url;
         switch(atxt){
+            // 외부시스템 페이지
             case '인스타그램' : 
                 url = 'https://www.instagram.com/VOGUEKOREA/';
                 break;
@@ -86,6 +87,7 @@ $(()=>{
             case '카카오스토리' : 
                 url = 'https://story.kakao.com/ch/voguekr';
                 break;
+            // 내부 시스템 페이지
             case '로그인' : 
                 url = 'login';
                 break;
