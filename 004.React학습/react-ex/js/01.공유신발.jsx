@@ -239,7 +239,7 @@ function SubViewCode(props){
     return(
         <ol>
             <li><img src={props.idx?
-                    "./images/gallery/" + selItem.idx +".jpg" :
+                    "./images/gallery/" + selItem.idx + ".jpg" :
                     "./images/vans/vans_" + selItem.idx + ".jpg" }
                     alt = {props.idx? "드레스" : "신발"} />
             </li>
