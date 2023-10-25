@@ -87,13 +87,15 @@ $(()=>{
                 url = 'https://story.kakao.com/ch/voguekr';
                 break;
         }
+
         // 3. 페이지 이동하기
+        // 내부 페이지는 현재 페이지에서 이동하기
         if(atxt=='로그인' || atxt=='회원가입' || atxt=='갤러리'){
-            location.href = url;
+            location.href = url + '.html';
+        }else{
+            // SNS 타 시스템은 새창열기
+            // window.open(주소) - 새창열기(브라우저 탭메뉴)
+            window.open(url);
         }
-        // window.open(주소) - 새창열기(브라우저 탭메뉴)
-        window.open(url);
     });
-
-
 }); //////////// jQB ///////////////////
