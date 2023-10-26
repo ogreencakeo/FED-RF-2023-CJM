@@ -15,4 +15,9 @@ var swiper = new Swiper(".mySwiper", {
         el: ".swiper-pagination",
         clickable: true,
     },
+    // 양쪽 이동 버튼
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 });
