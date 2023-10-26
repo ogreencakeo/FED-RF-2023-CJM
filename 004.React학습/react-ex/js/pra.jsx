@@ -69,18 +69,15 @@ import { firstOneFn, initFn } from './pra';
 //     document.querySelector('#root')
 // )
 
-
 const twoData = [myData, myData2];
 
 function MainComponent(){
     const [dataNum, setDataNum] = React.useState(0);
-    const [subView, setSubView] = React.useState(0);
+    const [subView, setSubView] = React.useEffect(0);
     const [selItem, setSelItem] = React.useState(0);
     const [effectOK, setEffectOK] = React.useState(0);
-    
-    
-    const [test, setTest] =React.useState(0);
 
+    const [test, setTest] =React.useState(0);
 
     React.useLayoutEffect(initFn);
     React.useEffect(firstOneFn, [])
@@ -99,7 +96,7 @@ function MainComponent(){
         setTest(test? 0:1);
     }
 
-    const chgFn = (num, idx) =>{
+    const chgSubView = (num, idx) => {
         event.preventDefault();
         setSubView(num);
         setSelItem(idx);
@@ -117,7 +114,7 @@ function MainComponent(){
                     alt={dataNum? '아름다운 효진' : '멋진공유'} />
                 </div>
             </section>
-            <button onClick={chgData}>{dataNum? '공유':'효진'}초이스</button>
+            <button onClick={()=>{chgData(); setEffectOK(1);}}>{dataNum? '공유':'효진'}초이스</button>
             <button onClick={testFn}>의존성 테스트</button>
             <div className="gwrap">
                 {
@@ -126,8 +123,7 @@ function MainComponent(){
                 }
                 {
                     subView == 1 &&
-                    <SubViewCode idx={dataNum} chgFn={chgSubView} 
-                    itemNum={setItem}/>
+                    <SubViewCode idx={dataNum} chgFn={chgSubView} itemNum={selItem} />
                 }
             </div>
         </React.Fragment>
@@ -137,6 +133,7 @@ function MainComponent(){
 function GoodsCode(props){
     const selData = twoData[props.idx];
     return selData.map(v=>
+        <a href="#" onClick={()=>props.chgFn(1, v.idx)}>
             <ol className='glist'>
                 <li>
                     <img src={props.idx? 
@@ -147,35 +144,25 @@ function GoodsCode(props){
                 <li>{v.gname}</li>
                 <li>{v.gprice}원</li>
             </ol>
+        </a>
     );
 }
 
 function SubViewCode(props){
     const selData = twoData[props.idx];
-    const selItem = selData.find(v=>{
-        if(v.idx == props.itemNum) return true
-    });
-
+    const selItem = selData.find(v => {
+        if(v.idx == props.itemNum) return true;
+    })
     return(
-        <ol>
-            <li>
-                <img src={props.idx?
-                './images/gallery/'+selItem.idx + '.jpg' :
-                "./images/vans/vans_" + selItem.idx + ".jpg" }
-                alt = {props.idx? "드레스" : "신발"} />
-            </li>
-            <li>
-                상품명 : {selItem.gname}<br />
-                가격 : {selItem.gprice}원 <br/>
-                <button onClick={()=>props.chgFn(0,0)}>리스트로 바로가기</button>
-            </li>
-        </ol>
+        
     )
 }
-
 
 
 ReactDOM.render(
     <MainComponent />,
     document.querySelector('#root')
 )
+
+
+
