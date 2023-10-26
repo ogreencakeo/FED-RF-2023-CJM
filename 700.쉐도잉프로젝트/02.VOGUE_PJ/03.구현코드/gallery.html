@@ -15,8 +15,13 @@
         />
         <!-- 아이콘 CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css" />
-        <!-- 로그인 페이지 CSS -->
+        <!-- 갤러리 페이지 CSS -->
         <link rel="stylesheet" href="./css/gallery.css" />
+        <!-- 로그인 페이지 CSS -->
+        <link rel="stylesheet" href="./css/login.css" />
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
         <!-- 제이쿼리 라이브러리 -->
         <script src="./js/jquery-3.7.1.min.js"></script>
         <!-- 제이쿼리 UI -->
@@ -24,8 +29,10 @@
         <!-- 공통모듈 JS -->
         <script type="module" src="./js/common.js"></script>
         <script src="./js/linksys.js"></script>
-        <!-- 로그인 페이지 JS -->
-        <script type="module" src="./js/login.js"></script>
+        <!-- 갤러리 페이지 JS -->
+        <script type="module" src="./js/gallery.js"></script>
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     </head>
     <body>
         <!-- 1.상단영역 -->
@@ -35,7 +42,50 @@
         <!-- 2.메인영역 -->
         <div id="main-area">
             <main class="main-area ibx">
-                
+                <!-- 2-1. 회원가입 페이지 상단영역 -->
+                <header class="ctop">
+                    <!-- 2-1-1. 서브타이틀 -->
+                    <h2 class="stit">Gallery</h2>
+                </header>
+                <!-- 2-2. 갤러리 페이지 컨텐츠 박스 -->
+                <section class="scont">
+                    <!-- Swiper -->
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="images/people/cont2-1a.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/fashion/cont1-2b.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/people/cont2-3a.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/fashion/cont2-1b.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/fashion/cont2-2b.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/fashion/cont2-3b.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/beauty/cont1-2a.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/beauty/cont2-3b.jpg" alt="보그갤러리" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="images/beauty/cont1-1b.jpg" alt="보그갤러리" />
+                            </div>
+                        </div>
+                        <!-- 블릿 인디케이터 -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </section>
+                <!-- 2-3. 동의/비동의 박스 -->
+                <section id="conf"></section>
             </main>
         </div>
         <!-- 3.하단영역 -->
