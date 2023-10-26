@@ -20,4 +20,24 @@ var swiper = new Swiper(".mySwiper", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
+    // 루프처리
+    loop: true,
+    // 화면크기별 분기
+    breakpoints: {
+        // when window width is >= 200px
+        200: {
+            slidesPerView: 1,
+            spaceBetween: 0,
+        },
+        // when window width is >= 700px
+        700: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+        },
+        // when window width is >= 1000px
+        1000: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+        },
+    },
 });

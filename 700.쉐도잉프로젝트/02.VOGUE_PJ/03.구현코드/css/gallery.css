@@ -1,13 +1,15 @@
 @charset "utf-8";
-/* 보그 PJ 로그인 페이지 CSS - login.css */
+/* 보그 PJ 갤러리 페이지 CSS - gallery.css */
 
-/* 공통 외부 CSS */
+/* 공통 외부CSS */
 @import url(reset.css);
 @import url(core.css);
 @import url(common.css);
+
+
 /* 컨텐츠 영역 속박스 */
 .main-area {
-    min-height: 600px;
+    min-height: 1000px;
     padding: 15px;
 }
 
@@ -31,7 +33,7 @@
 /* 스와이퍼 적용 CSS */
 .swiper {
     max-width: 1300px;
-    height: 500px;
+    height: 700px;
     margin: 0 auto;
 }
 
