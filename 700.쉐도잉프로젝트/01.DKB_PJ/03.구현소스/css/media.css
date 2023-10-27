@@ -92,6 +92,7 @@
         flex-basis: calc(51% - 2%);
     }
 
+
     /* 레이아웃 col-s- 파트 */
     .col-s-1 {
         width: 8.33%;
@@ -135,6 +136,40 @@
 
 /************************** 최대사이즈 500px 이하 시작 **************************/
 @media screen and (max-width:500px) {
+    /* 소제목 공통 */
+    .stit{
+        padding-bottom: 9vw;
+        font-size: 8vw;
+    }
+
+    /* 그룹파트 공통 */
+    .group-part{
+        padding: 10vw 0;
+    }
+
+    /* 미리보기 파트 */
+    .main .preview-box .partbox{
+        height: auto;
+    }
+
+    /* 각 미리보기 타이틀 */
+    .preview-box h3{
+        font-size: 4vw;
+        text-align: center;
+    }
+
+    /* 각 미리보기 내용박스 */
+    .preview-box p{
+        font-size: 3vw;
+        -webkit-line-clamp: 4;
+        line-height: 1.7;
+    }
+
+    /* 인트로 파트 : 높이값 자동 */
+    .main .intro-part .partbox{
+        height: auto;
+    }
+
     /* 동영상이동버튼 */
     .btn-box button:first-child {
         left: -18px;
@@ -149,4 +184,5 @@
         line-height: 36px;
         font-size: 15px;
     }
+
 }
