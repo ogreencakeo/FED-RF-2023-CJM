@@ -220,7 +220,7 @@ function showMv() {
     // 동영상 넣기
     // 대상: 나자신(.intro-mv-img)
     this.innerHTML = `
-    <video src='./images/intro_mv.mp4' autoplay controls></video>
+    <video src='./images/mv_info.mp4' autoplay controls></video>
   `;
 
     // 가상요소 플레이버튼 없애기위해 .off지우기
