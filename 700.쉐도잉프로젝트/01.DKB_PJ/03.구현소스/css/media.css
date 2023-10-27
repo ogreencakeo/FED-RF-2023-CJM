@@ -132,3 +132,20 @@
 
     
 }
+
+@media screen and (max-width:500px) {
+    /* 동영상이동버튼 */
+    .btn-box button:first-child {
+        left: -18px;
+    }
+    .btn-box button:last-child {
+        right: -18px;
+    }
+    .btn-box button {
+        top: 40%;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 15px;
+    }
+}
