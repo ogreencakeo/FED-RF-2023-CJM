@@ -23,6 +23,7 @@
     .ham {
         display: block;
     }
+
     /* 햄버거 버튼 상위.top에 클래스on 
     줄경우 x버튼으로 변경 */
     .header.on .ham {
@@ -38,6 +39,11 @@
     .live-box ul{
         /* 한줄에 2개씩 */
         grid-template-columns: repeat(2,1fr);
+    }
+
+    /* 이동욱 이동 */
+    .live-box ul li:nth-child(7){
+        transform: translate(107%, -118%);
     }
 
     /* 레이아웃 col-s- 파트 */
