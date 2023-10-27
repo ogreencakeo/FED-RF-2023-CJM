@@ -35,6 +35,8 @@ $(window).resize(chkMob);
 const hEle = $('.header');
 $('.ham').click(()=>{
   hEle.toggleClass('on');
+
+  // is() 메서드 : 선택요소의 이름 확인!
   console.log('지금 .header에 .on 있나?', hEle.is('.on'));
   // 만약 .header .on이면 body에 스크롤바 숨기기
   if(hEle.is('.on'))
@@ -56,6 +58,10 @@ $('.gnb li').click(function(){
   .siblings().find('.smenu') // 다른 li들 하위 .smenu
   .slideUp(300, 'easeInOutQuad')  // 스르륵 닫힘! 모두
 });
+
+// 3. 스티키 메뉴 박스 드래그 하여 움직여 보기
+// 대상 : .dokebi-menu ul
+$('.dokebi-menu ul').draggable();
 
 // 0. 새로고치면 스크롤바 위치캐싱후 맨위로 이동
 setTimeout(() => {
