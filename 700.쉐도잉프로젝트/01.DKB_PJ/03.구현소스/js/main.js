@@ -64,7 +64,6 @@ $('.gnb li').click(function(){
 $('.dokebi-menu ul')
 .draggable({
   axis : 'x',   // x축 고정
-
 });
 
 // 0. 새로고치면 스크롤바 위치캐싱후 맨위로 이동
