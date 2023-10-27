@@ -144,6 +144,7 @@ aside.smbx {
 .info-link ul{
     display: flex;
     gap: 0 15px;
+    flex-wrap: wrap;
 }
 
 .info-link a{
@@ -162,7 +163,7 @@ aside.smbx {
     border: none;
     background-color: #ccccccb2;
     font-size: 1.5rem;
-
+    margin: 5px;
 }
 /* 하단로고박스 */
 .footer__logo{
