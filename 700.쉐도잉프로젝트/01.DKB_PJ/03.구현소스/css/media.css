@@ -84,14 +84,14 @@
         text-align: center;
     }
     .combo-area select{
-        width: 47%;
+        width: 45%;
     }
+    
 
     /* 최신동영상 - 한번에 2개만 보이기 */
     .clip-box li{
         flex-basis: calc(51% - 2%);
     }
-
 
     /* 레이아웃 col-s- 파트 */
     .col-s-1 {
@@ -170,6 +170,13 @@
         height: auto;
     }
 
+    /* 인트로 설명박스 */
+    .intro-txt{
+        padding: 2vw;
+        line-height: 1.7;
+        font-size: 4.5vw;
+    }
+
     /* 동영상이동버튼 */
     .btn-box button:first-child {
         left: -18px;
@@ -184,5 +191,5 @@
         line-height: 36px;
         font-size: 15px;
     }
-
+    
 }
