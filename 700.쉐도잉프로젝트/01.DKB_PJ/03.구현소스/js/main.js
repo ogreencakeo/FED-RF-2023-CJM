@@ -37,7 +37,8 @@ $('.ham').click(()=>{
   hEle.toggleClass('on');
   console.log('지금 .header에 .on 있나?', hEle.is('.on'));
   // 만약 .header .on이면 body에 스크롤바 숨기기
-  if(hEle.is('.on')) $('html, body').css({overflowY : 'hidden'});
+  if(hEle.is('.on'))
+    $('html, body').css({overflowY : 'hidden'});
   // 아니면 넣었던 스타일 지우기
   else $('body').attr('style', '');
 });
