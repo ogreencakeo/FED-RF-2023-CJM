@@ -83,6 +83,8 @@
                         </ul>
                     </nav>
                 </div>
+                <!-- 모바일 햄버거 영역 -->
+                <button class="ham"></button>
             </header>
         </div>
         <!-- 2. 캐릭터소개영역 -->
@@ -292,7 +294,7 @@
         <div id="main">
             <main class="main inbox">
                 <!-- 파트그룹박스 5개 -->
-                <div class="intro-part group-part group-part-01">
+                <div class="intro-part group-part group-part-01 fx-box">
                     <!-- 파트박스 2개 -->
                     <div class="partbox col-6">
                         <!-- 드라마소개파트 제목 -->
@@ -350,10 +352,10 @@
                     </div>
                 </div>
                 <!-- 미리보기 파트 : .preview-part -->
-                <div class="preview-part group-part group-part-02">
+                <div class="preview-part group-part group-part-02 ">
                     <h2 class="stit">미리보기</h2>
                     <!-- 파트박스 8개 -->
-                    <section class="preview-box sub-view-box">
+                    <section class="preview-box sub-view-box fx-box">
                         <div class="partbox col-3"></div>
                         <div class="partbox col-3"></div>
                         <div class="partbox col-3"></div>
@@ -389,56 +391,57 @@
         <div id="footer">
             <footer class="footer inbox">
                 <!-- 파트박스 5개 -->
-
-                <!-- 하단 링크 박스 -->
-                <div class="partbox col-8">
-                    <aside class="info-link">
-                        <ul>
-                            <li>
-                                <a href="#">회사소개</a>
-                            </li>
-                            <li>
-                                <a href="#">광고/제휴문의</a>
-                            </li>
-                            <li>
-                                <a href="#">이용약관</a>
-                            </li>
-                            <li>
-                                <a href="#">개인정보 처리방침</a>
-                            </li>
-                            <li>
-                                <a href="#">청소년보호정책</a>
-                            </li>
-                            <li>
-                                <a href="#">법적고지</a>
-                            </li>
-                            <li>
-                                <a href="#">이메일무단수집거부</a>
-                            </li>
-                            <li>
-                                <a href="#">큐톤표</a>
-                            </li>
-                            <li>
-                                <a href="#">고객센터</a>
-                            </li>
-                            <li>
-                                <a href="#">공지사항</a>
-                            </li>
-                        </ul>
-                    </aside>
+                <div class="fx-box">
+                    <!-- 하단 링크 박스 -->
+                    <div class="partbox col-8">
+                        <aside class="info-link">
+                            <ul>
+                                <li>
+                                    <a href="#">회사소개</a>
+                                </li>
+                                <li>
+                                    <a href="#">광고/제휴문의</a>
+                                </li>
+                                <li>
+                                    <a href="#">이용약관</a>
+                                </li>
+                                <li>
+                                    <a href="#">개인정보 처리방침</a>
+                                </li>
+                                <li>
+                                    <a href="#">청소년보호정책</a>
+                                </li>
+                                <li>
+                                    <a href="#">법적고지</a>
+                                </li>
+                                <li>
+                                    <a href="#">이메일무단수집거부</a>
+                                </li>
+                                <li>
+                                    <a href="#">큐톤표</a>
+                                </li>
+                                <li>
+                                    <a href="#">고객센터</a>
+                                </li>
+                                <li>
+                                    <a href="#">공지사항</a>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <!-- 바로가기 콤보박스 영역 -->
+                    <div class="partbox col-4 combo-area">
+                        <select name="brand" id="brand">
+                            <option value="어쩌구">저쩌구</option>
+                            <option value="어쩌구">저쩌구</option>
+                            <option value="어쩌구">저쩌구</option>
+                        </select>
+                        <select name="corp" id="corp">
+                            <option value="어쩌구">저쩌구</option>
+                        </select>
+                    </div>
                 </div>
-                <!-- 바로가기 콤보박스 영역 -->
-                <div class="partbox col-4 combo-area">
-                    <select name="brand" id="brand">
-                        <option value="어쩌구">저쩌구</option>
-                        <option value="어쩌구">저쩌구</option>
-                        <option value="어쩌구">저쩌구</option>
-                    </select>
-                    <select name="corp" id="corp">
-                        <option value="어쩌구">저쩌구</option>
-                    </select>
-                </div>
-
+                
                 <!-- 하단로고박스 -->
                 <div class="partbox col-12">
                     <!-- 하단로고 -->

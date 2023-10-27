@@ -61,6 +61,28 @@
     transform: scale(.5,.3);
     margin-left: 3px;
 }
+
+/* 모바일 햄버거 버튼 */
+.ham {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    transform: scaleX(1.5);
+    color: #555;
+
+    /* 처음에 숨기기 */
+    display: none;
+}
+/* 햄버거모양 가상요소넣기 */
+.ham::before{
+    content: '≡';
+}
+
 /************ 2. 메인영역 ************/
 /* 서브메뉴 박스 */
 .smenu {
@@ -130,6 +152,9 @@ aside.smbx {
     white-space: nowrap;
 }
 /* 바로가기 콤보박스 영역 */
+.combo-area{
+    text-align: right;
+}
 .combo-area select{
     width: 150px;
     height: 35px;

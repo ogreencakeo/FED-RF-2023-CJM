@@ -19,4 +19,18 @@
         margin: 0;
         padding: 9px;
     }
+    /* 햄버거 버튼 보이기 */
+    .ham {
+        display: block;
+    }
+    /* 햄버거 버튼 상위.top에 클래스on 
+    줄경우 x버튼으로 변경 */
+    .header.on .ham {
+        z-index: 9999;
+        color: #fff;
+        transform: scale(1.5);
+    }
+    .header.on .ham::before {
+        content: '×';
+    }
 }
