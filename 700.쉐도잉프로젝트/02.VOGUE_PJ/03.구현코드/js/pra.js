@@ -1,70 +1,80 @@
-import dfn from './dom.js';
-import tData from './data/com_module.js';
-import { setPos } from './smoothScroll23.js';
+$(`form.logF input[type=text][id!=email2],
+form.logF input[type=password]`)
+.blur(function(){
+    let cid = $(this).attr('id');
+    const groSpace = (x) => x.replace(/\s/g, '');
 
-const comArea = dfn.qsa('.common-area');
+    let cv = cid == 'mnm'? $(this).val().trim() : groSpace($(this).val());
+    $(this).val(cv);
 
-comArea[0].innerHTML = tData.topArea;
-comArea[1].innerHTML = tData.footerArea;
-
-$(()=>{
-    $('a').click(e=>e.preventDefault());
-
-    const logo = $('.logo a');
-    const gnb = $('.gnb a');
-
-    logo.click(()=>location.href = 'index.html');
-
-    gnb.click(e=>
-        location.href = 'category.html?cat=' +
-        $(e.target).text().toLowerCase()    
-    );
-})
-
-const hideBox = $('.main-area section');
-
-hideBox.each((idx, ele)=>{
-    if(idx!=0) $(ele).addClass('scAct')
-})
-
-let winH = $(window).height()/3*2;
-
-const topArea = $('#top-area');
-const tbtn = $('.tbtn');
-
-$(window).scroll(()=>{
-    let scTop = $(window).scrollTop();
-
-    if(scTop>100) topArea.addClass('on');
-    else topArea.removeClass('on');
-
-    if(scTop>300) tbtn.addClass('on');
-    else tbtn.removeClass('on');
-
-    hideBox.each((idx, ele)=>{
-        if(idx!=0){
-            let val = dfn.getBCR(ele);
-            if(val<winH) $(ele).addClass('on')
+    if(cv == ''){
+        $(this).sblings('.msg').text('필수입력!').removeClass('on');
+    }else if(cv == 'mid'){
+        if(!vReg(cv, cid)){
+            $(this).sblings('.msg').text('영문자로 시작하는 6~20글자 영문자/숫자').removeClass('on')
+        }else{
+            $(this).sblings('.msg').text('멋진 아이디네요').addClass('on');
         }
-    })
-})
-
-tbtn.click((e) => {
-    e.preventDefault();
-    setPos(0);
-})
-
-let pm = location.href;
-setValue();
-function setValue(){
-    try{
-        if(pm.indexOf('?')== -1 || pm.indexOf('=')==-1){
-            throw '잘못된 접근입니다.';
+    }else if(cv == 'mpw'){
+        if(!vReg(cv, cid)){
+            $(this).sblings('.msg').text('특수문자,문자,숫자포함 형태의 5~15자리');
+        }else{
+            $(this).sblings('.msg').empty();
         }
-    }catch(err){
-        alert(err);
-        location.href = 'index.html';
+    }else{
+        $(this).sblings('.msg').empty();
     }
-    pm = pm.split('?')[1].split('=');
-    pm = decodeURIComponent(pm);
+})
+
+let eyeNum = 1;
+$('.eye').css({
+    textDecoration : 'line-through',
+    opactity : 0.5,
+    cursor : 'pointer'
+}) 
+.click((e)=>{
+    $('#mpw').attr('type', eyeNum? 'text' : 'password');
+    $(e.target).css({
+        textDecoration : eyeNum? 'none' : 'line-through',
+        opacity : eyeNum? 1:0.5
+    })
+    eyeNum=eyeNum? 0 : 1;
+});
+
+function vReg(val, cid) {
+    // val - 검사할값, cid - 처리구분아이디
+    console.log("검사:" + val + "/" + cid);
+
+    // 정규식 변수
+    let reg;
+
+    // 검사할 아이디에 따라 정규식을 변경함
+    switch (cid) {
+        case "mid": // 아이디
+            reg = /^[a-z]{1}[a-z0-9]{5,19}$/g;
+            // 영문자로 시작하는 6~20글자 영문자/숫자
+            // /^[a-z]{1} 첫글자는 영문자로 체크!
+            // [a-z0-9]{5,19} 첫글자 다음 문자는 영문 또는 숫자로
+            // 최소 5글자에서 최대 19글자를 유효범위로 체크!
+            // 첫글자 한글자를 더하면 최소 6글자에서 최대 20글자체크!
+            break;
+        case "mpw": // 비밀번호
+            reg = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+            // 특수문자,문자,숫자포함 형태의 5~15자리
+            // (?=^.{5,15}$) 시작부터 끝까지 전체 5~15자릿수 체크!
+            // (?=.*\d) 숫자 사용체크!
+            // (?=.*[a-zA-Z]) 영문자 대문자 또는 소문자 사용체크!
+            // (?=.*[!@#$%^&+=]) 특수문자 사용체크!
+            break;
+        case "eml": // 이메일
+            reg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+            // 이메일 형식에 맞는지 검사하는 정규식
+            break;
+    } //////////// switch case문 //////////////////
+
+    // //console.log("정규식:"+reg);
+
+    // 정규식 검사를 위한 JS메서드
+    // -> 정규식.test(검사할값) : 결과 true/false
+    return reg.test(val); //호출한 곳으로 검사결과리턴!
 }
