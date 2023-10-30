@@ -98,7 +98,8 @@ let eyeNum = 1;
 $(".eye")
 .css({  // 처음상태는 중간줄 있고 흐림
     textDecoration :'line-through',
-    opacity : 0.5
+    opacity : 0.5,
+    cursor : 'pointer'
 })
 .click((e) => {
     // 1. 글자보이기 타입전환 : type = 'text | password'
