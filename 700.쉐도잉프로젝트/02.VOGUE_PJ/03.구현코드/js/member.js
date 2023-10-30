@@ -20,12 +20,13 @@ form.logF input[type=password]`)
     // cid는 current id 즉, 현재 아이디
     
     // 모든 공백 제거 함수(get rid of Space)
-    const groSpace = x => x.replace(' ', '');
-    
+    const groSpace = x => x.replace(/\s/g, '');
+    // replace(정규식, 바꿀문자)
+    // 정규식은 슬래쉬 사이에 표현 : \s 공백문자
+    // g는 global 즉, 전역적으로 찾으라는 플래그 문자
+
     // 2. 현재 블러가 발생한 요소의 값은?
-    let cv = $(this).val(); 
-
-
+    let cv = groSpace($(this).val()); 
 
     console.log('id는? :', cid, '/값은?', cv);
 
