@@ -8,14 +8,28 @@ import bData from './data.json' assert {type:'json'};
 // 대상 : #board tbody 
 const board = $('#board tbody');
 
+// 데이터 태그 생성후 태그넣기
+board.html(
+    bData.map((v) => `
+        <tr>
+            <td>${v.idx}</td>
+            <td>${v.tit}</td>
+            <td>${v.writer}</td>
+            <td>${v.date}</td>
+            <td>${v.cnt}</td>
+        </tr>
+    `).join('')
+);
+
 // 데이터를 태드로 구성함
 // 태그 구조 : <tr><td></td>.....</tr>
 /*
+    [ 매칭 데이터 ]
     <tr>
-        <th>번호</th>
-        <th>글 제목</th>
-        <th>글 쓴이</th>
-        <th>등록일자</th>
-        <th>조회수</th>
+        <td>번호 - idx</td>
+        <td>글 제목 - tit</td>
+        <td>글 쓴이 - writer</td>
+        <td>등록일자 - date</td>
+        <td>조회수 - cnt</td>
     </tr>
 */
