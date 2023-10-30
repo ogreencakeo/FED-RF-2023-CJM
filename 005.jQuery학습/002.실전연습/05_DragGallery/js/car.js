@@ -43,6 +43,8 @@ $(()=>{
     cbx.on('mousemove', e=>{
         // 1. x축 위치값
         let pos = e.pageX;
+        // console.log('pos', pos);
+        
         // 2. 방향 알아내기 
         // 계산방법 : 처음클릭위치 - 현재위치
         // point변수 - pos변수
