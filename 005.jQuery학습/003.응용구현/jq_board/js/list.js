@@ -4,6 +4,12 @@
 import bData from './data.json' assert {type:'json'};
 // console.log('bData :', bData);
 
+// 데이터 idx의 내림차순으로 정렬변경하기
+bData.sort((a, b) => 
+Number(a.idx)==Number(b.idx)? 0:Number(a.idx)>Number(b.idx)? -1:1);
+// idx는 숫자데이터로 형변환 비교하여
+// a.idx>b.idx 즉, 앞에 것이 크면 그대로 -1, 작으면 바꾸기 1
+
 // 데이터를 화면 리스트 코드로 변환하여 적용한다.
 // 대상 : #board tbody 
 const board = $('#board tbody');
