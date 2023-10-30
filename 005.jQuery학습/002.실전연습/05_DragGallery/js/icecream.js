@@ -29,14 +29,57 @@ $(()=>{
     const updataWin = () => $(window).width();
     // 2-3-2. 최초 윈도우 가로크기 업데이트
     let winW = updataWin();
-    // 2-3-3. 윈도우 리사이즈시 윈도우 가로크기 업데이트
+    // 2-3-3. 윈도우 리사이즈시 윈도우 업데이트
     $(window).resize(()=> {
         winW = updataWin();
-        console.log('업데이트 화면 가로크기 :', winW);
+        // console.log('업데이트 화면 가로크기 :', winW);
+        firstPoint = winW / 3;
+        console.log('업데이트 한계값 (firstPoint) :', firstPoint);
+        lastPoint = target.width() - winW / 3 * 2;
+        console.log('마지막 한계값 (lastPoint) :', lastPoint);
     });
     // console.log('처음 화면 가로크기 :', winW);
 
     // 2-3-4. 첫번째 한계값 설정하기 : 화면 크기의 1/3로 설정
     let firstPoint = winW / 3;
     console.log('첫 번째 한계값 (firstPoint) :', firstPoint);
+    
+    // 2-3-5. 마지막 한계값 설정하기 : 
+    // 대상박스의 width값 - 화면가로크기의 2/3
+    let lastPoint = target.width() - winW / 3 * 2;
+    console.log('마지막 한계값 (lastPoint) :', lastPoint);
+
+    // 2-4. 이벤트 발생시 left값 체크하여 제한하기
+    // on(이벤트명, 함수)
+    // -> 이벤트명을 띄어쓰기로 여러개 설정할 수 있다. 기존 JS는 addEventListenr()
+    // 를 이벤트마다 등록해야 했음
+    // 대상 : html, body
+    // $('html, body').on('click mouseover keydown', ()=>{
+
+    // [ 동시적용 이벤트들 ]
+    // 마우스 왼쪽버튼 내려갈때 : mousedown
+    // 마우스 왼쪽버튼 올아올때 : mouseup
+    // 마우스 포인터 움직일때 : mousemove
+    $('html, body').on('mousedown mouseup mousemove', ()=>{
+        // 1. 움직이는 대상 left 위치값
+        let tgPos = target.offset().left;
+        console.log('현재 left 값 :', tgPos);
+
+        // 2. 처음한계값 체크하여 제한하기
+        if(tgPos > firstPoint){
+            // 첫번째 한계값에 고정
+            target.css({
+                left : firstPoint + 'px'
+            })
+        }
+        // 3. 마지막 한계값 체크하여 제한하기
+        // left값이 마이너스 이므로 -lastPoint로 계산
+        else if(tgPos < -lastPoint){
+            // 마지막 한계값에 고정
+            target.css({
+                left : -lastPoint + 'px'
+            });
+        }
+    });
+
 });
