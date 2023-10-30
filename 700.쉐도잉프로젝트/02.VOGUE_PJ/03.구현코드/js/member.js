@@ -18,9 +18,14 @@ form.logF input[type=password]`)
     // 1. 현재 블러가 발생한 요소의 아이디는?
     let cid = $(this).attr('id');
     // cid는 current id 즉, 현재 아이디
-
+    
+    // 모든 공백 제거 함수(get rid of Space)
+    const groSpace = x => x.replace(' ', '');
+    
     // 2. 현재 블러가 발생한 요소의 값은?
-    let cv = $(this).val();
+    let cv = $(this).val(); 
+
+
 
     console.log('id는? :', cid, '/값은?', cv);
 
@@ -30,6 +35,8 @@ form.logF input[type=password]`)
     if(cv == ''){
         // 메시지 출력하기
         $(this).siblings('.msg').text('필수입력!');
+        // 입력창 초기화
+        $(this).val('');
     }
     else{
         // 모두 통과일 경우 메시지 지우기 //////////////////////////
