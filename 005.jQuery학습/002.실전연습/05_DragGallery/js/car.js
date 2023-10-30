@@ -66,6 +66,8 @@ $(()=>{
             // 이미지넘김 함수 호출 : 방향보냄
             rotateCar(dir);
         }
+        // 2. x축 처음 위치값 업데이트
+        point = e.pageX || e.changedTouches[0].pageX;
     });
 
     // (2) 드래그 상태 시작 이벤트 함수 /////////////////
@@ -74,8 +76,8 @@ $(()=>{
         // 1. 드래그 상태 값 변경
         drag = 1;
 
-        // 2. x축 처음 위치값 업데이트
-        point = e.pageX || e.changedTouches[0].pageX;
+        // // 2. x축 처음 위치값 업데이트
+        // point = e.pageX || e.changedTouches[0].pageX;
 
         // 3. 커서 움켜쥔 모양
         cbx.css({
