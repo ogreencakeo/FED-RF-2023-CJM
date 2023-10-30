@@ -41,6 +41,13 @@ $(()=>{
     // (1) 드래그 중 이벤트 함수
     // - 이벤트 종류 : mousemove - touchmove
     cbx.on('mousemove', e=>{
+
+        // 0. 이벤트 횟수 줄이기 : 광클금지원리와 같음!
+        if(protEvt) return; // 돌아가
+        protEvt = 1; // 잠금 - 이벤트 하나만 통과!
+        setTimeout(()=>protEvt = 0, 30); // 해제
+
+
         // 1. x축 위치값
         let pos = e.pageX;
         // console.log('pos', pos);
@@ -97,7 +104,7 @@ $(()=>{
             if(fnum == 50) fnum = 0;
             // 마지막 순번은 49번이므로 50번에서는 0으로 변경
         }
-        // (2). 이미지 순번 감소 처리
+        // (2) 이미지 순번 감소 처리
         // dir -> 0이면 왼쪽에서 오른쪽 드래그 : 역방향
         else{
             fnum--;
