@@ -51,6 +51,9 @@ $(()=>{
             // 방향변수
             let dir = point - pos < 0? 0 : 1;
             console.log('현재 방향은 ? (dir) :', dir);
+
+            // 이미지넘김 함수 호출 : 방향보냄
+            rotateCar(dir);
         }
     });
 
@@ -89,10 +92,9 @@ $(()=>{
         // 2. 이미지 순번 감소 처리
         else{
             fnum--;
-            if(fnum == -1){
-                fnum=49;
+            if(fnum == -1) fnum=49;
                 // 첫순번은 0이므로 -1이면 마지막순번 49번으로 변경
-            }
         }
+        console.log('순번 fnum :', fnum);
     };
 });
