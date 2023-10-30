@@ -128,7 +128,8 @@ $(()=>{
         // 다른방법 : 위에서 증감전 숨기기 안하고 아래에서 하기
         // 1번 주석후 테스트 할 것
         // cbx.find('img:visible').hide();
-        // 선택요소 : visible 은 display : none이 아닌요소 선택함.
+        // '선택요소:visible' 은 'display:none'이 아닌요소 선택함.
+        // -> 반대로 'display:none'인 요소 선택은 ':hidden'
 
         // [ 3. funm 증감후 보기기 -> 다음 이미지 보이기 ]
         carImg.eq(fnum).show();
