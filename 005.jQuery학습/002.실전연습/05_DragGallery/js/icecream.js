@@ -35,7 +35,7 @@ $(()=>{
     ///////////////////////////////////////////////////////////////////////////
     // 2-3. 힌계값 설정하기
     
-    // 2-3-3. 윈도우 리사이즈시 윈도우 업데이트
+    // 2-3-1. 윈도우 리사이즈시 윈도우 업데이트
     $(window).resize(()=> {
         winW = updataWin();
         // console.log('업데이트 화면 가로크기 :', winW);
@@ -59,11 +59,11 @@ $(()=>{
     // 아래값을 덮어씀
     if(winW < 500) target.css({transition : TRS_TIME_MOB});
 
-    // 2-3-4. 첫번째 한계값 설정하기 : 화면 크기의 1/3로 설정
+    // 2-3-2. 첫번째 한계값 설정하기 : 화면 크기의 1/3로 설정
     let firstPoint = winW / 3;
     console.log('첫 번째 한계값 (firstPoint) :', firstPoint);
     
-    // 2-3-5. 마지막 한계값 설정하기 : 
+    // 2-3-3. 마지막 한계값 설정하기 : 
     // 대상박스의 width값 - 화면가로크기의 2/3
     let lastPoint = target.width() - winW / 3 * 2;
     console.log('마지막 한계값 (lastPoint) :', lastPoint);
