@@ -40,7 +40,7 @@ $(()=>{
 
     // (1) 드래그 중 이벤트 함수
     // - 이벤트 종류 : mousemove - touchmove
-    cbx.on('mousemove', e=>{
+    cbx.on('mousemove touchmove', e=>{
 
         // 0. 이벤트 횟수 줄이기 : 광클금지원리와 같음!
         if(protEvt) return; // 돌아가
@@ -50,7 +50,8 @@ $(()=>{
 
 
         // 1. x축 위치값
-        let pos = e.pageX;
+        let pos = e.pageX || e.changedTouches[0].pageX;
+        // changedTouches[0].pageX - 모바일용 x축 위치값
         // console.log('pos', pos);
         
         // 2. 방향 알아내기 
@@ -69,20 +70,30 @@ $(()=>{
 
     // (2) 드래그 상태 시작 이벤트 함수 /////////////////
     // - 이벤트 종류 : mousedown - touchstart
-    cbx.on('mousedown', e=>{
+    cbx.on('mousedown touchstart', e=>{
         // 1. 드래그 상태 값 변경
         drag = 1;
 
         // 2. x축 처음 위치값 업데이트
-        point = e.pageX;
+        point = e.pageX || e.changedTouches[0].pageX;
+
+        // 3. 커서 움켜쥔 모양
+        cbx.css({
+            cursor : 'grabbing'
+        });
     });
     
     // (3) 드래그 상태 시작 이벤트 함수 /////////////////
     // - 이벤트 종류 : mouseup - touchend
-    cbx.on('mouseup', e=>{
+    // 마우스가 나갈때도 해제처리해야 드래그하다가 나갈때 괜찮음
+    cbx.on('mouseup mouseout touchend', e=>{
         // 1. 드래그 상태 값 변경
         drag = 0;
 
+        // 2. 커서 편손 모양
+        cbx.css({
+            cursor : 'grab'
+        });
     });
 
     // 이미지 순번 변수
