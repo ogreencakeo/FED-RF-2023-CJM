@@ -104,7 +104,7 @@ $(()=>{
     // (4) 이미지 순번 변경함수
     const rotateCar = dir => {
         // [ 1. funm 증감전 숨기기 -> 현재 이미지 숨기기 ]
-        // carImg.eq(fnum).hide();
+        carImg.eq(fnum).hide();
 
         // [ 2. 이미지번호 증감처리 ]
         // dir : 방향 
@@ -126,8 +126,9 @@ $(()=>{
         console.log('순번 fnum :', fnum);
 
         // 다른방법 : 위에서 증감전 숨기기 안하고 아래에서 하기
-        // 1번 주석후 
-        cbx.find('img:visible').hide();
+        // 1번 주석후 테스트 할 것
+        // cbx.find('img:visible').hide();
+        // 선택요소 : visible 은 display : none이 아닌요소 선택함.
 
         // [ 3. funm 증감후 보기기 -> 다음 이미지 보이기 ]
         carImg.eq(fnum).show();
