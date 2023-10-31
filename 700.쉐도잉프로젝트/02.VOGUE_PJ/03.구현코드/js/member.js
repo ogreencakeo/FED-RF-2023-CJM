@@ -59,7 +59,7 @@ $('.YNbox button').click(function(){
 
     // 2. 동의 버튼일 경우 : 필수체크 확인 후 회원가입 허가
     if(isBtn){
-        if($('termsService').prop('checked') && $('termsPrivacy').prop('checked')){
+        if($('#termsService').prop('checked') && $('#termsPrivacy').prop('checked')){
             // alert('통과');
             // 동의 / 비동의 박스 스~윽 사라지기
             $('#conf').fadeOut(300, ()=>{
