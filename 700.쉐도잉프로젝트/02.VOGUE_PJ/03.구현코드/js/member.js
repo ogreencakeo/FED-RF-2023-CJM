@@ -281,7 +281,18 @@ $('#btnj').click(e=>{
 
     // 1. 기본이동 막기
     e.preventDefault();
-    
+
+    // 2. pass 통과여부 변수에 true를 할당
+    pass = true;
+
+    // 3. 입력창 blur이벤트 강제 발생 시키기
+    $(`form.logF input[type=text][id!=email2],
+    form.logF input[type=password]`)
+    .trigger('blur');
+
+    // 최종 통과 여부
+    console.log('통과여부 :', pass);
+
 });
 
 /*////////////////////////////////////////////////////////
