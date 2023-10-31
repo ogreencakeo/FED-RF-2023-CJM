@@ -85,6 +85,24 @@ form.logF input[type=password]`)
                 $(this).siblings(".msg").empty();
             } ////// else //////
         } /////////////// else if : 비밀번호검사 ///////
+        /**************************************** 
+        6. 비밀번호 확인일 경우 유효성 검사
+        - 검사기준: 비밀번호 항목과 일치여부
+    ****************************************/
+        else if (cid == "mpw2") {
+            if (cv != $('#mpw').val()) {
+                $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.");
+            } //////// if ///////
+            else {
+                // 통과시
+                // 메시지 지우기
+                $(this).siblings(".msg").empty();
+            } ////// else //////
+        } /////////////// else if : 비밀번호 확인 ///////
+        /**************************************** 
+        7. 비밀번호 확인일 경우 유효성 검사
+        - 검사기준: 비밀번호 항목과 일치여부
+    ****************************************/
 
         /// 모두 통과일 경우 메시지 지우기 ///////
         else {
@@ -93,25 +111,38 @@ form.logF input[type=password]`)
         } /////// else //////
     }); ///////////////// blur 메서드 /////////////////
 
+    // 이메일 관련 대상 선정
+    // 이메일 앞주소
+    const eml1 = $('@email1');
+    // 이메일 뒷주소
+    const eml2 = $('#email2');
+    // 이메일 뒷주소 선택박스
+    const seleml = $('#seleml');
+
+    /*******************************************************************
+    
+    *******************************************************************/
+
 // 비밀번호 글자 보이기/숨기기 셋팅
 let eyeNum = 1;
 $(".eye")
-.css({  // 처음상태는 중간줄 있고 흐림
-    textDecoration :'line-through',
-    opacity : 0.5,
-    cursor : 'pointer'
-})
-.click((e) => {
-    // 1. 글자보이기 타입전환 : type = 'text | password'
-    $("#mpw").attr("type", eyeNum ? "text" : "password");
-    // 2. CSS 디자인 전환 (안보일때는 흐리게 중간줄 표시)
-    $(e.target).css({
-        textDecoration : eyeNum? 'none' : 'line-through',
-        opacity : eyeNum? 1 : 0.5
+    .css({
+        // 처음상태는 중간줄 있고 흐림
+        textDecoration: "line-through",
+        opacity: 0.5,
+        cursor: "pointer",
     })
-    // 상태값 전환 (eyeNum이 1이면 0, 0이면 1 할당)
-    eyeNum = eyeNum ? 0 : 1;
-});
+    .click((e) => {
+        // 1. 글자보이기 타입전환 : type = 'text | password'
+        $("#mpw").attr("type", eyeNum ? "text" : "password");
+        // 2. CSS 디자인 전환 (안보일때는 흐리게 중간줄 표시)
+        $(e.target).css({
+            textDecoration: eyeNum ? "none" : "line-through",
+            opacity: eyeNum ? 1 : 0.5,
+        });
+        // 상태값 전환 (eyeNum이 1이면 0, 0이면 1 할당)
+        eyeNum = eyeNum ? 0 : 1;
+    });
 
 /*////////////////////////////////////////////////////////
     함수명: vReg (validation with Regular Expression)
