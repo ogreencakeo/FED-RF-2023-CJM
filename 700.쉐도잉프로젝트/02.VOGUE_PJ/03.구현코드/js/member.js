@@ -399,6 +399,7 @@ $('#btnj').click(e=>{
     console.log('통과여부 :', pass);
 
     // 4. 검사결과에 따라 메시지 보이기
+    // if : 통과시
     if(pass){
         alert('회원가입을 축하드립니다! 짝짝짝!');
         // 원래는 POST 방식으로 DB에 회원가입 정보를 
@@ -411,7 +412,9 @@ $('#btnj').click(e=>{
         // 보이면 안되기 때문에 히스토리를 지우는 
         // replace()로 이동한다.
         location.replace('login.html');
-
+    }// else : 불통과시
+    else{
+        alert('입력을 수정하세요~!');
     }
 
 });
