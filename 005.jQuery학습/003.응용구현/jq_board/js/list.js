@@ -18,7 +18,7 @@ const board = $('#board tbody');
 let listNum = 0;
 
 // 숫자1씩 증가 함수
-const addNum = () => listNum++;
+const addNum = () => ++listNum;
 // console.log('증가수 addNum() :', addNum());
 
 // 페이징 되는 리스트 만들기 ////////////////////////////////////
@@ -29,12 +29,34 @@ const addNum = () => listNum++;
 
 // 페이징 관련 변수들 /////////////////////////////////////////
 // [1] 한 페이지당 리스트 수 : pgBlock
-const pgBlock = 10;
-// [2] 페이지 순번 : pgNum
+const pgBlock = 9;
+// [2] 페이지 순번 : pgNum -> 증감예정
 let pgNum = 1;
 // [3] 전체 레코드 수 : totalCnt
 const totalCnt = bData.length;
-console.log(`pgBlock : ${pgBlock}, pgNum : ${pgNum}, totalCnt : ${totalCnt}`);
+// [4] 페이징 블록 계산하기
+let pagingBlock = Math.floor(totalCnt/pgBlock);
+// [5] 나머지 리스트 여부 : 0이면 다음 페이지 없음!
+let addOver = totalCnt % pgBlock;
+
+let hcode = '';
+// 리스트 블록으로 리스트 소스 만들기
+for(let i=(pgNum-1)*pgBlock; i<pgBlock*pgNum; i++){
+    hcode += 
+        `
+            <tr>
+                <td>${addNum()}</td>
+                <td>${bData[i].tit}</td>
+                <td>${bData[i].writer}</td>
+                <td>${bData[i].date}</td>
+                <td>${bData[i].cnt}</td>
+            </tr>
+        `;
+}
+board.html(hcode);
+
+console.log(`pgBlock : ${pgBlock}, pgNum : ${pgNum}, totalCnt : ${totalCnt}, 
+pagingBlock : ${pagingBlock}, addOver : ${addOver}`);
 
 // 데이터 태그 생성후 태그넣기
 // board.html(
