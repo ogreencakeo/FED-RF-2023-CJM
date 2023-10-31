@@ -39,9 +39,14 @@ let pagingBlock = Math.floor(totalCnt/pgBlock);
 // [5] 나머지 리스트 여부 : 0이면 다음 페이지 없음!
 let addOver = totalCnt % pgBlock;
 
+// 시작번호 업데이트
+listNum = (pgNum-1) * pgBlock;
+
 let hcode = '';
 // 리스트 블록으로 리스트 소스 만들기
 for(let i=(pgNum-1)*pgBlock; i<pgBlock*pgNum; i++){
+    // 만약 한계수가 전체 개수보다 크면 break (for문 나가기)
+    if(i >= totalCnt) break;
     hcode += 
         `
             <tr>
