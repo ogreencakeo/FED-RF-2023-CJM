@@ -45,7 +45,7 @@ listNum = (pgNum-1) * pgBlock;
 let hcode = '';
 // 리스트 블록으로 리스트 소스 만들기
 for(let i=(pgNum-1)*pgBlock; i<pgBlock*pgNum; i++){
-    // 만약 한계수가 전체 개수보다 크면 break (for문 나가기)
+    // i가 전체 개수보다 같거나 크면 break (for문 나가기)
     if(i >= totalCnt) break;
     hcode += 
         `
