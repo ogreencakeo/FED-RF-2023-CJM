@@ -1,6 +1,6 @@
 import myData from './data.js';
 import myData2 from './data2.js';
-// 두개의 데이터를 배열로 구성
+// 두개의 데이터를 배열로 구성 
 const twoData = [myData, myData2];
 
 /***************************************************************************

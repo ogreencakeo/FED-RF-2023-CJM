@@ -1,3 +1,5 @@
+import { mcode } from "./data/mem_data";
+
 $(`form.logF input[type=text][id!=email2],
 form.logF input[type=password]`)
 .blur(function(){
@@ -5,45 +7,99 @@ form.logF input[type=password]`)
     const groSpace = (x) => x.replace(/\s/g, '');
 
     let cv = cid == 'mnm'? $(this).val().trim() : groSpace($(this).val());
+
     $(this).val(cv);
 
     if(cv == ''){
-        $(this).sblings('.msg').text('필수입력!').removeClass('on');
+        $(this).siblings('.msg').text('필수입력!').removeClass('on');
     }else if(cv == 'mid'){
         if(!vReg(cv, cid)){
-            $(this).sblings('.msg').text('영문자로 시작하는 6~20글자 영문자/숫자').removeClass('on')
+            $(this).siblings('.msg').text("영문자로 시작하는 6~20글자 영문자/숫자").removeClass('on');
+            pass = false;
         }else{
-            $(this).sblings('.msg').text('멋진 아이디네요').addClass('on');
+            $(this).siblings('.msg').text('멋진 아이디네요~!').addClass('on');
         }
     }else if(cv == 'mpw'){
         if(!vReg(cv, cid)){
-            $(this).sblings('.msg').text('특수문자,문자,숫자포함 형태의 5~15자리');
+            $(this).siblings('.msg').text('특수문자,문자,숫자포함 형태의 5~15자리');
+            pass = false;
         }else{
-            $(this).sblings('.msg').empty();
+            $(this).siblings('.msg').empty();
         }
+    }else if(cv == 'mpw2'){
+        if(cv != $('mpw').val()){
+            $(this).siblings('.msg').text('비밀번호가 일치하지 않습니다.');
+            pass = false;
+        }else{
+            $(this).siblings('.msg').empty();
+        }
+    }else if(cv == 'email1'){
+        let comp = eml1.val() + '@' + (seleml.val() == 'free'? eml2.val() : seleml.val())
+        resEml(comp);
     }else{
-        $(this).sblings('.msg').empty();
+        $(this).siblings('.msg').empty();
     }
-})
+
+});
+
+const eml1 = $('#email1');
+const eml2 = $('#email2');
+const seleml = $('#seleml');
+
+seleml.change(function(){
+    let cv = $(this).val();
+
+    if(cv == 'init'){
+        eml1.siblings('.msg').text("이메일 옵션선택 필수!").removeClass('on');
+        eml2.fadeOut(300);
+    }else if(cv == 'free'){
+        eml2.fadeIn(300).val("").focus();
+        eml1.siblings('.msg').empty();
+    }else{
+        eml2.fadeOut(300);
+        let comp = eml1.val() + '@' + cv;
+        resEml(comp);
+    }
+});
+
+$('#email1, #email2').on('keyup', function(){
+    let cid = $(this).attr('id');
+    let backEml = cid == 'emial1' ? seleml.val() : eml2.val();
+    if(seleml.val == 'free') backEml = eml2.val();
+    let comp = eml1.val() + '@' + backEml;
+    resEml(comp);
+});
+
+const resEml = (comp) => {
+    if(vReg(comp, 'eml')){
+        eml1.siblings('.msg').text('적합한 이메일 형식입니다!').addClass('on');
+    }else{
+        eml1.siblings('.msg').text('맞지않은 이메일 형식입니다!').removeClass('on');
+        pass = false;
+    }
+}
 
 let eyeNum = 1;
-$('.eye').css({
+$('.eye')
+.css({
     textDecoration : 'line-through',
-    opactity : 0.5,
+    opacity : 0.5,
     cursor : 'pointer'
-}) 
+})
 .click((e)=>{
     $('#mpw').attr('type', eyeNum? 'text' : 'password');
     $(e.target).css({
         textDecoration : eyeNum? 'none' : 'line-through',
-        opacity : eyeNum? 1:0.5
+        opacity : eyeNum? 1 : 0
     })
-    eyeNum=eyeNum? 0 : 1;
 });
 
+eyeNum = eyeNum? 0 : 1;
+
+///////////////////////////////////////////////////////
 function vReg(val, cid) {
     // val - 검사할값, cid - 처리구분아이디
-    console.log("검사:" + val + "/" + cid);
+    // console.log("검사:" + val + "/" + cid);
 
     // 정규식 변수
     let reg;
@@ -77,4 +133,5 @@ function vReg(val, cid) {
     // 정규식 검사를 위한 JS메서드
     // -> 정규식.test(검사할값) : 결과 true/false
     return reg.test(val); //호출한 곳으로 검사결과리턴!
-}
+} //////////// vReg 함수 //////////////////////////////////
+///////////////////////////////////////////////////////////
