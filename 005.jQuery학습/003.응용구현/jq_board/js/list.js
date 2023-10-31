@@ -19,20 +19,35 @@ let listNum = 0;
 
 // 숫자1씩 증가 함수
 const addNum = () => listNum++;
-console.log('증가수 addNum(listNum) :', addNum(listNum));
+// console.log('증가수 addNum() :', addNum());
+
+// 페이징 되는 리스트 만들기 ////////////////////////////////////
+// 페이징의 기본 원리 : 
+// 1. 한 페이지당 리스트 수를 정하여 전체 페이지 개수를 구하기
+// 2. 개수만큼 리스트에 데이터를 반복문으로 생성함
+// 3. 페이지 번호에 따라 시작번호를 업데이트 한다.
+
+// 페이징 관련 변수들 /////////////////////////////////////////
+// [1] 한 페이지당 리스트 수 : pgBlock
+const pgBlock = 10;
+// [2] 페이지 순번 : pgNum
+let pgNum = 1;
+// [3] 전체 레코드 수 : totalCnt
+const totalCnt = bData.length;
+console.log(`pgBlock : ${pgBlock}, pgNum : ${pgNum}, totalCnt : ${totalCnt}`);
 
 // 데이터 태그 생성후 태그넣기
-board.html(
-    bData.map((v) => `
-        <tr>
-            <td>${addNum()}</td>
-            <td>${v.tit}</td>
-            <td>${v.writer}</td>
-            <td>${v.date}</td>
-            <td>${v.cnt}</td>
-        </tr>
-    `).join('')
-);
+// board.html(
+//     bData.map((v) => `
+//         <tr>
+//             <td>${addNum()}</td>
+//             <td>${v.tit}</td>
+//             <td>${v.writer}</td>
+//             <td>${v.date}</td>
+//             <td>${v.cnt}</td>
+//         </tr>
+//     `).join('')
+// );
 
 // 데이터를 태드로 구성함
 // 태그 구조 : <tr><td></td>.....</tr>
