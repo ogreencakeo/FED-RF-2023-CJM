@@ -14,11 +14,18 @@ Number(a.idx)==Number(b.idx)? 0:Number(a.idx)>Number(b.idx)? -1:1);
 // 대상 : #board tbody 
 const board = $('#board tbody');
 
+// 리스트 번호변수
+let listNum = 0;
+
+// 숫자1씩 증가 함수
+const addNum = () => listNum++;
+console.log('증가수 addNum(listNum) :', addNum(listNum));
+
 // 데이터 태그 생성후 태그넣기
 board.html(
     bData.map((v) => `
         <tr>
-            <td>${v.idx}</td>
+            <td>${addNum()}</td>
             <td>${v.tit}</td>
             <td>${v.writer}</td>
             <td>${v.date}</td>
