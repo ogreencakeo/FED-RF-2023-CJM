@@ -152,11 +152,21 @@ seleml.change(function(){
         // 2-2-1. 직접입력창 보이기
         eml2.fadeIn(300).val('').focus();
         // 숨긴입력창.나타나(300).값('').포커스()
+
+        // 2-2-2. 기존 메시지 지우기
+        eml1.siblings('.msg').empty();
     }
     // 2-3. 기타 이메일 주소 선택일 경우
     else{
         // 2-3-1. 직접입력창 숨기기
         eml2.fadeOut(300);
+
+        // 2-3-2. 이메일 전체주소 조합하기
+        let comp = eml1.val() + '@' + cv;
+        // cv는 select의 option의 value값
+
+        // 2-3-3. 이메일 유효성 검사함수 호출
+        resEml(comp);
     }
 
 });
