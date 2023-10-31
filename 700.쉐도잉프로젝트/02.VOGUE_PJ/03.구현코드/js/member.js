@@ -406,7 +406,12 @@ $('#btnj').click(e=>{
         // 로그인 페이지로 넘겨준다!
 
         // 로그인 페이지로 리디렉션!
-        location.href = 'login.html';
+        // location.href = 'login.html';
+        // 민감한 입력 데이터 페이지가 다시 돌아와서
+        // 보이면 안되기 때문에 히스토리를 지우는 
+        // replace()로 이동한다.
+        location.replace('login.html');
+
     }
 
 });
