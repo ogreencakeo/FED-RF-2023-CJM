@@ -35,7 +35,7 @@ form.logF input[type=password]`)
         // 입력창 공백처리후 재입력하기!
         $(this).val(cv);
 
-        console.log("id는?", cid, "/값은?", cv);
+        // console.log("id는?", cid, "/값은?", cv);
 
         /************************************* 
         3. 빈값 여부 검사하기 (필수입력항목)
@@ -134,35 +134,35 @@ const seleml = $("#seleml");
     제이쿼리 메서드 : change() 
     이벤트 대상 : #seleml -> seleml변수
 ********************************************************************/
-seleml.change(function(){
+seleml.change(function () {
     // 1. 선택박스 변경된 값 읽어오기
     let cv = $(this).val();
-    console.log('선택값 cv :', cv);
+    // console.log('선택값 cv :', cv);
 
     // 2. 선택옵션별 분기
     // 2-1. "선택해주세요"일 경우
-    if(cv == 'init'){
+    if (cv == "init") {
         // 2-1-1. 메시지 출력
-        eml1.siblings('.msg').text('이메일 옵션선택 필수!').removeClass('on');
+        eml1.siblings(".msg").text("이메일 옵션선택 필수!").removeClass("on");
         // 2-1-2. 직접입력창 숨기기
-        eml2.fadeOut(300); 
+        eml2.fadeOut(300);
     }
     // 2-2. "직접입력"일 경우
-    else if(cv == 'free'){
+    else if (cv == "free") {
         // 2-2-1. 직접입력창 보이기
-        eml2.fadeIn(300).val('').focus();
+        eml2.fadeIn(300).val("").focus();
         // 숨긴입력창.나타나(300).값('').포커스()
 
         // 2-2-2. 기존 메시지 지우기
-        eml1.siblings('.msg').empty();
+        eml1.siblings(".msg").empty();
     }
     // 2-3. 기타 이메일 주소 선택일 경우
-    else{
+    else {
         // 2-3-1. 직접입력창 숨기기
         eml2.fadeOut(300);
 
         // 2-3-2. 이메일 전체주소 조합하기
-        let comp = eml1.val() + '@' + cv;
+        let comp = eml1.val() + "@" + cv;
         // cv는 select의 option의 value값
 
         // 2-3-3. 이메일 유효성 검사함수 호출
@@ -185,33 +185,33 @@ seleml.change(function(){
     -> 모든 이벤트함수와 연결하는 제이쿼리 메서드는?
     on(이벤트명, 함수)
 **********************************************************/
-$('#email1, #email2').on('keyup', function(){
+$("#email1, #email2").on("keyup", function () {
     // 1. 현재 이벤트 대상 아이디 읽어오기
-    let cid = $(this).attr('id');
-    
+    let cid = $(this).attr("id");
+
     // 2. 현재 입력된 값 읽어오기
     // let cv = $(this).val();
 
-    console.log('입력 아이디 :', cid, '\n 입력값 :', cv);
-    
+    // console.log('입력 아이디 :', cid, '\n 입력값 :', cv);
+
     // 3. 이메일 뒷주소 셋팅하기
-    let backEml = cid == 'email1' ? seleml.val() : eml2.val();
+    let backEml = cid == "email1" ? seleml.val() : eml2.val();
     // 현재 입력아이디가 'email1'이면 선택박스 값
     // 아니면 두번째 이메일창에 입력하는 것이므로
     // 두번째 이메일 입력값을 뒷주소로 설정함!
-    
-    // 4. 만약 선택박스 값이 'free'(직접입력)이면 
+
+    // 4. 만약 선택박스 값이 'free'(직접입력)이면
     // 이메일 뒷주소로 변경함
-    if(seleml.val() == 'free') backEml = eml2.val();
+    if (seleml.val() == "free") backEml = eml2.val();
 
     // 5. 이메일 전체주소 조합하기
-    let comp = eml1.val() + '@' + backEml;
+    let comp = eml1.val() + "@" + backEml;
 
     // 6. 이메일 유효성 검사함수 호출
     resEml(comp);
 }); // keyup ///////
 
-    /*******************************************************************
+/*******************************************************************
         함수명 : resEml (result Email)
         기능 : 이메일 검사결과 처리
     *******************************************************************/
@@ -232,23 +232,57 @@ const resEml = (comp) => {
 // 비밀번호 글자 보이기/숨기기 셋팅
 let eyeNum = 1;
 $(".eye")
-    .css({
-        // 처음상태는 중간줄 있고 흐림
-        textDecoration: "line-through",
-        opacity: 0.5,
-        cursor: "pointer",
-    })
-    .click((e) => {
-        // 1. 글자보이기 타입전환 : type = 'text | password'
-        $("#mpw").attr("type", eyeNum ? "text" : "password");
-        // 2. CSS 디자인 전환 (안보일때는 흐리게 중간줄 표시)
-        $(e.target).css({
-            textDecoration: eyeNum ? "none" : "line-through",
-            opacity: eyeNum ? 1 : 0.5,
-        });
-        // 상태값 전환 (eyeNum이 1이면 0, 0이면 1 할당)
-        eyeNum = eyeNum ? 0 : 1;
+.css({
+    // 처음상태는 중간줄 있고 흐림
+    textDecoration: "line-through",
+    opacity: 0.5,
+    cursor: "pointer",
+})
+.click((e) => {
+    // 1. 글자보이기 타입전환 : type = 'text | password'
+    $("#mpw").attr("type", eyeNum ? "text" : "password");
+    // 2. CSS 디자인 전환 (안보일때는 흐리게 중간줄 표시)
+    $(e.target).css({
+        textDecoration: eyeNum ? "none" : "line-through",
+        opacity: eyeNum ? 1 : 0.5,
     });
+    // 상태값 전환 (eyeNum이 1이면 0, 0이면 1 할당)
+    eyeNum = eyeNum ? 0 : 1;
+});
+
+/***************************************************************
+    가입하기(submit) 버튼 클릭시 처리하기
+    ________________________________________
+
+    - form 요소 내부의 submit 버튼을 클릭하면
+    기본적으로 form요소에 설정된 action속성값인
+    페이지로 전송된다. 전체검사를 위해 이를 중지해야 함
+    -> 중지방법은? event.preventDefault()
+
+    전체검사의 원리 : 
+    전역변수 pass를 설정하여 true를 할당하고
+    검사중간에 불통과 사유 발생시 false로 변경
+    유효성 검사 통과여부를 판단한다.
+
+    검사방법 : 
+    기존 이벤트 blur 이벤트를 강제로 발생시킨다
+    이벤트를 강제로 발생시키는 제이쿼리 메서드는?
+    ->>> trigger(이벤트명)
+
+***************************************************************/
+
+// 검사용 변수
+let pass = true;
+
+// 이벤트 대상 : #btnj
+$('#btnj').click(e=>{
+    // 호출확인
+    console.log('가입해');
+
+    // 1. 기본이동 막기
+    e.preventDefault();
+    
+});
 
 /*////////////////////////////////////////////////////////
     함수명: vReg (validation with Regular Expression)
