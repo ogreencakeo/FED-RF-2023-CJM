@@ -8,7 +8,7 @@ console.log('mtInfo :', mtInfo);
 ****************************************************/
 
 function MyHome(){
-    return <MyRoom aa="세계의 산" bb="🌄"  />;
+    return <MyRoom aa="세계의 산" bb="🌄" />;
 }
 
 // 일반적으로 props down할때 props변수 하나를 써서
