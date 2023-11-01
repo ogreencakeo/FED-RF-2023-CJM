@@ -1,97 +1,69 @@
-import { GoodsCode } from "./01.sub_com/goods_code";
-import { SubViewCode } from "./01.sub_com/sub_view_code";
-import { firstOneFn, initFn } from "./act_effect";
-import myData from './data.js';
-import myData2 from './data2.js';
+// 산정보 데이터 불러오기
+import { mtInfo } from "./02.sub_com/mountain";
 
-const twoData = [myData, myData2];
+console.log(mtInfo);
 
-function MainComponent(){
-    const [dataNum, setDataNum] = React.useState(0);
-    const [subView, setSubView] = React.useState(0);
-    const [selItem, setSelItem] = React.useState(0);
-    const [effectOK, setEffectOK] = React.useState(0);
+/* 
+    props로 데이터를 전달하여 제목 출력하기
+    props down으로 데이터를 하위 컴포넌트에 전달
+*/
 
-    React.useLayoutEffect(()=>{if(effectOK) initFn();})
-    React.useEffect(()=>{if(effectOK) firstOneFn();})
-
-    const chgData = () => {
-        setDataNum(dataNum? 0:1);
-        setSubView(0);
-    }
-
-    const chgSubView = (num, idx) =>{
-        setSubView(num);
-        setSelItem(idx);
-        setEffectOK(0);
-    }
-
-    return(
-        <React.Fragment>
-            <h1 className="tit">{dataNum? '효진이 입고' : '공유가 신고'}다닌다는</h1>
-            <section>
-                <h2>{dataNum? '효진은 오늘도 쨍~합니다!' : '공유는 오늘도 멋찝니다!'}</h2>
-                <div className="img-box">
-                    <img src={
-                        dataNum? './images/gallery/hyo.jpg' :
-                        './images/vans/gongyoo.jpg'
-                    } alt={dataNum? '엘레강스한 효진' : '멋진공유'} />
-                </div>
-            </section>
-            <button onClick={()=>{chgData(); setEffectOK(1);}}>{dataNum? '공유' : '효진'}초이스</button>
-            <div className="gwrap">
-                {
-                    subView == 0 &&
-                    <GoodsCode idx={dataNum} chgFn={chgSubView} />
-                }{
-                    subView == 1 &&
-                    <SubViewCode idx = {dataNum} chgFn={chgSubView} itemNum={selItem} />
-                }
-            </div>
-        </React.Fragment>
-    )
+// 메인 컴포넌트
+function MyHome(){
+    return <MyRoom aa="세계의 산" bb="!"/>
 }
 
-function GoodsCode(props){
-    const selData = twoData[props.idx];
-    return selData.map((x)=>
-        <a href="#" onClick={()=>props.chgFn(1, v.dix)}>
-            <ol class='glist'>
-                <li>
-                    <img src={props.idx?
-                    './images/gallery/' + v.idx + '.jpg' :
-                    './images/vans/vans_' + v.idx + '.jpg'} />
-                </li>
-                <li>{x.gname}</li>
-                <li>{x.gprice}</li>
-            </ol>
-        </a>
+// 일반적으로 props down할때 props 변수 하나를 써서
+// 하위 (점찍어서) 속성으로 접근했으나 중괄호 구역 즉, 리액트 코드구역을 쓰면
+// 변수명을 개수만큼 직접 사용가능
+function MyRoom({aa, bb}){
+    return <MyBag cc={aa} dd={bb}/>
+}
+function MyBag({cc, dd}){
+    return < MyEnd ii={cc} hh={dd}/>
+}
+
+function MyEnd({ii, hh}){
+    return <div style={{
+        padding : '20px',
+        borderRadius : '10px',
+        width : '60%',
+        margin : '20px auto',
+        textAlign : 'center',
+        fontSize : '40px',
+        color : '#fff',
+        backgroundImage : 'linear-gradient(to bottom, skyblue, navy)'
+    }}>🤪{ii+hh}</div>
+}
+
+export const 누구냐 = React.createContext();
+// 컨텍스트 불러오기
+
+// 2. 컨텍스트 프로바이더를 사용하여 산 정보 셋팅하기
+function 큰집(){
+    return(
+        <누구냐.Provider value={}>
+            <할아버지 />
+        </누구냐.Provider>
     );
 }
 
-function SubViewCode(props){
-    const selData = twoData[props.idx];
-    const selItem = selData.find(v=>{
-        if(v.idx == props.itemNum) return true;
-    });
-    return(
-        <ol style={{display : 'flex', listStyle : 'none'}}>
-            <li>
-                <img src={props.idx?
-                './images/gallery/' + selItem.idx + '.jpg' : 
-                './images/vans/vans_' + selItem.idx + '.jpg'    
-            } alt={props.idx? '드레스' : '신발'} />
-            </li>
-            <li>
-                {selItem.gname} <br/>
-                {selItem.gprice} 원 <br/>
-                <button onClick={()=>props.chgFn(0, 0)}>리스트 바로가기</button>
-            </li>
-        </ol>
-    )
+function 할아버지(){
+    return <아버지 />
 }
 
-ReactDOM.render(
-    <MainComponent />,
-    document.querySelector('#root')
-)
+function 아버지(){
+    return <아들 />
+}
+
+function 아들(){
+    return <손녀 />
+}
+
+function 손녀(){
+    return <이야기/>
+}
+
+function 이야기(){
+    
+}
