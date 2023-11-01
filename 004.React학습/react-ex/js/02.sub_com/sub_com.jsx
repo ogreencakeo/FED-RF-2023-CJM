@@ -11,7 +11,12 @@ function 이야기() {
         if (v.이름 == 맘대로.myVal) return true;
     });
 
-    console.log("선택데이터:", selData);
+    // 현재산 제외 배열 데이터 거르기
+    const btnData = 맘대로.myData.filter(v=>{
+        if(v.이름 != 맘대로.myVal) return true;
+    });
+
+    console.log("선택데이터 btnData :", btnData);
 
     // 넘어온 데이터 찍기
     // console.log(맘대로.myVal);
@@ -31,6 +36,38 @@ function 이야기() {
             {/* 제목 */}
             <h1>{맘대로.myVal}</h1>
             {/* 이미지 */}
+            <img 
+                src={selData.이미지} 
+                alt={selData.이름} 
+                style={{width : '100%'}}
+            />
+            {/* 산정보 박스 */}
+            <div style={{
+
+            }}>
+                <ul>
+                    <li>이름 : {selData.이름}</li>
+                    <li>설명 : {selData.설명}</li>
+                    <li>높이 : {selData.높이}</li>
+                    <li>융기 : {selData.융기}</li>
+                    <li>최초등반 : {selData.최초등반}</li>
+                    <li>최초등반가 : {selData.최초등반가}</li>
+                    <li>산맥 : {selData.산맥}</li>
+                </ul>
+            </div>
+            {/* 현재산빼고 나머지 산 버튼 만들기 
+            이 버튼 클릭시 메인 컴포넌트의 상태후크 변수가 업데이트 되어
+            전체가 변경됨 -> changeMyVal() 메서드 사용! 
+            컨텍스트 프로바이더에서 제공함 */}
+            <div>
+                {
+                    btnData.map(v=>
+                            <button onClick={()=> 맘대로.changeMyVal(v.이름)} style={{
+                                
+                            }}>{v.이름}</button>
+                        )
+                }
+            </div>
         </div>
     );
 }
