@@ -138,10 +138,10 @@ function MainCategory() {
     // 카테고리 해당 데이터 선택하기
     // 카테고리 전체 객체 데이터 중 해당 항목 선택
     // const selData = catData['living'];
-    console.log('selData fashoin', selData);
+    console.log('selData selData : ', selData);
     return(
         <React.Fragment>
-            <SubTitle />
+            <SubTitle tit={selData['제목']} menu={selData['메뉴']} />
             <ItemList />
         </React.Fragment>
     );
@@ -156,14 +156,34 @@ ReactDOM.render(<MainCategory />, document.querySelector(".main-area"));
     컴포넌트명 : SubTitle
     기능 : 서브 타이틀 요소구성
 **************************************************/
-function SubTitle(){
+function SubTitle(props){   
+    // tit - 서브 타이틀 / menu - 서브메뉴
+    
+    // 서브메뉴 있을 경우 li 데이터 생성하기
+    const makeList = (data) => data.map(v=>
+        <li>
+            <a href="#">{v}</a>
+        </li>
+    ); // makeList 함수 //////////////////
+
+
+
     return(
         //  2-1. 카테고리 페이지 상단영역 
         <header className="cat-top-area">
                 {/* 2-1-1. 서브타이틀  */}
-            <h2 className="cat-tit">Fashion</h2>
+            <h2 className="cat-tit">{props.tit}</h2>
                 {/* 2-1-2. 서브메뉴(LNB:Local Navigation Bar)  */}
-            <nav className="lnb"></nav>
+            {
+                props.menu != '없음' && 
+                <nav className="lnb">
+                    <ul>
+                        {
+                            makeList(props.menu)
+                        }
+                    </ul>
+                </nav>
+            }
         </header>
     );
 } // SubTitle 컴포넌트 ////////////
