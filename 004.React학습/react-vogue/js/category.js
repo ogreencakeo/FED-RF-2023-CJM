@@ -1,7 +1,19 @@
 // 보그 PJ 카테고리 페이지 JS - category.js
 
+// 링크 시스템 JS 가져오기 ////////
+import { makeLink } from "./linksys2.js";
+
 ///////////// 상단영역 컴포넌트 ///////////////
+/************************************************** 
+    컴포넌트명 : TopArea
+    기능 : 상단영역 메뉴, 로그 등 요소 구성
+**************************************************/
 function TopArea() {
+
+    // 컴포넌트 요소 랜더링 직전 호출구역
+    // -> 컴포넌트는 모두 만들어진 후 화면 뿌리기 직전(가랜더랭)
+    React.useLayoutEffect(makeLink);
+
     return (
         <React.Fragment>
             {/* 1-1.상단메뉴 */}
@@ -96,5 +108,76 @@ function TopArea() {
 // 상단영역 출력하기 /////////////
 ReactDOM.render(<TopArea />, document.querySelector(".top-area"));
 
+////////////////////////////////////////////////////////////////////////////
+
 ///////////// 카테고리 페이지 메인 컴포넌트 ///////////////
-function MainCategory() {} // MainCategory 컴포넌트 //////////
+/************************************************** 
+    컴포넌트명 : MainCategory
+    기능 : 아이템 페이지 타이틀 + 리스트 요소구성
+**************************************************/
+function MainCategory() {
+    return(
+        <React.Fragment>
+            <SubTitle />
+            <ItemList />
+        </React.Fragment>
+    );
+} // MainCategory 컴포넌트 //////////
+
+// 메인 영역 출력하기 /////////////
+ReactDOM.render(<MainCategory />, document.querySelector(".main-area"));
+/////////////////////////////////////////////////////////////////////
+
+///////////// 메인 컴포넌트 하위 서브타이틀 컴포넌트 ///////////////
+/************************************************** 
+    컴포넌트명 : SubTitle
+    기능 : 서브 타이틀 요소구성
+**************************************************/
+function SubTitle(){
+    return(
+        //  2-1. 카테고리 페이지 상단영역 
+        <header className="cat-top-area">
+                {/* 2-1-1. 서브타이틀  */}
+            <h2 className="cat-tit">Fashion</h2>
+                {/* 2-1-2. 서브메뉴(LNB:Local Navigation Bar)  */}
+            <nav className="lnb"></nav>
+        </header>
+    );
+} // SubTitle 컴포넌트 ////////////
+
+
+
+///////////// 메인 컴포넌트 하위 리스트 컴포넌트 ///////////////
+/************************************************** 
+    컴포넌트명 : ItemList
+    기능 : 카테고리 아이템별 리스트 요소구성
+**************************************************/
+function ItemList(){
+    return(
+        // 2-2. 카테고리 페이지 컨텐츠영역
+        <div className="cat-cont-area">
+            <section className="pt2">
+                <div className="cbx bgi bg1-1">
+                    <h2></h2>
+                </div>
+                <div className="cbx bgi bg1-2">
+                    <h2></h2>
+                </div>
+                <div className="cbx bgi bg1-3">
+                    <h2></h2>
+                </div>
+            </section>
+            <section className="pt2">
+                <div className="cbx bgi bg2-1">
+                    <h2></h2>
+                </div>
+                <div className="cbx bgi bg2-2">
+                    <h2></h2>
+                </div>
+                <div className="cbx bgi bg2-3">
+                    <h2></h2>
+                </div>
+            </section>
+        </div>
+    );
+} // ItemList 컴포넌트 ////////////
