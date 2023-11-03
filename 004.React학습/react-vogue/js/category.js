@@ -29,7 +29,7 @@ function TopArea() {
                     <ul className = "smbx">
                         <li>
                             <a href="#">SIDE MENU</a>
-                            서브메뉴
+                            {/* 서브메뉴 */}
                             <ol className = "smsub">
                                 <li>
                                     <a href="#">회사 소개</a>
