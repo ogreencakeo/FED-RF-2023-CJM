@@ -79,7 +79,7 @@ ol {
     display: flex;
     /* 플렉스박스!!! */
     gap: 0 5vw;
-    /* 양쪽간격 5vw */
+    /* 양쪽간격 5vw */ 
 
     /*사진을 싸고 있는 슬라이드*/
     position: absolute;
