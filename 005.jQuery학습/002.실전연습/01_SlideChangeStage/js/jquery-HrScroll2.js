@@ -42,5 +42,5 @@ $('html,body').on('wheel',(e)=>{
     // 이전 애니메이션은 지우고 마지막 걸린 애니만 마무리함!
     $('html,body').stop().animate({
         scrollLeft: wNum + 'px'
-    })
+    }, 200, 'easeOutQuint');
 })
