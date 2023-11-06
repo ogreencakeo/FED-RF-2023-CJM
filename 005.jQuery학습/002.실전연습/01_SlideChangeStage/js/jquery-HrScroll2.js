@@ -17,7 +17,7 @@ console.log('이동한계값 limit :', limit);
 
 // 이벤트 대상: html,body
 // 이벤트 종류: wheel
-$('html,body').on('wheel',(e)=>{
+$('html,body').on('wheel',()=>{
     // 1. 휠 방향
     let dir = event.wheelDelta;
 

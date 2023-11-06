@@ -211,7 +211,7 @@ function ItemList(props){
                 <div className="cbx bgi bg1-1">
                     <h2>{props.tit[0]}</h2>
                 </div>
-                <div className="cbx bgi bg1-2">
+                <div className="cbx bgi b g1-2">
                     <h2>{props.tit[1]}</h2>
                 </div>
                 <div className="cbx bgi bg1-3">
