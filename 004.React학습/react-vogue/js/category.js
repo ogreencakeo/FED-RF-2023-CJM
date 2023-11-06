@@ -10,8 +10,8 @@ import catData from "./data/category_data.js";
 
 /////////// 상단영역 컴포넌트 /////////////
 /******************************************* 
-    컴포넌트명 : TopArea
-    기능 : 상단영역 메뉴, 로그 등 요소 구성
+  컴포넌트명 : TopArea
+  기능 : 상단영역 메뉴, 로그 등 요소 구성
 *******************************************/
 function TopArea() {
     // 컴포넌트 요소 랜더링 직전 호출구역
@@ -19,13 +19,12 @@ function TopArea() {
     React.useLayoutEffect(makeLink);
 
     // GNB용 메뉴 배열변수
-    const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", 
-        "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
+    const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
 
-    // 메뉴 클릭시 변수 변경 함수
-    const chgCat = data => {
-        console.log('나야나!', data);
-    };
+    // 메뉴 클릭시 변수 변경함수
+    const chgCat = (data) => {
+        console.log("나야나!", data);
+    }; ///////////// chgCat 함수 ///////////
 
     return (
         <React.Fragment>
@@ -82,13 +81,14 @@ function TopArea() {
             {/* 1-3.GNB박스 */}
             <nav className="gnb">
                 <ul>
-                    {
-                        gnbText.map(v =>
-                            <li>
-                                <a href="#" onClick={()=>chgCat(v)}>{v}</a>
-                            </li>
-                        )
-                    }
+                    {gnbText.map((v) => (
+                        <li>
+                            <a href="#" onClick={() => chgCat(v)}>
+                                {v}
+                            </a>
+                        </li>
+                    ))}
+
                     <li>
                         {/* 돋보기 검색버튼 */}
                         <i href="#" className="fi fi-search">
@@ -105,15 +105,51 @@ function TopArea() {
 ReactDOM.render(<TopArea />, document.querySelector(".top-area"));
 /////////////////////////////////////
 
+/////////// 하단영역 컴포넌트 /////////////
+/******************************************* 
+  컴포넌트명 : FooterArea
+  기능 : 하단영역 링크메뉴, 회사정보
+*******************************************/
+function FooterArea() {
+    // 하단링크 데이터
+    const fTxt = ["정기구독", "회사소개", "광고 및 제휴", "개인정보 처리방침"];
+
+    const makeList = (data) =>
+        data.map((v) => (
+            <li>
+                <a href="#">{v}</a>
+            </li>
+        ));
+
+    return (
+        <React.Fragment>
+            {/* 3-1.하단로고 */}
+            <div className="blogo">
+                <img src="./images/footer_logo.png" alt="하단로고" />
+            </div>
+            {/* 3-2.회사주소 */}
+            <address className="addr">
+                WWW.VOGUE.COM Ⓒ CONDÉNAST ASIA PACIFIC. INC. ALL RIGHTS RESERVED. VOGUE.COM KOREA IS OPERATED BY DOOSAN
+                MAGAZINE.
+            </address>
+            {/* 3-3.하단링크 */}
+            <ul className="blink">{makeList(fTxt)}</ul>
+        </React.Fragment>
+    );
+} //////////// FooterArea 컴포넌트 /////////////
+
+// 상단영역 출력하기 /////////////////
+ReactDOM.render(<FooterArea />, document.querySelector(".footer-area"));
+/////////////////////////////////////
+
 //////////////////////////////////////////////////////
 
 ////// 카테고리 페이지 메인 컴포넌트 ///////
 /******************************************* 
-    컴포넌트명 : MainCategory
-    기능 : 아이템 페이지 타이틀 + 리스트 요소구성
+  컴포넌트명 : MainCategory
+  기능 : 아이템 페이지 타이틀 + 리스트 요소구성
 *******************************************/
 function MainCategory() {
-
     // 우선 URL로 넘어온 키값을 가져옴!
     // 파라미터 전달값 받기 : 파라미터JS전담객체는?
     // -> URLSearchParams(전체URL)
@@ -126,7 +162,7 @@ function MainCategory() {
 
     console.log("URL", location.search, "\n파라미터:", params, "\n키값:", catName);
 
-    // 카테고리 데이터 상태관리 변수 만들기
+    // 카테고리 데이터 상태관리변수 만들기!
     const [nowCat, setNowCat] = React.useState(catName);
 
     // 카테고리 해당 데이터 선택하기
@@ -135,7 +171,7 @@ function MainCategory() {
 
     console.log(selData);
 
-    const chgMenu = () => setNowCat('living');
+    const chgMenu = () => setNowCat("living");
 
     return (
         <React.Fragment>
@@ -199,20 +235,23 @@ function ItemList(props) {
     // tit - 리스트 타이틀
 
     // 태그처리 구분 코드생성 함수
-    const makeCode = data => {
-        console.log('배열인가? ', Array.isArray(data));
-        // 배열 데이터인 경우 ///
-        if(Array.isArray(data)){
-            return(
+    const makeCode = (data) => {
+        console.log("배열인가?", Array.isArray(data));
+        // 배열데이터인 경우 ////
+        if (Array.isArray(data)) {
+            return (
                 <h2>
-                    <small>{data[0]}</small><br />{data[1]}
+                    <small>{data[0]}</small>
+                    <br />
+                    {data[1]}
                 </h2>
             );
-        } // if /////////
-        else{   // 배열이 아닌 경우 //////
-            return(<h2>{data}</h2>);
-        } // else ////////
-    };  //////// makeCode 함수 //////////
+        } /////// if ////////
+        else {
+            // 배열이 아닌경우 ////
+            return <h2>{data}</h2>;
+        } /////// else ///////
+    }; ////////// makeCode함수 ////////////
 
     return (
         // 2-2. 카테고리 페이지 컨텐츠영역
@@ -221,33 +260,21 @@ function ItemList(props) {
         // <h2 dangerouslySetInnerHTML={{__html:props.tit[0]}}>
         // -> script태그와 같은 위험요소가 실행될 수 있으므로
         // 데이터에서 직접적으로 태그를 넣는 방법을 비추천함!
-        // -> 개선 : 태그 데이터를 제거하고 데이터화 함!
-        // -> runway 데이터를 배열형으로 만들고 첫번째 데이터를 
-        // small태그로 싸고 뒤에 br태그로 줄 바꿈한 구성을 컴포넌트에서
-        // 구성하도록 변경한다!
+        // -> 개선: 태그 데이터를 제거하고 데이터화 함!
+        // -> runway 데이터를 배열형으로 만들고 첫번째 데이터를
+        // small태그로 싸고 뒤에 br태그로 줄바꿈한 구성을
+        // 컴포넌트에서 구성하도록 변경함!
 
         <div className={"cat-cont-area " + props.cname}>
             <section className="pt2">
-                <div className="cbx bgi bg1-1">
-                    {makeCode(props.tit[0])}
-                </div>
-                <div className="cbx bgi bg1-2">
-                    {makeCode(props.tit[1])}
-                </div>
-                <div className="cbx bgi bg1-3">
-                    {makeCode(props.tit[2])}
-                </div>
+                <div className="cbx bgi bg1-1">{makeCode(props.tit[0])}</div>
+                <div className="cbx bgi bg1-2">{makeCode(props.tit[1])}</div>
+                <div className="cbx bgi bg1-3">{makeCode(props.tit[2])}</div>
             </section>
             <section className="pt2">
-                <div className="cbx bgi bg2-1">
-                    {makeCode(props.tit[3])}
-                </div>
-                <div className="cbx bgi bg2-2">
-                    {makeCode(props.tit[4])}
-                </div>
-                <div className="cbx bgi bg2-3">
-                    {makeCode(props.tit[5])}
-                </div>
+                <div className="cbx bgi bg2-1">{makeCode(props.tit[3])}</div>
+                <div className="cbx bgi bg2-2">{makeCode(props.tit[4])}</div>
+                <div className="cbx bgi bg2-3">{makeCode(props.tit[5])}</div>
             </section>
         </div>
     );

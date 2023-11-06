@@ -16,7 +16,6 @@ console.log(pm);
 // 값처리함수 호출하기
 setValue();
 
-
 // 값셋팅하기 함수 ////////
 function setValue(){
     // 2. url에서 키값분리하기
@@ -86,4 +85,18 @@ function setValue(){
     // -> 자식요소 또는 내용의 맨앞에 넣기
     $('title').prepend(pm.toUpperCase() + ' | ');
     // toUpperCase() - 대문자로 변경
+}
+
+/*************************************************
+
+*************************************************/
+
+function footerArea(){
+    // 하단 링크 데이터
+    const fTxt = ['정기구독', '회사소개', '광고 및 제휴', '대인정보처리방침'];
+    const makeList = data => data.map( v =>
+        <li>
+            <a href="#">{v}</a>
+        </li>
+    );
 }
