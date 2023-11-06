@@ -22,6 +22,11 @@ function TopArea() {
     const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", 
         "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
 
+    // 메뉴 클릭시 변수 변경 함수
+    const chgCat = data => {
+        console.log('나야나!', data);
+    };
+
     return (
         <React.Fragment>
             {/* 1-1.상단메뉴 */}
@@ -80,7 +85,7 @@ function TopArea() {
                     {
                         gnbText.map(v =>
                             <li>
-                                <a href="#">{v}</a>
+                                <a href="#" onClick={()=>chgCat(v)}>{v}</a>
                             </li>
                         )
                     }
@@ -108,6 +113,7 @@ ReactDOM.render(<TopArea />, document.querySelector(".top-area"));
     기능 : 아이템 페이지 타이틀 + 리스트 요소구성
 *******************************************/
 function MainCategory() {
+
     // 우선 URL로 넘어온 키값을 가져옴!
     // 파라미터 전달값 받기 : 파라미터JS전담객체는?
     // -> URLSearchParams(전체URL)
@@ -120,15 +126,21 @@ function MainCategory() {
 
     console.log("URL", location.search, "\n파라미터:", params, "\n키값:", catName);
 
+    // 카테고리 데이터 상태관리 변수 만들기
+    const [nowCat, setNowCat] = React.useState(catName);
+
     // 카테고리 해당 데이터 선택하기
     // 카테고리 전체 객체 데이터 중 해당항목 선택
-    const selData = catData[catName];
+    const selData = catData[nowCat];
 
     console.log(selData);
+
+    const chgMenu = () => setNowCat('living');
 
     return (
         <React.Fragment>
             <SubTitle tit={selData["제목"]} menu={selData["메뉴"]} />
+            <button onClick={chgMenu}>변경해!</button>
             <ItemList cname={selData["경로"]} tit={selData["타이틀"]} />
         </React.Fragment>
     );
