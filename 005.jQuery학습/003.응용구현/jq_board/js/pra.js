@@ -1,64 +1,63 @@
-import { mtInfo } from "../../../../004.React학습/react-ex/js/02.sub_com/mountain"
+import { updateList } from "./update_list";
 
-export const 누구냐 = React.createContext();
+updateList(1);
 
-function MyHome(){
-    return <MyRoom aa = '세계의 산 ' bb ='😊' />
+import bData from './data.json' assert { type : 'json'};
+
+bData.sort((a, b) => Number(a.idx) == Number(b.idx) ? 0 :
+Number(a.idx) > Number(b.idx) ? -1:1);
+
+let myData = JSON.stringify(bData);
+
+if(!localStorage.getItem('boardData')){
+    localStorage.setItem('boardData', myData);
 }
 
-function MyRoom({aa, bb}){
-    return <MyEnd cc = {aa} ff = {bb} />
-}
+let useData = localStorage.getItem('boardData');
+useData = JSON.parse(useData);
 
-function MyEnd({cc, ff}){
-    return(
-        <div>
-            {cc + ff}
-        </div>
-    )
-}
+const board = 4('#board tbody');
 
-function 큰집(){
-    const myData = mtInfo;
-    const [myVal, setMyVal] =React.useState('백두산');
-    const changeMyVal = (val) => {
-        setMyVal(val);
+let listNum = 0;
+const addNum = () => ++listNum;
+
+const pgBlock = 9;
+let pgNum = 1;
+const totalCnt = bData.length;
+let pagingBlock = Math.floor(totalCnt / pgBlock);
+let addOver = totalCnt % pgBlock;
+
+export const update_list = (newPgNum) => {
+    pgNum = newPgNum;
+    listNum = (pgNum - 1) * pgBlock;
+    let hcode = '';
+    for(let i=(pgNum - 1) * pgBlock; i<pgBlock * pgNum; i++){
+        if(i>=totalCnt) break;
+        hcode += `
+            <tr>
+                <td>${addNum()}</td>
+                <td>${bData[i].tit}</td>
+                <td>${bData[i].writer}</td>
+                <td>${bData[i].date}</td>
+                <td>${bData[i].cnt}</td>
+            </tr>
+        `;
     }
-    return(
-        <누구냐.Provider value={{myVal, changeMyVal, myData}}>
-            <할아버지 />
-        </누구냐.Provider>
-    )
-}
+    board.html(hcode);
 
-function 할아버지(){
-    return <이야기 />
-}
+    const pNumBlock = $('.paging');
+    let pNumCode = '';
+    let newPagingBlock;
+    if(addOver != 0)newPagingBlock = pagingBlock + 1;
+    for(let i=0; i<newPagingBlock; i++){
+        pNumCode += x + 1 == pgNum? `<b>${x+1}</b>` : `<a href="#">${x+1}</a>`;
+        if(x < newPagingBlock -1 ) pNumCode+= ' | ';
+    }
+    pNumBlock.html(pNumCode);
 
-function 이야기(){
-    const 맘대로 = React.useContext(누구냐);
-    const selData = 맘대로.myData.find(v=>{
-        if(v.이름 == 맘대로.myVal) return true;
-    });
-    const btnData = 맘대로.myData.filter(v=>{
-        if(v.이름 != 맘대로.myVal) return true;
+    $('.paging a').click(function(e){
+        e.preventDefault();
+        let atxt = $(this).text();
+        updateList(atxt);
     })
-    return(
-        <div>
-            <h1>{맘대로.myVal}</h1>
-            <img 
-                src = {selData.이미지}
-                alt = {selData.이름}
-                style={{width : '100%'}}
-            />
-            <ul>
-                <li>{selData.이름}</li>
-            </ul>
-            {
-                btnData.map(v=>
-                        <button onClick={()=> 맘대로.changeMyVal(v.이름)}></button>
-                    )
-            }
-        </div>
-    );
 }
