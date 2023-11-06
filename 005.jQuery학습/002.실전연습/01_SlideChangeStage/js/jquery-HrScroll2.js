@@ -40,7 +40,10 @@ $('html,body').on('wheel',(e)=>{
     // -> scrollLeft 속성사용!
     // 애니메이션 큐에 쌓인 것 처리는 stop() 메서드로!
     // 이전 애니메이션은 지우고 마지막 걸린 애니만 마무리함!
+
+    // 4. 실제 가로 스크롤 이동 애니메이션 주기
     $('html,body').stop().animate({
         scrollLeft: wNum + 'px'
     }, 2000, 'easeOutQuart');
 }); ///////// wheel 이벤트 함수 /////////////
+
