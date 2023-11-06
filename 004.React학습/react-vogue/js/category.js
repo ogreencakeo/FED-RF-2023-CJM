@@ -130,6 +130,7 @@ function MainCategory() {
     // 파라미터중 특정 키 받기 : get(키이름) -> 키 이름은 'cat'
     const catName = decodeURIComponent(params.get('cat')); 
     // 'time & gem' decodeURIComponent로 변환
+    // -> 보내는 곳에서는 encodeURLComponent로 처리해야 함!
 
     console.log('URL', location.search, '\n 파라미터 :', params, '\n 키값 :', catName);
 
@@ -206,10 +207,27 @@ function ItemList(props){
     return(
         // 2-2. 카테고리 페이지 컨텐츠영역
         // html 출력일 경우 dangerouslySetInnerHTML을 사용함!
+        // <요소 dangerouslySetInnerHTML = {{__html : 값}} />
+        // <h2 dangerouslySetInnerHTML = {{__html : props.tit[0]}}>
+        
         <div className={"cat-cont-area " + props.cname}>
             <section className="pt2">
                 <div className="cbx bgi bg1-1">
-                    <h2>{props.tit[0]}</h2>
+                    <h2>
+                        {/* {props.tit[0]} */}
+                        {   
+                            Array.isArray(props.tit[0]) &&
+                            <h2>
+                                <small>props.tit[0][0]</small><br/>
+                                props.tit[0][1]
+                            </h2>
+                        }
+                        {
+                            <h2>
+                                props.tit[0]
+                            </h2>
+                        }
+                    </h2>
                 </div>
                 <div className="cbx bgi b g1-2">
                     <h2>{props.tit[1]}</h2>
