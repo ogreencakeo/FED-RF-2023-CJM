@@ -16,8 +16,6 @@ export default function MainCategory(props) {
 
     console.log(selData);
 
-    const chgMenu = () => {};
-
     return (
         <div id="main-area">
             <main class="main-area ibx">
