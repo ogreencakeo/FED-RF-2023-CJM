@@ -10,13 +10,17 @@ import catData from "./data/category_data.js";
 
 /////////// 상단영역 컴포넌트 /////////////
 /******************************************* 
-  컴포넌트명 : TopArea
-  기능 : 상단영역 메뉴, 로그 등 요소 구성
+    컴포넌트명 : TopArea
+    기능 : 상단영역 메뉴, 로그 등 요소 구성
 *******************************************/
 function TopArea() {
     // 컴포넌트 요소 랜더링 직전 호출구역
     // -> 컴포넌트는 모두 만들어진 후 화면뿌리기 직전(가랜더랭)
     React.useLayoutEffect(makeLink);
+
+    // GNB용 메뉴 배열변수
+    const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", 
+        "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
 
     return (
         <React.Fragment>
@@ -73,30 +77,13 @@ function TopArea() {
             {/* 1-3.GNB박스 */}
             <nav className="gnb">
                 <ul>
-                    <li>
-                        <a href="#">FASHION</a>
-                    </li>
-                    <li>
-                        <a href="#">BEAUTY</a>
-                    </li>
-                    <li>
-                        <a href="#">LIVING</a>
-                    </li>
-                    <li>
-                        <a href="#">PEOPLE</a>
-                    </li>
-                    <li>
-                        <a href="#">VIDEO</a>
-                    </li>
-                    <li>
-                        <a href="#">RUNWAY</a>
-                    </li>
-                    <li>
-                        <a href="#">TIME &amp; GEM</a>
-                    </li>
-                    <li>
-                        <a href="#">SHOPPING</a>
-                    </li>
+                    {
+                        gnbText.map(v =>
+                            <li>
+                                <a href="#">{v}</a>
+                            </li>
+                        )
+                    }
                     <li>
                         {/* 돋보기 검색버튼 */}
                         <i href="#" className="fi fi-search">
@@ -117,8 +104,8 @@ ReactDOM.render(<TopArea />, document.querySelector(".top-area"));
 
 ////// 카테고리 페이지 메인 컴포넌트 ///////
 /******************************************* 
-  컴포넌트명 : MainCategory
-  기능 : 아이템 페이지 타이틀 + 리스트 요소구성
+    컴포넌트명 : MainCategory
+    기능 : 아이템 페이지 타이틀 + 리스트 요소구성
 *******************************************/
 function MainCategory() {
     // 우선 URL로 넘어온 키값을 가져옴!
