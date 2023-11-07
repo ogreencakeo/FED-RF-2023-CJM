@@ -14,6 +14,9 @@ export default function TopArea(props) {
     // useEffect(함수, []) -> 뒤에 의존성 변수 구역 비어있으면
     // 본 컴포넌트가 처음 실행될때 한 번만 실행한다.
 
+    // 다시 자식 컴포넌트로 함수를 만들어서 전달
+    const goFn = (v) => props.chgItem(v);
+
     return (
         <div id="top-area">
             <header class="top-area ibx common-area">
@@ -68,7 +71,7 @@ export default function TopArea(props) {
                     </a>
                 </h1>
                 {/* 1-3.GNB박스 */}
-                <GnbMenu />
+                <GnbMenu gnbFn={goFn} />
                 {/* 모바일용 버튼 */}
                 <MobBtns />
             </header>
@@ -82,13 +85,17 @@ export default function TopArea(props) {
  * 컴포넌트명 : GnbMenu
  * 기능 : 모바일용 버튼 생성 컴포넌트
  ********************************************/
-function GnbMenu() {
+function GnbMenu(props) {
     // GNB용 메뉴 배열변수
     const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
 
     // 메뉴 클릭시 변수 변경함수
     const chgCat = (data) => {
         console.log("나야나!", data);
+
+        // TopArea 컴포넌트에서 보낸 속성함수를 호출
+        props.gnbFn(data.toLowerCase())
+
         // 전달된 부모함수 chgCat을 호출함!
         // props.chgItem(data.toLowerCase());
     }; ///////////// chgCat 함수 ///////////
