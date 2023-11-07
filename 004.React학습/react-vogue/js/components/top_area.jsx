@@ -90,9 +90,9 @@ function GnbMenu() {
     const chgCat = (data) => {
         console.log("나야나!", data);
         // 전달된 부모함수 chgCat을 호출함!
-        props.chgItem(data.toLowerCase());
+        // props.chgItem(data.toLowerCase());
     }; ///////////// chgCat 함수 ///////////
-    
+
     return (
         <nav className="gnb">
             <ul>
