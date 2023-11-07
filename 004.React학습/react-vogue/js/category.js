@@ -68,7 +68,7 @@ function MainComponent() {
                 하위 컴포넌트들.... 
             </생성컨텍스트명.Provider>
         */
-        <catContext.Provider value={chgCat}>
+        <catContext.Provider value={{chgCat}}>
             {/* 1.상단영역 */}
             <TopArea />
             {/* <TopArea chgItem={chgCat} /> 프롭스펑션다운 */}
