@@ -14,16 +14,6 @@ export default function TopArea(props) {
     // useEffect(함수, []) -> 뒤에 의존성 변수 구역 비어있으면
     // 본 컴포넌트가 처음 실행될때 한 번만 실행한다.
 
-    // GNB용 메뉴 배열변수
-    const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
-
-    // 메뉴 클릭시 변수 변경함수
-    const chgCat = (data) => {
-        console.log("나야나!", data);
-        // 전달된 부모함수 chgCat을 호출함!
-        props.chgItem(data.toLowerCase());
-    }; ///////////// chgCat 함수 ///////////
-
     return (
         <div id="top-area">
             <header class="top-area ibx common-area">
@@ -78,24 +68,7 @@ export default function TopArea(props) {
                     </a>
                 </h1>
                 {/* 1-3.GNB박스 */}
-                <nav className="gnb">
-                    <ul>
-                        {gnbText.map((v) => (
-                            <li>
-                                <a href="#" onClick={() => chgCat(v)}>
-                                    {v}
-                                </a>
-                            </li>
-                        ))}
-
-                        <li>
-                            {/* 돋보기 검색버튼 */}
-                            <i href="#" className="fi fi-search">
-                                <span className="ir">search</span>
-                            </i>
-                        </li>
-                    </ul>
-                </nav>
+                <GnbMenu />
                 {/* 모바일용 버튼 */}
                 <MobBtns />
             </header>
@@ -104,6 +77,43 @@ export default function TopArea(props) {
         </div>
     );
 } //////////// TopArea 컴포넌트 /////////////
+
+/********************************************
+ * 컴포넌트명 : GnbMenu
+ * 기능 : 모바일용 버튼 생성 컴포넌트
+ ********************************************/
+function GnbMenu() {
+    // GNB용 메뉴 배열변수
+    const gnbText = ["FASHION", "BEAUTY", "LIVING", "PEOPLE", "VIDEO", "RUNWAY", "TIME & GEM", "SHOPPING"];
+
+    // 메뉴 클릭시 변수 변경함수
+    const chgCat = (data) => {
+        console.log("나야나!", data);
+        // 전달된 부모함수 chgCat을 호출함!
+        props.chgItem(data.toLowerCase());
+    }; ///////////// chgCat 함수 ///////////
+    
+    return (
+        <nav className="gnb">
+            <ul>
+                {gnbText.map((v) => (
+                    <li>
+                        <a href="#" onClick={() => chgCat(v)}>
+                            {v}
+                        </a>
+                    </li>
+                ))}
+
+                <li>
+                    {/* 돋보기 검색버튼 */}
+                    <i href="#" className="fi fi-search">
+                        <span className="ir">search</span>
+                    </i>
+                </li>
+            </ul>
+        </nav>
+    );
+} //////////////// GnbMenu 컴포넌트 /////////////
 
 /********************************************
  * 컴포넌트명 : MobBtns
@@ -122,7 +132,7 @@ function MobBtns() {
             </a>
         </React.Fragment>
     );
-} //////////////// ModBtns 컴포넌트 /////////////
+} //////////////// MobBtns 컴포넌트 /////////////
 
 /********************************************
  * 컴포넌트명 : MobBox
