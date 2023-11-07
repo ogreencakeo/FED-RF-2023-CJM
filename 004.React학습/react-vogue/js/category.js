@@ -50,6 +50,23 @@ function MainComponent() {
         console.log("바꿔!", val);
         // 상태관리 변수 nowCat 업데이트
         setNowCat(val);
+
+        // 처음 들어온 Get 파라미터가 셋팅된 후
+        // 다른 서브 카테고리페이지로 변경하다가 
+        // 새로고침등 페이지 리도드시 처음 들어온 
+        // 파라미터로 페이지가 변경되며 새로고쳐짐!
+        // 이유는 처음 들어온 cat = 카테고리명 때문임!
+        // 그래서 리액트 컴포넌트 업데이트시 
+        // 상단 URL 마지막 cat 키 값을 실제 카테고리명으로
+        // 업데이트 해준다.
+        // history객체는 window 하위 객체임
+        // 이전 페이지로 이동하기 history.back() 등 유명함!
+        
+        // history.pushState(null, null, '?키=값')
+        // -> 현재 url 강제 업데이트 메서드임
+        history.pushState(null, null, '?cat=' + encodeURIComponent(val));
+        // 'time & gem'의 특수문자 & 때문에 인코딩처리함!
+
     }; //////////// chgCat함수 ///////////
 
     return (
