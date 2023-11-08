@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>물결 애니메이션</title>
-        <style>
-            body, html {
-                height: 100%;
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #3498db;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>위아래 및 좌우로 이동하는 바다 물결</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0099cc; /* 바다 색상 */
+        }
 
-            .wave {
-                position: relative;
-                width: 300px;
-                height: 150px;
-                background: #ffffff;
-                border-radius: 50% 50% 0 0;
-                transform: rotate(180deg);
-                animation: wave 1.5s infinite alternate;
-            }
+        .ocean {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: transparent;
+        }
 
-            @keyframes wave {
-                0% {
-                    transform: rotate(180deg) scale(1, 1);
-                }
-                100% {
-                    transform: rotate(180deg) scale(1.1, 1.1);
-                }
+        .wave {
+            position: absolute;
+            width: 100%;
+            height: 20px; /* 물결 높이 조절 */
+            background: repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255, 255, 255, 0.7) 30px, rgba(255, 255, 255, 0.7) 60px);
+            top: 50%; /* 화면 중앙에 배치하기 위한 설정 */
+            animation: wave 4s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateY(0) translateX(0);
             }
-        </style>
-    </head>
-    <body>
+            100% {
+                transform: translateY(-10px) translateX(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ocean">
         <div class="wave"></div>
-    </body>
+    </div>
+</body>
 </html>
