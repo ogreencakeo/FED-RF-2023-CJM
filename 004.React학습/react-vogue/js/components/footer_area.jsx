@@ -12,7 +12,7 @@ export default function FooterArea() {
         <React.Fragment>
             {/* 하단상태값 변경버튼 */}
             <div style={{textAlign : 'center'}}>
-                <button onClick={()=>{setChgFooter(1)}}>하단로고 변경</button>
+                <button onClick={()=>{setChgFooter(chgFooter? 0:1)}}>하단로고 변경</button>
             </div>
             <FooterMemo fsts = {chgFooter} />
         </React.Fragment>
