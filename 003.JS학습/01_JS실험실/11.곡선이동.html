@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS실험실 : 11. 곡선이동</title>
+    <style>
+        h1{
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', ()=>{
+            // 대상 : .tg
+            const tg = document.querySelector('.tg');
+
+            setTimeout(()=>{
+                tg.style.top = '0';
+                tg.style.left = '50%';
+                tg.style.transition = `top 2s ease-out, left 2s ease-in`;
+            }, 1000);
+            
+            setTimeout(()=>{
+                tg.style.top = '50%';
+                tg.style.left = '100%';
+                tg.style.transition = `top 2s ease-in, left 2s ease-out`;
+            }, 3000);
+        }); ///////// load //////////////
+    </script>
+</head>
+<body>
+    <h1>JS실험실 : 11. 곡선이동</h1>
+    <div class="bx">
+        <div class="tg"></div>
+    </div>
+</body>
+</html>
