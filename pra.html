@@ -3,24 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>구불구불한 물결 바다</title>
+        <title>파도치는 바다</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
         <style>
             body {
                 margin: 0;
                 padding: 0;
                 overflow: hidden;
-                background-color: #0099cc; /* 바다 색상 */
+                background-color: #0099cc; /* 파도 색상 */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
             }
 
             .wave {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 150px; /* 바다 높이 조절 */
-                background: transparent;
+                position: relative;
+                width: 200px;
+                height: 200px;
+                border: 5px solid #87ceeb;
+                border-radius: 50%;
+                animation: wave 2s linear infinite;
             }
 
-            .wave::before {
+            .wave::before,
+            .wave::after {
                 content: "";
                 position: absolute;
                 width: 100%;
@@ -32,9 +40,36 @@
                     rgba(255, 255, 255, 0.7) 30px,
                     rgba(255, 255, 255, 0.7) 60px
                 );
-                top: 0;
-                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .wave::before {
                 animation: wave 4s linear infinite;
+            }
+
+            .wave::after {
+                animation: wave 4s linear infinite reverse;
+            }
+
+            .moon {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                color: #f0e68c; /* 달 색상 */
+                font-size: 24px;
+            }
+
+            .star {
+                position: absolute;
+                top: 50px;
+                left: 50px;
+            }
+
+            .star i {
+                color: #ffffff; /* 별 색상 */
+                font-size: 24px;
+                margin: 2px;
             }
 
             @keyframes wave {
@@ -48,6 +83,15 @@
         </style>
     </head>
     <body>
-        <div class="wave"></div>
+        <div class="wave">
+            <i class="fas fa-moon moon"></i>
+            <div class="star">
+                <i class="fas fa-asterisk"></i>
+                <i class="fas fa-asterisk"></i>
+                <i class="fas fa-asterisk"></i>
+                <i class="fas fa-asterisk"></i>
+                <i class="fas fa-asterisk"></i>
+            </div>
+        </div>
     </body>
 </html>
