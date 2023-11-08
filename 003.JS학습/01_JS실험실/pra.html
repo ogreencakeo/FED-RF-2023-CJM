@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>원 페이지 자동 스크롤 레이아웃</title>
-    <link rel="stylesheet" href="./css/pra.css">
-    <script src="./js/pra.js" type="module"></script>
-</head>
-<body>
-    <div class="page">
-        <section class="banbox">
-            <ul class="slide">
-                <li><img src="images/dance/8.jpg" alt="slide"></li>
-                <li><img src="images/dance/3.jpg" alt="slide"></li>
-                <li><img src="images/dance/5.jpg" alt="slide"></li>
-                <li><img src="images/dance/1.jpg" alt="slide"></li>
-                <li><img src="images/dance/7.jpg" alt="slide"></li>
-                <li><img src="images/dance/2.jpg" alt="slide"></li>
-                <li><img src="images/dance/4.jpg" alt="slide"></li>
-                <li><img src="images/dance/6.jpg" alt="slide"></li>
-            </ul>
-        </section>
-        <a href="#" class="abtn ab1"><img src="images/left_btn.png" alt="왼쪽이동버튼"></a>
-        <a href="#" class="abtn ab2"><img src="images/right_btn.png" alt="오른쪽이동버튼"></a>
-        <ol class="indic"></ol>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>물결 애니메이션</title>
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #3498db;
+            }
+
+            .wave {
+                position: relative;
+                width: 300px;
+                height: 150px;
+                background: #ffffff;
+                border-radius: 50% 50% 0 0;
+                transform: rotate(180deg);
+                animation: wave 1.5s infinite alternate;
+            }
+
+            @keyframes wave {
+                0% {
+                    transform: rotate(180deg) scale(1, 1);
+                }
+                100% {
+                    transform: rotate(180deg) scale(1.1, 1.1);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wave"></div>
+    </body>
 </html>
