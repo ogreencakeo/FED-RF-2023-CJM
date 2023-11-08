@@ -41,54 +41,74 @@
         </style>
         <script>
             /************************************************ 
-        [ CSS로 곡선이동하기 ] 
-        1. 우선 이동 위치값 top, left를 지정한다
-        2. 이동시에 top과 left의 이징값을 반대로 설정한다
-            조합의 예)
-            top -> ease-in / left -> ease-out
-            top -> ease-out / left -> ease-in
-        3. 곡선의 원리:
-            -> 직선이동시 top/left방향으로 
-            처음에 느리게/빠르게
-            혹은 나중에 느리게/빠르게 설정하면 
-            이동시 곡선경로를 그리게 된다!
-        
-        ***********************************************/
+                [ CSS로 곡선이동하기 ] 
+                1. 우선 이동 위치값 top, left를 지정한다
+                2. 이동시에 top과 left의 이징값을 반대로 설정한다
+                    조합의 예)
+                    top -> ease-in / left -> ease-out
+                    top -> ease-out / left -> ease-in
+                3. 곡선의 원리:
+                    -> 직선이동시 top/left방향으로 
+                    처음에 느리게/빠르게
+                    혹은 나중에 느리게/빠르게 설정하면 
+                    이동시 곡선경로를 그리게 된다!
+            ***********************************************/
 
             window.addEventListener("load", () => {
                 // 대상: .tg
                 const tg = document.querySelector(".tg");
 
-                let TM = 2000;
+                // 애니시간 (ms)
+                let TM = 1500;
 
-                // 2사분면
-                setTimeout(() => {
-                    tg.style.top = "0";
-                    tg.style.left = "50%";
-                    tg.style.transition = `top 2000ms ease-out,left 2000ms ease-in`;
-                }, 1000);
+                // 회전함수 최초호출
+                rotFn();
+                
+                // 회전함수 만들기
+                function rotFn(){
+                    // 2사분면
+                    setTimeout(() => {
+                        tg.style.top = "0";
+                        tg.style.left = "50%";
+                        tg.style.transition = 
+                            `top ${TM}ms ease-out,
+                            left ${TM}ms ease-in`;
+                    }, 0);
 
-                // 1사분면
-                setTimeout(() => {
-                    tg.style.top = "50%";
-                    tg.style.left = "100%";
-                    tg.style.transition = "top 2s ease-in,left 2s ease-out";
-                }, 3000);
+                    // 1사분면
+                    setTimeout(() => {
+                        tg.style.top = "50%";
+                        tg.style.left = "100%";
+                        tg.style.transition = 
+                            `top ${TM}ms ease-in,
+                            left ${TM}ms ease-out`;
+                    }, TM);
 
-                // 4사분면
-                setTimeout(() => {
-                    tg.style.top = "100%";
-                    tg.style.left = "50%";
-                    tg.style.transition = "top 2s ease-out,left 2s ease-in";
-                }, 5000);
+                    // 4사분면
+                    setTimeout(() => {
+                        tg.style.top = "100%";
+                        tg.style.left = "50%";
+                        tg.style.transition = 
+                            `top ${TM}ms ease-out,
+                            left ${TM}ms ease-in`;
+                    }, TM * 2);
 
-                // 3사분면
-                setTimeout(() => {
-                    tg.style.top = "50%";
-                    tg.style.left = "0";
-                    tg.style.transition = "top 2s ease-in,left 2s ease-out";
-                }, 7000);
+                    // 3사분면
+                    setTimeout(() => {
+                        tg.style.top = "50%";
+                        tg.style.left = "0";
+                        tg.style.transition = 
+                            `top ${TM}ms ease-in,
+                            left ${TM}ms ease-out`;
+                    }, TM * 3);
+
+                    // 애니시간의 4배수후 다시 자신을 호출(재귀호출)
+                    setTimeout(rotFn, TM * 4);
+                    
+                } /////// rotFn 함수 //////////
+                
             }); //////////// load ///////////////////
+
         </script>
     </head>
     <body>
