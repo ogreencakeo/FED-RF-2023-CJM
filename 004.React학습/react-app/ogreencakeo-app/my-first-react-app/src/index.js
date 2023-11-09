@@ -19,7 +19,6 @@ function App(){
   )
 }
 
-
 // 컴포넌트 출력 //////////
 // 먼저 root객체만들고
 const root = ReactDOM.createRoot(document.querySelector('#root'));
