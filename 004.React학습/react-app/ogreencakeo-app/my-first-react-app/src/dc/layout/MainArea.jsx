@@ -23,7 +23,7 @@ export function MainArea(props){
             <Comics cat={props.cat} />}
 
             {props.cat == 'MOVIES' &&
-            <Movies cat={props.cat} />}
+            <Movie cat={props.cat} />}
         </main>
     );
 } ////// MainArea 컴포넌트 ///////
