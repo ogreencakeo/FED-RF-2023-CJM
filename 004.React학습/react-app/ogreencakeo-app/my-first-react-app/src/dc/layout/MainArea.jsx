@@ -3,6 +3,7 @@ import { Banner } from "../contents/Banner";
 import { Character } from "../contents/Character";
 import { Main } from "../contents/Main";
 import { Video } from "../contents/Video";
+import { Comics } from "../contents/Comics";
 
 export function MainArea(props){
     // cat 속성으로 메뉴 분류 전달
@@ -15,7 +16,9 @@ export function MainArea(props){
             }
             {props.cat == 'CHARACTERS' &&
             <Character cat={props.cat} />}
-            {props.cat == 'VDIEO' && <Video />}
+            {props.cat == 'VIDEO' && <Video />}
+            {props.cat == 'COMICS' &&
+            <Comics cat={props.cat} />}
         </main>
     );
 } ////// MainArea 컴포넌트 ///////
