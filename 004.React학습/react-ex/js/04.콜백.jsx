@@ -8,9 +8,21 @@ function MarkLike(){
     const [lee, setLee] = React.useState(false);
 
     // 상태관리 변수를 업데이트 하는 함수 ////
-    const toggleSon = () => {setSon(!son)};
-    const toggleDanaka = () => {setDanaka(!danaka)};
-    const toggleLee = () => {setLee(!lee)};
+    // useCallback으로 재사용하도록 메모이제이션 하기!!!
+    const toggleSon = React.useCallback(() => {
+        setSon(!son)
+    }, [son]);
+    const toggleDanaka =  React.useCallback(() => {
+        setDanaka(!danaka)
+    }, [danaka]);
+    const toggleLee = React.useCallback(() => {
+        setLee(!lee)
+    }, [lee]);
+    
+    // 기존 구현함수 코드 ///////////
+    // const toggleSon = () => {setSon(!son)};
+    // const toggleDanaka = () => {setDanaka(!danaka)};
+    // const toggleLee = () => {setLee(!lee)};
 
     /**************************************************************
         [ 리액트 성능 최적화를 위한 문제인식!!! ]
