@@ -59,7 +59,13 @@ function MarkLike(){
 } ////////// MarkLkike 컴포넌트 /////
 
 // 좋아요 서브 컴포넌트 ///////////////
-const ShowLike = ({name, sts, fn}) => {
+// 호출되는 컴포넌트가 매번 리랜더링되므로 
+// 메인 컴포넌트의 useCallback처리된 함수도
+// 매번 새로 그려짐! 그래서 효과가 없다!
+// 따라서 호출되는 서브 컴포넌트를 메모이제이션 처리해야
+// useCallback도 효과를 보게된다. -> 중요!!! 
+// 방법 : 기존 컴포넌트 함수를 React.memo(컴포넌트) 처리
+const ShowLike = React.memo(({name, sts, fn}) => {
     // name - 선수명, sts - 상태변수 ,fn - 변경함수
     console.log({name, sts});
     // 코드리턴 ///////////////////
@@ -70,7 +76,7 @@ const ShowLike = ({name, sts, fn}) => {
             </button>
         </div>
     )
-}; // showLike 컴포넌트
+}); // showLike 컴포넌트
 
 // 컴포넌트 출력하기 /////
 ReactDOM.render(<MarkLike />, document.querySelector('#root'));
