@@ -4,6 +4,8 @@ import { Character } from "../contents/Character";
 import { Main } from "../contents/Main";
 import { Video } from "../contents/Video";
 import { Comics } from "../contents/Comics";
+import { Movies } from "../contents/Movies";
+import { Games } from "../contents/Games";
 
 export function MainArea(props){
     // cat 속성으로 메뉴 분류 전달
@@ -23,7 +25,10 @@ export function MainArea(props){
             <Comics cat={props.cat} />}
 
             {props.cat == 'MOVIES' &&
-            <Movie cat={props.cat} />}
+            <Movies cat={props.cat} />}
+
+            {props.cat == 'GAMES' &&
+            <Games cat={props.cat} />}
         </main>
     );
 } ////// MainArea 컴포넌트 ///////
