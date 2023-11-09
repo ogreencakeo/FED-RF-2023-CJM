@@ -3,7 +3,8 @@
 import { Logo } from "../contents/Logo";
 import { menu } from "../data/gnb";
 
-export function TopArea(){
+export function TopArea(props){
+    // chgFn 속성 - 메인함수 chgMenu() 호출
     return(
         <>
         {/* 1.상단영역 */}
@@ -17,7 +18,13 @@ export function TopArea(){
                     {
                         menu.map((v, i)=>
                             <li key={i}>
-                                <a href="#">{v.txt}</a>
+                                <a href="#"
+                                onClick={() => 
+                                    props.chgFn(
+                                        v.txt == 'Home'? 'main' : v.txt
+                                    )}>
+                                    {v.txt}
+                                </a>
                             </li>
                             /*
                                 map()을 사용하여 태그를 생성할 때
