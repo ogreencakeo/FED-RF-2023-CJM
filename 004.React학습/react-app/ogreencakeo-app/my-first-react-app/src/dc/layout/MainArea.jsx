@@ -16,9 +16,14 @@ export function MainArea(props){
             }
             {props.cat == 'CHARACTERS' &&
             <Character cat={props.cat} />}
+
             {props.cat == 'VIDEO' && <Video />}
+
             {props.cat == 'COMICS' &&
             <Comics cat={props.cat} />}
+
+            {props.cat == 'MOVIES' &&
+            <Movies cat={props.cat} />}
         </main>
     );
 } ////// MainArea 컴포넌트 ///////
