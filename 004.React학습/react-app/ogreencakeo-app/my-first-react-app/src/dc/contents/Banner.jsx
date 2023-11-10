@@ -13,7 +13,7 @@ export function Banner(props){
 
     // 페이지 랜더링 후 실행구역
     useEffect(()=>{
-        
+        console.log('랜더링후~!');
     });
 
     // 리스트 만들기 함수
