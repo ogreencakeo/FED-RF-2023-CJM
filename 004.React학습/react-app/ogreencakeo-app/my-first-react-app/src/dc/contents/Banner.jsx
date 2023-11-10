@@ -14,7 +14,10 @@ import 'jquery-ui-dist/jquery-ui';
 function slideFn(){
     
     // 1. 대상선정
+    // (1) 슬라이드
     const sldBox = $('.slider');
+    // (2) 슬라이드 블릿
+    const indic = sldBox.find('.indic li');
 
     // 2. 변수설정
     // (1) 애니시간
@@ -28,8 +31,6 @@ function slideFn(){
     // (5) 슬라이드 개수
     const sCnt = sldBox.find('li').length;
     // console.log('슬라이드 개수 sCnt :', sCnt);
-    // (6) 슬라이드 블릿
-    const indic = sldBox.find('.indic li');
 
     
     // 3. 이벤트 설정 및 기능 구현
@@ -76,7 +77,7 @@ function slideFn(){
         }
         // console.log('슬순번 sNum :', sNum);
 
-        // 블릿 해당순번 클래스 'on' 넣기
+        // 블릿 해당순번 클래스 'on' 넣기 (다른 li는 제거)
         indic.eq(sNum).addClass('on').siblings().removeClass('on');
 
     }); // click ////////////////
