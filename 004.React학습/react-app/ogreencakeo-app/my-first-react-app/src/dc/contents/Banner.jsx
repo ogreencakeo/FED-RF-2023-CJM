@@ -38,6 +38,9 @@ export function Banner(props){
             </ul>
             {/* 이동버튼 + 슬라이드 블릿 : 슬라이드 2개 이상일때 보임 */}
 {
+            // 조건식 && 코드 : 조건식이 true일때 코드 출력
+            // 배열.length는 배열개수
+            selData.length > 1 &&
             <>            
                 {/* 양쪽이동 버튼 */}
                 <button className="abtn lb">＜</button>
