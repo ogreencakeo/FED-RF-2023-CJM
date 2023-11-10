@@ -54,7 +54,6 @@ export function Banner(props){
                 </ol>
             </>
 }
-
         </div>
     );
 } // Banner 컴포넌트 /////////
