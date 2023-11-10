@@ -4,9 +4,12 @@ import { MainArea } from './MainArea';
 import { FooterArea } from './FooterArea';
 
 export function Layout(){
-    <>
-        <TopArea />
-        <MainArea />
-        <FooterArea />
-    </>
+    return(
+        <>
+            {/* <h1>ㅎㅎㅎ</h1> */}
+            <TopArea />
+            <MainArea />
+            <FooterArea />
+        </>
+    );
 } // Layout 컴포넌트 /////////////////

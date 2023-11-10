@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom"
 import "./css/index.css";
 import { Layout } from "./dc/layout/Layout";
 import { Main } from "./dc/contents/Main";
-import { Character } from "./dc/contents/Charactor";
+import { Character } from "./dc/contents/Character";
 import { Comics } from "./dc/contents/Comics";
 import { Movies } from "./dc/contents/Movies";
 import { Games } from "./dc/contents/Games";
@@ -46,7 +46,8 @@ export default function App() {
       <Routes>
         {/* 중요!!! 레이아웃 컴포넌트를 루트로 설정! */}
         <Route path="/" element={<Layout />}>
-          {/* 하위 라우트 셋팅 */}
+          {/* 하위 라우트 셋팅 
+          - path대신 index만 쓰면 첫페이지로 로딩함 */}
           <Route index element={<Main />} />
           <Route path="character" element={<Character />} />
           <Route path="comics" element={<Comics />} />

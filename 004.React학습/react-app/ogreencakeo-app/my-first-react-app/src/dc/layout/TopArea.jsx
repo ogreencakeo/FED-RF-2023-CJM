@@ -1,10 +1,14 @@
 // 상단영역 컴포넌트
 // GNB 데이터
+import { Link } from "react-router-dom";
 import { Logo } from "../contents/Logo";
 import { menu } from "../data/gnb";
 
-export function TopArea(props){
-    // chgFn 속성 - 메인함수 chgMenu() 호출
+/*
+
+*/
+export function TopArea(){
+
     return(
         <>
         {/* 1.상단영역 */}
@@ -18,13 +22,16 @@ export function TopArea(props){
                     {
                         menu.map((v, i)=>
                             <li key={i}>
+                                <Link to = {v.link}>{v.txt}</Link>
+                            {/* 
                                 <a href="#"
                                 onClick={() => 
                                     props.chgFn(
                                         v.txt == 'Home'? 'main' : v.txt
                                     )}>
                                     {v.txt}
-                                </a>
+                                </a> 
+                            */}
                             </li>
                             /*
                                 map()을 사용하여 태그를 생성할 때

@@ -1,21 +1,24 @@
 // MainArea 컴포넌트
-import { Banner } from "../contents/Banner";
-import { Character } from "../contents/Character";
-import { Main } from "../contents/Main";
-import { Video } from "../contents/Video";
-import { Comics } from "../contents/Comics";
-import { Movies } from "../contents/Movies";
-import { Games } from "../contents/Games";
-import { News } from "../contents/News";
-import { SwiperApp } from "../plugin/SwiperApp";
+
+import { Outlet } from "react-router-dom";
+
+// import { Character } from "../contents/Character";
+// import { Main } from "../contents/Main";
+// import { Video } from "../contents/Video";
+// import { Comics } from "../contents/Comics";
+// import { Movies } from "../contents/Movies";
+// import { Games } from "../contents/Games";
+// import { News } from "../contents/News";
+// import { SwiperApp } from "../plugin/SwiperApp";
 
 
-export function MainArea(props){
+export function MainArea(/*props*/){
     // cat 속성으로 메뉴 분류 전달
 
     return(
         <main className="cont">
-            {
+            <Outlet />
+            {/* {
                 props.cat == 'main' &&
                 <Main cat={props.cat} />
             }
@@ -37,7 +40,8 @@ export function MainArea(props){
             <News cat={props.cat} />}
 
             {props.cat == 'SWIPER' &&
-            <SwiperApp />}
+            <SwiperApp />} */}
+
         </main>
     );
 } ////// MainArea 컴포넌트 ///////

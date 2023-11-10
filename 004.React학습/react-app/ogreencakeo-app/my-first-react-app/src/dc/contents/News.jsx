@@ -2,11 +2,12 @@
 
 import { Banner } from "./Banner";
 
-export function News(props){
+export function News(/*props*/){
     return(
         <>
             <h1 style={{textAlign : 'center'}}>캐릭터 페이지</h1>
-            <Banner category={props.cat} />
+            <Banner category="NEWS" />
+            {/* <Banner category={props.cat} /> */}
         </>
     );
 } /////////////// Main 컴포넌트 ////////
