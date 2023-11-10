@@ -6,6 +6,27 @@ import { banData } from "../data/banner";
 // 배너CSS
 import '../../css/banner.css';
 import { useEffect } from "react";
+// 제이쿼리 + 제이쿼리 UI
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui';
+
+// 슬라이드 기능 구현 함수 ////////////
+function slideFn(){ 
+    // 이동버튼 클릭시 
+    $('.abtn').click(function(){
+        // 1. 오른쪽버튼 여부
+        let isR = $(this).is('.rb');
+        console.log('버튼 클릭!', isR);
+
+        // 2. 버튼별 분기
+        // 2-1. 오른쪽버튼
+        if(isR){
+
+        } // if /////////
+
+    }); // click ////////////////
+} // slideFn 함수 //////////////////
+
 
 // 배너 컴포넌트 /////////////
 export function Banner(props){
@@ -14,7 +35,9 @@ export function Banner(props){
     // 페이지 랜더링 후 실행구역
     useEffect(()=>{
         console.log('랜더링후~!');
-    });
+        // 슬라이드 기능 구현 함수 호출
+        slideFn();
+    }); // useEffect ////////////
 
     // 리스트 만들기 함수
     const makeList = (data) => {
