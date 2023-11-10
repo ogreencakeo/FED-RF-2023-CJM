@@ -4,9 +4,15 @@ import { Link } from "react-router-dom";
 import { Logo } from "../contents/Logo";
 import { menu } from "../data/gnb";
 
-/*
+/******************************************************* 
+    [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
+    1. <Link to="/경로명"></Link>
+    -> to속성의 경로는 <Route path="/경로명"> 과 일치함!
 
-*/
+    2. <Outlet />
+    -> 라우터 연결 컴포넌트 출력자리 컴포넌트
+    -> 여기서는 MainArea 컴포넌트에 출력!
+*******************************************************/
 export function TopArea(){
 
     return(
