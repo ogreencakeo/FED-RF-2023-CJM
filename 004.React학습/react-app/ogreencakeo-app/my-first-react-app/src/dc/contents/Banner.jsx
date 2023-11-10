@@ -25,18 +25,36 @@ export function Banner(props){
         </li>
         ));
     };
+
+    // 선택 데이터
+    const selData = banData[props.category];
     
     // 코드리턴
     return(
         <div className="banner">
             {/* 이동 슬라이드 */}
             <ul className="slider">
-                { makeList(banData[props.category]) }
+                { makeList(selData) }
             </ul>
             {/* 이동버튼 + 슬라이드 블릿 : 슬라이드 2개 이상일때 보임 */}
-            {/* 양쪽이동 버튼 */}
-            <button className="abtn lb">＜</button>
-            <button className="abtn rb">＞</button>
+{
+            <>            
+                {/* 양쪽이동 버튼 */}
+                <button className="abtn lb">＜</button>
+                <button className="abtn rb">＞</button>
+                {/* 블릿 인디케이터 - 선택데이터의 개수만큼 만들기 */}
+                <ol className="indic">
+                    {
+                        selData.map((v, i) => (
+                            <li className={i==0? "on" : ""} key={i}>
+                                {/* {v.src} */}
+                            </li>
+                        ))
+                    }
+                </ol>
+            </>
+}
+
         </div>
     );
 } // Banner 컴포넌트 /////////
