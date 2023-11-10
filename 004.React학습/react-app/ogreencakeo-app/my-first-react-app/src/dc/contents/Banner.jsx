@@ -17,7 +17,7 @@ function slideFn(){
     // (1) 슬라이드
     const sldBox = $('.slider');
     // (2) 슬라이드 블릿
-    const indic = sldBox.find('.indic li');
+    const indic = $('.indic li');
 
     // 2. 변수설정
     // (1) 애니시간
