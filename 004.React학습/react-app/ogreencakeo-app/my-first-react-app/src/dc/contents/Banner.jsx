@@ -11,7 +11,12 @@ import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui';
 
 // 슬라이드 기능 구현 함수 ////////////
-function slideFn(){ 
+function slideFn(){
+    
+    // 1. 대상선정
+    const sldBox = $('.slider');
+    
+    // 2. 이벤트 설정 및 기능 구현
     // 이동버튼 클릭시 
     $('.abtn').click(function(){
         // 1. 오른쪽버튼 여부
@@ -21,8 +26,18 @@ function slideFn(){
         // 2. 버튼별 분기
         // 2-1. 오른쪽버튼
         if(isR){
-
-        } // if /////////
+            // 슬라이드가 왼쪽으로 이동함
+            // left값이 -100%
+            sldBox.animate({
+                left : '-100%',
+            }, 600, 'easeInOutQuint', ()=>{
+                // 콜백함수(애니후)
+                // 맨앞 li 맨뒤로 이동
+                sldBox.append(sldBox.find('li').first())
+                // 동시에 left값은 0으로 초기화
+                .css({left : '0'});
+            });
+        } 
 
     }); // click ////////////////
 } // slideFn 함수 //////////////////
