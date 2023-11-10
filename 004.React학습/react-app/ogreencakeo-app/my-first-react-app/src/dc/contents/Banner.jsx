@@ -33,6 +33,10 @@ export function Banner(props){
             <ul className="slider">
                 { makeList(banData[props.category]) }
             </ul>
+            {/* 이동버튼 + 슬라이드 블릿 : 슬라이드 2개 이상일때 보임 */}
+            {/* 양쪽이동 버튼 */}
+            <button className="abtn lb">＜</button>
+            <button className="abtn rb">＞</button>
         </div>
     );
 } // Banner 컴포넌트 /////////
