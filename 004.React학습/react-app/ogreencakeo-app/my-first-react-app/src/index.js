@@ -1,5 +1,5 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다!->루트 컴포넌트
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 // css 도 불러온다!
