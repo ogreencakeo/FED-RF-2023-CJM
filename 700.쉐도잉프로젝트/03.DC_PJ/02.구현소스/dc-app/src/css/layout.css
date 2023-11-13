@@ -4,7 +4,7 @@ main.cont {
     - 하단 여백이 생기는 일이 없어짐! */
     min-height: calc(100vh - 58px - 210px);
 }
-.top {
+.top-area {
     position: fixed;
     top: 0;
     left: 0;
@@ -47,7 +47,11 @@ main.cont {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.503);
+    filter : drop-shadow(0 0 5px rgba(0, 0, 0, 0.503));
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.503); 
+    -> 일반 박스 그림자를 주면 가상요소에는 그림자 안생김
+    filter의 드롭쉐도우를 사용하면 전체 구성요소를 통합한 그림자가
+    생성된다. */
     white-space: nowrap;
     line-height: 2.5;
     /* 처음에 안보임 */
@@ -61,7 +65,7 @@ main.cont {
 .smenu::before {
     content: "";
     position: absolute;
-    top: -17px;
+    top: -16px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
@@ -73,7 +77,7 @@ main.cont {
 .smenu::after {
     content: "";
     position: absolute;
-    top: -15px;
+    top: -14px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
