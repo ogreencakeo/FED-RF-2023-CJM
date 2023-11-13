@@ -14,7 +14,7 @@ export function TopArea(){
             <nav className="gnb">
                 <ul>
                     <li>
-                        <Logo />
+                        <Logo logoStyle='top' />
                     </li>
                     {
                         menu.map((v, i)=>

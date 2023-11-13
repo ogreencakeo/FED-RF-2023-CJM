@@ -12,11 +12,11 @@ export const menu = [
         txt:"COMICS",
         link:"/comics",
         sub:[
-            
+
         ],
     },
     {
-        txt:"MOVIES",
+        txt:"MOVIES & TV",
         link:"/movies",
     },
     {
@@ -32,7 +32,7 @@ export const menu = [
         link:"/video",
     },
     {
-        txt:"SWIPER",
-        link:"/swiperapp",
+        txt:"OPINIONS",
+        link:"/board",
     },
 ];
