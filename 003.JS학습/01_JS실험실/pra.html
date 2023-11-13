@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>위아래 및 좌우로 이동하는 바다 물결</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0099cc; /* 바다 색상 */
-        }
-
-        .ocean {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background: transparent;
-        }
-
-        .wave {
-            position: absolute;
-            width: 100%;
-            height: 20px; /* 물결 높이 조절 */
-            background: repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255, 255, 255, 0.7) 30px, rgba(255, 255, 255, 0.7) 60px);
-            top: 50%; /* 화면 중앙에 배치하기 위한 설정 */
-            animation: wave 4s linear infinite;
-        }
-
-        @keyframes wave {
-            0% {
-                transform: translateY(0) translateX(0);
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Loading Page</title>
+        <style>
+            body {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                background-color: #f5f5f5;
             }
-            100% {
-                transform: translateY(-10px) translateX(-5px);
+
+            .loader-container {
+                text-align: center;
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="ocean">
-        <div class="wave"></div>
-    </div>
-</body>
+
+            .loader {
+                border: 8px solid #3498db;
+                border-radius: 50%;
+                border-top: 8px solid #e74c3c;
+                width: 50px;
+                height: 50px;
+                animation: spin 1s linear infinite;
+                margin-bottom: 20px;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            p {
+                font-family: "Arial", sans-serif;
+                font-size: 16px;
+                color: #333;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // You can add additional logic or remove the loader after some time.
+                setTimeout(function () {
+                    document.querySelector(".loader-container").style.display = "none";
+                }, 3000); // Hide loader after 3 seconds (adjust as needed)
+            });
+        </script>
+    </head>
+    <body>
+        <div class="loader-container">
+            <div class="loader"></div>
+            <p>Loading...</p>
+        </div>
+    </body>
 </html>
