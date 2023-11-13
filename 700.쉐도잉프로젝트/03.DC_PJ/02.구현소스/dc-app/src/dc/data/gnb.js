@@ -1,9 +1,9 @@
 // DC.com GNB메뉴 데이터
 export const menu = [
-    {
-        txt:"Home",
-        link:"/",
-    },
+    // {
+    //     txt:"Home",
+    //     link:"/",
+    // },
     {
         txt:"CHARACTERS",
         link:"/character",
@@ -11,7 +11,9 @@ export const menu = [
     {
         txt:"COMICS",
         link:"/comics",
-        sub:[{txt:"Hi",link:"/hi"},{txt:"My",link:"/my"},{txt:"We",link:"/we"},],
+        sub:[
+            
+        ],
     },
     {
         txt:"MOVIES",
