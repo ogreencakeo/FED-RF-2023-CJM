@@ -12,12 +12,37 @@ export const menu = [
         txt:"COMICS",
         link:"/comics",
         sub:[
-
+            {
+                txt: "LATEST COMICS",
+                link: "/co1",
+            },
+            {
+                txt: "DC UNIVERSE INFINITE",
+                link: "/co2",
+            },
+            {
+                txt: "ALL COMICS SERIES",
+                link: "/co3",
+            },
         ],
     },
     {
         txt:"MOVIES & TV",
         link:"/movies",
+        sub : [
+            {
+                txt: "DC MOVIES",
+                link: "/mv",
+            },
+            {
+                txt: "DC SERIES",
+                link: "/mv",
+            },
+            {
+                txt: "DC ON HBO MAX",
+                link: "/mv",
+            },
+        ],
     },
     {
         txt:"GAMES",
