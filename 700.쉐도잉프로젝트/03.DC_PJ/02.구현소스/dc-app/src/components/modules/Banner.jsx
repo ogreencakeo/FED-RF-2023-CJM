@@ -11,7 +11,10 @@ import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 
 // 슬라이드 기능 구현 함수 ////////////
-function slideFn() {
+function slideFn() {} // slideFn 함수 //////////////////
+
+// 배너 컴포넌트 /////////////
+export function Banner(props) {
     // 2. 변수설정
     // (1) 애니시간
     const A_TM = 600;
@@ -26,15 +29,17 @@ function slideFn() {
     // 이벤트 설정 및 함수 호출은 리액트파트에서 처리함
     // -> 그래야 다중 컴포넌트 배치시 개별화를 할 수 있다.
     const goSlide = (e) => {
+        // category - 카테고리 분류명(배너 데이터 선택)
+
         // 1. 이벤트가 발생한 요소
         const tg = e.target;
-        console.log(tg);
+        // console.log(tg);
 
         // 2. 대상선정
         // (1) 슬라이드 : 클릭된 버튼으로부터 잡아줌
         const sldBox = $(tg).siblings(".slider");
-        // (2) 슬라이드 블릿
-        const indic = $(tg).siblings(".indic li");
+        // (2) 슬라이드 블릿 : 형제요소는 .indic임!
+        const indic = $(tg).siblings(".indic").find('li');
         // (3) 슬라이드 개수
         const sCnt = sldBox.find("li").length;
         // console.log('슬라이드 개수 sCnt :', sCnt);
@@ -87,17 +92,11 @@ function slideFn() {
             sNum--;
             if (sNum < 0) sNum = sCnt - 1;
         }
-        // console.log('슬순번 sNum :', sNum);
+        console.log('슬순번 sNum :', sNum);
 
         // 블릿 해당순번 클래스 'on' 넣기 (다른 li는 제거)
         indic.eq(sNum).addClass("on").siblings().removeClass("on");
-    } // goSlide 함수 ///////////
-
-} // slideFn 함수 //////////////////
-
-// 배너 컴포넌트 /////////////
-export function Banner(props) {
-    // category - 카테고리 분류명(배너 데이터 선택)
+    }; // goSlide 함수 ///////////
 
     // 선택 데이터
     const selData = banData[props.category];
@@ -111,7 +110,7 @@ export function Banner(props) {
 
     // 리스트 만들기 함수
     const makeList = (data) => {
-        console.log(data);
+        // console.log(data);
         return data.map((v, i) => (
             <li key={i}>
                 {/* 배너이미지 */}
