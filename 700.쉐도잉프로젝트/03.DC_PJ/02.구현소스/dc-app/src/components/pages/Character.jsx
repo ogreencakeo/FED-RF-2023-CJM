@@ -7,7 +7,7 @@ export function Character(/*props*/){
         <>
             <h1 style={{textAlign : 'center'}}>캐릭터 페이지</h1>
             <Banner category="CHARACTERS" />
-            <Banner category="CHARACTERS" />
+            {/* <Banner category="WONDER WOMAN" /> */}
             {/* <Banner category={props.cat} /> */}
         </>
     );
