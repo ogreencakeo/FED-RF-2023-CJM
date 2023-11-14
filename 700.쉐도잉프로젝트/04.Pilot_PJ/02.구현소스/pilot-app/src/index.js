@@ -21,7 +21,7 @@ function App(){
 
   return(
     <>
-      <TopArea />
+      <TopArea cat={pgName} />
       <button onClick={()=>chgPgName('main')}>메인 페이지</button>
       <button onClick={()=>chgPgName('men')}>남성 페이지</button>
       <button onClick={()=>chgPgName('women')}>여성 페이지</button>
