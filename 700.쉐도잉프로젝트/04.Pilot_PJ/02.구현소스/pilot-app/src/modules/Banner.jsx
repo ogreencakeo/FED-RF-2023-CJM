@@ -12,6 +12,8 @@ export function Banner() {
     const makeList = (gubun) => {
         // gubun : 1 - 배너 / 0 - 블릿
         // for문을 돌려서 태그를 생성할 때 배열에 담는다!
+        // -> 문자형이 아닌 JSX의 태그이므로 배열에 담고
+        // for문 없이 그대로 태그를 출력할 수 있다.
         let hcode = [];
 
         for(let i=0; i<BAN_CNT; i++){
