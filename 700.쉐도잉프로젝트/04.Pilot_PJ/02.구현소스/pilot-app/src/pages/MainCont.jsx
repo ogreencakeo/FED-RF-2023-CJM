@@ -6,7 +6,7 @@ export function MainCont(){
     return(
         <>
             {/* 1. 배너 페이지 */}
-            <section className="page" style={{background : 'lightblue'}}>
+            <section id="ban" className="page" style={{background : 'lightblue'}}>
                 <Banner />
             </section>
             <section className="page" style={{background : 'lightcoral'}}>

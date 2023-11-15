@@ -7,7 +7,6 @@ import {StyleSub} from '.././pages/StyleSub';
 export function MainArea(props){
     return(
         <>
-            <h1>메인영역</h1>
             {props.page == 'main' && <MainCont />}
             {props.page == 'men' && <MenSub />}
             {props.page == 'women' && <WomenSub />}

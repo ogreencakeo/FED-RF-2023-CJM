@@ -22,7 +22,6 @@ function App(){
   return(
     <>
       <TopArea cat={pgName} />
-      
       <MainArea page={pgName} />
       <FooterArea />
     </>
