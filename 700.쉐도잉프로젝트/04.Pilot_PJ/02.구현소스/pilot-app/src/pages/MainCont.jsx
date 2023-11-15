@@ -51,6 +51,8 @@ export function MainCont(){
                     slide.append(slide.find('li').first())
                     // left값 -100%(처음값)
                     .css({left : '-100%'})
+                    // 커버 제거
+                    cover.hide();
                 })
             }
             // 오른쪽으로 이동하기
@@ -61,11 +63,15 @@ export function MainCont(){
                     slide.prepend(slide.find('li').last())
                     // left값 -100%(처음값)
                     .css({left : '-100%'})
+                    // 커버 제거
+                    cover.hide();
                 })
             }
             // 제자리로
             else{
-                slide.animate({left : '-100%'}, 300, 'easeOutQuint')
+                slide.animate({left : '-100%'}, 300, 'easeOutQuint',
+                ()=>{ // 커버 제거
+                cover.hide()})
             }
         }); // dragstop ////////////
 
