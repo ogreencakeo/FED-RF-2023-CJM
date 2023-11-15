@@ -3,7 +3,7 @@
 // GNB 데이터 가져오기
 import { gnbData } from "../data/gnb";
 
-export function TopArea(props) {
+export function TopArea(props) { 
     // props.cat - 카테고리명(메뉴데이터 선택용)
 
     // GNB메뉴 리스트 만들기 함수
