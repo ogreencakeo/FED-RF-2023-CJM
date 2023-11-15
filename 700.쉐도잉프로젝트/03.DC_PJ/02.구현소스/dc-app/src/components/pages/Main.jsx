@@ -1,7 +1,7 @@
 // 메인페이지 메인컨텐츠
 
 import { Banner } from "../modules/Banner";
-import { SecIntro } from "../modules/secIntro";
+import { SecIntro } from "../modules/SecIntro";
 
 export function Main(/*props*/){
     // cat 속성으로 메뉴분류 전달
