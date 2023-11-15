@@ -34,7 +34,7 @@ export function MainCont(){
             console.log('드래그 멈춰(pos) :', pos, ', winW :', winW, ', diff :', diff);
             
             // 왼쪽으로 이동하기
-            if(diff > 0){
+            if(diff > 50){
                 slide.animate({left : '-200%'}, 800, 'easeOutQuint',
                 ()=>{
                     // 맨앞 li 맨뒤로 이동
@@ -44,7 +44,7 @@ export function MainCont(){
                 })
             }
             // 오른쪽으로 이동하기
-            else if(diff < 0){
+            else if(diff < -50){
                 slide.animate({left : '0'}, 800, 'easeOutQuint', 
                 ()=>{
                     // 맨뒤 li 맨앞으로 이동
@@ -52,6 +52,10 @@ export function MainCont(){
                     // left값 -100%(처음값)
                     .css({left : '-100%'})
                 })
+            }
+            // 제자리로
+            else{
+                slide.animate({left : '-100%'}, 300, 'easeOutQuint')
             }
         }); // dragstop ////////////
 
