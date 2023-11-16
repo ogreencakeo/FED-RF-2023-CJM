@@ -6,5 +6,4 @@ export function MainArea(){
             <Outlet />
         </main>
     )
-    
 }

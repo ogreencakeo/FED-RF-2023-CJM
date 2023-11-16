@@ -1,6 +1,6 @@
-import { FooterArea } from "./FooterArea.jsx";
-import { MainArea } from "./MainArea.jsx";
-import { TopArea } from "./TopArea.jsx";
+import { TopArea } from "./TopArea";
+import { MainArea } from "./MainArea";
+import { FooterArea } from "./FooterArea";
 
 export function Layout(){
     return(
