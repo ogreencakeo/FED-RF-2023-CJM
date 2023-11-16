@@ -7,10 +7,14 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 
 export function dragBanner() {
     // 드래그 기능 넣기
-    // 대상 .slide
+    // 대상:
+    // 슬라이드
     const slide = $(".slide");
     // 커버
     const cover = $(".cover");
+    // 블릿
+    const indic = $('.bindic li');
+    // console.log('indic:', indic);
 
     slide.draggable({ axis: "x" });
 
@@ -29,7 +33,7 @@ export function dragBanner() {
 
         // 기준값 : 화면크기를 기준한 부분
         let gap = winW / 10;
-        console.log("드래그 멈춰(pos) :", pos, ", winW :", winW, ", diff :", diff);
+        // console.log("드래그 멈춰(pos) :", pos, ", winW :", winW, ", diff :", diff);
 
         // 왼쪽으로 이동하기
         if (diff > gap) {
@@ -62,5 +66,38 @@ export function dragBanner() {
                 cover.hide();
             });
         }
+
+        // 블릿변경함수호출
+        chgIndic(diff, gap);
+
     }); // dragstop ////////////
+
+
+    // 블릿 변경함수 /////////////////////
+    const chgIndic = (diff, gap) => {
+        // 블릿 변경하기
+        // 현재 슬라이드 순번알아오기
+        // -> 클래스명 'ban번호'로 되어 있음
+        // 마지막 순번만 잘라서 1을 빼면 순번임
+        // 선택순번 : gap값을 기준하여
+        let selSeq = (diff > gap? 2 : (diff < -gap? 0 : 1))
+        // diff가 양수면 2,  diff가 음수면 0, 모두 아니면 1
+        // 선택순번의 클래스 
+        let selCls = slide.find('li').eq(selSeq).attr('class');
+        // console.log('selSeq :', selSeq);
+        // console.log('클래스명 (selCls) :', selCls);
+        
+        // 해당 슬라이드 순번 : 클래스명의 숫자 - 1
+        // 슬라이드 순번은 클래스명의 숫자 - 1
+        // Number() 숫자형 변환 : 문자를 잘라서 문자형 숫자임
+        // 그런데 요즘 브라우저는 이렇게 안해도 자동형 변환하여 계산함!
+        let indicSeq = Number(selCls.substr(3)) - 1;
+        // console.log('블릿순번 :', indicSeq);
+
+        // 해당 순번 블릿 클래스 'on' 넣기 / 나머지는 빼기
+        indic.eq(indicSeq).addClass('on')
+        .siblings().removeClass('on');
+
+    }; // chgIndic 함수 ////////////////
+
 } // dragBanner 함수 ///////////////////////////
