@@ -1,13 +1,14 @@
 // 뮤비페이지 메인컨텐츠
 
 import { Banner } from "../modules/Banner";
+import { VidIntro } from "../modules/VidIntro";
 
 export function Movies(/*props*/){
     return(
         <>
-            <h1 style={{textAlign : 'center'}}>뮤비 페이지</h1>
-            <Banner category="MOVIES" />
+            <VidIntro cat='MOVIES' cls='on' />
             {/* <Banner category={props.cat} /> */}
+            <Banner category="MOVIES" />
         </>
     );
 } /////////////// 코믹스 컴포넌트 ////////
