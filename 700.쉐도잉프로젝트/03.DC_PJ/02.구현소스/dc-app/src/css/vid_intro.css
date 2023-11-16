@@ -55,10 +55,10 @@
 
 
 @media screen and (max-width:1024px) {
-    .vidbox{
+    .vidbox>div{
         flex-direction: column;        
     }
-    .vidbox>div{
+    .vidbox>div>div{
         width: 100%;
     }
 
