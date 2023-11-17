@@ -2,18 +2,18 @@
 
 export const fsData = {
     men : {
-        isrc : '',
-        ialt : '',
-        tit : ''
+        isrc : './images/men02.png',
+        ialt : '공유다!',
+        tit : `MEN'S<br />ESSENTIALS`
     },
     women : {
-        isrc : '',
-        ialt : '',
-        tit : ''
+        isrc : './images/women01.png',
+        ialt : '여자',
+        tit : `WOMEN'S<br/>ESSENTIALS`
     },
     style : {
-        isrc : '',
+        isrc : './images/style02.png*./images/style03.png',
         ialt : '',
-        tit : ''
+        tit : ``
     },
 }; // ds Data 
