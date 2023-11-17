@@ -35,14 +35,30 @@ export function SwiperApp() {
         myRef.current.swiper.autoplay.stop() :
         myRef.current.swiper.autoplay.start();
 
-        // 상태값 업데이트
+        // 상태값 업데이트 -> 컴포넌트 리랜더링!!!
         sts? setSts(0) : setSts(1);
 
+        console.log('리랜더링-> myFirst :', myFirst, ', mySecond.current : ', mySecond.current);
+
     }; // stopPlay함수 //////////////
+
+    // 일반변수와 useRef 사용변수의 차이
+    let myFirst = '스와이퍼';
+    const mySecond = useRef('갤러리');
+
+    // 변수값 업데이트 함수
+    const myFn = () => {
+        myFirst = 'Swiper';
+        mySecond.current = 'Gallery';
+        console.log('함수호출-> myFirst :', myFirst, ', mySecond.current : ', mySecond.current);
+    }; // myFn 함수 ///////
 
     // 리턴 코드 ///////////////////////////////
     return (
         <>
+            <h1 style={{padding : '20px'}}>
+                {myFirst + ' : ' + mySecond.current}
+            </h1>
             <Swiper
                 // ref 속성에 useRef 할당 변수를 넣어서 외부에 연결함
                 ref={myRef}
@@ -81,6 +97,8 @@ export function SwiperApp() {
                 title={sts? "멈추기": "자동넘기기"}
                 onClick={stopPlay}
             >{sts? '▣' : '▶'}</button>
+            {/* useRef 테스트 버튼 */}
+            <button onClick={myFn}>useRef 테스트</button>
         </>
     ); 
 } // SwiperApp 컴포넌트 //////////
