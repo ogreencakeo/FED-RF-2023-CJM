@@ -21,8 +21,8 @@ export function VidSwipe(){
             <section className="vidswbox">
                 {/* 1. 모듈 타이틀 */}
                 <h2 className="tit"></h2>
-                {/* 2. 스와퍼 컴포넌트 */}
-
+                {/* 2. 스와퍼 컴포넌트 */}  
+                
                 {/* 3. 비디오 재생창 */}
                 <section className="vidbx">
                     {/* 비디오 중앙박스 */}
