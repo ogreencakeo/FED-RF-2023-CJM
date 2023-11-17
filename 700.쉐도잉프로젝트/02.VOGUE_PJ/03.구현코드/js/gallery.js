@@ -52,4 +52,40 @@ var swiper = new Swiper(".mySwiper", {
 // swiper.slideNext();
 // $('.stit').click(()=>swiper.slideNext())
 // $('.stit').click(()=>swiper.slidePrev())
-$('.stit').click(()=>swiper.stop())
+// $('.stit').click(()=>swiper.autoplay.pause())
+// $('.blogo').click(()=>swiper.autoplay.start())
+
+$('.stopPlay')
+.css({
+    backgroundColor : 'transparent',
+    border : 'none',
+    fontSize : '40px',
+    display : 'block',
+    margin : '0 auto',
+    cursor : 'pointer'
+})
+.attr('title', '멈추기')
+.click((e)=>{
+    let icon = $(e.target).text();
+    console.log('icon :', icon);
+
+    // 멈춤기능
+    if(icon == '▣'){  
+        swiper.autoplay.pause();
+        $(e.target).text('▶')
+        .attr('title', '자동넘기기');
+    // 자동넘김 시작
+    }else{  
+        swiper.autoplay.start();
+        $(e.target).text('▣')
+        .attr('title', '멈추기');
+    }
+})
+
+/*
+    [ swiper API 주요 메서드 ]
+    1. 다음 슬라이드 이동 - swiper.slideNext()
+    2. 이전 슬라이드 이동 - swiper.slidePrev()
+    3. 자동 플레이 멈춤 - swiper.autoplay.pause()
+    4. 자동 플레이 시작 - swiper.autoplay.start()
+*/
