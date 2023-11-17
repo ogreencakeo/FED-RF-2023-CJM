@@ -7,12 +7,15 @@ import { FooterArea } from './FooterArea';
 // Context API 불러오기
 import { dcCon } from '../modules/dcContext';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 export function Layout(){
 
-    // 페이지 이동시 스크롤 위치 상단이동
-    useEffect
+    // 랜더링 후 실행 구역 ////////////////
+    useLayoutEffect(()=>{
+        // 페이지 이동시 스크롤 위치 상단이동
+        window.scrollTo(0, 0);
+    }); // useEffect ////////////////
 
     // 라우터 이동객체 설정
     const goNav = useNavigate();
