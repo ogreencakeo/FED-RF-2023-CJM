@@ -6,9 +6,9 @@ import { VidIntro } from "../modules/VidIntro";
 export function Movies(/*props*/){
     return(
         <>
-            <VidIntro cat='MOVIES' cls='on' />
             {/* <Banner category={props.cat} /> */}
             <Banner category="MOVIES" />
+            <VidIntro cat='MOVIES' cls='on' />
         </>
     );
 } /////////////// 코믹스 컴포넌트 ////////

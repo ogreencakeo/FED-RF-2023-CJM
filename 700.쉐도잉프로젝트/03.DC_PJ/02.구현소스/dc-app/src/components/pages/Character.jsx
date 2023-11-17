@@ -5,9 +5,7 @@ import { Banner } from "../modules/Banner";
 export function Character(/*props*/){
     return(
         <>
-            <h1 style={{textAlign : 'center'}}>캐릭터 페이지</h1>
             <Banner category="CHARACTERS" />
-            {/* <Banner category="WONDER WOMAN" /> */}
             {/* <Banner category={props.cat} /> */}
         </>
     );

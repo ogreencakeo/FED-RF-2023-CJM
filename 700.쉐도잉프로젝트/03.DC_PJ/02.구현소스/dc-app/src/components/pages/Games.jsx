@@ -6,9 +6,9 @@ import { VidIntro } from "../modules/VidIntro";
 export function Games(/*props*/){
     return(
         <>
-            <VidIntro cat='GAMES' cls='on'/>
-            <Banner category="GAMES" />
             {/* <Banner category={props.cat} /> */}
+            <Banner category="GAMES" />
+            <VidIntro cat='GAMES' cls='on'/>
         </>
     );
 } /////////////// 코믹스 컴포넌트 ////////

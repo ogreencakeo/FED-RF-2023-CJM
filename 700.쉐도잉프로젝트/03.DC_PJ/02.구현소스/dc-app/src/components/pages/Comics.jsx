@@ -6,8 +6,8 @@ import { VidIntro } from "../modules/VidIntro";
 export function Comics(/*props*/){
     return(
         <>
-            <Banner category="COMICS" />
             {/* <Banner category={props.cat} /> */}
+            <Banner category="COMICS" />
             <VidIntro cat='COMICS' cls ='on' />
         </>
     );

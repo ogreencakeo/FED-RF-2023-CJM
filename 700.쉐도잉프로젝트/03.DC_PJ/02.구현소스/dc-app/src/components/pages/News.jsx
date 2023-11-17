@@ -5,8 +5,8 @@ import { Banner } from "../modules/Banner";
 export function News(/*props*/){
     return(
         <>
-            <Banner category="NEWS" />
             {/* <Banner category={props.cat} /> */}
+            <Banner category="NEWS" />
         </>
     );
 } /////////////// Main 컴포넌트 ////////
