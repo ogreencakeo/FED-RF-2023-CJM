@@ -78,7 +78,7 @@ export function SwiperApp() {
                     margin: "0 auto",
                     cursor: "pointer",
                 }}
-                title="멈추기"
+                title={sts? "멈추기": "자동넘기기"}
                 onClick={stopPlay}
             >{sts? '▣' : '▶'}</button>
         </>
