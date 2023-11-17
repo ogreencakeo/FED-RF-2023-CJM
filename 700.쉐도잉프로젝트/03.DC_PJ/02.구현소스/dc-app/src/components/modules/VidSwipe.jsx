@@ -9,7 +9,12 @@
                 div.playvid > 
                     h2.ifrtit + iframe + button.cbtn )
 */
+
+// 비디오스와이프 CSS 불러오기
+import '../../css/vid_swipe.css';
 export function VidSwipe(){
+
+    // 리턴코드 /////////////////////////////////////////
     return(
         <>
         {/* 모듈 코드 */}
