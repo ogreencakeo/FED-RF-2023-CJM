@@ -41,3 +41,15 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
+
+// 스와이퍼의 기능을 외부에서 사용하기 위해
+// 스와이퍼 생성시 변수에 할당한 것임!
+// https://swiperjs.com/swiper-api
+// 본 사이트 API를 참조하여 여러가지 설정 및 메서드를
+// 사용하여 기능 외부에 부여할 수 있다.
+
+// 예) 상단 타이틀을 클릭하면 다음 슬라이드로 이동
+// swiper.slideNext();
+// $('.stit').click(()=>swiper.slideNext())
+// $('.stit').click(()=>swiper.slidePrev())
+$('.stit').click(()=>swiper.stop())
