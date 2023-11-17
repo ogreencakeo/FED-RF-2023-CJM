@@ -11,7 +11,7 @@ import { useLayoutEffect } from 'react';
 
 export function Layout(){
 
-    // 랜더링 후 실행 구역 ////////////////
+    // 랜더링 후(화면 보이기 전) 실행 구역 ////////////////
     useLayoutEffect(()=>{
         // 페이지 이동시 스크롤 위치 상단이동
         window.scrollTo(0, 0);
