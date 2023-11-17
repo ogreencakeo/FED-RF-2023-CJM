@@ -35,6 +35,13 @@ export function MainCont() {
             <section className="page">
                 <FashionIntro cat='women' />
             </section>
+            {/* 4. 스타일패션 페이지 */}
+            <section className="page">
+                <FashionIntro cat='style' />
+            </section>
+            {/* 5. 하단 공통영역 */}
+            <section className="page" style={{ background: "lightblue" }}>
+            </section>
 
         </>
     );
