@@ -19,6 +19,9 @@ export function SwiperApp() {
     // 불러올 이미지 리스트
     const imgArr = ["dcm28", "dcm29", "dcm30", "dcm31", "dcm32", "dcm10", "dcm11", "dcm12"];
 
+    // 상태관리변수 : 멈춤상태 / 플레이 상태
+    const [sts, setSts] = useState(1);
+
     // useRef로 스와이퍼 객체를 받아온다.
     const myRef = useRef(null);
     // Swiper 컴포넌트의 ref속성에 담아서 연결!!!
@@ -26,6 +29,14 @@ export function SwiperApp() {
     // 플레이 / 멈춤기능 함수
     const stopPlay = () => {
         console.log('멈추거나 플레이!');
+
+        // sts 값이 1이면 멈춤
+        sts? 
+        myRef.current.swiper.autoplay.stop() :
+        myRef.current.swiper.autoplay.start();
+
+        // 상태값 업데이트
+        sts? setSts(0) : setSts(1);
 
     }; // stopPlay함수 //////////////
 
@@ -69,7 +80,7 @@ export function SwiperApp() {
                 }}
                 title="멈추기"
                 onClick={stopPlay}
-            >▣</button>
+            >{sts? '▣' : '▶'}</button>
         </>
-    );
+    ); 
 } // SwiperApp 컴포넌트 //////////
