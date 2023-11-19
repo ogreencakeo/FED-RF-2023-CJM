@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { dcCon } from './dcContext';
+import {isrc} from '../data/imgSrc';
+export function Logo(props){
 
-import { isrc } from "../data/imgSrc";
-import { useNavigate } from "react-router-dom";
-
-export const Logo = (props) => {
-    const goNav = useNavigate();
-
+    const myCon = useContext(dcCon);
     const myStyle = {
         top : {
             width:"45px",
@@ -19,22 +17,17 @@ export const Logo = (props) => {
         }
     };
 
-    const nayaLogo = (txt) => {
-        goNav(txt);
-    }
-
     const myStyleImg = {
         top : '45px',
         bottom : '80px'
-    }
+    };
 
     return(
-        <h1 style={myStyle[props.logoStyle]}>
-            <img src={isrc.logo} alt="DC logo" 
-            onClick={()=>nayaLogo('/')}
+        <h1 style={myStyle[props.logostyle]} onClick={()=> myCon.chgPage('/')}>
+            <img src={isrc.logo} alt="DC LOGO"
             style={{
-                width : myStyleImg[props.logoStyle]
-            }}/>
+                width : myStyleImg[props.logostyle]
+            }} />
         </h1>
     )
 }
