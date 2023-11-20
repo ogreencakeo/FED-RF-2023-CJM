@@ -25,7 +25,7 @@ export function Main(/*props*/){
             <VidIntro cat='main' cls='off' />
 
             {/* 4. 비디오 스와이프 컴포넌트 */}
-            <VidSwipe />
+            <VidSwipe tit='LATEST TRAILERS, CLIPS & MORE' />
         </>
     );
 } /////////////// Main 컴포넌트 ////////

@@ -2,6 +2,7 @@
 
 import { Banner } from "../modules/Banner";
 import { VidIntro } from "../modules/VidIntro";
+import { VidSwipe } from "../modules/VidSwipe";
 
 export function Movies(/*props*/){
     return(
@@ -9,6 +10,7 @@ export function Movies(/*props*/){
             {/* <Banner category={props.cat} /> */}
             <Banner category="MOVIES" />
             <VidIntro cat='MOVIES' cls='on' />
+            <VidSwipe tit = 'TRAILERS, CLIPS AND MORE' />
         </>
     );
 } /////////////// 코믹스 컴포넌트 ////////
