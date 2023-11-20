@@ -39,16 +39,23 @@ export function SwiperVid() {
         const ifr = $('.play-vid iframe');
         // 1-2. 전체 박스 : .vid-bx
         const vbx = $('.vid-bx');
-        // 1-2. 타이틀 박스 : .ifr-tit
+        // 1-3. 타이틀 박스 : .ifr-tit
         const itit = $('.ifr-tit');
-
+        // 1-4. 닫기 버튼 : .cbtn
+        const cbtn = $('.cbtn');
+        
         // 2. 변경하기
         // 2-1. 아이프레임 src 경로 넣기
-        ifr.attr('src', src);
+        ifr.attr('src', src+"?autoplay=1");
         // 2-2. 아이프레임 비디오 타이틀 넣기
         itit.text(tit);
         // 2-3. 비디오 전체 박스 나타나기
         vbx.fadeIn(300);
+        // 2-4. 닫기버튼 셋팅
+        cbtn.click(()=>{
+            // 전체박스 사라지기
+            vbx.fadeOut(300);
+        }); // click ////////
 
     }; // showVid 함수 ////////////////
 
