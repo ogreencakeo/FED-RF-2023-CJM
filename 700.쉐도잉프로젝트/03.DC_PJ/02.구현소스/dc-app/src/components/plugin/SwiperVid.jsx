@@ -30,23 +30,30 @@ export function SwiperVid() {
             <Swiper 
                 slidesPerView={4}
                 spaceBetween={20}
-                pagination={{
-                    clickable: true,
-                }}
-                loop={true}
                 navigation={true}
                 // 사용할 모듈을 여기에 적용시킨다.
-                modules={[Pagination, Navigation, Autoplay]}
+                modules={[Navigation]}
                 className="mySwiper"
-                autoplay ={{
-                    delay :2500,
-                    disableOnInteraction : false,
-                }}
             >
                 {
-                    imgArr.map((v, i) =>
+                    selData.map((v, i) =>
                         <SwiperSlide key={i}>
-                            <img src={"./images/" + v + '.jpg'} alt="list image" />
+                            <section className="sw-inbox">
+                                {/* 동영상 이미지 박스 */}
+                                <div className="vid-img">
+                                    <img src={v.src} alt={v.tit} />
+                                    {/* 폰트어썸 아이콘 */}
+                                    <FontAwesomeIcon 
+                                    icon = {faPlayCircle}
+                                    style={{
+                                        position : 'absolute',
+                                        bottom : '55%',
+                                        left : '10%',
+                                        color : '#fff',
+                                        fontSize : '50px'
+                                    }} />
+                                </div>
+                            </section>
                         </SwiperSlide>
                     )
                 }
