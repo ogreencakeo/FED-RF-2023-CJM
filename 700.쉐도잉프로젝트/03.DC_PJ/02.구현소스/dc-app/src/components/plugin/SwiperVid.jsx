@@ -55,6 +55,8 @@ export function SwiperVid() {
         cbtn.click(()=>{
             // 전체박스 사라지기
             vbx.fadeOut(300);
+            // 기존 동영상 플레이 멈추기(src 삭제)
+            ifr.attr('src', '');
         }); // click ////////
 
     }; // showVid 함수 ////////////////
