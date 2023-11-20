@@ -1,9 +1,13 @@
 // 메인 페이지 JS - index.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM, { createRoot } from 'react-dom/client';
 import { TopArea } from './layout/TopArea';
 import { MainArea } from './layout/MainArea';
 import { FooterArea } from './layout/FooterArea';
+
+// 제이쿼리
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui';
 
 // 페이지 공통 CSS 
 import './css/common.css';
@@ -19,6 +23,14 @@ function App(){
     setPgName(txt)
   }; // chgPgName 함수 ////////
 
+  // 랜더링 후 실행 구역 /////////////////
+  useEffect(()=>{
+    $('.gnb a').click(function(){
+      console.log('나야나~!', this);
+    })
+  }); // useEffect ///////////////
+
+  // 리턴 코드 /////////////////////
   return(
     <>
       <TopArea cat={pgName} />
