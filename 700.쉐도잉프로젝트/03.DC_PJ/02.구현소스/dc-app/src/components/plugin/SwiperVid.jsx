@@ -6,13 +6,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 /* 제이쿼리 넣기 */
 import $ from 'jquery';
 
+// SwiperVid 사용 데이터 가져오기
+import { swVidData } from "../data/swiper_vid";
+
 // Import Swiper styles
 import "swiper/css";
 // 양쪽 이동버튼만 필요함!
 import 'swiper/css/navigation';
 
 /* 폰트어썸 임포트 */
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // 스와이퍼 CSS
@@ -24,6 +27,9 @@ import "./css/swiper_vid.css";
 import { Navigation } from "swiper/modules";
 
 export function SwiperVid() {
+
+    // 선택 데이터 : 여기서는 그대로 가져옴
+    const selData = swVidData;
 
     return (
         <>
@@ -41,10 +47,9 @@ export function SwiperVid() {
                             <section className="sw-inbox">
                                 {/* 동영상 이미지 박스 */}
                                 <div className="vid-img">
-                                    <img src={v.src} alt={v.tit} />
+                                    <img src={v.isrc} alt={v.tit} />
                                     {/* 폰트어썸 아이콘 */}
-                                    <FontAwesomeIcon 
-                                    icon = {faPlayCircle}
+                                    <FontAwesomeIcon icon={faCirclePlay}
                                     style={{
                                         position : 'absolute',
                                         bottom : '55%',
@@ -53,6 +58,11 @@ export function SwiperVid() {
                                         fontSize : '50px'
                                     }} />
                                 </div>
+                                {/* 동영상 타이틀 박스 */}
+                                    <div className="vid-tit">
+                                        <h4>{v.cat}</h4>
+                                        <h3>{v.tit}</h3>
+                                    </div>
                             </section>
                         </SwiperSlide>
                     )
