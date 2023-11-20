@@ -25,9 +25,21 @@ function App(){
 
   // 랜더링 후 실행 구역 /////////////////
   useEffect(()=>{
-    $('.gnb a').click(function(){
-      console.log('나야나~!', this);
-    })
+    $('.gnb li, .indic li').click(function(){
+      // 순번 변수
+      let idx = $(this).index();
+      console.log('나야나~!', idx);
+
+      // 페이지 이동
+      $("html,body").animate({
+        scrollTop : ($(window).height()*idx) + "px" 
+      }, 800, 'easeInOutQuint');
+
+      // 클릭된 메뉴에 class = 'on'넣기
+      $('.gnb li').eq(idx).addClass('on').siblings().removeClass('on');
+      $('.indic li').eq(idx).addClass('on').siblings().removeClass('on');
+    });
+
   }); // useEffect ///////////////
 
   // 리턴 코드 /////////////////////
