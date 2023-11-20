@@ -78,7 +78,6 @@
     height: 60px;
     background-color: #fff;
     box-shadow: 0 0 10px #000;
-    font-size: 12px !important;
 }
 
 .swiper-button-next {
@@ -95,10 +94,33 @@
     display: none;
 }
 
+/* 기존 화살표 디자인 크기 변경 */
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    font-size: 25px;
+}
+
+/* 오버시 화살표 색 변경 */
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after{
+    color: #000;
+}
+
 @media screen and (max-width: 1200px) {
     /* 동영상타이틀 */
     .vid-tit h3 {
         font-size: 14px;
         margin-top: 10px;
+    }
+}
+@media screen and (max-width: 500px) {
+    /* 동영상크기 */
+    .play-vid{
+        width: 90vw;
+    }
+    /* 버튼 위치 */
+    .play-vid button.cbtn{
+        right: 0;
+        top: -130px;
     }
 }
