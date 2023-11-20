@@ -12,6 +12,8 @@ import { useLayoutEffect } from 'react';
 export function Layout(){
 
     // 랜더링 후(화면 보이기 전) 실행 구역 ////////////////
+    // useLayoutEffect 훅을 사용하여 렌더링 후(화면이 보이기 전) 
+    // 실행되는 부분에서 페이지 이동시 스크롤 위치를 상단으로 이동시키는 로직이 있습니다.
     useLayoutEffect(()=>{
         // 페이지 이동시 스크롤 위치 상단이동
         window.scrollTo(0, 0);

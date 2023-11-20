@@ -1,11 +1,11 @@
 import { Banner } from "../modules/Banner";
-import { SecIntro } from "../modules/SecIntro";
+import { VidIntro } from "../modules/VidIntro";
 
 export function Comics(){
     return(
         <>
             <Banner category = 'COMICS' />
-            <SecIntro />
+            <VidIntro cat = 'COMICS' cls='on' />
         </>
     )
 }

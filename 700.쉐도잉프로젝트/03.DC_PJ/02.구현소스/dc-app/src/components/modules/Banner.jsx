@@ -12,6 +12,10 @@ import "jquery-ui-dist/jquery-ui";
 
 // 배너 컴포넌트 /////////////
 export function Banner(props) {
+
+    // 선택 데이터
+    const selData = banData[props.category];
+
     // 1. 변수설정 /////////////////////////////////////////////////////
     // (1) 애니시간
     const A_TM = 600;
@@ -95,8 +99,7 @@ export function Banner(props) {
         indic.eq(sNum).addClass("on").siblings().removeClass("on");
     }; // goSlide 함수 ///////////
 
-    // 선택 데이터
-    const selData = banData[props.category];
+    
 
     // 페이지 랜더링 후 실행구역
     // useEffect(() => {
