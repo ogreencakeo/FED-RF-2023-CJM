@@ -38,70 +38,89 @@
 // root.render(<App />);
 
 import React, { useState } from 'react';
-// import ReactDOM from "react-dom/client";
 import ReactDOM from 'react-dom';
+import attraction_wrap from './AttractionFilter';
 
-const FilterComponent = ({ data }) => {
-    const [selectedItems, setSelectedItems] = useState([]);
-    const [selectedConstraints, setSelectedConstraints] = useState([]);
+const App = () => {
+    const attractionData = Object.values(attraction_wrap);
 
-    const handleItemClick = (item) => {
-        setSelectedItems((prevItems) => {
-            if (prevItems.includes(item)) {
-                // 아이템이 이미 선택되어 있으면 제거
-                return prevItems.filter((prevItem) => prevItem !== item);
+    return (
+        <div>
+            <h1>Attraction Filter App</h1>
+            <AttractionFilter attractionData={attractionData} />
+        </div>
+    );
+};
+
+const AttractionFilter = ({ attractionData }) => {
+    const [selectedCategory, setSelectedCategory] = useState([]);
+    const [selectedCautions, setSelectedCautions] = useState([]);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory((prevCategories) => {
+            if (prevCategories.includes(category)) {
+                return prevCategories.filter((prevCategory) => prevCategory !== category);
             } else {
-                // 아이템이 선택되어 있지 않으면 추가
-                return [...prevItems, item];
+                return [...prevCategories, category];
             }
         });
     };
 
-    const handleConstraintClick = (constraint) => {
-        setSelectedConstraints((prevConstraints) => {
-            if (prevConstraints.includes(constraint)) {
-                // 제한 사항이 이미 선택되어 있으면 제거
-                return prevConstraints.filter(
-                    (prevConstraint) => prevConstraint !== constraint
-                );
+    const handleCautionClick = (caution) => {
+        setSelectedCautions((prevCautions) => {
+            if (prevCautions.includes(caution)) {
+                return prevCautions.filter((prevCaution) => prevCaution !== caution);
             } else {
-                // 제한 사항이 선택되어 있지 않으면 추가
-                return [...prevConstraints, constraint];
+                return [...prevCautions, caution];
             }
         });
     };
 
-    // 선택된 아이템 및 제한 사항에 따라 데이터 필터링
-    const filteredData = data.filter((item) => {
-        const matchItem = selectedItems.length === 0 || selectedItems.includes(item.category);
-        const matchConstraints =
-            selectedConstraints.length === 0 ||
-            selectedConstraints.every((constraint) => item.constraints.includes(constraint));
+    const filteredAttractions = attractionData.filter((attraction) => {
+        const matchCategory =
+            selectedCategory.length === 0 || selectedCategory.includes(attraction.name);
+        const matchCautions =
+            selectedCautions.length === 0 ||
+            selectedCautions.every((caution) => attraction[caution] === "1");
 
-        return matchItem && matchConstraints;
+        return matchCategory && matchCautions;
     });
 
     return (
         <div>
             <div>
                 <h2>항목 선택</h2>
-                <button onClick={() => handleItemClick('어트랙션')}>어트랙션</button>
-                <button onClick={() => handleItemClick('굿즈')}>굿즈</button>
-                <button onClick={() => handleItemClick('레스토랑')}>레스토랑</button>
+                {Object.keys(attraction_wrap).map((attractionId) => (
+                    <button
+                        key={attractionId}
+                        onClick={() => handleCategoryClick(attraction_wrap[attractionId].name)}
+                    >
+                        {attraction_wrap[attractionId].name}
+                    </button>
+                ))}
             </div>
 
             <div>
                 <h2>제한 사항 선택</h2>
-                <button onClick={() => handleConstraintClick('안내견 동반 가능')}>안내견 동반 가능</button>
-                <button onClick={() => handleConstraintClick('가발 착용 가능')}>가발 착용 가능</button>
-                <button onClick={() => handleConstraintClick('휠체어 가능')}>휠체어 가능</button>
+                {Object.keys(attraction_wrap[attractionData[0]]).map((cautionKey) => (
+                    cautionKey.startsWith("caution") && (
+                        <button
+                            key={cautionKey}
+                            onClick={() => handleCautionClick(cautionKey)}
+                        >
+                            {cautionKey}
+                        </button>
+                    )
+                ))}
             </div>
 
             <div>
                 <h2>필터링 결과</h2>
                 <ul>
-                    {filteredData.map((item, index) => (
-                        <li key={index}>{item.name}</li>
+                    {filteredAttractions.map((attraction) => (
+                        <li key={attraction.idx}>
+                            {attraction.name} - {attraction.explanation}
+                        </li>
                     ))}
                 </ul>
             </div>
@@ -109,12 +128,5 @@ const FilterComponent = ({ data }) => {
     );
 };
 
-// 예제 데이터
-const exampleData = [
-    { name: '어트랙션', category: '어트랙션', constraints: ['안내견 동반 가능', '가발 착용 가능'] },
-    { name: '굿즈', category: '굿즈', constraints: ['안내견 동반 가능'] },
-    { name: '레스토랑', category: '레스토랑', constraints: ['휠체어 가능'] },
-];
+ReactDOM.render(<App />, document.getElementById('root'));
 
-
-ReactDOM.render(<FilterComponent data={exampleData} />, document.getElementById('root'));
