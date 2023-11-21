@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
-import { dcCon } from './dcContext';
-import {isrc} from '../data/imgSrc';
-export function Logo(props){
 
+import React from "react";
+import { isrc } from "../data/imgSrc";
+
+import { useContext } from "react";
+import { dcCon } from "./dcContext";
+
+export function Logo(props){
     const myCon = useContext(dcCon);
+
     const myStyle = {
         top : {
             width:"45px",
@@ -20,14 +24,15 @@ export function Logo(props){
     const myStyleImg = {
         top : '45px',
         bottom : '80px'
-    };
-
+    }
     return(
-        <h1 style={myStyle[props.logostyle]} onClick={()=> myCon.chgPage('/')}>
-            <img src={isrc.logo} alt="DC LOGO"
-            style={{
-                width : myStyleImg[props.logostyle]
-            }} />
+        <h1 style={myStyle[props.logoStyle]} onClick={myCon.chgPage('/')}>
+            <img
+                src={isrc.logo}
+                alt="DC logo"
+                style={{
+                    width : myStyleImg[props.logoStyle]
+                }} />
         </h1>
     )
 }

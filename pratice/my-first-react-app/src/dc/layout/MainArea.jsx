@@ -5,5 +5,5 @@ export function MainArea(){
         <main className="cont">
             <Outlet />
         </main>
-    )
+    );
 }
