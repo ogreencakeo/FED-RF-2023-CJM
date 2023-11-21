@@ -25,19 +25,24 @@ function App(){
 
   // 랜더링 후 실행 구역 /////////////////
   useEffect(()=>{
-    $('.gnb li, .indic li').click(function(){
-      // 순번 변수
-      let idx = $(this).index();
-      console.log('나야나~!', idx);
+    // 햄버거 버튼 클릭시 전체 메뉴 보이기 / 숨기기
+    $('.ham').click(e=>{
+      // 1. 전체메뉴 박스 : .mbox -> 보이기 / 숨기기
+      $('.mbox').fadeToggle(400);
+      // 2. 햄버거 버튼에 클래스 'on' 넣기 / 빼기
+      $(e.currentTarget).toggleClass('on')
+      // e.target과 e.currentTarget은 다르다.
+      // 후자가 햄버거버튼 자신임!
+      $(e.currentTarget)
 
-      // 페이지 이동
-      $("html,body").animate({
-        scrollTop : ($(window).height()*idx) + "px" 
-      }, 800, 'easeInOutQuint');
-
-      // 클릭된 메뉴에 class = 'on'넣기
-      $('.gnb li').eq(idx).addClass('on').siblings().removeClass('on');
-      $('.indic li').eq(idx).addClass('on').siblings().removeClass('on');
+      // 3. 비디오 재생 / 멈춤 : 대상 - .bgm
+      // get(0)은 비디오 컬렉션임! -> 제이쿼리용
+      const vid = $('.bgm').get(0);
+      vid.paused? vid.play() : vid.pause();
+      // console.log(vid.paused);
+      // paused 속성 : 동영상 멈춤일때 true 리턴
+      // play() 메서드 : 동영상 재생 메서드
+      // pause() 메서드 : 동영상 정지 메서드
     });
 
   }); // useEffect ///////////////

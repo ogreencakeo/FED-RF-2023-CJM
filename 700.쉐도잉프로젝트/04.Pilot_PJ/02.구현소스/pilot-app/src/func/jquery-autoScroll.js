@@ -11,7 +11,7 @@ require("jquery-ui-touch-punch/jquery.ui.touch-punch");
 export function autoScroll() {
     /****************************************** 
     대상 변수할당하기
-    ******************************************/
+  ******************************************/
     // 전체 페이지번호
     let pno = 0;
     // 페이지 요소
@@ -30,26 +30,25 @@ export function autoScroll() {
     // 각 페이지별 등장요소
     const minfo = $(".minfo");
 
-    /*********************************************************** 
-        이벤트 등록하기
-        -> 리액트에서 제이쿼리로 이벤트 설정시
-        리액트와 충돌되는 문제가 생길 수 있다.
-        예컨데 현재 휠 이벤트는 설정되지만
-        휠 델타값이 안찍힘! -> 해결은?
-        순수한 JS로 이벤트를 설정한다!
-        왜? 제이쿼리로 이벤트를 설정하면
-        제이쿼리 나름의 객체가 생성되어 처리되므로
-        이것을 단순화 하여 이벤트를 걸면 휠델타값이 처리된다.
-        -> 방향키 이벤트도 순수 JS로 걸면 된다.
-    ***********************************************************/
+    /****************************************** 
+    이벤트 등록하기
+    ->>> 리액트에서 제이쿼리로 이벤트설정시
+    리액트와 충돌되는 문제가 생길 수 있다
+    예컨데 현재 휠이벤트는 설정되지만
+    휠델타값이 안찍힘! -> 해결은?
+    순수한 JS 로 이벤트를 설정한다!
+    왜? 제이쿼리로 이벤트를 설정하면
+    제이쿼리 나름의 객체가 생성되어 처리되므로
+    이것을 단순화하여 이벤트를 걸면 휠델타값이
+    처리된다! 
+  ******************************************/
     // 윈도우 휠이벤트 발생시
-    // $(window).on("wheel", wheelFn); -> 제이쿼리 이벤트 X
+    // $(window).on("wheel", wheelFn); -> 제이쿼리 이벤트X
     window.addEventListener("wheel", wheelFn);
 
     // 키보드 이벤트발생시 업데이트
     // 1. Page Up(33) / Up Arrow (38)
     // 2. Page Down(34) / Down Arrow (40)
-    // document.addEventListener('keydown', (e)=> {
     $(document).keydown((e) => {
         // 광휠금지
         if (prot[0]) return;
@@ -82,11 +81,11 @@ export function autoScroll() {
         if (prot[0]) return;
         chkCrazy(0);
 
-        console.log("휠~~~~~~!");
+        // console.log("휠~~~~~~!");
 
         // 1.휠방향 알아내기
         let delta = e.wheelDelta;
-        console.log(delta);
+        // console.log(delta);
 
         // 2. 방향에 따른 페이지번호 증감
         if (delta < 0) {
@@ -128,8 +127,110 @@ export function autoScroll() {
                 {
                     scrollTop: $(window).height() * pno + "px",
                 },
-                700,
-                "easeInOutQuint"
-            );
+                700, "easeInOutQuint", actPage
+                // 애니메이션 후 actPage함수를 호출!
+            ); // animate ///////////////
+
+        // 해당 선택메뉴에 on 넣기
+        addOn();
     } ///////////////// movePg ////////////////
+
+    /////////////////////////////////////////////
+    // GNB 메뉴 + 사이드 인디케이터 클릭 이동기능 //
+    /////////////////////////////////////////////
+    $(".gnb li, .indic li").click(function () {
+        // 1. 순번변수
+        let idx = $(this).index();
+        // console.log('나야나~!',idx);
+
+        // 2. 순번을 페이지번호에 할당(일치시킴!)
+        pno = idx;
+
+        // 3. 페이지 이동
+        movePg();
+    }); ///// click //////////
+
+    /////////////////////////////////////////////////////
+    // GNB + 사이드 인티케이터 해당 페이지에 'on'넣기 함수//
+    /////////////////////////////////////////////////////
+    // 메뉴클릭시 + 마우스휠 이동시에도 모두 이 함수 호출!
+    const addOn = () => {
+        // 클릭된 메뉴에 class 'on' 넣기
+        gnb.eq(pno).addClass("on").siblings().removeClass("on");
+
+        indic.eq(pno).addClass("on").siblings().removeClass("on");
+    }; //////////// addOn함수 ////////////
+
+    /******************************************** 
+        [ 페이지 등장액션 요소 적용하기 ]
+        1. 이벤트 적용시점 : 페이지도착후(애니후콜백) 
+        2. 이벤트 대상 : 각 페이지 동일
+            (1) .page .imgc - 이미지파트
+            (2) .page .txtc h2 a - 타이틀파트
+        3. 변경내용 :
+            [스타일시트 아래 항목 변경]
+            ((변경값))
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: 1s 1s; -> 타이틀만 지연시간
+            ((고정값))
+            transform-origin: left top;
+            display: inline-block; -> a요소만
+    ********************************************/
+
+    /***************************************************************
+        함수명 : initSet
+        기능 : 등장요소 처음상태 셋팅
+    ***************************************************************/
+    function initSet() {
+        // 1. 초기화하기
+        // 대상 : 이미지 - .imgc
+        $('.imgc').css({
+            transform : 'rotate(45deg)',
+            transformOrigin : '-10% -10%',
+            opacity : 0,
+            transition : '1s ease-in-out'
+        }); // css ///////////////////////
+        
+        // 대상 : 글자 - .txtc a
+        $('.txtc a').css({
+            transform : 'rotate(45deg)',
+            transformOrigin : '-100% -100%',
+            opacity : 0,
+            transition : '1s ease-in-out .5s',
+            display : 'inline-block'
+        }); // css ///////////////////////
+    } // initSet 함수 /////////////////
+
+    // 최초 호출 initSet()
+    initSet();
+
+    /***************************************************
+        함수명 : actPage
+        기능 : 페이지 도착후 등장 애니메이션
+    ***************************************************/
+    function actPage(){
+        console.log('액션~!!', pno);
+
+        // pno가 0 또는 4가 아니면 작동!
+        if(pno!=0 || pno!=4){
+            // 대상 : 해당 순번 .page 아래 .imgc와 .txtc a
+            $('.page').eq(pno).find('.imgc,.txtc a')
+            .css({
+                transform : 'rotate(0deg)',
+                opacity : 1
+            }); // CSS ///////////
+        } // if ////////////
+
+        // 첫 페이지일 때 등장요소 초기화
+        if(pno == 0) initSet();
+    } // actPage 함수 /////////////////////////
+
+    // 메인 페이지 상단로고 클릭시 맨위로 이동하기
+    $('#logo a').click((e) => {
+        e.preventDefault();
+        pno = 0;
+        movePg();
+    }); ////////// click //////////////
+
 } ///////////// autoScroll 함수 //////////
