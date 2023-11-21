@@ -24,8 +24,8 @@ export function TopArea(){
                     {/* 2. GNB메뉴 데이터 기반으로 li태그 생성하기 */}
                     {
                         menu.map((v, i)=>
-                            <li key={i}>
-                                <Link to = {v.link}>{v.txt}</Link>
+                            <li key={i} >
+                                <Link to = {v.link} >{v.txt}</Link>
                                 { 
                                     // 서브메뉴 데이터가 있으면 하위 그리기
                                     v.sub && (
