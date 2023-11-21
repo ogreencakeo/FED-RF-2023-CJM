@@ -158,8 +158,8 @@ export function autoScroll() {
     // 메뉴 클릭시 + 마우스 휠 이동시에도 모두 이 함수 호출
     const addOn = () => {
         // 클릭된 메뉴에 class = 'on'넣기
-        $(".gnb li").eq(pno).addClass("on").siblings().removeClass("on");
-        $(".indic li").eq(pno).addClass("on").siblings().removeClass("on");
+        gnb.eq(pno).addClass("on").siblings().removeClass("on");
+        indic.eq(pno).addClass("on").siblings().removeClass("on");
     }; // addOn 함수 /////////////
 
 } ///////////// autoScroll 함수 //////////
