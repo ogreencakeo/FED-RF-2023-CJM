@@ -127,9 +127,9 @@ export function autoScroll() {
                 {
                     scrollTop: $(window).height() * pno + "px",
                 },
-                700,
-                "easeInOutQuint"
-            );
+                700, "easeInOutQuint", actPage
+                // 애니메이션 후 actPage함수를 호출!
+            ); // animate ///////////////
 
         // 해당 선택메뉴에 on 넣기
         addOn();
@@ -182,5 +182,55 @@ export function autoScroll() {
         함수명 : initSet
         기능 : 등장요소 처음상태 셋팅
     ***************************************************************/
-    function initSet() {} // initSet 함수 /////////////////
+    function initSet() {
+        // 1. 초기화하기
+        // 대상 : 이미지 - .imgc
+        $('.imgc').css({
+            transform : 'rotate(45deg)',
+            transformOrigin : '-10% -10%',
+            opacity : 0,
+            transition : '1s ease-in-out'
+        }); // css ///////////////////////
+        
+        // 대상 : 글자 - .txtc a
+        $('.txtc a').css({
+            transform : 'rotate(45deg)',
+            transformOrigin : '-100% -100%',
+            opacity : 0,
+            transition : '1s ease-in-out .5s',
+            display : 'inline-block'
+        }); // css ///////////////////////
+    } // initSet 함수 /////////////////
+
+    // 최초 호출 initSet()
+    initSet();
+
+    /***************************************************
+        함수명 : actPage
+        기능 : 페이지 도착후 등장 애니메이션
+    ***************************************************/
+    function actPage(){
+        console.log('액션~!!', pno);
+
+        // pno가 0 또는 4가 아니면 작동!
+        if(pno!=0 || pno!=4){
+            // 대상 : 해당 순번 .page 아래 .imgc와 .txtc a
+            $('.page').eq(pno).find('.imgc,.txtc a')
+            .css({
+                transform : 'rotate(0deg)',
+                opacity : 1
+            }); // CSS ///////////
+        } // if ////////////
+
+        // 첫 페이지일 때 등장요소 초기화
+        if(pno == 0) initSet();
+    } // actPage 함수 /////////////////////////
+
+    // 메인 페이지 상단로고 클릭시 맨위로 이동하기
+    $('#logo a').click((e) => {
+        e.preventDefault();
+        pno = 0;
+        movePg();
+    }); ////////// click //////////////
+
 } ///////////// autoScroll 함수 //////////
