@@ -131,6 +131,9 @@ export function autoScroll() {
                 700,
                 "easeInOutQuint"
             );
+
+            // 해당 선택메뉴에 on 넣기
+            addOn();
     } ///////////////// movePg ////////////////
 
 
@@ -147,9 +150,6 @@ export function autoScroll() {
 
         // 3. 페이지 이동
         movePg();
-
-        // 4. 현재 메뉴에 on 넣기
-        addOn();
 
     });
     
