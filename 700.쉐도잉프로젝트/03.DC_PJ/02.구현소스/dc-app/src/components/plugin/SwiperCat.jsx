@@ -16,6 +16,7 @@ import "./css/swiper_cat.css";
 // 사용할 스와이퍼 모듈을 불러온다. 
 // (여기서는 페이지네이션, 네비게이션, 자동넘김)
 import { Navigation } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 export function SwiperCat() {
 
@@ -49,9 +50,10 @@ export function SwiperCat() {
             >
                 {
                     selData.map((v, i) =>
+                        // idx 고유번호가 7번 이하만 출력
                         Number(v.idx) <= 7 && (
                             <SwiperSlide key={i}>
-                                <img src={"./images/" + v + '.jpg'} alt="list image" />
+                                {/* <Link  */}
                             </SwiperSlide>
                         )
                     )
