@@ -17,10 +17,29 @@ export function CatDetail(){
     // 3. 캐릭터 명세
     const facts = loc.state.facts;
 
+    console.log(cname, cdesc, facts);
+
     return(
         <>
             {/* 1. 배너 컴포넌트 */}
-            {/* <Banner category = {} /> */}
+            <Banner category = {cname} />
+            {/* 2. 상세 정보 박스 */}
+            <div className="detail">
+                {/* 2-1. 캐릭터 설명박스 */}
+                <div className="desc-box">
+                    <h2>{cname}</h2>
+                    <div className="cdesc">
+                        <p>{cdesc}</p>
+                    </div>
+                </div>
+                {/* 2-2. 캐릭터 명세 */}
+                <div className="facts">
+                    <div>
+                        <h3>CHARACTER FACTS</h3>
+                        <p>{facts}</p>
+                    </div>
+                </div>
+            </div>
         </>
     )
 } // CatDetail 컴포넌트 //////
