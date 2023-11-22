@@ -20,6 +20,11 @@ export function MainCont() {
 
         // 드래그 배너 호출
         dragBanner();
+
+        // 컴포넌트 소멸자
+        return(()=>{
+            console.log('난 소멸했어~!');
+        }); // useEffect ///////////////
     }, []); // useEffect
     return (
         // 메인 페이지일때만 자동 스크롤 기능 적용함
