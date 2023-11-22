@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
-import {menu} from '../data/gnb';
-
-// 폰트어썸 불러오기
+import { menu } from '../data/gnb';
+import { Logo } from '../modules/Logo.jsx';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Logo} from '../modules/Logo.jsx';
 
-export function TopArea(){
-    return(
+export function TopArea() {
+    return (
         <>
-            <header className="top-area">
+            <div className="top-area">
                 <nav className="gnb">
                     <ul>
                         <li>
@@ -18,7 +16,10 @@ export function TopArea(){
                         {
                             menu.map((v, i) =>
                                 <li key={i}>
-                                    <Link to={v.link}>{v.txt}</Link>
+                                    {
+                                        v.sub ? <span href="#">{v.txt}</span> :
+                                            <Link to={v.link}>{v.txt}</Link>
+                                    }
                                     {
                                         v.sub && (
                                             <div className="smenu">
@@ -27,8 +28,7 @@ export function TopArea(){
                                                         v.sub.map((v, i) =>
                                                             <li key={i}>
                                                                 <Link to={v.link}>{v.txt}</Link>
-                                                            </li>
-                                                        )
+                                                            </li>)
                                                     }
                                                 </ol>
                                             </div>
@@ -37,21 +37,21 @@ export function TopArea(){
                                 </li>
                             )
                         }
-                        <li style={{marginLeft : 'auto'}}>
+                        <li style={{ marginLeft: 'auto' }}>
                             <a href="#">
                                 <FontAwesomeIcon icon={faSearch} />
                             </a>
                         </li>
                         <li>
-                            <Link to='/menber'>JOIN US</Link>
+                            <Link to='/member'>JOIN US</Link>
                         </li>
                         <li>
-                            <Link to='/login'>Login</Link>
+                            <Link to='/login'>LOGIN</Link>
                         </li>
+                        {/* <button className='bambtn'></button> */}
                     </ul>
-                    <button className='hambtn'></button>
                 </nav>
-            </header>
+            </div>
         </>
     )
 }

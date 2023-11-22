@@ -1,19 +1,16 @@
-import { TopArea } from "../layout/TopArea.jsx";
-import { MainArea } from "../layout/MainArea.jsx";
-import { FooterArea } from "../layout/FooterArea.jsx";
-
+import { useContext, useLayoutEffect } from "react"
 import {dcCon} from '../modules/dcContext.jsx';
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { TopArea } from "./TopArea.jsx";
+import { MainArea } from "./MainArea.jsx";
+import { FooterArea } from "./FooterArea.jsx";
 
 export function Layout(){
-
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         window.scrollTo(0, 0);
     });
 
     const goNav = useNavigate();
-
     const chgPage = (txt) => goNav(txt);
 
     return(
@@ -22,6 +19,5 @@ export function Layout(){
             <MainArea />
             <FooterArea />
         </dcCon.Provider>
-    );
-    
+    )
 }

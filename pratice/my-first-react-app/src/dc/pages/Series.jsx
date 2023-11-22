@@ -1,9 +1,9 @@
 import { Banner } from "../modules/Banner";
 
-export function News(){
+export function Series(){
     return(
         <>
-            <Banner category='NEWS' />
+            <Banner category='SERIES' />
         </>
     )
 }

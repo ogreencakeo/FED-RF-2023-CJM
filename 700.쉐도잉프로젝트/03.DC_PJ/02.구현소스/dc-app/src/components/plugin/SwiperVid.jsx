@@ -66,7 +66,7 @@ export function SwiperVid(props) {
     return (
         <>
             <Swiper
-                slidesPerView={4}
+                slidesPerView={3}
                 spaceBetween={20}
                 navigation={true}
                 // 사용할 모듈을 여기에 적용시킨다.
