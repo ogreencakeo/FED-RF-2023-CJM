@@ -41,7 +41,7 @@ export function TotalMenu() {
                     </dl>
                     <dl>
                         <dt>
-                            <a href="sub.html?cat=여성">WOMEN</a>
+                            <a href="#" onClick={()=>goPage('women')}>WOMEN</a>
                         </dt>
                         <dd>
                             <a href="#">T-SHIRT</a>
@@ -58,7 +58,7 @@ export function TotalMenu() {
                     </dl>
                     <dl>
                         <dt>
-                            <a href="sub.html?cat=스타일">STYLE</a>
+                            <a href="#" onClick={()=>goPage('style')}>STYLE</a>
                         </dt>
                         <dd>
                             <a href="#">COLLECTION</a>
