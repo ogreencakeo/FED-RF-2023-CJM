@@ -15,6 +15,7 @@ import { Games } from "./components/pages/Games";
 import { News } from "./components/pages/News";
 import { Video } from "./components/pages/Video";
 import { SwiperApp } from "./components/plugin/SwiperApp";
+import { CatDetail } from "./components/pages/CatDetail";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="news" element={<News />} />
           <Route path="video" element={<Video />} />
           <Route path="board" element={<SwiperApp />} />
+          <Route path="detail" element={<CatDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>
