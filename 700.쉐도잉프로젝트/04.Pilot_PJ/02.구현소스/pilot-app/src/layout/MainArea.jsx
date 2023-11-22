@@ -1,21 +1,18 @@
 import {MainCont} from '.././pages/MainCont';
-import {MenSub} from '.././pages/MenSub';
-import {WomenSub} from '.././pages/WomenSub';
-import {StyleSub} from '.././pages/StyleSub';
-import { useEffect } from 'react';
+import { Fashion } from '../pages/Fashion';
+
 // Pilot PJ 메인영역 공통 컴포넌트
 
 // 라우터 역할을 하는 MainArea 컴포넌트 ////////
 export function MainArea(props){
 
-    
-
     return(
         <>
-            {props.page == 'main' && <MainCont />}
-            {props.page == 'men' && <MenSub />}
-            {props.page == 'women' && <WomenSub />}
-            {props.page == 'style' && <StyleSub />}
+            {
+                // main이 아니면 서브 
+                props.page == 'main'? <MainCont /> :
+                <Fashion cat={props.page} />
+            }
         </>
     );
 } // MainArea 컴포넌트 /////////////
