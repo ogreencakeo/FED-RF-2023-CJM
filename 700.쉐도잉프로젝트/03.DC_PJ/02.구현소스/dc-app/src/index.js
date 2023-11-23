@@ -17,6 +17,7 @@ import { Video } from "./components/pages/Video";
 import { SwiperApp } from "./components/plugin/SwiperApp";
 import { CatDetail } from "./components/pages/CatDetail";
 import { Series } from "./components/pages/Series";
+import { SchPage } from "./components/pages/SchPage";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="video" element={<Video />} />
           <Route path="board" element={<SwiperApp />} />
           <Route path="detail" element={<CatDetail />} />
+          <Route path="schpage" element={<SchPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
