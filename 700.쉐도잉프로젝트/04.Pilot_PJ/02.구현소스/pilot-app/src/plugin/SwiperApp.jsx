@@ -15,7 +15,7 @@ import "./css/swiper.css";
 // (여기서는 페이지네이션, 네비게이션, 자동넘김)
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
-export function SwiperApp() {
+export function SwiperApp(props) {
     // 상태관리변수 : 멈춤상태 / 플레이 상태
     const [sts, setSts] = useState(1);
 
@@ -50,17 +50,16 @@ export function SwiperApp() {
     // 리턴 코드 ///////////////////////////////
     return (
         <>
-            <h1 style={{ padding: "20px" }}>{myFirst + " : " + mySecond.current}</h1>
             <Swiper
                 // ref 속성에 useRef 할당 변수를 넣어서 외부에 연결함
                 ref={myRef}
-                slidesPerView={3}
-                spaceBetween={30}
+                slidesPerView={1}
+                spaceBetween={0}
                 pagination={{
                     clickable: true,
                 }}
                 autoplay={{
-                    delay: 2500,
+                    delay: 3000,
                     disableOnInteraction: false,
                 }}
                 loop={true}
@@ -70,19 +69,13 @@ export function SwiperApp() {
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <h2>나야나</h2>
+                    <img src={`../../images/sub/${props.cat}/banner/ban1.png`} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <h2>나야나</h2>
+                    <img src={`../../images/sub/${props.cat}/banner/ban2.png`} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <h2>나야나</h2>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <h2>나야나</h2>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <h2>나야나</h2>
+                    <img src={`../../images/sub/${props.cat}/banner/ban3.png`} alt="" />
                 </SwiperSlide>
             </Swiper>
             {/* 플레이/멈춤버튼 */}
