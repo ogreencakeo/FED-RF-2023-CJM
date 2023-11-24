@@ -1,8 +1,10 @@
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { SchCatList } from "./SchCatList.jsx";
+
+// 검색모듈용 CSS 불러오기
+import '../../css/searching.css';
 
 // DC PJ 검색모듈 컴포넌트
 export function Searching(props) {
@@ -81,7 +83,7 @@ export function Searching(props) {
                         BROWSE CHARACTERS (total)
                     </h2>
                     {/* 2-2. 정렬선택박스 */}
-                    <aside className="sortby">
+                    <aside className="sortbx">
                         <select name="sel" id="sel" className="sel" onChange={sortList}>
                             <option value="0">A-Z</option>
                             <option value="1">Z-A</option>
