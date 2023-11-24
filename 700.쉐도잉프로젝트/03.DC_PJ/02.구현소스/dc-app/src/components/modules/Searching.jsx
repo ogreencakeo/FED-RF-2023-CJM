@@ -37,7 +37,7 @@ export function Searching(props) {
                         {/* 검색버튼 돋보기 아이콘 */}
                         <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open Search" onClick={schList} />
                         {/* 입력창 */}
-                        <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} />
+                        <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} value={props.kword} />
                     </div>
                     {/* 1-2. 체크박스 구역 */}
                     <div className="chkbx">
@@ -90,7 +90,7 @@ export function Searching(props) {
                         </select>
                     </aside>
                     {/* 2-3. 캐릭터 리스트 컴포넌트 */}
-                    <SchCatList />
+                    <SchCatList word={props.kword} />
                 </div>
             </section>
         </>
