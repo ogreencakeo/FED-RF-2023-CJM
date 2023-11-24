@@ -41,7 +41,7 @@ export function TopArea() {;
             // 빈 값이 아니면 검색함수 호출 (검색어 전달!)
             if(txt!==''){
                 // 입력창 부모박스 닫기
-                $(e.target).parent().hide();
+                $(e.target).val('').parent().hide();
                 // 검색 보내기
                 goSearch(txt);
             } 
