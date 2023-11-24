@@ -13,7 +13,7 @@ export function SchCatList(props) {
 
     // 선택 데이터
     const selData = catListData.filter(v=>{
-        if(v.cname.indexOf(props.word) != -1) return true;
+        if(v.cname.toLowerCase().indexOf(props.word) != -1) return true;
     });
     return (
         <>
