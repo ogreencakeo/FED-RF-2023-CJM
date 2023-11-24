@@ -13,6 +13,7 @@ import $ from 'jquery';
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useContext } from "react";
 
 export function TopArea() {;
@@ -30,17 +31,23 @@ export function TopArea() {;
 
     // 2. 입력창에 엔터키를 누르면 검색함수 호출
     const enterKey = e => {
-        // console.log(e.key);
+        // console.log(e.target);
 
         // 엔터키는 'Enter'문자열을 리턴함!
-        if(e.key === 'Enter') goSearch();
+        if(e.key === 'Enter') {
+            // 입력창의 입력값 읽어오기 : val() 사용!
+            let txt = $(e.target).val().trim();
+            console.log('TopArea컴포넌트 enterkey함수 txt :', txt);
+            // 빈 값이 아니면 검색함수 호출 (검색어 전달!)
+            if(txt!=='') goSearch(txt);
+        }; // if ///////////
     }; // enterKey 함수 ////////////////////
 
     // 3. 검색 페이지로 검색어와 함께 이동하기
-    const goSearch = () => {
+    const goSearch = (txt) => { // txt - 검색어
         console.log('나는 검색하러 간다규~!!!');
         // 라우터 이동함수로 이동하기 : 컨텍스트 API 사용
-        myCon.chgPage('/schpage', {state:{keyword:''}});
+        myCon.chgPage('/schpage', {state : {keyword : txt}});
     }; // goSerach 함수 //////////////////
 
     return (
