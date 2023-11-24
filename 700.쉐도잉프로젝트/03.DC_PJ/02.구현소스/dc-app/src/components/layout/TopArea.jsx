@@ -40,7 +40,7 @@ export function TopArea() {;
             console.log('TopArea컴포넌트 enterkey함수 txt :', txt);
             // 빈 값이 아니면 검색함수 호출 (검색어 전달!)
             if(txt!==''){
-                // 입력창 부모박스 닫기
+                // 입력창 비우기 + 부모박스 닫기
                 $(e.target).val('').parent().hide();
                 // 검색 보내기
                 goSearch(txt);
