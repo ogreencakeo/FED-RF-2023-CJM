@@ -4,17 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
 
+// 컨텍스트 API
+import { dcCon } from "../modules/dcContext";
+
 // 제이쿼리
 import $ from 'jquery';
 
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
 
-export function TopArea() {
-
-    // 라우터 이동메서드 함수
-    const goNav = useNavigate();
+export function TopArea() {;
+    // 컨텍스트 API 사용
+    const myCon = useContext(dcCon);
 
     // 검색 관련 함수들 //////////////////////
     // 1. 검색창 보이기 함수
@@ -36,8 +39,8 @@ export function TopArea() {
     // 3. 검색 페이지로 검색어와 함께 이동하기
     const goSearch = () => {
         console.log('나는 검색하러 간다규~!!!');
-        // 라우터 이동함수로 이동하기
-        goNav('/schpage', {state:{keyword:''}});
+        // 라우터 이동함수로 이동하기 : 컨텍스트 API 사용
+        myCon.chgPage('/schpage', {state:{keyword:''}});
     }; // goSerach 함수 //////////////////
 
     return (

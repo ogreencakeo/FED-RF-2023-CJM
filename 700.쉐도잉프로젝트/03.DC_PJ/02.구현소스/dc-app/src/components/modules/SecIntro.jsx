@@ -48,7 +48,7 @@ export function SecIntro(){
                             {/* 3. 버튼 박스 */}
                             <div className="btnbx">
                                 {/* 컨텍스트 API 함수호출 */}
-                                <button onClick={()=>myCon.chgPage(v.link)}>
+                                <button onClick={()=>myCon.chgPage(v.link, {})}>
                                     {v.btn.toUpperCase()}
                                 </button>
                             </div>
