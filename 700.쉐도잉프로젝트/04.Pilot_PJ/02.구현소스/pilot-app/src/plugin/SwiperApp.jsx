@@ -21,17 +21,16 @@ export function SwiperApp(props) {
         // num
         let temp = [];
 
-        for (let x=0; x<num; x++) {
+        for (let x = 0; x < num; x++) {
             temp[x] = (
                 <SwiperSlide>
-                    <img src={`../../images/sub/${props.cat}/banner/ban${x+1}.png`} alt="" />
+                    <img src={`../../images/sub/${props.cat}/banner/ban${x + 1}.png`} alt="" />
                 </SwiperSlide>
             );
-        }; /////////for ///////////
+        } /////////for ///////////
 
         // 배열을 리턴
         return temp;
-
     }; // makeList 함수 ////////////
 
     // 리턴 코드 ///////////////////////////////
@@ -55,7 +54,7 @@ export function SwiperApp(props) {
                 modules={[Pagination, Navigation, Autoplay]}
                 className="mySwiper"
             >
-                {makeList(props.cat=='style'? 5 : 3)}
+                {makeList(props.cat == "style" ? 5 : 3)}
             </Swiper>
         </>
     );
