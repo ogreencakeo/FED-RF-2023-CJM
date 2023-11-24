@@ -39,19 +39,31 @@ export function Searching(props) {
                                 {/* 타이틀 */}
                                 <h2>
                                     ALIGNMENT
-                                    <span className="spbtn">
-                                        ＋
-                                    </span>
+                                    <span className="spbtn">＋</span>
                                 </h2>
                                 {/* 체크박스 리스트 */}
                                 <ol>
                                     <li>
-                                        Heros
+                                        Heroes
                                         {/* 숨긴 체크박스 */}
                                         <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
                                         {/* 디자인 노출 라벨 */}
                                         <label htmlFor="hero" className="chklb"></label>
-                                    </li>   
+                                    </li>
+                                    <li>
+                                        It's Complicated
+                                        {/* 숨긴 체크박스 */}
+                                        <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
+                                        {/* 디자인 노출 라벨 */}
+                                        <label htmlFor="hero" className="chklb"></label>
+                                    </li>
+                                    <li>
+                                        Villains
+                                        {/* 숨긴 체크박스 */}
+                                        <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
+                                        {/* 디자인 노출 라벨 */}
+                                        <label htmlFor="hero" className="chklb"></label>
+                                    </li>
                                 </ol>
                             </li>
                         </ul>
