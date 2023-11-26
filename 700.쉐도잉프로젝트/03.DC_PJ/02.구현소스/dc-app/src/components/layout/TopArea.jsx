@@ -30,6 +30,8 @@ export function TopArea() {;
     }; // showSearch 함수 ////////////////////
 
     // 2. 입력창에 엔터키를 누르면 검색함수 호출
+    // 검색 입력 창에서 키보드 입력 시 호출되며, Enter 키를 눌렀을 때 검색어를 추출하고, 
+    // 검색어가 비어있지 않으면 goSearch 함수를 호출하여 검색 페이지로 이동합니다.
     const enterKey = e => {
         // console.log(e.target);
 
