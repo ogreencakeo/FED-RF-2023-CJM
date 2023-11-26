@@ -22,21 +22,21 @@ export function TopArea(){
 
     const showSearch = () => {
         $('.searchingGnb').show();
-        $('#schinGnb').focus();
+        $('.schinGnb').focus();
     };
-    
-    const enterKey = (e) => {
+
+    const enterKey = e => {
         if(e.key == 'Enter'){
             let txt = $(e.target).val().trim();
             if(txt != ''){
                 $(e.target).val('').parent().hide();
-                goSearch(txt);
+                goSerach(txt);
             }
         }
     };
 
-    const goSearch = (txt) => {
-        myCon.chgPage('/schpage', {state : {keyword : txt}});
+    const goSerach = (txt) => {
+        myCon.chgPage('/schpage', {state : {keyword : txt}})
     };
 
     return(
