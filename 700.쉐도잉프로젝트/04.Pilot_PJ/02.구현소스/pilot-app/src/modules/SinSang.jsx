@@ -2,6 +2,20 @@
 export function SinSang(props) {
     // props.cat - 카테고리 분류명
 
+    const makeList = () => {
+        let temp = [];
+        for (let x = 0; x < 9; x++) {
+            temp[x] = (
+                <li className={`m${x + 1}`} key={x}>
+                    <a href="#">
+                        <img src={`./images/goods/${props.cat}/m${x + 1}.png`} alt="신상품" />
+                    </a>
+                </li>
+            );
+        } // for //////////
+        return temp;
+    }; // makeList 함수 ////////////////
+
     // 리턴 코드 ///////////////
     return (
         <>
@@ -11,51 +25,7 @@ export function SinSang(props) {
             </h2>
             <div className="flowbx">
                 <ul className="flist">
-                    <li className="m3">
-                        <a href="#">
-                            <img src="./images/goods/men/m3.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m4">
-                        <a href="#">
-                            <img src="./images/goods/men/m4.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m5">
-                        <a href="#">
-                            <img src="./images/goods/men/m5.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m6">
-                        <a href="#">
-                            <img src="./images/goods/men/m6.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m7">
-                        <a href="#">
-                            <img src="./images/goods/men/m7.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m8">
-                        <a href="#">
-                            <img src="./images/goods/men/m8.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m9">
-                        <a href="#">
-                            <img src="./images/goods/men/m9.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m1">
-                        <a href="#">
-                            <img src="./images/goods/men/m1.png" alt="신상품" />
-                        </a>
-                    </li>
-                    <li className="m2">
-                        <a href="#">
-                            <img src="./images/goods/men/m2.png" alt="신상품" />
-                        </a>
-                    </li>
+                    {makeList}
                 </ul>
             </div>
         </>
