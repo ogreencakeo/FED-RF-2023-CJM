@@ -4,34 +4,24 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import "./styles.css";
+import "./swiper_vid.css";
 
 // import required modules
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
-export function SwiperApp() {
+export function SwiperVid() {
 
-    const imgArr = ["dcm28", "dcm29", "dcm30", "dcm31", "dcm32", "dcm10", "dcm11", "dcm12", ];
 
     return (
         <>
             <Swiper
                 slidesPerView={3}
-                spaceBetween={30}
-                pagination={{
-                    clickable: true,
-                }}
-                loop = {true}
+                spaceBetween={20}
                 navigation = {true}
-                modules={[Pagination, Navigation, Autoplay]}
+                modules={[Navigation]}
                 className="mySwiper"
-                autoplay = {{
-                    delay : 2500,
-                    disableOnInteraction : false,
-                }}
             >
                 {
                     imgArr.map((v, i) =>

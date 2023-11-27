@@ -8,6 +8,7 @@ export function Main(){
             <Banner category ={`main${Math.ceil(Math.random()*3)}`} />
             <SecIntro />
             <VidIntro cat='main' cls='off' />
+            <VidSwipe cat='main' />
         </>
     )
 }
