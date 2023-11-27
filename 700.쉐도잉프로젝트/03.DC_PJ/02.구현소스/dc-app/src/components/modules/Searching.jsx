@@ -15,6 +15,22 @@ export function Searching(props) {
     // props.kword - 검색어 전달
     console.log("Searching 컴포넌트 전달검색어 (props.kword) :", props.kword);
 
+    // 후크 상태관리 변수 /////////////////////////
+    // 1. 검색어 후크 상태 변수 : 초기값은 전달된 검색어
+    const [kword, setKword] = useState(props.kword);
+    // 2. 출력개수 후크 상태 변수
+    let [cntNum, setCntNum] = useState(0);
+
+    // 검색어 업데이트 ////
+    setKword(props.kword);
+
+    // 리스트 개수 변경 함수 ///////
+    const chgCnt = (num) => {
+        // 후크 상태개수변수 업데이트 하기
+        setCntNum(num);
+        // $('.cntNum').text(num);
+    }; // showCnt함수 /////////////////////
+
     // 검색 리스트 만들기 함수
     const schList = () => {};
 
@@ -27,15 +43,7 @@ export function Searching(props) {
     // 리스트 정렬 함수 /////////////
     const sortList = () => {};
 
-    // 출력개수 후크 데이터로 셋팅!
-    let [cntNum, setCntNum] = useState(0);
-
-    // 리스트 개수 변경 함수 ///////
-    const chgCnt = (num) => {
-        // 후크 상태개수변수 업데이트 하기
-        setCntNum(num);
-        // $('.cntNum').text(num);
-    }; // showCnt함수 /////////////////////
+    
 
     // 리턴 코드 ////////////////////
     return (
@@ -52,9 +60,8 @@ export function Searching(props) {
                         <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open Search" onClick={schList} />
                         {/* 입력창 */}
                         <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} 
-                        // input요소에서 리액트 value 속성은 
-                        // defaultValue를 사용한다.
-                        defaultValue={props.kword} />
+                        // input요소에서 리액트 value 속성은 defaultValue를 사용한다.
+                        defaultValue={kword} />
                     </div>
                     {/* 1-2. 체크박스 구역 */}
                     <div className="chkbx">
