@@ -37,7 +37,10 @@ export function Searching(props) {
                         {/* 검색버튼 돋보기 아이콘 */}
                         <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open Search" onClick={schList} />
                         {/* 입력창 */}
-                        <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} value={props.kword} />
+                        <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} 
+                        // input요소에서 리액트 value 속성은 
+                        // defaultValue를 사용한다.
+                        defaultValue={props.kword} />
                     </div>
                     {/* 1-2. 체크박스 구역 */}
                     <div className="chkbx">
