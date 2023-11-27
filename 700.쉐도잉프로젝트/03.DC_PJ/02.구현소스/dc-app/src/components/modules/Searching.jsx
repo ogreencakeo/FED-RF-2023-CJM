@@ -1,69 +1,76 @@
+// DC PJ 검색모듈 컴포넌트
+
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SchCatList } from "./SchCatList.jsx";
+import { SchCatList } from "./SchCatList";
 
-// 제이쿼리 
-import $ from 'jquery';
+// 제이쿼리
+import $ from "jquery";
 
 // 검색모듈용 CSS 불러오기
-import '../../css/searching.css';
+import "../../css/searching.css";
 import { useState } from "react";
 
-// DC PJ 검색모듈 컴포넌트
 export function Searching(props) {
-    // props.kword - 검색어 전달
-    console.log("Searching 컴포넌트 전달검색어 (props.kword) :", props.kword);
+    // props.kword - 검색어전달
+    console.log("전달검색어:", props.kword);
 
-    // 후크 상태관리 변수 /////////////////////////
-    // 1. 검색어 후크 상태 변수 : 초기값은 전달된 검색어
+    ////////// 후크 상태관리 변수 ////////////
+    // 1. 검색어 후크상태변수 : 초기값은 전달된 검색어
     const [kword, setKword] = useState(props.kword);
-    // 2. 출력개수 후크 상태 변수
-    let [cntNum, setCntNum] = useState(0);
+    // 2. 출력개수 후크상태변수
+    const [cntNum, setCntNum] = useState(0);
+    //////////////////////////////////////////
 
-    // 검색어 업데이트 ////
-    setKword(props.kword);
+    // 검색어 업데이트 함수 /////
+    const chgKword = (txt) => setKword(txt);
 
-    // 리스트 개수 변경 함수 ///////
+    // 넘어온 검색어와 셋팅된 검색어가 다르면 업데이트
+    if (props.kword != kword) chgKword(props.kword);
+
+    // 리스트 개수변경함수 ///////
     const chgCnt = (num) => {
-        // 후크 상태개수변수 업데이트 하기
+        // 후크 상태개수변수 업데이트하기
         setCntNum(num);
         // $('.cntNum').text(num);
-    }; // showCnt함수 /////////////////////
+    }; ///////// showCnt 함수 ///////
 
-    // 검색 리스트 만들기 함수
+    // 검색리스트 만들기 함수
     const schList = () => {};
 
     // 엔터키 반응 함수
     const enterKey = () => {};
 
-    // 체크박스 검색 함수 /////////
+    // 체크박스검색 함수 ////////
     const chkSearch = () => {};
 
-    // 리스트 정렬 함수 /////////////
+    // 리스트 정렬 함수 /////////
     const sortList = () => {};
 
-    
-
-    // 리턴 코드 ////////////////////
+    // 리턴 코드 ////////////////////////
     return (
         <>
             {/* 전체 검색모듈 코드 */}
             <section className="schbx">
-                {/* 1. 옵션 선택 박스 */}
-                <div className="schopt"></div>
-                {/* 2. 결과 리스트 박스 */}
-                <div className="listbx">
-                    {/* 1-1. 검색 박스 */}
+                {/* 1. 옵션선택박스 */}
+                <div className="schopt">
+                    {/* 1-1.검색박스 */}
                     <div className="searching">
                         {/* 검색버튼 돋보기 아이콘 */}
-                        <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open Search" onClick={schList} />
+                        <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open search" onClick={schList} />
                         {/* 입력창 */}
-                        <input id="schin" type="text" placeholder="Filter by keyword" onKeyUp={enterKey} 
-                        // input요소에서 리액트 value 속성은 defaultValue를 사용한다.
-                        defaultValue={kword} />
+                        <input
+                            id="schin"
+                            type="text"
+                            placeholder="Filter by Keyword"
+                            onKeyUp={enterKey}
+                            defaultValue={kword}
+                            /* input요소에서 리액트 value속성은 
+              defaultValue를 사용한다! */
+                        />
                     </div>
-                    {/* 1-2. 체크박스 구역 */}
+                    {/* 1-2. 체크박스구역 */}
                     <div className="chkbx">
                         <ul>
                             <li>
@@ -72,27 +79,27 @@ export function Searching(props) {
                                     ALIGNMENT
                                     <span className="spbtn">＋</span>
                                 </h2>
-                                {/* 체크박스 리스트 */}
+                                {/* 체크박스리스트 */}
                                 <ol>
                                     <li>
                                         Heroes
                                         {/* 숨긴 체크박스 */}
                                         <input type="checkbox" id="hero" className="chkhdn" onChange={chkSearch} />
-                                        {/* 디자인 노출 라벨 */}
+                                        {/* 디자인노출 라벨 */}
                                         <label htmlFor="hero" className="chklb"></label>
                                     </li>
                                     <li>
                                         It's Complicated
                                         {/* 숨긴 체크박스 */}
                                         <input type="checkbox" id="comp" className="chkhdn" onChange={chkSearch} />
-                                        {/* 디자인 노출 라벨 */}
+                                        {/* 디자인노출 라벨 */}
                                         <label htmlFor="comp" className="chklb"></label>
                                     </li>
                                     <li>
                                         Villains
                                         {/* 숨긴 체크박스 */}
                                         <input type="checkbox" id="villain" className="chkhdn" onChange={chkSearch} />
-                                        {/* 디자인 노출 라벨 */}
+                                        {/* 디자인노출 라벨 */}
                                         <label htmlFor="villain" className="chklb"></label>
                                     </li>
                                 </ol>
@@ -100,12 +107,10 @@ export function Searching(props) {
                         </ul>
                     </div>
                 </div>
-                {/* 2. 결과 리스트 박스 */}
+                {/* 2. 결과리스트박스 */}
                 <div className="listbx">
                     {/* 2-1. 결과 타이틀 */}
-                    <h2 className="restit">
-                        BROWSE CHARACTERS ({cntNum})
-                    </h2>
+                    <h2 className="restit">BROWSE CHARACTERS ({cntNum})</h2>
                     {/* 2-2. 정렬선택박스 */}
                     <aside className="sortbx">
                         <select name="sel" id="sel" className="sel" onChange={sortList}>
@@ -114,9 +119,9 @@ export function Searching(props) {
                         </select>
                     </aside>
                     {/* 2-3. 캐릭터 리스트 컴포넌트 */}
-                    <SchCatList word={props.kword} chgCntFn={chgCnt} />
+                    <SchCatList word={props.kword} chgCntFn={chgCnt} se />
                 </div>
             </section>
         </>
     );
-} // Searching 컴포넌트 ////////////
+} ////////////// Searching 컴포넌트 //////////
