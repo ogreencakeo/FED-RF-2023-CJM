@@ -21,6 +21,11 @@ export function SwiperVid() {
                 spaceBetween={20}
                 navigation = {true}
                 modules={[Navigation]}
+                breakpoints = {{
+                    200 : {
+                        slidesPerView : 1,
+                    },
+                }}
                 className="mySwiper"
             >
                 {
