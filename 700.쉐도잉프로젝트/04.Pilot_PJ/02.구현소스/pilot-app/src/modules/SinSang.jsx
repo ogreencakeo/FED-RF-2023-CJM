@@ -49,6 +49,9 @@ export function SinSang(props) {
         // 3. 현재 li에 만든 .ibox에 데이터 넣기
         tg.find('.ibox').html(
             selData[gKey].split('^')
+            .map((v) =>
+                `<div>${v}</div>`
+            )
         )
     }; // showInfo 함수 ////////////
 
