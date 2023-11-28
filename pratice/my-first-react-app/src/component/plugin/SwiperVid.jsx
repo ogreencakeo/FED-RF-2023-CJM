@@ -34,6 +34,7 @@ export function SwiperVid(props) {
         vbx.fadeIn(300);
         cbtn.click(()=>{
             vbx.fadeOut(300);
+            ifr.attr('src', '');
         });
     }
 

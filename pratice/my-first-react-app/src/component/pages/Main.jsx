@@ -10,6 +10,7 @@ export function Main(){
             <SecIntro />
             <VidIntro cat='main' cls='off' />
             <VidSwipe cat='main' />
+            <CatList />
         </>
     )
 }
