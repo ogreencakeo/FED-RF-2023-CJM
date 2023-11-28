@@ -48,13 +48,18 @@ export function SinSang(props) {
 
         console.log('selData[gKey].split('^') :', selData[gKey].split('^'));
 
-        // 3. 현재 li에 만든 .ibox에 데이터 넣기
+        // 3. 현재 li에 만든 .ibox에 데이터 넣기 + 등장
         tg.find('.ibox').html(
             selData[gKey].split('^')
             .map((v) =>
                 `<div>${v}</div>`
             )
         )
+        // 등장애니
+        .animate({
+            top : '110%',
+            opacity : 1,
+        }, 300)
     }; // showInfo 함수 ////////////
 
     // 정보박스 지우기 함수
