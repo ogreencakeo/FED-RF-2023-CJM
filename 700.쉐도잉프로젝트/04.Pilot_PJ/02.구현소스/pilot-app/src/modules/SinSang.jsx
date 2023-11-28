@@ -1,10 +1,17 @@
 import { useEffect } from "react";
 
+// 신상품 데이터 가져오기
+import { sinsangData } from "../data/sinsang";
+
 import $ from "jquery";
 
 // 신상품 컴포넌트 /////////////////////
 export function SinSang(props) {
     // props.cat - 카테고리 분류명
+
+    // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
+    const selData = sinsangData[props.cat];
+    console.log('sinsangData[props.cat] => selData :', selData);
 
     const makeList = () => {
         // 코드 담을 배열
@@ -12,7 +19,10 @@ export function SinSang(props) {
         // 원하는 반복수 만큼 for문 실행하여 배열에 JSX태그 담기
         for (let x = 0; x < 9; x++) {
             temp[x] = (
-                <li className={`m${x + 1}`} key={x}>
+                <li 
+                className={`m${x + 1}`} 
+                key={x}
+                onMouseEnter={showInfo}>
                     <a href="#">
                         <img src={`./images/goods/${props.cat}/m${x + 1}.png`} alt="신상품" />
                     </a>
@@ -22,6 +32,13 @@ export function SinSang(props) {
         // JSX 태그를 담은 배열을 리턴 -> 자동태그변환!
         return temp;
     }; // makeList 함수 ////////////////
+
+    // 상품에 오버시 상품 정보를 보여주는 함수 ////
+    const showInfo = (e) => {
+        // 이벤트가 발생한 li의 class 읽어오기 (상품정보객체의 키)
+        let gKey = $(e.currentTarget).attr('class');
+        console.log('나야나! selData[gKey] :', selData[gKey]);
+    }; // showInfo 함수 ////////////
 
     // 신상품 리스트 이동함수 사용변수 ///////
     // 위치값 변수 (left 값)
