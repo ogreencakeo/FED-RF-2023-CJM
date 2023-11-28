@@ -24,19 +24,17 @@ export function Searching(props) {
     const [cntNum, setCntNum] = useState(0);
     //////////////////////////////////////////
 
-    // let mm = 
+    // let mm =
 
     // 검색어 업데이트 함수 /////
     const chgKword = (txt) => setKword(txt);
 
-    useEffect(() => {
-        // 넘어온 검색어와 셋팅된 검색어가 다르면 업데이트
-        if (props.kword != kword) {
-            chgKword(props.kword);
-            // 모듈검색 input창에 같은 값 넣어주기
-            $("#schin").val(props.kword);
-        } // if /////////////////////
-    }, []);
+    // 넘어온 검색어와 셋팅된 검색어가 다르면 업데이트
+    if (props.kword != kword) {
+        chgKword(props.kword);
+        // 모듈검색 input창에 같은 값 넣어주기
+        $("#schin").val(props.kword);
+    } // if /////////////////////
 
     // 리스트 개수변경함수 ///////
     const chgCnt = (num) => {
