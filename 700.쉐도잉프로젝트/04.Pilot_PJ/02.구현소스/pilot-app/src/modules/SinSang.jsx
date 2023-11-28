@@ -25,7 +25,7 @@ export function SinSang(props) {
             </h2>
             <div className="flowbx">
                 <ul className="flist">
-                    {makeList}
+                    {makeList()}
                 </ul>
             </div>
         </>

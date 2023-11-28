@@ -1,6 +1,7 @@
 import { Banner } from "../modules/Banner";
 import { SecIntro } from "../modules/SecIntro";
 import { VidIntro } from "../modules/VidIntro";
+import {VidSwipe} from '../modules/VidSwipe';
 
 export function Main(){
     return(
