@@ -46,6 +46,8 @@ export function SinSang(props) {
         // 마우스 오버된 li 자신에 넣어줌
         tg.append(`<div class='ibox'></div>`);
 
+        console.log('selData[gKey].split('^') :', selData[gKey].split('^'));
+
         // 3. 현재 li에 만든 .ibox에 데이터 넣기
         tg.find('.ibox').html(
             selData[gKey].split('^')
