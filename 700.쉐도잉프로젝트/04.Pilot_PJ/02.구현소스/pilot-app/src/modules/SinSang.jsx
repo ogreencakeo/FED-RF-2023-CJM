@@ -22,7 +22,8 @@ export function SinSang(props) {
                 <li 
                 className={`m${x + 1}`} 
                 key={x}
-                onMouseEnter={showInfo}>
+                onMouseEnter={showInfo}
+                onMouseLeave={removeInfo}>
                     <a href="#">
                         <img src={`./images/goods/${props.cat}/m${x + 1}.png`} alt="신상품" />
                     </a>
@@ -35,10 +36,26 @@ export function SinSang(props) {
 
     // 상품에 오버시 상품 정보를 보여주는 함수 ////
     const showInfo = (e) => {
-        // 이벤트가 발생한 li의 class 읽어오기 (상품정보객체의 키)
-        let gKey = $(e.currentTarget).attr('class');
-        console.log('나야나! selData[gKey] :', selData[gKey]);
+        // 대상
+        const tg = $(e.currentTarget);
+        // 1. 이벤트가 발생한 li의 class 읽어오기 (상품정보객체의 키)
+        let gKey = tg.attr('class');
+        // console.log('나야나! selData[gKey] :', selData[gKey]);
+
+        // 2. 상품 정보박스를 만들고 보이게 하기
+        // 마우스 오버된 li 자신에 넣어줌
+        tg.append(`<div class='ibox'></div>`);
+
+        // 3. 현재 li에 만든 .ibox에 데이터 넣기
+        tg.find('.ibox').html(
+            selData[gKey].split('^')
+        )
     }; // showInfo 함수 ////////////
+
+    // 정보박스 지우기 함수
+    const removeInfo = (e) => {
+        $(e.currentTarget).find('.ibox').remove();
+    };
 
     // 신상품 리스트 이동함수 사용변수 ///////
     // 위치값 변수 (left 값)
