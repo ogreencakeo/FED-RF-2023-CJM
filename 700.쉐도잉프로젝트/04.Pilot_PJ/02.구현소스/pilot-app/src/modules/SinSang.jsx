@@ -49,14 +49,11 @@ export function SinSang(props) {
         ele.css({ left: lpos + "px" });
 
         // 재귀호출
-        if(callStst)
-            setTimeout(() => flowList(ele), 40);
+        if (callStst) setTimeout(() => flowList(ele), 40);
     }; // flowList /////////////////
 
     // 오버 / 아웃시 이동제어 함수
-    const flowOut = () => {
-
-    }; 
+    const flowOut = () => {};
 
     // 랜더링 후 실행구역 //////////////
     useEffect(() => {
@@ -73,9 +70,14 @@ export function SinSang(props) {
                 NEW MEN'S ARRIVAL
                 <button>전체리스트</button>
             </h2>
-            <div className="flowbx" 
-            onMouseOver={()=>callStst=0} 
-            onMouseOut={()=>callStst=1}>
+            <div
+                className="flowbx"
+                onMouseOver={() => (callStst = 0)}
+                onMouseOut={() => {
+                    callStst = 1;
+                    flowList($(".flist"));
+                }}
+            >
                 <ul className="flist">{makeList()}</ul>
             </div>
         </>
