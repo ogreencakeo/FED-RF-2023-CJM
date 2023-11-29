@@ -9,9 +9,18 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SchCatList } from "./SchCatList";
 
+// 데이터
+import {catListData} from '../data/swiper_cat';
+
 export function Seraching(props) {
     const [kword, setKword] = useState(props.kword);
     const [cntNum, setCntNum] = useState(0);
+
+    const schList = (e) => {
+        let keyword = $('#schin').val();
+
+        const newList = catList
+    }
 
     return (
         <>
@@ -22,7 +31,8 @@ export function Seraching(props) {
                             icon={faSearch}
                             className="schbtn"
                             title="Open search"
-                            
+                            onClick={schList}
+                            ret={xx}
                         />
                     </div>
                 </div>
