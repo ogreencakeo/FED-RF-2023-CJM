@@ -151,7 +151,7 @@ export function Searching(props) {
 
         // 4. 체크박스 체크개수 세기 : 1개 초과시 배열 합치기!
         let num = $(".chkhdn:checked").length;
-        console.log('체크개수 num :', num);
+        console.log("체크개수 num :", num);
 
         // 5. 체크박스 체크유무에 따른 분기
         // (1) 체크박스가 true일때 해당 검색어로 검색하기
@@ -162,15 +162,38 @@ export function Searching(props) {
             }); // filter ////////////////
 
             // 체크개수가 1초과 일때 배열합치기
-            if(num>1){
+            if (num > 1) {
                 // 스프레드 연산자 (...) 사용하기
                 lastList = [...temp, ...nowList];
             } // if ////////
-            else{
+            else {
                 lastList = nowList;
             }
 
+            // lastList = temp;
         } // if ////////////////
+        // (2) 체크박스가 false일때 데이터 지우기
+        else {
+            console.log("지울데이터 cid : ", cid);
+            // for문을 돌면서 배열데이터중 해당 값을 지운다.
+            for (let i = 0; i < temp.length; i++) {
+                // -> 삭제대상 :
+                // 데이터중 alignment 항목값이 아이디명과 같은것
+                if (temp[i].alignment == cid) {
+                    // 해당항목 지우기
+                    // 배열 지우기 메서드 : splice(순번, 개수)
+                    temp.splice(i, 1);
+                    // 주의! 배열을 지우면 전체개수가 1씩 줄어든다.
+                    // 반드시 줄임처리할 것
+                    i--;
+                } // if //////////
+            } // for /////////////
+
+            console.log("삭제처리된 배열 :", temp);
+
+            // 결과처리 하기 : 삭제 처리된 temp를 결과에 넣기
+            lastList = temp;
+        } // else
 
         // 5. 검색결과 리스트 업데이트 하기
         setSelData([temp, 2]);
