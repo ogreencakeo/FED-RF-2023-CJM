@@ -27,7 +27,8 @@ const temp = catListData.sort((a, b)=>{
     return a.cname == b.cname ? 0 : a.cname > b.cname? 1 : -1;
 });
 
-console.log(temp);
+console.log('catListData :', catListData);
+console.log('temp :', temp);
 
 export function Searching(props) {
     // props.kword - 검색어전달

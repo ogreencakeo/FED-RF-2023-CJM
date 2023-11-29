@@ -3,7 +3,7 @@ import {MainArea} from '../layout/MainArea.jsx';
 import {FooterArea} from '../layout/FooterArea.jsx';
 
 import { dcCon } from '../modules/dcCon.jsx'; 
-import { useLayoutEffect } from 'react';
+import { useCallback, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function Layout(){
@@ -14,11 +14,11 @@ export function Layout(){
 
     const goNav = useNavigate();
 
-    const chgPage = (pgName, param) => goNav(pgName, param); 
+    const chgPage = useCallback((pgName, param) => goNav(pgName, param), []); 
 
     return(
         <dcCon.Provider value={{chgPage}}>
-            <TopArea />
+            <TopArea chgPageFn={chgPage} />
             <MainArea />
             <FooterArea />
         </dcCon.Provider>
