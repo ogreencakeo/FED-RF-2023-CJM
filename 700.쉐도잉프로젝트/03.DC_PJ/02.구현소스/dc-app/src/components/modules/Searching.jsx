@@ -140,25 +140,28 @@ export function Searching(props) {
 
         // 2. 체크박스 체크여부 : checked (true/false)
         const chked = e.target.checked;
-        console.log('아이디 cid :', cid, ', chked :', chked);
+        console.log("아이디 cid :", cid, ", chked :", chked);
 
         // 3. 기존 입력데이터 가져오기
         // selData의 첫번째 배열값
         let temp = selData[0];
 
-        // 4. 체크박스 체크유무에 따른 분기
+        // 4. 체크박스 체크개수 세기 : 1개 초과시 배열 합치기!
+        let num = $(".chkhdn:checked").length;
+        console.log('num :', num);
+
+        // 5. 체크박스 체크유무에 따른 분기
         // (1) 체크박스가 true일때 해당 검색어로 검색하기
-        if(chked){
+        if (chked) {
             // 현제 데이터 변수에 담기
-            temp = catListData.filter(v => {
-                if(v.alignment == cid) return true;
+            temp = catListData.filter((v) => {
+                if (v.alignment == cid) return true;
             }); // filter ////////////////
         }
 
         // 5. 검색결과 리스트 업데이트 하기
         setSelData([temp, 2]);
         setCnt(temp.length);
-
     }; // chkSearch 함수 //////////
 
     //////////////////////
