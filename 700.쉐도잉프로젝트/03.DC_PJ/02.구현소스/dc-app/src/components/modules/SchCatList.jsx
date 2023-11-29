@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import "../../css/serach_cat_list.css";
 
 // dt - 검색된 배열 데이터
+// total - 검색된 배열데이터 개수
+
 export function SchCatList({dt, total}) {
+    // 선택데이터
     const selData = dt;
 
     // 선택데이터 개수

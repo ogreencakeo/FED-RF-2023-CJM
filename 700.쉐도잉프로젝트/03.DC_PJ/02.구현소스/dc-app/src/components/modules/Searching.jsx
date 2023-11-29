@@ -75,6 +75,8 @@ export function Searching(props) {
             chgKword(props.kword);
             // 모듈검색 input창에 같은 값 넣어주기
             $("#schin").val(props.kword);
+            // 검색 리스트 만들기 함수 호출
+            schList();
         } // if /////////////////////
     }; // initFn 함수 ///////////////
 
@@ -133,8 +135,28 @@ export function Searching(props) {
     // 체크박스검색 함수 ////////
     const chkSearch = () => {};
 
+    ///////////////////////////////
     // 리스트 정렬 함수 /////////
-    const sortList = () => {};
+    /////////////////////////////
+    const sortList = (e) => {
+        // 1. 선택옵션값 : 0 - 오름차순, 1 - 내림차순
+        const optVal = e.target.value;
+        console.log('선택옵션 (optVal) :', optVal);
+
+        // 2. 재정렬할 데이터를 가져온다 : selData 첫번째값
+        let temp = selData[0];
+
+        // 3. 옵션에 따른 정렬반영하기
+        temp.sort((a, b) => {
+            if(optVal == 1){
+                // 내림차순
+                return a.cname==b.cname ? 0 : a.cname>b.cname? -1 : 1;
+            }else if(optVal == 0){
+                // 오름차순
+                return a.cname==b.cname ? 0 : a.cname>b.cname? 1 : -1;
+            }
+        });
+    }; // sortList 함수 /////////////
 
     // 리턴 코드 ////////////////////////
     return (
@@ -206,7 +228,7 @@ export function Searching(props) {
                 {/* 2. 결과리스트박스 */}
                 <div className="listbx">
                     {/* 2-1. 결과 타이틀 */}
-                    <h2 className="restit">BROWSE CHARACTERS ({cntNum})</h2>
+                    <h2 className="restit">BROWSE CHARACTERS ({cnt})</h2>
                     {/* 2-2. 정렬선택박스 */}
                     <aside className="sortbx">
                         <select name="sel" id="sel" className="sel" onChange={sortList}>
