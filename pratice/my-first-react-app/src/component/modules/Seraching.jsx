@@ -7,7 +7,7 @@ import "../../css/searching.css";
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SchCatList } from "./SchCatList";
+import { SchCatList } from "./SchCatList.jsx";
 
 // 데이터
 import {catListData} from '../data/swiper_cat';
@@ -15,7 +15,7 @@ import {catListData} from '../data/swiper_cat';
 export function Seraching(props) {
     const [kword, setKword] = useState(props.kword);
     const [cntNum, setCntNum] = useState(0);
-    const [selData, setSelData] = useState
+    const [selData, setSelData] = useState([catListData, 2])
 
     const schList = (e) => {
         let keyword = $('#schin').val();
@@ -68,6 +68,16 @@ export function Seraching(props) {
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div className="listbx">
+                    <h2 className="restit">BROWSE CHARACTERS({cnt})</h2>
+                    <aside className="sortbx">
+                        <select name="sel" id="sel" className="sel" onChange={sortList}>
+                            <option value="0">A-Z</option>
+                            <option value="1">Z-A</option>
+                        </select>
+                    </aside>
+                    <SchCatList dt={selData[0]} total={cnt} />
                 </div>
             </section>
         </>
