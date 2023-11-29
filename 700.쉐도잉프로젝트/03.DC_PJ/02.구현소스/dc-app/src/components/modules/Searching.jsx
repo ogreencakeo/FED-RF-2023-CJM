@@ -146,18 +146,31 @@ export function Searching(props) {
         // selData의 첫번째 배열값
         let temp = selData[0];
 
+        // 결과집합 배열 변수 : 최종결과 배열
+        let lastList = [];
+
         // 4. 체크박스 체크개수 세기 : 1개 초과시 배열 합치기!
         let num = $(".chkhdn:checked").length;
-        console.log('num :', num);
+        console.log('체크개수 num :', num);
 
         // 5. 체크박스 체크유무에 따른 분기
         // (1) 체크박스가 true일때 해당 검색어로 검색하기
         if (chked) {
             // 현제 데이터 변수에 담기
-            temp = catListData.filter((v) => {
+            const nowList = catListData.filter((v) => {
                 if (v.alignment == cid) return true;
             }); // filter ////////////////
-        }
+
+            // 체크개수가 1초과 일때 배열합치기
+            if(num>1){
+                // 스프레드 연산자 (...) 사용하기
+                lastList = [...temp, ...nowList];
+            } // if ////////
+            else{
+                lastList = nowList;
+            }
+
+        } // if ////////////////
 
         // 5. 검색결과 리스트 업데이트 하기
         setSelData([temp, 2]);
