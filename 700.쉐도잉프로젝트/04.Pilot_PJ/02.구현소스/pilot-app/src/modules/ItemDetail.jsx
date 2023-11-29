@@ -1,4 +1,5 @@
-// 상품 상세보기 컴포넌트
+// 상품상세보기 컴포넌트
+
 export function ItemDetail() {
     return (
         <>
@@ -7,7 +8,7 @@ export function ItemDetail() {
             </a>
             <div id="imbx">
                 <div className="inx">
-                    <section className="gim/g">
+                    <section className="gimg">
                         <img src="../images/goods/men/m3.png" alt="큰 이미지" />
                         <div className="small">
                             <a href="#">
@@ -35,7 +36,8 @@ export function ItemDetail() {
                                     <img src="../images/btn_source_copy.gif" alt="URL복사" />
                                 </li>
                                 <li>
-                                    <span>판매가</span> <span id="gprice">89,000원</span>
+                                    <span>판매가</span>
+                                    <span id="gprice">89,000원</span>
                                 </li>
                                 <li>
                                     <span>적립금</span>
@@ -88,4 +90,4 @@ export function ItemDetail() {
             </div>
         </>
     );
-} // ItemlDetial 컴포넌트 ///////
+} /////////// ItemDetail 컴포넌트 ///////////
