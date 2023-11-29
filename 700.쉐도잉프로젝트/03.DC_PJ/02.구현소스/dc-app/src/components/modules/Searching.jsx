@@ -14,6 +14,21 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 
+// 캐릭터 리스트 데이터 가져오기
+import { catListData } from "../data/swiper_cat";
+
+// 최초 원본 데이터 정렬 변경하기(오름차순)
+// 주의사항 : 컴포넌트에 포함시키지 말것
+// 이유는 배열의 정렬정보가 컴포넌트에 포함될 경우 
+// 컴포넌트 리랜더링시 초기화 되므로 정렬이 변경되지 않는다.
+// 따라서 컴포넌트 바깥쪽 위에서 정렬된 원본 배열 데이터를
+// 만들어준다.
+const temp = catListData.sort((a, b)=>{
+    return a.cname == b.cname ? 0 : a.cname > b.cname? 1 : -1;
+});
+
+console.log(temp);
+
 export function Searching(props) {
     // props.kword - 검색어전달
     console.log("전달검색어:", props.kword);
@@ -23,7 +38,10 @@ export function Searching(props) {
     const [kword, setKword] = useState(props.kword);
     // 2. 출력개수 후크상태변수
     const [cntNum, setCntNum] = useState(0);
-    //////////////////////////////////////////s
+    //////////////////////////////////////////
+
+    // 검색어 업데이트 함수 /////
+    const chgKword = (txt) => setKword(txt);
 
     // 검색 케이스 구분변수 (useRef -> 값 유지)
     const allow = useRef(1);
@@ -32,15 +50,12 @@ export function Searching(props) {
 
     // 폰트어썸을 참조하는 테스트용 참조변수
     const xx = useRef(null);
-    useEffect(()=>{
+    useEffect(() => {
         // xx가 폰트어썸 컴포넌트를 담은 후!
         console.log(xx);
         // 테두리 디자인 줘봐요
-        xx.current.style.border = '5px dotted red';
+        xx.current.style.border = "5px dotted red";
     }); // useEffect ///////////
-
-    // 검색어 업데이트 함수 /////
-    const chgKword = (txt) => setKword(txt);
 
     // 상단검색 초기실행함수 /////////////
     const initFn = () => {
@@ -72,13 +87,13 @@ export function Searching(props) {
 
     // 엔터키 반응 함수
     const enterKey = (e) => {
-        // 상단키워드 검색 막기
-        allow.current = 0;
-        // 잠시후 상태해제
-        setTimeout(()=>allow.current=1, 100);
-
         // 엔터키일때만 반영함
         if (e.key == "Enter") {
+            // 상단키워드 검색 막기
+            allow.current = 0;
+            // 잠시후 상태해제 (비동기)
+            setTimeout(() => (allow.current = 1), 0);
+
             let txt = $(e.target).val();
             console.log("$(e.target).val() :", $(e.target).val());
 
@@ -102,8 +117,13 @@ export function Searching(props) {
                     {/* 1-1.검색박스 */}
                     <div className="searching">
                         {/* 검색버튼 돋보기 아이콘 */}
-                        <FontAwesomeIcon icon={faSearch} className="schbtn" title="Open search" onClick={schList}
-                        ref={xx} />
+                        <FontAwesomeIcon
+                            icon={faSearch}
+                            className="schbtn"
+                            title="Open search"
+                            onClick={schList}
+                            ref={xx}
+                        />
                         {/* 입력창 */}
                         <input
                             id="schin"
