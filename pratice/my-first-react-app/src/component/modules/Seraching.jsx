@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // 제이쿼리
 import $ from "jquery";
 // 검색모듈용 CSS 불러오기
@@ -12,19 +12,71 @@ import { SchCatList } from "./SchCatList.jsx";
 // 데이터
 import {catListData} from '../data/swiper_cat';
 
+catListData.sort((a, b) => {
+    return a.cname==b.cname? 0 : a.cname>b.cname? 1:-1;
+});
+
 export function Seraching(props) {
+
     const [kword, setKword] = useState(props.kword);
     const [cntNum, setCntNum] = useState(0);
-    const [selData, setSelData] = useState([catListData, 2])
+    const [selData, setSelData] = useState([catListData, 2]);
+
+    const [cnt, setCnt] = useState(catListData.length);
+
+    const chgKword = (txt) => setKword(txt);
+
+    const allow = useRef(1);
+
+    const xx = useRef(null);
+    useEffect(()=>{
+        xx.current.style.outline = '5px dotted orange';
+    });
+
+    const initFn = () => {
+        if(props.kword != kword){
+            chgKword(props.kword);
+            $('#schin').val(props.kword);
+        }
+    };
+
+    if(allow.current) initFn();
+
+    const chgCnt = (num) => {
+        setCntNum(num);
+    }
 
     const schList = (e) => {
         let keyword = $('#schin').val();
-
         const newList = catListData.filter((v) => {
             if(v.cname.toLowerCase().indexOf(keyword) != -1) return true;
-        })
+        });
 
+        setSelData([newList, 2]);
+        setCnt(newList.length);
     }
+
+    const chkSerach = (e) => {
+        const cid = e.target.id;
+        const chked = e.target.checked;
+        let temp = selData[0];
+
+        let lastList = [];
+
+        let num = $('.chkhdn:checked').length;
+
+        if(chked){
+            const nowList = catListData.filter((v) => {
+                if(v.alignment == cid) return true;
+            });
+            if(num > 1){
+                lastList = [...temp, ...nowList];
+            }else{
+                lastList = nowList;
+            }
+        }
+    }
+
 
     return (
         <>
