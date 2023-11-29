@@ -22,8 +22,7 @@ export function Seraching(props) {
                             icon={faSearch}
                             className="schbtn"
                             title="Open search"
-                            onClick={schList}
-                            ref={xx}
+                            
                         />
                     </div>
                 </div>

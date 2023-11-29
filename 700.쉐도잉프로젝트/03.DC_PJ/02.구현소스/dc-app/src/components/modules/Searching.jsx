@@ -19,16 +19,15 @@ import { catListData } from "../data/swiper_cat";
 
 // 최초 원본 데이터 정렬 변경하기(오름차순)
 // 주의사항 : 컴포넌트에 포함시키지 말것
-// 이유는 배열의 정렬정보가 컴포넌트에 포함될 경우 
+// 이유는 배열의 정렬정보가 컴포넌트에 포함될 경우
 // 컴포넌트 리랜더링시 초기화 되므로 정렬이 변경되지 않는다.
 // 따라서 컴포넌트 바깥쪽 위에서 정렬된 원본 배열 데이터를
 // 만들어준다.
-const temp = catListData.sort((a, b)=>{
-    return a.cname == b.cname ? 0 : a.cname > b.cname? 1 : -1;
+catListData.sort((a, b) => {
+    return a.cname == b.cname ? 0 : a.cname > b.cname ? 1 : -1;
 });
 
-console.log('catListData :', catListData);
-console.log('temp :', temp);
+console.log("catListData (오름차순) :", catListData);
 
 export function Searching(props) {
     // props.kword - 검색어전달
@@ -37,8 +36,19 @@ export function Searching(props) {
     ////////// 후크 상태관리 변수 ////////////
     // 1. 검색어 후크상태변수 : 초기값은 전달된 검색어
     const [kword, setKword] = useState(props.kword);
+
     // 2. 출력개수 후크상태변수
     const [cntNum, setCntNum] = useState(0);
+
+    // 3. 데이터 구성 상태변수 : [배열데이터, 정렬상태]
+    const [selData, setSelData] = useState([catListData, 2]);
+    // - 정렬상태값 : 0 - 오름차순, 1 - 내림차순, 2 - 정렬전
+    // 두가지 값을 같이 관리하는 이유는 데이터 정렬만 변경될 경우
+    // 배열 자체가 변경된 것으로 인식하지 않기 때문이다.
+
+    // 4. 데이터 건수 상태변수
+    const [cnt, setCnt] = useState(catListData.length);
+
     //////////////////////////////////////////
 
     // 검색어 업데이트 함수 /////
@@ -79,12 +89,27 @@ export function Searching(props) {
         // $('.cntNum').text(num);
     }; ///////// showCnt 함수 ///////
 
+    /////////////////////////////////////
     // 검색리스트 만들기 함수
     const schList = (e) => {
-        console.log(e.currentTarget);
-        // 아이콘 다음 요소가 input 이고 그 값을 읽어와서 변경
-        chgKword($(e.currentTarget).next().val());
-    };
+        // 1. 검색어 읽어오기
+        let keyword = $("#schin").val();
+
+        // 2. 데이터 검색하기
+        const newList = catListData.filter((v) => {
+            if (v.cname.toLowerCase().indexOf(keyword) != -1) return true;
+        }); // filter ////////////////////
+
+        console.log("검색결과 (newList) :", newList);
+
+        // 3. 검색결과 리스트 업데이트 하기
+        // 데이터 상태관리변수 업데이트
+        setSelData([newList, 2]);
+
+        // 검색건수 상태관리 변수 업데이트
+        setCnt(newList.length);
+
+    }; // schList 함수 ////////////////////
 
     // 엔터키 반응 함수
     const enterKey = (e) => {
@@ -99,8 +124,11 @@ export function Searching(props) {
             console.log("$(e.target).val() :", $(e.target).val());
 
             chgKword(txt);
-        }
-    };
+
+            // 검색리스트 만들기 함수 호출
+            schList();
+        } // if /////////////
+    }; // enterKey 함수 ////////////////
 
     // 체크박스검색 함수 ////////
     const chkSearch = () => {};
@@ -186,8 +214,9 @@ export function Searching(props) {
                             <option value="1">Z-A</option>
                         </select>
                     </aside>
-                    {/* 2-3. 캐릭터 리스트 컴포넌트 : 검색어를 후크상태변수로 연결! -> 데이터 변경에 반영 */}
-                    <SchCatList word={kword} chgCntFn={chgCnt} />
+                    {/* 2-3. 캐릭터 리스트 컴포넌트 : 
+                    데이터 상태변수 중 첫번째 값만 보냄 */}
+                    <SchCatList dt={selData[0]} total={cnt} />
                 </div>
             </section>
         </>
