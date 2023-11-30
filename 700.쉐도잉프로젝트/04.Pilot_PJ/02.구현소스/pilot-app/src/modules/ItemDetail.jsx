@@ -47,7 +47,13 @@ export function ItemDetail({ cat, goods }) {
             // 출력박스 : #total
             $("#total").text(selData[2] * num);
         });
-    }, []);
+    }, []); // 한번만 실행 //////////
+
+    // 리랜더링 실행구역 ////////////
+    useEffect(()=>{
+        // 수량초기화
+        $('#sum').val('1');
+    }); // useEffect //////////////
 
     return (
         <>
