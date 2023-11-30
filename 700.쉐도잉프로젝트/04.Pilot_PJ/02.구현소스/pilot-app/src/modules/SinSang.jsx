@@ -21,7 +21,7 @@ export function SinSang(props) {
         for (let x = 0; x < 9; x++) {
             temp[x] = (
                 <li className={`m${x + 1}`} key={x} onMouseEnter={showInfo} onMouseLeave={removeInfo}>
-                    <a href="#" onClick={() => chgItemFn("m" + (x + 1))}>
+                    <a href="#" onClick={() => props.chgItemFn("m" + (x + 1))}>
                         <img src={`./images/goods/${props.cat}/m${x + 1}.png`} alt="신상품" />
                     </a>
                 </li>

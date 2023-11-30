@@ -13,6 +13,7 @@ import { pCon } from "../modules/PilotContext";
 import $ from "jquery";
 import { SinSang } from "../modules/SinSang";
 import { ItemDetail } from "../modules/ItemDetail";
+import { useState } from "react";
 
 export function Fashion(props) {
     // 컨텍스트 API 사용!
