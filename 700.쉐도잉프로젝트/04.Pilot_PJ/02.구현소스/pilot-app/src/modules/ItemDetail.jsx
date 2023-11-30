@@ -1,6 +1,7 @@
 // 상품상세보기 컴포넌트
 
 // 신상품 데이터 가져오기
+import { useEffect } from "react";
 import { sinsangData } from "../data/sinsang";
 
 import $ from "jquery";
@@ -20,6 +21,33 @@ export function ItemDetail({ cat, goods }) {
         e.preventDefault();
         $(".bgbx").slideUp(400);
     };
+
+    // 랜더링후 실행 구역 //////////
+    useEffect(() => {
+        // 숫자 출력 input
+        const sum = $("#sum");
+        // 수량증감 이미지 버튼
+        const numBtn = $(".chg_num img");
+
+        // 수량 증감 함수 ////////
+        numBtn.click((e) => {
+            // 이미지 순번
+            let seq = $(e.currentTarget).index();
+            // 기존값 읽기
+            let num = Number(sum.val());
+            // 윗버튼은 ++, 아랫버튼은 --
+            seq ? num-- : num++;
+            // 한계값
+            if (num < 1) num = 1;
+            console.log("순번 seq :", seq, ", num :", num);
+            // 증감 반영
+            sum.val(num);
+            // 총합계 반영
+            // 기본값 : selData[2]
+            // 출력박스 : #total
+            $("#total").text(selData[2] * num);
+        });
+    }, []);
 
     return (
         <>
@@ -96,7 +124,7 @@ export function ItemDetail({ cat, goods }) {
                                     <span>권장계절</span> <span>여름</span>
                                 </li>
                                 <li className="tot">
-                                    <span>총합계</span> <span id="total">13,000</span>
+                                    <span>총합계</span> <span id="total">{selData[2]}</span>
                                 </li>
                             </ol>
                         </div>
