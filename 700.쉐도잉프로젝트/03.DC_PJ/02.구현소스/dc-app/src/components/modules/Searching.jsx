@@ -22,10 +22,10 @@ import { catListData } from "../data/swiper_cat";
 // 이유는 배열의 정렬정보가 컴포넌트에 포함될경우
 // 컴포넌트 리랜더링시 초기화 되므로 정렬이 변경되지 않는다!
 // 따라서 컴포넌트 바깥쪽 위에서 정렬된 원본 배열데이터를
-// 만들어준다! -> 외부 검색어로 검색을 위해 여기는 주석!
-// catListData.sort((a, b) => {
-//     return a.cname == b.cname ? 0 : a.cname > b.cname ? 1 : -1;
-// });
+// 만들어준다! -> 외부검색어로 검색을 위해 여기는 주석!
+// catListData.sort((a,b)=>{
+//   return a.cname==b.cname?0:a.cname>b.cname?1:-1;
+// })
 
 // console.log(catListData);
 
@@ -58,8 +58,8 @@ export function Searching(props) {
     const allow = useRef(1);
     // 1-상단검색허용 , 0-상단검색불허용
     // useRef 변수 사용은 변수명.current
-    
-    // 처음 상태 구분 변수(랜더링 이전 시점에 한번 실행 구분)
+
+    // 처음상태 구분변수(랜더링이전 시점에 한번실행구분)
     const firstSts = useRef(0);
 
     // 폰트어썸을 참조하는 테스트용 참조변수
@@ -75,7 +75,7 @@ export function Searching(props) {
     const initFn = () => {
         // 넘어온 검색어와 셋팅된 검색어가 다르면 업데이트
         if (props.kword != kword) {
-            console.log("상단검색 실행!", props.kword, kword);
+            console.log("상단검색실행!", props.kword, kword);
             // 키워드 상태변수에 업데이트
             chgKword(props.kword);
             // 모듈검색 input창에 같은 값 넣어주기
@@ -101,16 +101,21 @@ export function Searching(props) {
         });
 
         console.log("처음결과:", firstTemp);
-        // 데이터 변경 반영 업데이트
+        // 데이터변경 업데이트
         setSelData([firstTemp, 2]);
         // 검색건수 상태관리변수 업데이트!
         setCnt(firstTemp.length);
         // 키워드 업데이트
         chgKword(props.kword);
-
     } ///////////// firstDo 함수 ////////
 
-    useEffect(()=>{}, []);
+    // 한번만 호출 ////
+    if (!firstSts.current) {
+        firstDo();
+        firstSts.current = 1;
+    } //// if /////////////
+
+    useEffect(() => {}, []);
 
     // 리스트 개수변경함수 ///////
     const chgCnt = (num) => {
@@ -289,11 +294,11 @@ export function Searching(props) {
                             onKeyUp={enterKey}
                             defaultValue={kword}
                             /* input요소에서 리액트 value속성은 
-                                defaultValue를 사용한다! -> 처음입력값 
-                                _________________________________
-                                value속성을 쓰면 동적변경이 이루어지고
-                                사용자가 입력하지 못하도록 readOnly(읽기전용)
-                                설정이 되어 있어야한다! */
+              defaultValue를 사용한다! -> 처음입력값 
+              _________________________________
+              value속성을 쓰면 동적변경이 이루어지고
+              사용자가 입력하지 못하도록 readOnly(읽기전용)
+              설정이 되어 있어야한다! */
                         />
                     </div>
                     {/* 1-2. 체크박스구역 */}
