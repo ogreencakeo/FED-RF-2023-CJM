@@ -45,15 +45,22 @@ export function ItemDetail({ cat, goods }) {
             // 총합계 반영
             // 기본값 : selData[2]
             // 출력박스 : #total
-            $("#total").text(selData[2] * num);
+            $("#total").text(addComma(selData[2] * num) + '원');
         });
     }, []); // 한번만 실행 //////////
 
     // 리랜더링 실행구역 ////////////
-    useEffect(()=>{
+    useEffect(() => {
         // 수량초기화
-        $('#sum').val('1');
+        $("#sum").val(1);
+        // 총합계 초기화
+        $('#total').text(addComma(selData[2]) + '원');
     }); // useEffect //////////////
+
+    //정규식함수(숫자 세자리마다 콤마해주는 기능)
+    function addComma(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     return (
         <>
@@ -90,8 +97,8 @@ export function ItemDetail({ cat, goods }) {
                                     <img src="../images/btn_source_copy.gif" alt="URL복사" />
                                 </li>
                                 <li>
-                                    <span>판매가 {selData[2]}</span>
-                                    <span id="gprice">89,000원</span>
+                                    <span>판매가 </span>
+                                    <span id="gprice">{addComma(selData[2])}원</span>
                                 </li>
                                 <li>
                                     <span>적립금</span>
@@ -130,7 +137,7 @@ export function ItemDetail({ cat, goods }) {
                                     <span>권장계절</span> <span>여름</span>
                                 </li>
                                 <li className="tot">
-                                    <span>총합계</span> <span id="total">{selData[2]}</span>
+                                    <span>총합계</span> <span id="total">{selData[2]}원</span>
                                 </li>
                             </ol>
                         </div>
