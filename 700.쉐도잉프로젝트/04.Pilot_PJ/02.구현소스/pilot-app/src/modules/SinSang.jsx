@@ -8,10 +8,11 @@ import $ from "jquery";
 // 신상품 컴포넌트 /////////////////////
 export function SinSang(props) {
     // props.cat - 카테고리 분류명
+    // props.chgItemFn - 선택 품정 정보 변경 부모함수
 
     // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
     const selData = sinsangData[props.cat];
-    console.log('sinsangData[props.cat] => selData :', selData);
+    console.log("sinsangData[props.cat] => selData :", selData);
 
     const makeList = () => {
         // 코드 담을 배열
@@ -19,12 +20,8 @@ export function SinSang(props) {
         // 원하는 반복수 만큼 for문 실행하여 배열에 JSX태그 담기
         for (let x = 0; x < 9; x++) {
             temp[x] = (
-                <li 
-                className={`m${x + 1}`} 
-                key={x}
-                onMouseEnter={showInfo}
-                onMouseLeave={removeInfo}>
-                    <a href="#">
+                <li className={`m${x + 1}`} key={x} onMouseEnter={showInfo} onMouseLeave={removeInfo}>
+                    <a href="#" onClick={() => chgItemFn("m" + (x + 1))}>
                         <img src={`./images/goods/${props.cat}/m${x + 1}.png`} alt="신상품" />
                     </a>
                 </li>
@@ -39,32 +36,31 @@ export function SinSang(props) {
         // 대상
         const tg = $(e.currentTarget);
         // 1. 이벤트가 발생한 li의 class 읽어오기 (상품정보객체의 키)
-        let gKey = tg.attr('class');
+        let gKey = tg.attr("class");
         // console.log('나야나! selData[gKey] :', selData[gKey]);
 
         // 2. 상품 정보박스를 만들고 보이게 하기
         // 마우스 오버된 li 자신에 넣어줌
         tg.append(`<div class='ibox'></div>`);
 
-        console.log('selData[gKey].split('^') :', selData[gKey].split('^'));
+        console.log("selData[gKey].split(" ^ ") :", selData[gKey].split("^"));
 
         // 3. 현재 li에 만든 .ibox에 데이터 넣기 + 등장
-        tg.find('.ibox').html(
-            selData[gKey].split('^')
-            .map((v) =>
-                `<div>${v}</div>`
-            )
-        )
-        // 등장애니
-        .animate({
-            top : '110%',
-            opacity : 1,
-        }, 300)
+        tg.find(".ibox")
+            .html(selData[gKey].split("^").map((v) => `<div>${v}</div>`))
+            // 등장애니
+            .animate(
+                {
+                    top: "110%",
+                    opacity: 1,
+                },
+                300
+            );
     }; // showInfo 함수 ////////////
 
     // 정보박스 지우기 함수
     const removeInfo = (e) => {
-        $(e.currentTarget).find('.ibox').remove();
+        $(e.currentTarget).find(".ibox").remove();
     };
 
     // 신상품 리스트 이동함수 사용변수 ///////
