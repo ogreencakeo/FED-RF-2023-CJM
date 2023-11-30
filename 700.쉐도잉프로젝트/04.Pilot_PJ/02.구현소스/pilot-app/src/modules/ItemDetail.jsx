@@ -18,7 +18,7 @@ export function ItemDetail({ cat, goods }) {
     // 닫기 함수 //////////
     const closebox = (e) => {
         e.preventDefault();
-        $(".cbtn").slideUp(400);
+        $(".bgbx").slideUp(400);
     };
 
     return (
