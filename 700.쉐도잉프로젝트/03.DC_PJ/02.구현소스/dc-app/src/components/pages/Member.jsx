@@ -136,6 +136,26 @@ export function Member() {
         setEmail(e.target.value);
     }; // changeUserId 함수 //////////
 
+    // [ 전체 유효성검사 체크 함수 ] ////////////
+    const totalValid = () => {
+        // 1. 모든 입력창 검사 (상태변수 검사) -> 입력전 상태는 false
+        // -> 빈 값일 경우 에러처리함!
+        if(!userId) setUserIdError(true);
+        if(!pwd) setPwdError(true);
+        if(!chkPwd) setChkPwdError(true);
+        if(!userName) setUserNameError(true);
+        if(!email) setEmailError(true);
+
+    }; // totalValid 함수 /////////////
+
+    // [ 서브밋 기능함수 ] /////////////////////
+    const onSubmit = e => {
+        // 1. submit 기본이동 막기
+        e.preventDefault();
+        // 2. 유효성 검사 전체 통과시 
+        if(totalValid)
+    }; // onSubmit 함수 ///////////////
+
     // 리턴코드 /////////////////
     return (
         <>
@@ -290,7 +310,7 @@ export function Member() {
                             </li>
                             <li style={{ overflow: "hidden" }}>
                                 {/* 6. 버튼 */}
-                                <button className="sbtn">Submit</button>
+                                <button className="sbtn" onClick={onSubmit}>Submit</button>
                             </li>
                             <li>
                                 {/* 7. 로그인 페이지 링크 */}
