@@ -80,6 +80,30 @@ export function Member() {
         //       false이면 에러 상태값 true
         if (valid.test(e.target.value)) {
             // 1. 사용중 아이디인지 검사 (로컬쓰 셋팅후 추가)
+            // 로컬스토리지 체크함수 호출 (없으면 생성함!)
+            initData();
+
+            // 1. 로컬쓰 변수할당
+            let memData = localStorage.getItem("mem-data");
+
+            // 2. 로컬쓰 객체변환
+            memData = JSON.parse(memData);
+
+            // 3. 기존 아이디가 있으면 상태값 false로 업데이트
+            let isOk = true; 
+
+            // 4. 검사돌리기 
+            memData.forEach(v=>{
+                // 기존 아이디와 같은 경우
+                if(v.uid === e.target.value){
+                    // 메시지 변경
+                    setIdMsg(msgId[1]);
+                    // 아이디 에러 상태값 업데이트
+                    setUserIdError(true);
+                    // 존재여부 업데이트
+                    isOk = false;
+                }
+            });
 
             // 2. 결과반영하기
             setUserIdError(false);
@@ -183,7 +207,10 @@ export function Member() {
             // 1. 로컬쓰 변수할당
             let memData = localStorage.getItem("mem-data");
 
-            // 2. 새로운 데이터 구성하기
+            // 2. 로컬쓰 객체변환
+            memData = JSON.parse(memData);
+
+            // 3. 새로운 데이터 구성하기
             let newData = {
                 idx: memData.length + 1,
                 uid: userId,
@@ -192,9 +219,6 @@ export function Member() {
                 eml: email,
             };
 
-            // 3. 로컬쓰 객체변환
-            memData = JSON.parse(memData);
-
             // 4. 데이터 추가하기 : 배열에 데이터 추가 push()
             memData.push(newData);
 
@@ -202,8 +226,7 @@ export function Member() {
             localStorage.setItem("mem-data", JSON.stringify(memData));
 
             // 6. 로그인 페이지로 이동 라우터 이동 - 보류!
-            document.querySelector('.sbtn').innerText = '넌 이제 회원인거야~!';
-            
+            document.querySelector(".sbtn").innerText = "넌 이제 회원인거야~!";
         } // if //////////////
         // 3. 불통과시
         else {
