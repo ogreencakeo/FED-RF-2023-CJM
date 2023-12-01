@@ -90,12 +90,12 @@ export function Member() {
             memData = JSON.parse(memData);
 
             // 3. 기존 아이디가 있으면 상태값 false로 업데이트
-            let isOk = true; 
+            let isOk = true;
 
-            // 4. 검사돌리기 
-            memData.forEach(v=>{
+            // 4. 검사돌리기
+            memData.forEach((v) => {
                 // 기존 아이디와 같은 경우
-                if(v.uid === e.target.value){
+                if (v.uid === e.target.value) {
                     // 메시지 변경
                     setIdMsg(msgId[1]);
                     // 아이디 에러 상태값 업데이트
@@ -105,8 +105,14 @@ export function Member() {
                 }
             });
 
-            // 2. 결과반영하기
-            setUserIdError(false);
+            // 5. 기존 아이디 없으면 들어감 : 최종 통과시 결과
+            if (isOk) {
+                // 메시지 변경
+                setIdMsg(msgId[1]);
+                // 아이디 에러 상태값 업데이트
+                setUserIdError(false);
+            }
+
         } // if ////////////////
         // 에러일때 /////////////////
         else {
