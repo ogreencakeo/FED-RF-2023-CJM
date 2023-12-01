@@ -44,6 +44,18 @@ export function Member() {
         "That's a great ID!",
     ];
 
+    // [ 기타 메시지 프리셋 ]
+    const msgEtc = {
+        // 비밀번호
+        pwd: "5 to 15 digits in the form of special characters, characters, and numbers",
+        // 비밀번호 확인
+        confPwd: "Password verification does not match",
+        // 필수입력
+        req: "This is a required entry",
+        // 이메일
+        email: "Please enter a valid email format",
+    }; // msgEtc ////////////////
+
     // [3] 에러 메시지 상태변수
     const [idMsg, setIdMsg] = useState(msgId[0]);
 
@@ -56,7 +68,7 @@ export function Member() {
         const valid = /^[A-Za-z0-9+]{5,}$/;
 
         // 2. 입력값 확인 : e.target -> 이벤트가 발생한 요소
-        console.log(e.target.value);
+        // console.log(e.target.value);
 
         // 3. 에러 아님 상태 if문
         // 조건 : 유효성 검사 결과가 true인가? 에러 상태가 아니면 false
@@ -74,8 +86,54 @@ export function Member() {
             setUserIdError(true);
         } // else //////////////
 
-        // 실제 userId 상태변수 값이 업데이트 되어야만 화면에 출력
+        // 4. 실제 userId 상태변수 값이 업데이트 되어야만 화면에 출력
         setUserId(e.target.value);
+    }; // changeUserId 함수 //////////
+
+    // 2. 비밀번호 유효성 검사
+    const changePwd = (e) => {
+        // 1. 비밀번호 유효성 검사식(따옴표로 싸지 말것!)
+        const valid = /^.*(?=^.{5,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+        // console.log(e.target.value);
+
+        // 3. 에러에 따른 상태값 변경
+        if (valid.test(e.target.value)) setPwdError(false);
+        else setPwdError(true);
+
+        // 4. 기존 입력값 반영하기
+        setPwd(e.target.value);
+    }; // changeUserId 함수 //////////
+
+    // 3. 비밀번호 확인 유효성 검사
+    const changeChkPwd = (e) => {
+        // 1. 비밀번호 입력내용과 일치 여부 확인
+        if (pwd === e.target.value) setChkPwdError(false);
+        else setChkPwdError(true);
+
+        // 2. 기존 입력값 반영하기;
+        setChkPwd(e.target.value);
+    }; // changeUserId 함수 //////////
+
+    // 4. 사용자이름 확인 유효성 검사
+    const changeUserName = (e) => {
+        // 1. 빈값 체크
+        if (e.target.value !== "") setUserNameError(false);
+        else setUserNameError(true);
+
+        // 2. 기존 입력값 반영하기;
+        setUserName(e.target.value);
+    }; // changeUserId 함수 //////////
+
+    // 5. 이메일 유효성 검사
+    const changeEmail = (e) => {
+        // 1. 이메일 유효성검사식(따옴표로 싸지 말것)
+        const valid = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+
+        if (valid.test(e.target.value)) setEmailError(false);
+        else setEmailError(true);
+
+        // 2. 기존 입력값 반영하기;
+        setEmail(e.target.value);
     }; // changeUserId 함수 //////////
 
     // 리턴코드 /////////////////
@@ -115,7 +173,9 @@ export function Member() {
                                 {
                                     // 통과시 메시지 출력
                                     // 조건문 && 요소
-                                    !userIdError && (
+                                    // 조건 추가 : userId가 입력전일때 안보임처리
+                                    // userId가 입력전엔 false로 리턴됨!
+                                    !userIdError && userId && (
                                         <div className="msg">
                                             <small
                                                 style={{
@@ -132,7 +192,28 @@ export function Member() {
                             <li>
                                 {/* 2. 비밀번호 */}
                                 <label>Password : </label>
-                                <input type="password" maxLength="20" placeholder="Please enter your Password" />
+                                <input
+                                    type="password"
+                                    maxLength="20"
+                                    placeholder="Please enter your Password"
+                                    value={pwd}
+                                    onChange={changePwd}
+                                />
+                                {
+                                    // 에러시 메시지 출력
+                                    pwdError && (
+                                        <div className="msg">
+                                            <small
+                                                style={{
+                                                    color: "red",
+                                                    fontSize: "10px",
+                                                }}
+                                            >
+                                                {msgEtc.pwd}
+                                            </small>
+                                        </div>
+                                    )
+                                }
                             </li>
                             <li>
                                 {/* 3. 비밀번호 확인 */}
@@ -141,17 +222,71 @@ export function Member() {
                                     type="password"
                                     maxLength="20"
                                     placeholder="Please enter your Confirm Password"
+                                    value={chkPwd}
+                                    onChange={changeChkPwd}
                                 />
+                                {
+                                    // 에러시 메시지 출력
+                                    chkPwdError && (
+                                        <div className="msg">
+                                            <small
+                                                style={{
+                                                    color: "red",
+                                                    fontSize: "10px",
+                                                }}
+                                            >
+                                                {msgEtc.confPwd}
+                                            </small>
+                                        </div>
+                                    )
+                                }
                             </li>
                             <li>
                                 {/* 4. 이름 */}
                                 <label>User Name : </label>
-                                <input type="text" maxLength="20" placeholder="Please enter your Name" />
+                                <input
+                                    type="text"
+                                    maxLength="20"
+                                    placeholder="Please enter your Name"
+                                    value={userName}
+                                    onChange={changeUserName}
+                                />
+                                {
+                                    // 에러시 메시지 출력
+                                    userNameError && (
+                                        <div className="msg">
+                                            <small
+                                                style={{
+                                                    color: "red",
+                                                    fontSize: "10px",
+                                                }}
+                                            >
+                                                {msgEtc.req}
+                                            </small>
+                                        </div>
+                                    )
+                                }
                             </li>
                             <li>
                                 {/* 5. 이메일 */}
                                 <label>Email : </label>
-                                <input type="text" maxLength="50" placeholder="Please enter your Email" />
+                                <input type="text" maxLength="50" placeholder="Please enter your Email"
+                                value={email} onChange={changeEmail}/>
+                                {
+                                    // 에러시 메시지 출력
+                                    emailError && (
+                                        <div className="msg">
+                                            <small
+                                                style={{
+                                                    color: "red",
+                                                    fontSize: "10px",
+                                                }}
+                                            >
+                                                {msgEtc.email}
+                                            </small>
+                                        </div>
+                                    )
+                                }
                             </li>
                             <li style={{ overflow: "hidden" }}>
                                 {/* 6. 버튼 */}
