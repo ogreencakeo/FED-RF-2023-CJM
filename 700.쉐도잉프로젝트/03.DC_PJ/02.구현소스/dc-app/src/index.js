@@ -22,7 +22,7 @@ import { Member } from "./components/pages/Member";
 
 export default function App() {
   return (
-    // basename 속성은 pakage.json의 "homepage" 속성값 읽어옴
+    // basename 속성은 pakage.json의 "homepage" 속성값 읽어옴 
     // <BrowserRouter basename={process.env.PUBLIC_URL}>
     // <BrowserRouter> 
     // basename을 안써도 HashRouter은  pakage.json의 homepage 속성값을 자동으로 연결함
