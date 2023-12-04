@@ -1,7 +1,7 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트다!->루트 컴포넌트
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom"
 
 // 메인페이지 CSS 불러오기
 import "./css/index.css";
@@ -22,7 +22,11 @@ import { Member } from "./components/pages/Member";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    // basename 속성은 pakage.json의 "homepage" 속성값 읽어옴
+    // <BrowserRouter basename={process.env.PUBLIC_URL}>
+    // <BrowserRouter> 
+    // basename을 안써도 HashRouter은  pakage.json의 homepage 속성값을 자동으로 연결함
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>     
           <Route index element={<Main />} />
@@ -39,7 +43,8 @@ export default function App() {
           <Route path="member" element={<Member />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
+    // {/* </BrowserRouter> */}
   );
 } 
 

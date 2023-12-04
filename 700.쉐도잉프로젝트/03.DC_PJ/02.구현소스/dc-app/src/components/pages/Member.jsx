@@ -108,11 +108,10 @@ export function Member() {
             // 5. 기존 아이디 없으면 들어감 : 최종 통과시 결과
             if (isOk) {
                 // 메시지 변경
-                setIdMsg(msgId[1]);
+                setIdMsg(msgId[0]);
                 // 아이디 에러 상태값 업데이트
                 setUserIdError(false);
             }
-
         } // if ////////////////
         // 에러일때 /////////////////
         else {
