@@ -3,7 +3,7 @@
 // 장바구니 리스트 CSS 불러오기
 import "../css/cartlist.css";
 
-export function CatList() {
+export function CartList() {
     return (
         <section id="cartlist">
             <a href="#" className="cbtn cbtn2">

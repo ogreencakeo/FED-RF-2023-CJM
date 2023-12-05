@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { sinsangData } from "../data/sinsang";
 
 import $ from "jquery";
+import { CartList } from "./CartList";
 
 // goods - 상품 아이템 정보 (속성코드 : m1, m2, ..... )
 export function ItemDetail({ cat, goods }) {
@@ -45,7 +46,7 @@ export function ItemDetail({ cat, goods }) {
             // 총합계 반영
             // 기본값 : selData[2]
             // 출력박스 : #total
-            $("#total").text(addComma(selData[2] * num) + '원');
+            $("#total").text(addComma(selData[2] * num) + "원");
         });
     }, []); // 한번만 실행 //////////
 
@@ -54,7 +55,7 @@ export function ItemDetail({ cat, goods }) {
         // 수량초기화
         $("#sum").val(1);
         // 총합계 초기화
-        $('#total').text(addComma(selData[2]) + '원');
+        $("#total").text(addComma(selData[2]) + "원");
     }); // useEffect //////////////
 
     //정규식함수(숫자 세자리마다 콤마해주는 기능)
@@ -149,6 +150,9 @@ export function ItemDetail({ cat, goods }) {
                     </section>
                 </div>
             </div>
+
+            {/* 카트리스트 */}
+            <CartList />
         </>
     );
 } /////////// ItemDetail 컴포넌트 ///////////
