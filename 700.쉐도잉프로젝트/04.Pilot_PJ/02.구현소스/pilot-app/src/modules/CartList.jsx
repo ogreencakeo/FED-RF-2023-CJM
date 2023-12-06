@@ -1,9 +1,13 @@
 // Pilot PJ 장바구니 리스트 컴포넌트
 
 // 장바구니 리스트 CSS 불러오기
+import { useEffect } from "react";
 import "../css/cartlist.css";
 
 export function CartList() {
+
+    console.log(localStorage.getItem('cart'));
+
     return (
         <section id="cartlist">
             <a href="#" className="cbtn cbtn2">
