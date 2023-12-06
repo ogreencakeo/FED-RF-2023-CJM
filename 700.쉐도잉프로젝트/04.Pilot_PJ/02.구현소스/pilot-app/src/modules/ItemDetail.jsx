@@ -1,8 +1,10 @@
 // 상품상세보기 컴포넌트
 
-// 신상품 데이터 가져오기
 import { useEffect } from "react";
+// 신상품 데이터 가져오기
+import gdata from "../data/glist_items";
 import { sinsangData } from "../data/sinsang";
+
 
 import $ from "jquery";
 import { CartList } from "./CartList";
@@ -16,6 +18,13 @@ export function ItemDetail({ cat, goods }) {
     // [상품명, 상품코드, 가격]
     const selData = sinsangData[cat][goods].split("^");
     console.log("선택데이터 selData :", selData);
+
+    const selD = gdata.filter(v=>{
+        // 조건 : 분류와 상품분류코드가 일치하는 하나
+        if(v.cat === cat && v.ginfo[0] === goods) return true;
+    })
+
+    console.log('selD :', selD);
 
     // 닫기 함수 //////////
     const closebox = (e) => {
