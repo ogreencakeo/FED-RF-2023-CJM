@@ -38,7 +38,7 @@ export function SecIntro(){
                         <div key={i}>
                             {/* 1. 이미지 박스 */}
                             <div className="imbx">
-                                <img src={v.isrc} alt={v.tit.split('^')[0]} />
+                                <img src={process.env.PUBLIC_UR + v.isrc} alt={v.tit.split('^')[0]} />
                             </div>
                             {/* 2. 타이틀 박스 */}
                             <div className="titbx">
