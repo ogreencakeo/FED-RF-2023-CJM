@@ -8,14 +8,13 @@ import "../../css/member.css";
 import $ from "jquery";
 
 export function Login() {
-
     // [ 상태관리변수 ]
     // [1] 입력요소 상태변수 ///////////
     // 1. 아이디 변수
     const [userId, setUserId] = useState("");
     // 2. 비밀번호 변수
     const [pwd, setPwd] = useState("");
-    
+
     // [2] 에러상태관리 변수
     // -> 에러상태값 초기값은 에러 아님 (false)
     // 1. 아이디 변수
@@ -27,7 +26,8 @@ export function Login() {
     const msgId = [
         "User ID must contain a minimum of 5 characters",
         "This ID is already in use!",
-        "That's a great ID!",];
+        "That's a great ID!",
+    ];
     // [ 기타 메시지 프리셋 ]
     const msgEtc = {
         // 비밀번호
@@ -42,6 +42,37 @@ export function Login() {
 
     // [3] 에러 메시지 상태변수
     const [idMsg, setIdMsg] = useState(msgId[0]);
+
+    // [ 유효성 검사 함수 ] ////////////////////////////
+    // 1. 아이디 유효성 검사
+    const changeUserId = (e) => {
+        // 1-1. 빈값 체크
+        if (e.target.value !== "") setUserId(false);
+        else {
+            // 빈값일 경우
+            // 메시지 띄우기 : "This is a required entry"
+            setIdMsg(msgEtc.req);
+            // 에러 상태값 변경하기
+            setUserIdError(true);
+        } // else
+        // 1-2. 입력값 반영하기
+        setUserId(e.target.value);
+    }; // changeUserId 함수 //////////
+
+    // 2. 비밀번호 유효성 검사
+    const changePwd = (e) => {
+        // 2-1. 빈값 체크
+        if (e.target.value !== "") setPwd(false);
+        else {
+            // 빈값일 경우
+            // 메시지 띄우기 : "This is a required entry"
+            setIdMsg(msgEtc.req);
+            // 에러 상태값 변경하기
+            setPwdError(true);
+        } // else
+        // 1-2. 입력값 반영하기
+        setPwd(e.target.value);
+    }; // changeUserId 함수 //////////
 
     // 리턴코드 //////////////////////////////////////////
     return (
