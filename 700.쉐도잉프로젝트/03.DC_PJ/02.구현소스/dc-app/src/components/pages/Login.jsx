@@ -74,12 +74,43 @@ export function Login() {
         setPwd(e.target.value);
     }; // changeUserId 함수 //////////
 
+    // 3. 전체 유효성 검사 함수 ////////////
+    const totalValid = () => {
+        // 1. 모든 상태변수에 빈값일때 에러상태값 업데이트
+        if (!userId) setUserIdError(true);
+        if (!pwd) setPwdError(true);
+        // 2. 통과시 true, 불통과시 false 리턴처리
+        // 통과조건 : 빈값아님 + 에러후크 변수가 모두 false
+        if (userId && pwd) return true;
+        else return false;
+    }; // totalValid 함수 ////////////
+
+    // 4. 서브밋 기능함수 ///////////////////
+    const onSubmit = (e) => {
+        // 4-1. 기본 서브밋 이동막기
+        e.preventDefault();
+
+        // 4-2. 유효성 검사 전체 통과시
+        if (totalValid) {
+            console.log("통과!");
+        } // if ////////
+        // 4-3. 유효성검사 불통과시 //////////
+        else {
+            console.log("실패!");
+        } // else
+    }; // onSubmit 함수 ///////////
+
     // 리턴코드 //////////////////////////////////////////
     return (
         <>
             <div className="outbox">
                 {/* 모듈코드 */}
-                <section className="membx">
+                <section
+                    className="membx"
+                    style={{
+                        minHeight: "300px",
+                    }}
+                >
                     <h2>LOG IN</h2>
                     <form method="post" action="process.php">
                         <ul>
@@ -153,6 +184,12 @@ export function Login() {
                                         </div>
                                     )
                                 }
+                            </li>
+                            {/* 3. 서브밋 버튼 */}
+                            <li>
+                                <button className="sbtn" onClick={onSubmit}>
+                                    Submit
+                                </button>
                             </li>
                         </ul>
                     </form>
