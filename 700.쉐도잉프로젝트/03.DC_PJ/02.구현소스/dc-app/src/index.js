@@ -24,17 +24,17 @@ import { Login } from "./components/pages/Login";
 export default function App() {
   return (
     // basename 속성은 pakage.json의 "homepage" 속성값 읽어옴 
-    // <BrowserRouter basename={process.env.PUBLIC_URL}>
-    // <BrowserRouter> 
-    // basename을 안써도 HashRouter은  pakage.json의 homepage 속성값을 자동으로 연결함
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    {/* // <BrowserRouter basename={process.env.PUBLIC_URL}>  */}
+    {/* // basename을 안써도 HashRouter은  pakage.json의 homepage 속성값을 자동으로 연결함 */}
+    {/* // <HashRouter> */}
       <Routes>
         <Route path="/" element={<Layout />}>     
           <Route index element={<Main />} />
           <Route path="character" element={<Character />} />
           <Route path="comics" element={<Comics />} />
           <Route path="movies" element={<Movies />} />
-          <Route path="series" element={<Series />} />
+          <Route path="movies/series" element={<Series />} />
           <Route path="games" element={<Games />} />
           <Route path="news" element={<News />} />
           <Route path="video" element={<Video />} />
@@ -45,8 +45,8 @@ export default function App() {
           <Route path="login" element={<Login />} />
         </Route>
       </Routes>
-    </HashRouter>
-    // {/* </BrowserRouter> */}
+    {/* </HashRouter */}
+    </BrowserRouter>
   );
 } 
 

@@ -94,7 +94,7 @@ export function SwiperVid(props) {
                         <section className="sw-inbox" onClick={() => showVid(v.vsrc, v.tit)}>
                             {/* 동영상 이미지 박스 */}
                             <div className="vid-img">
-                                <img src={v.isrc} alt={v.tit} />
+                                <img src={process.env.PUBLIC_URL + v.isrc} alt={v.tit} />
                                 {/* 폰트어썸 아이콘 */}
                                 <FontAwesomeIcon
                                     icon={faCirclePlay}
