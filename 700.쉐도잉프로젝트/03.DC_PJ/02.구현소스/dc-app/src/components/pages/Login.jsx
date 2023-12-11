@@ -28,18 +28,19 @@ export function Login() {
     const msgId = [
         "This is a required entry", //필수입력
         "ID does not exist", //아이디가 존재하지 않습니다
-        "Password doesn't match", //비밀번호가 일치하지 않습니다
     ];
 
-    // [ 기타 메시지 프리셋 ]
-    const msgEtc = {
+    // [ 비번 메시지 프리셋 ]
+    const msgPwd = [
         // 비밀번호
-        pwd: "This is a required entry", //필수입력
-    }; ///// msgEtc ///////
+        "This is a required entry", //필수입력
+        "Password doesn't match", //비밀번호가 일치하지 않습니다
+    ]; ///// msgEtc ///////
 
 
     // [3] 에러메시지 상태변수
     const [idMsg, setIdMsg] = useState(msgId[0]);
+    const [pwdMsg, setPwdMsg] = useState(msgPwd[0]);
 
     // [ 유효성 검사 함수 ] ///////
     // 1. 아이디 유효성 검사 ///////////
@@ -49,7 +50,7 @@ export function Login() {
         else {
             // 빈값일 경우
             // 메시지 띄우기 : "This is a required entry"
-            setIdMsg(msgEtc.req);
+            setIdMsg(msgId[0]);
             // 에러상태값 변경하기
             setUserIdError(true);
         } ///// else ////
@@ -64,7 +65,7 @@ export function Login() {
         else {
             // 빈값일 경우
             // 메시지 띄우기 : "This is a required entry"
-            setIdMsg(msgEtc.req);
+            setPwdMsg(msgPwd[0]);
             // 에러상태값 변경하기
             setPwdError(true);
         } ///// else ////
@@ -120,7 +121,21 @@ export function Login() {
                     setUserIdError(false);
                     // 같은 아이디 상태 업데이트
                     isNOT = false;
-                }
+
+                    // 비밀번호가 일치하는가?
+                    if(v['pwd'] === pwd) {
+                        console.log('비번이 같아요');
+                        // 비번 에러 상태값 업데이트
+                        setPwdError(false);
+                    } // if ///////
+                    else{ // 비번 불일치!
+                        console.log('비번 달라요~!');
+                        // 비번 다를때 메시지
+                        setPwdMsg(msgPwd[1]);
+                        // 비번 에러상태 업데이트
+                        setPwdError(true);
+                    } // else /////
+                } // if//////////
             }); // forEach //////////
 
             // 아이디가 불일치 할 경우
@@ -195,7 +210,7 @@ export function Login() {
                                                 fontSize: "10px",
                                             }}
                                         >
-                                            {msgEtc.pwd}
+                                            {pwdMsg}
                                         </small>
                                     </div>
                                 )
