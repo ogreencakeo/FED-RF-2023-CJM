@@ -24,9 +24,9 @@ export function Login() {
 
     // [ 아이디 관련 메시지 프리셋 ] //////////
     const msgId = [
-        "User ID must contain a minimum of 5 characters",
-        "This ID is already in use!",
-        "That's a great ID!",
+        "This is a required entry", // 필수입력
+        "ID does not exist", // 아이디가 존재하지 않습니다
+        "Password doesn't match", // 비밀번호가 일치하지 않습니다
     ];
     // [ 기타 메시지 프리셋 ]
     const msgEtc = {
@@ -91,7 +91,7 @@ export function Login() {
         e.preventDefault();
 
         // 4-2. 유효성 검사 전체 통과시
-        if (totalValid) {
+        if (totalValid()) {
             console.log("통과!");
         } // if ////////
         // 4-3. 유효성검사 불통과시 //////////
