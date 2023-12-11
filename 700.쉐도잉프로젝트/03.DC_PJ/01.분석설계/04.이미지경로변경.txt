@@ -9,3 +9,5 @@ process.env.PUBLIC_URL 을 앞에 붙여준다.
     <img 
     src={process.env.PUBLIC_URL} 
     alt="" />
+3. 개발에서 운영할때는 homepage 속성값을 비운다!
+-> 배포시에만 서버 URL을 써준다!
