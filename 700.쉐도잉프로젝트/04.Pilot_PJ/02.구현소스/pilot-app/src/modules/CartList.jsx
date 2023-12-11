@@ -1,7 +1,7 @@
 // Pilot PJ 장바구니 리스트 컴포넌트
 
 // 장바구니 리스트 CSS 불러오기
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import "../css/cartlist.css";
 
 // 제이쿼리
