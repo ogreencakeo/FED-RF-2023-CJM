@@ -76,10 +76,10 @@ export function Login() {
 
     // 3. 전체 유효성 검사 함수 ////////////
     const totalValid = () => {
-        // 1. 모든 상태변수에 빈값일때 에러상태값 업데이트
+        // 3-1. 모든 상태변수에 빈값일때 에러상태값 업데이트
         if (!userId) setUserIdError(true);
         if (!pwd) setPwdError(true);
-        // 2. 통과시 true, 불통과시 false 리턴처리
+        // 3-2. 통과시 true, 불통과시 false 리턴처리
         // 통과조건 : 빈값아님 + 에러후크 변수가 모두 false
         if (userId && pwd) return true;
         else return false;
