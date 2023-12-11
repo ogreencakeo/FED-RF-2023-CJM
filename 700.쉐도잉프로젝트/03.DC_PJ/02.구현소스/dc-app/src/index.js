@@ -19,6 +19,7 @@ import { CatDetail } from "./components/pages/CatDetail";
 import { Series } from "./components/pages/Series";
 import { SchPage } from "./components/pages/SchPage";
 import { Member } from "./components/pages/Member";
+import { Login } from "./components/pages/Login";
 
 export default function App() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="detail" element={<CatDetail />} />
           <Route path="schpage" element={<SchPage />} />
           <Route path="member" element={<Member />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </HashRouter>
