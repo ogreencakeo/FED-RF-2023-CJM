@@ -29,7 +29,7 @@ import { memo } from "react";
 // -> 전달되는 함수가 반드시 useCallback() 처리가 되어야 한다!
 
 // export function TopArea() {
-export const TopArea = memo(({ chgPageFn, logSts, logMsg }) => {
+export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
     // 보통 props 등 전달변수만 쓰면 하위 속성명으로
     // 값을 전달하지만 중괄호{}를 사용하면 속성명을
     // 직접 사용할 수 있다.
@@ -85,6 +85,9 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg }) => {
             {/* 1.상단영역 */}
             <header className="top-area">
                 {/* 로그인 환영메시지 박스 */}
+                {
+                    logMsg && alert(`${logMsg}님 반갑습니다.`)
+                }
                 <div className="logmsg">{logMsg}</div>
                 {/* 네비게이션 GNB파트 */}
                 <nav className="gnb">
@@ -150,7 +153,7 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg }) => {
                             logSts !== null && (
                                 <>
                                     <li>
-                                        <a href="#">LOGOUT</a>
+                                        <a href="#" onClick={logOut}>LOGOUT</a>
                                     </li>
                                 </>
                             )
