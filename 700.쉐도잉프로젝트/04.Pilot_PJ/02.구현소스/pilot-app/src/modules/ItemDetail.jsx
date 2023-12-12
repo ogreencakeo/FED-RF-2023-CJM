@@ -46,6 +46,21 @@ export function ItemDetail({ cat, goods }) {
             localD = [];
             localD.push(selData);
             localStorage.setItem("cart", JSON.stringify(localD));
+
+            // localD변수에 담긴 로컬스 변환값을 transData에 담아
+            // CartList 컴포넌트에 전달한다.
+            setTransData(localD);
+            console.log("transData :", transData);
+            setCsts(1);
+
+            // 쇼핑카트 버튼 초기화
+            $("#mycart")
+                .removeClass("on")
+                .delay(1000)
+                .fadeIn(300, function () {
+                    // 페이드 애니후
+                    $(this).addClass("on");
+                }); // fadeIn ///////////
         } ///// if ///
         // (2) 기존 카트 로컬스가 있는 경우 기존값에 더하기
         else {
@@ -55,35 +70,41 @@ export function ItemDetail({ cat, goods }) {
 
             // ****** 읽어온 로컬스에 넣을 상품코드가 있으면
             // 메시지와 함께 넣지 않는다! ******
-            let temp = localD.find(v=>{
-                if(v.idx === selData.idx) return true;
+            let temp = localD.find((v) => {
+                if (v.idx === selData.idx) return true;
             }); // find ////////
 
-            console.log('같은값 있나?', temp.idx);
+            console.log("같은값 있나? :", temp);
 
-            // 객체변환 데이터에 push로 추가!
-            localD.push(selData);
-            // // 다시 문자형변환하여 넣기
-            localStorage.setItem("cart", JSON.stringify(localD));
-            
-        }// else
-        
-        // localD변수에 담긴 로컬스 변환값을 transData에 담아
-        // CartList 컴포넌트에 전달한다.
-        setTransData(localD);
+            // 만약 이미 선택된 데이터이면 메시지만 띄움
+            if (temp) {
+                alert("이미 선택하신 아이템입니다.");
+            } // if
 
-        console.log('transData :', transData);
+            // ********** 새로운 아이템만 등록 **********
+            else {
+                // 객체변환 데이터에 push로 추가!
+                localD.push(selData);
+                // // 다시 문자형변환하여 넣기
+                localStorage.setItem("cart", JSON.stringify(localD));
+                // localD변수에 담긴 로컬스 변환값을 transData에 담아
+                // CartList 컴포넌트에 전달한다.
+                setTransData(localD);
+                console.log("transData :", transData);
+                setCsts(1);
 
-        setCsts(1);
+                // 쇼핑카트 버튼 초기화
+                $("#mycart")
+                    .removeClass("on")
+                    .delay(1000)
+                    .fadeIn(300, function () {
+                        // 페이드 애니후
+                        $(this).addClass("on");
+                    }); // fadeIn ///////////
+            } // else
+        } // else
 
-        // 쇼핑카트 버튼 초기화
-        $("#mycart")
-        .removeClass("on")
-        .delay(1000)
-        .fadeIn(300, function () {
-            // 페이드 애니후
-            $(this).addClass("on");
-        }); // fadeIn ///////////
+    
     }; /////////// useCart함수 ////////////
 
     // 선택데이터 : 전체데이터[분류명][상품코드].split('^')
