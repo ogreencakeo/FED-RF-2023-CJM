@@ -4,9 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../modules/Logo";
 import { menu } from "../data/gnb";
 
-// 컨텍스트 API
-import { dcCon } from "../modules/dcContext";
-
 // 제이쿼리
 import $ from "jquery";
 
@@ -14,7 +11,6 @@ import $ from "jquery";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useContext, useState } from "react";
 import { memo } from "react";
 
 // 메모이제이션 적용하기 ////////////////
