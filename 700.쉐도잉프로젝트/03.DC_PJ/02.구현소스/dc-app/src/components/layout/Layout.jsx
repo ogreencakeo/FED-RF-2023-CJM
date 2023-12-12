@@ -29,6 +29,7 @@ export function Layout() {
         // 3. 로그인 메시지 업데이트
         setLogMsg(null);
         // 4. 첫페이지로 이동
+        alert('로그아웃 되었습니다!');
         chgPage('/', {});
     }, []); // logOut 함수 ///////
 
