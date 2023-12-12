@@ -8,19 +8,19 @@ import { menu } from "../data/gnb";
 import { dcCon } from "../modules/dcContext";
 
 // 제이쿼리
-import $ from 'jquery';
+import $ from "jquery";
 
 // 폰트어썸 불러오기
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { memo } from "react";
 
 // 메모이제이션 적용하기 ////////////////
 // -> 그러나 단순히 적용하면 효과가 없음
-// 이유는? 컨텍스트 API가 전역적인 함수 / 변수를 전달하고 있어서 
-// 매번 새롭게 리랜더링 됨으로 인해 메모이제이션 갱신을 
+// 이유는? 컨텍스트 API가 전역적인 함수 / 변수를 전달하고 있어서
+// 매번 새롭게 리랜더링 됨으로 인해 메모이제이션 갱신을
 // 하게끔 하기에 효과가 없는것
 // -> 방법은? 컨텍스트 API를 사용하지 말고
 // props로 전달하는 방식으로 전환하면 효과를 볼 수 있다.
@@ -29,16 +29,20 @@ import { memo } from "react";
 // -> 전달되는 함수가 반드시 useCallback() 처리가 되어야 한다!
 
 // export function TopArea() {
-export const TopArea = memo(({chgPageFn}) => {
+export const TopArea = memo(({ chgPageFn }) => {
     // 보통 props 등 전달변수만 쓰면 하위 속성명으로
     // 값을 전달하지만 중괄호{}를 사용하면 속성명을
     // 직접 사용할 수 있다.
 
     // 컴포넌트 호출 확인
-    console.log('상단영역이양~!');
+    console.log("상단영역이양~!");
 
     // 컨텍스트 API 사용
     // const myCon = useContext(dcCon);
+
+    // ************ Hook 상태관리 변수 **************
+    // 1. 로그인 상태 체크변수 : 로컬스 'minfo' 초기할당
+    const [logSts, setLogSts] = useState(localStorage.getItem("minfo"));
 
     // 검색 관련 함수들 //////////////////////
     // 1. 검색창 보이기 함수
@@ -46,37 +50,38 @@ export const TopArea = memo(({chgPageFn}) => {
         // 0. a요소 기본기능 막기(리랜더링도 막는다!)
         e.preventDefault();
         // 1. 검색창 보이기
-        $('.searchingGnb').show();
+        $(".searchingGnb").show();
         // 2. 입력창에 포커스 보내기
-        $('#schinGnb').focus();
+        $("#schinGnb").focus();
     }; // showSearch 함수 ////////////////////
 
     // 2. 입력창에 엔터키를 누르면 검색함수 호출
-    // 검색 입력 창에서 키보드 입력 시 호출되며, Enter 키를 눌렀을 때 검색어를 추출하고, 
+    // 검색 입력 창에서 키보드 입력 시 호출되며, Enter 키를 눌렀을 때 검색어를 추출하고,
     // 검색어가 비어있지 않으면 goSearch 함수를 호출하여 검색 페이지로 이동합니다.
-    const enterKey = e => {
+    const enterKey = (e) => {
         // console.log(e.target);
 
         // 엔터키는 'Enter'문자열을 리턴함!
-        if(e.key === 'Enter') {
+        if (e.key === "Enter") {
             // 입력창의 입력값 읽어오기 : val() 사용!
             let txt = $(e.target).val().trim();
-            console.log('TopArea컴포넌트 enterkey함수 txt :', txt);
+            console.log("TopArea컴포넌트 enterkey함수 txt :", txt);
             // 빈 값이 아니면 검색함수 호출 (검색어 전달!)
-            if(txt!==''){
+            if (txt !== "") {
                 // 입력창 비우기 + 부모박스 닫기
-                $(e.target).val('').parent().hide();
+                $(e.target).val("").parent().hide();
                 // 검색 보내기
                 goSearch(txt);
-            } 
-        }; // if ///////////
+            }
+        } // if ///////////
     }; // enterKey 함수 ////////////////////
 
     // 3. 검색 페이지로 검색어와 함께 이동하기
-    const goSearch = (txt) => { // txt - 검색어
-        console.log('나는 검색하러 간다규~!!!');
+    const goSearch = (txt) => {
+        // txt - 검색어
+        console.log("나는 검색하러 간다규~!!!");
         // 라우터 이동함수로 이동하기 : 컨텍스트 API 사용
-        chgPageFn('/schpage', {state : {keyword : txt}});
+        chgPageFn("/schpage", { state: { keyword: txt } });
     }; // goSerach 함수 //////////////////
 
     return (
@@ -129,13 +134,29 @@ export const TopArea = memo(({chgPageFn}) => {
                                 <FontAwesomeIcon icon={faSearch} />
                             </a>
                         </li>
-                        {/* 회원가입, 로그인은 로그인 아닌 상태일때 나옴 */}
-                        <li>
-                            <Link to="/member">JOIN US</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">LOGIN</Link>
-                        </li>
+                        {
+                            /* 회원가입, 로그인은 로그인 아닌 상태일때 나옴 */
+                            logSts === null && (
+                                <>
+                                    <li>
+                                        <Link to="/member">JOIN US</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/login">LOGIN</Link>
+                                    </li>
+                                </>
+                            )
+                        }
+                        {
+                            /* 회원가입, 로그인은 로그인 상태일때 로그아웃버튼만 보임 */
+                            logSts !== null && (
+                                <>
+                                    <li>
+                                        <a href="#">LOGOUT</a>
+                                    </li>
+                                </>
+                            )
+                        }
                     </ul>
                     {/* 모바일용 햄버거 버튼 */}
                     <button className="hambtn"></button>
