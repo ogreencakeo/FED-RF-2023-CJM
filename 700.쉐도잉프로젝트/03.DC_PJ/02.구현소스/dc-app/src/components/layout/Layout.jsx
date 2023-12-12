@@ -15,6 +15,9 @@ export function Layout() {
     // 1. 로그인 상태 체크변수 : 로컬스 'minfo' 초기할당
     const [logSts, setLogSts] = useState(localStorage.getItem("minfo"));
 
+    // 2. 로그인 환영메시지 상태변수
+    const [logMsg, setLogMsg] = useState(null);
+
     // 랜더링 후(화면 보이기 전) 실행 구역 ////////////////
     // useLayoutEffect 훅을 사용하여 렌더링 후(화면이 보이기 전)
     // 실행되는 부분에서 페이지 이동시 스크롤 위치를 상단으로 이동시키는 로직이 있습니다.
@@ -38,14 +41,19 @@ export function Layout() {
         [ 컨텍스트 API 공유값 설정 ]
         1. chgPage 함수 : 라우터 이동 기능
         2. setLogSts : 로그인 상태값 업데이트
+        3. setLogMsg : 로그인 메시지 업데이트
     *************************************************/
 
     // 리턴코드 ///////////////////////
     return (
-        <dcCon.Provider value={{ chgPage, setLogSts }}>
+        <dcCon.Provider value={{ chgPage, setLogSts, setLogMsg }}>
             {/* 메모이제이션 관리를 위해 함수를 
                 컨텍스트 방식이 아닌 속성으로 직접 보냄! */}
-            <TopArea chgPageFn={chgPage} logSts={logSts} />
+            <TopArea 
+                chgPageFn={chgPage} 
+                logSts={logSts}
+                logMsg = {logMsg}
+            />
             <MainArea />
             <FooterArea />
         </dcCon.Provider>
