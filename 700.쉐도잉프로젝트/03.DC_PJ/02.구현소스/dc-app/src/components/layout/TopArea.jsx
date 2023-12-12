@@ -29,7 +29,7 @@ import { memo } from "react";
 // -> 전달되는 함수가 반드시 useCallback() 처리가 되어야 한다!
 
 // export function TopArea() {
-export const TopArea = memo(({ chgPageFn }) => {
+export const TopArea = memo(({ chgPageFn, logSts }) => {
     // 보통 props 등 전달변수만 쓰면 하위 속성명으로
     // 값을 전달하지만 중괄호{}를 사용하면 속성명을
     // 직접 사용할 수 있다.
@@ -39,10 +39,6 @@ export const TopArea = memo(({ chgPageFn }) => {
 
     // 컨텍스트 API 사용
     // const myCon = useContext(dcCon);
-
-    // ************ Hook 상태관리 변수 **************
-    // 1. 로그인 상태 체크변수 : 로컬스 'minfo' 초기할당
-    const [logSts, setLogSts] = useState(localStorage.getItem("minfo"));
 
     // 검색 관련 함수들 //////////////////////
     // 1. 검색창 보이기 함수

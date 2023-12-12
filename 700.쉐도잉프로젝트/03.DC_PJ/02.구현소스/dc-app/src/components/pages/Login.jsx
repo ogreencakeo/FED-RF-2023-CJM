@@ -142,15 +142,18 @@ export function Login() {
                     // 비번 에러 상태값 업데이트
                     setPwdError(false);
 
-                    // [ 로그인후 셋팅작업 ]
+                    // *********** [ 로그인후 셋팅작업 ] *************
                     // 1. 로그인한 회원정보를 로컬스에 셋팅
                     // -> 서버의 세션을 대신하여 사용함
                     localStorage.setItem('minfo', JSON.stringify(findD));
 
+                    // 2. 컨텍스트 API에 공개된 로그인상태 업데이트 하기
+                    myCon.setLogSts(localStorage.getItem('minfo'));
+
                     // 버튼에 메시지
                     $('.sbtn').text('넌 로그인 된거야~!');
                     
-                    // 2. 라우팅 페이지 이동하기 (useNavigate)
+                    // 3. 라우팅 페이지 이동하기 (useNavigate)
                     myCon.chgPage('/', {});
 
                 } // if ///////
