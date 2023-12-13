@@ -76,6 +76,9 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
         chgPageFn("/schpage", { state: { keyword: txt } });
     }; // goSerach 함수 //////////////////
 
+    // 햄버거용 함수
+    const showMenu = () => $('.top-area').toggleClass('on');
+
     return (
         <>
             {/* 1.상단영역 */}
@@ -117,7 +120,7 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
                             </li>
                         ))}
                         {/* 3. 검색, 회원가입, 로그인 링크 */}
-                        <li style={{ marginLeft: "auto" }}>
+                        <li style={{ marginLeft: "auto", marginRight : '25px' }}>
                             {/* 검색입력박스 */}
                             <div className="searchingGnb">
                                 {/* 검색버튼 돋보기 아이콘 */}
@@ -156,7 +159,7 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
                         }
                     </ul>
                     {/* 모바일용 햄버거 버튼 */}
-                    <button className="hambtn"></button>
+                    <button className="hambtn" onClick={showMenu} ></button>
                 </nav>
             </header>
         </>
