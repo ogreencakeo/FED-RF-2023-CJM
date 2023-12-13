@@ -1,186 +1,114 @@
-// 신상품 데이터 가져오기
-import { useEffect, useRef, useState } from "react";
-import gdata from "../data/glist-items";
+import { memo, useEffect, useState } from "react";
+import $ from "jquery";
 
-export function Pra({cat, goods}) {
+export const Pra = memo((selData, flag) => {
 
-    const [cSts, setCsts] = useState(0);
-    const flag = useRef(true);
-
-    const [transData, setTransData] = useState(null);
-
-    const useCart = () => {
-        flag.current = true;
-
-        selData.num = $('#sum').val();
-        let localD;
-
-        if(!localStorage.getItem('cart')){
-            localD = [];
-            localD.push(selData);
-            localStorage.setItem('cart', JSON.stringify(localD));
-            setTransData(localD);
-            setCsts(1);
-            $('#mycart')
-                .removeClass('on')
-                .delay(1000)
-                .fadeIn(300, function(){
-                    $(this).addClass('on');
-                })
-        }else{
-            localD = localStorage.getItem('cart');
-            localD = JSON.parse(localD);
-
-            let temp = localD.find((v) => {
-                if(v.idx === selData.idx) return true;
-            });
-
-            if(temp){
-                alert('이미 선택하신 아이템입니다.');
-            }else{
-                localD.push(selData);
-                localStorage.setItem('cart', JSON.stringify(localD));
-                setTransData(localD);
-
-                setCsts(1);
-
-                $('#mycart')
-                    .removeClass('on')
-                    .delay(1000)
-                    .fadeIn(300, function(){
-                        $(this).addClass('on');
-                    })
-            }
-
-        }
-
+    const [cartData, setCartData] = useState(selData);
+    if(cartData !== selData && flag.current){
+        setCartData(selData);
     }
 
+    let totalCnt = cartData.reduce((total, v) =>{
+        return total + v.ginfo[3] * v.num
+    }, 0);
 
-
-    const selData = gdata.find((v) => {
-        if(v.cat === cat && v.ginfo[0] === goods) return true;
-    });
-
-    const ginfo = selData.ginfo;
-
-    useEffect(()=>{
-        const sum = $('#sum');
-        const numBtn = $('.chg_num img');
-        numBtn.click((e) => {
-            let seq = $(e.currentTarget).index();
-            let num = Number(sum.val());
-            seq ? num-- : num++;
-            if(num < 1) num=1;
-            sum.val(num);
-            $('#total').text(addComma(ginfo[3] * num) + '원');
-        })
-    },[]);
-
-    useEffect(()=>{
-        $('#sum').val('1');
-        $('#total').text(addComma(ginfo[3]) + '원');
-    })
-
-    //정규식함수(숫자 세자리마다 콤마해주는 기능)
     function addComma(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    useEffect(()=>{
+        $('#mycart')
+        .removeClass('on')
+        .fadeIn(300, function(){
+            $(this).addClass('on')
+        });
+    }, []);
+
+
+    const showList = () => {
+        $('#cartlist').animate({right : '0'}, 600);
+    };
+
+    const hideList = (e) => {
+        e.preventDefault();
+        $('#cartlist').animate({right : '-60%'}, 600);
+    };
+
+    const deleteItem = (e) => {
+        flag.current = false;
+        const selIdx = $(e.target).attr('data-idx');
+        const newData = cartData.filter((v) => {
+            if(v.idx !== selIdx) return true;
+        })
+
+        localStorage.setItem('cart', JSON.stringify(newData));
+        setCartData(newData);
+    }
+
     return (
         <>
-            <a href="#" className="cbtn" onClick={closeBox}>
-                <span className="ir">닫기버튼</span>
-            </a>
-            <div id="imbx">
-                <div className="inx">
-                    <section className="gimg">
-                        <img src={"./images/goods/" + cat + "/" + goods + ".png"} alt="큰 이미지" />
-                        <div className="small">
-                            <a href="#">
-                                <img src="./images/goods/men/m1.png" alt="썸네일 이미지" />
-                                <img src="./images/goods/men/m2.png" alt="썸네일 이미지" />
-                                <img src="./images/goods/men/m3.png" alt="썸네일 이미지" />
-                                <img src="./images/goods/men/m4.png" alt="썸네일 이미지" />
-                                <img src="./images/goods/men/m5.png" alt="썸네일 이미지" />
-                                <img src="./images/goods/men/m6.png" alt="썸네일 이미지" />
-                            </a>
-                        </div>
-                    </section>
-                    <section className="gdesc scbar">
-                        <h1>HOME &gt; MEN</h1>
-                        <div>
-                            <ol>
-                                <li>
-                                    <img src="./images/dx_ico_new-28143800.gif" alt="new버튼" />
-                                </li>
-                                <li id="gtit">상품명: {ginfo[1]}</li>
-                                <li>
-                                    <img src="./images/icon_type02_social01.gif" alt="페이스북" />
-                                    <img src="./images/icon_type02_social02.gif" alt="트위터" />
-                                    <img src="./images/icon_mail02.gif" alt="이메일" />
-                                    <img src="./images/btn_source_copy.gif" alt="URL복사" />
-                                </li>
-                                <li>
-                                    <span>판매가</span>
-                                    <span id="gprice">{addComma(ginfo[3])}</span>
-                                </li>
-                                <li>
-                                    <span>적립금</span>
-                                    <span>
-                                        <img src="./images/icon_my_m02.gif" alt="적립금" />
-                                        4,950(5%적립)
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>무이자할부</span>
-                                    <span>
-                                        부분 무이자 할부 혜택
-                                        <img src="./images/view_btn_nointerest_card.gif" alt="무이자카드보기" />
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>상품코드</span> <span id="gcode">{ginfo[2]}</span>
-                                </li>
-                                <li>
-                                    <span>사이즈</span> <span>95 100 105 110</span>
-                                </li>
-                                <li>
-                                    <span>구매수량</span>
-                                    <span>
-                                        <input type="text" id="sum" defaultValue="1" />
-                                        <b className="chg_num">
-                                            <img src="./images/cnt_up.png" alt="증가" />
-                                            <img src="./images/cnt_down.png" alt="감소" />
-                                        </b>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>컬러</span> <span></span>
-                                </li>
-                                <li>
-                                    <span>권장계절</span> <span>여름</span>
-                                </li>
-                                <li className="tot">
-                                    <span>총합계</span>
-                                    <span id="total">{addComma(ginfo[3])}</span>
-                                </li>
-                            </ol>
-                        </div>
-                        <div>
-                            <button className="btn btn1">BUY NOW</button>
-                            <button className="btn" onClick={useCart}>
-                                SHOPPING CART
-                            </button>
-                            <button className="btn">WISH LIST</button>
-                        </div>
-                    </section>
-                </div>
-            </div>
+            <section id="cartlist">
+                <a href="#" className="cbtn cbtn2" onClick={hideList}>
+                    <span>닫기버튼</span>
+                </a>
+                <table>
+                    <caption>
+                        <h1> 카트 리스트</h1>
+                    </caption>
+                    <tbody>
+                        <tr>
+                            <th>상품</th>
+                            <th>번호</th>
+                            <th>상품명</th>
+                            <th>상품코드</th>
+                            <th>단가</th>
+                            <th>수량</th>
+                            <th>합계</th>
+                            <th>삭제</th>
+                        </tr>
 
-            {/* 카트리스트 */}
-            {/* {csts && <CartList selData={transData} />} */}
-            {cSts &&<CartList selData={transData} />}
+                        {cartData.map((v, i) => (
+                            <tr key={i}>
+                                {/* 상품이미지 */}
+                                <td>
+                                    <img src={"images/goods/" + v.cat + "/" + v.ginfo[0] + ".png"} alt="item" />
+                                </td>
+                                {/* 리스트순번 */}
+                                <td>{i + 1}</td>
+                                {/* 상품명 */}
+                                <td>{v.ginfo[1]}</td>
+                                {/* 상품코드 */}
+                                <td>{v.ginfo[2]}</td>
+                                {/* 상품가격 */}
+                                <td>{addComma(v.ginfo[3])}원</td>
+                                {/* 상품수량 */}
+                                <td>{v.num}</td>
+                                {/* 상품가격 총합계 */}
+                                <td>{addComma(v.ginfo[3] * v.num)}원</td>
+                                {/* 삭제버튼 */}
+                                <td>
+                                    <button className="cfn" data-idx={v.idx} onClick={deleteItem}>
+                                        ×
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+
+                        <tr>
+                            <td colSpan="6">총합계 :</td>
+                            <td>{addComma(totalCnt)}원</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            {/* 카트버튼이미지 박스 */}
+            <div id="mycart" onClick={showList}>
+                {/* 카트이미지 */}
+                <img src="./images/mycart.gif" title="개의 상품이 있습니다" />
+                {/* 카트상품개수 출력박스 */}
+                <div className="cntBx">{cntData}</div>
+            </div>
         </>
-    );
-}
+    )
+});
