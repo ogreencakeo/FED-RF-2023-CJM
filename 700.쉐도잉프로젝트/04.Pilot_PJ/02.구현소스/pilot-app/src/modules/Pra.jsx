@@ -1,11 +1,51 @@
 // 신상품 데이터 가져오기
-import { useEffect, useState } from "react";
-import gdata from "../data/glist_items";
+import { useEffect, useRef, useState } from "react";
+import gdata from "../data/glist-items";
 
 export function Pra({cat, goods}) {
 
     const [cSts, setCsts] = useState(0);
+    const flag = useRef(true);
+
     const [transData, setTransData] = useState(null);
+
+    const useCart = () => {
+        flag.current = true;
+
+        selData.num = $('#sum').val();
+        let localD;
+
+        if(!localStorage.getItem('cart')){
+            localD = [];
+            localD.push(selData);
+            localStorage.setItem('cart', JSON.stringify(localD));
+            setTransData(localD);
+            setCsts(1);
+            $('#mycart')
+                .removeClass('on')
+                .delay(1000)
+                .fadeIn(300, function(){
+                    $(this).addClass('on');
+                })
+        }else{
+            localD = localStorage.getItem('cart');
+            localD = JSON.parse(localD);
+
+            let temp = localD.find((v) => {
+                if(v.idx === selData.idx) return true;
+            });
+
+            if(temp){
+                alert('이미 선택하신 아이템입니다.');
+            }else{
+                localD.push(selData);
+                
+            }
+
+        }
+
+    }
+
 
 
     const selData = gdata.find((v) => {
