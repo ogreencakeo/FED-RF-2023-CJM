@@ -12,6 +12,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { memo } from "react";
+import { useEffect } from "react";
 
 // 메모이제이션 적용하기 ////////////////
 // -> 그러나 단순히 적용하면 효과가 없음
@@ -55,6 +56,8 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
 
         // 엔터키는 'Enter'문자열을 리턴함!
         if (e.key === "Enter") {
+            // 모바일에서 열린 메뉴창 닫기
+            $('.top-area').removeClass('on')
             // 입력창의 입력값 읽어오기 : val() 사용!
             let txt = $(e.target).val().trim();
             console.log("TopArea컴포넌트 enterkey함수 txt :", txt);
@@ -77,16 +80,25 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
     }; // goSerach 함수 //////////////////
 
     // 햄버거용 함수
-    const showMenu = () => $('.top-area').toggleClass('on');
+    const showMenu = () => $(".top-area").toggleClass("on");
+
+    // 랜더링후 실행구역 /////////
+    useEffect(()=>{
+        // GNB a 요소 클릭시 전체메뉴 닫기
+        // 대상 : .gnb a[href!='#']
+        // -> href가 '#'이 아닌 gnb 하위 모든 a요소
+        // -> !=은 제이쿼리 전용!
+        $(".gnb a[href!='#']").on('click', ()=>{
+            $('.top-area').removeClass('on')
+        }); // click /////////
+    }); // useEffect
 
     return (
         <>
             {/* 1.상단영역 */}
             <header className="top-area">
                 {/* 로그인 환영메시지 박스 */}
-                {
-                    logMsg && alert(`${logMsg}님 반갑습니다.`)
-                }
+                {logMsg && alert(`${logMsg}님 반갑습니다.`)}
                 <div className="logmsg">{logMsg}</div>
                 {/* 네비게이션 GNB파트 */}
                 <nav className="gnb">
@@ -120,7 +132,7 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
                             </li>
                         ))}
                         {/* 3. 검색, 회원가입, 로그인 링크 */}
-                        <li style={{ marginLeft: "auto", marginRight : '25px' }}>
+                        <li style={{ marginLeft: "auto", marginRight: "25px" }}>
                             {/* 검색입력박스 */}
                             <div className="searchingGnb">
                                 {/* 검색버튼 돋보기 아이콘 */}
@@ -152,15 +164,17 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
                             logSts !== null && (
                                 <>
                                     <li>
-                                        <a href="#" onClick={logOut}>LOGOUT</a>
+                                        <a href="#" onClick={logOut}>
+                                            LOGOUT
+                                        </a>
                                     </li>
                                 </>
                             )
                         }
                     </ul>
-                    {/* 모바일용 햄버거 버튼 */}
-                    <button className="hambtn" onClick={showMenu} ></button>
                 </nav>
+                {/* 모바일용 햄버거 버튼 */}
+                <button className="hambtn" onClick={showMenu}></button>
             </header>
         </>
     );
