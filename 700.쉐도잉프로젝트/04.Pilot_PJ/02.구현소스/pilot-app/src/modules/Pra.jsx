@@ -1,8 +1,12 @@
 // 신상품 데이터 가져오기
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gdata from "../data/glist_items";
 
 export function Pra({cat, goods}) {
+
+    const [cSts, setCsts] = useState(0);
+    const [transData, setTransData] = useState(null);
+
 
     const selData = gdata.find((v) => {
         if(v.cat === cat && v.ginfo[0] === goods) return true;
@@ -21,6 +25,11 @@ export function Pra({cat, goods}) {
             sum.val(num);
             $('#total').text(addComma(ginfo[3] * num) + '원');
         })
+    },[]);
+
+    useEffect(()=>{
+        $('#sum').val('1');
+        $('#total').text(addComma(ginfo[3]) + '원');
     })
 
     //정규식함수(숫자 세자리마다 콤마해주는 기능)
@@ -55,7 +64,7 @@ export function Pra({cat, goods}) {
                                 <li>
                                     <img src="./images/dx_ico_new-28143800.gif" alt="new버튼" />
                                 </li>
-                                <li id="gtit">상품명: </li>
+                                <li id="gtit">상품명: {ginfo[1]}</li>
                                 <li>
                                     <img src="./images/icon_type02_social01.gif" alt="페이스북" />
                                     <img src="./images/icon_type02_social02.gif" alt="트위터" />
@@ -64,7 +73,7 @@ export function Pra({cat, goods}) {
                                 </li>
                                 <li>
                                     <span>판매가</span>
-                                    <span id="gprice"></span>
+                                    <span id="gprice">{addComma(ginfo[3])}</span>
                                 </li>
                                 <li>
                                     <span>적립금</span>
@@ -81,7 +90,7 @@ export function Pra({cat, goods}) {
                                     </span>
                                 </li>
                                 <li>
-                                    <span>상품코드</span> <span id="gcode"></span>
+                                    <span>상품코드</span> <span id="gcode">{ginfo[2]}</span>
                                 </li>
                                 <li>
                                     <span>사이즈</span> <span>95 100 105 110</span>
@@ -104,7 +113,7 @@ export function Pra({cat, goods}) {
                                 </li>
                                 <li className="tot">
                                     <span>총합계</span>
-                                    <span id="total"></span>
+                                    <span id="total">{addComma(ginfo[3])}</span>
                                 </li>
                             </ol>
                         </div>
@@ -121,6 +130,7 @@ export function Pra({cat, goods}) {
 
             {/* 카트리스트 */}
             {/* {csts && <CartList selData={transData} />} */}
+            {cSts &&<CartList selData={transData} />}
         </>
     );
 }
