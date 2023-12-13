@@ -39,7 +39,17 @@ export function Pra({cat, goods}) {
                 alert('이미 선택하신 아이템입니다.');
             }else{
                 localD.push(selData);
-                
+                localStorage.setItem('cart', JSON.stringify(localD));
+                setTransData(localD);
+
+                setCsts(1);
+
+                $('#mycart')
+                    .removeClass('on')
+                    .delay(1000)
+                    .fadeIn(300, function(){
+                        $(this).addClass('on');
+                    })
             }
 
         }
