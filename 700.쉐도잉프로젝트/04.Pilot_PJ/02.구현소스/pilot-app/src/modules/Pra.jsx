@@ -1,48 +1,46 @@
-import { memo, useEffect, useState } from "react";
-import $ from "jquery";
+import { memo, useEffect, useState } from "react"
 
 export const Pra = memo((selData, flag) => {
 
     const [cartData, setCartData] = useState(selData);
-    if(cartData !== selData && flag.current){
+
+    if(cartData!==selData && flag.current){
         setCartData(selData);
     }
-
-    let totalCnt = cartData.reduce((total, v) =>{
-        return total + v.ginfo[3] * v.num
+    
+    let totalCnt = cartData.reduce((total, v) => {
+        return total + v.ginfo[3] * v.num;
     }, 0);
-
     function addComma(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     useEffect(()=>{
-        $('#mycart')
-        .removeClass('on')
-        .fadeIn(300, function(){
-            $(this).addClass('on')
-        });
+        $('#mycart').removeClass('on').fadeIn(300, function(){
+            $(this).addClass('on');
+        })
     }, []);
 
-
-    const showList = () => {
-        $('#cartlist').animate({right : '0'}, 600);
-    };
-
-    const hideList = (e) => {
-        e.preventDefault();
-        $('#cartlist').animate({right : '-60%'}, 600);
-    };
-
     const deleteItem = (e) => {
+        e.preventDefault();
         flag.current = false;
         const selIdx = $(e.target).attr('data-idx');
         const newData = cartData.filter((v) => {
             if(v.idx !== selIdx) return true;
-        })
+        });
 
         localStorage.setItem('cart', JSON.stringify(newData));
-        setCartData(newData);
+
+        setCartData(newData)
+    }
+
+    const showList = () => {
+        $('#cartlist').animate({right : '0'}, 600);
+    }
+
+    const hideList = (e) => {
+        e.preventDefault();
+        $('#cartlist').animate({right : '-60%'}, 600);
     }
 
     return (
