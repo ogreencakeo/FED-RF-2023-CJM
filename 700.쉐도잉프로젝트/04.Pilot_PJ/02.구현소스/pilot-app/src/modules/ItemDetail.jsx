@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 // 신상품 데이터 가져오기
-import gdata from "../data/glist-items";
+import gdata from "../data/glist_items";
 import { sinsangData } from "../data/sinsang";
 
 import $ from "jquery";
@@ -23,10 +23,10 @@ export function ItemDetail({ cat, goods }) {
         // 1.선택된 상품을 로컬스토리지에 담기!
         /* 데이터 구성:
     {
-      idx: 상품유일키,
-      cat: 상품분류,
-      ginfo: 상품정보,
-      num: 선택상품수
+        idx: 상품유일키,
+        cat: 상품분류,
+        ginfo: 상품정보,
+        num: 선택상품수
     }
     -> 기존 선택객체는 selData에 담김
     -> 여기에 num항목을 추가한다!
