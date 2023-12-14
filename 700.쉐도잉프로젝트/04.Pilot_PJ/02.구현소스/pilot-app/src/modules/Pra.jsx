@@ -1,7 +1,16 @@
 import { useEffect } from "react";
 import gdata from "../data/glist-items";
+import { useRef } from "react";
+import { useState } from "react";
 
 export function Pra({cat, goods}) {
+
+    const flag = useRef(true);
+    const [transData, setTransData] = useState(null);
+
+    const useCart = () => {
+        
+    };
 
 
     const selData = gdata.find((v) => {
@@ -19,9 +28,9 @@ export function Pra({cat, goods}) {
             seq? num-- : num++;
             if(num<1) num = 1;
             sum.val(num);
-            $('#total').text(addComma(ginfo[3] ))
-        })
-    })
+            $('#total').text(addComma(ginfo[3] * num) + '원');
+        });
+    }, []);
 
     return (
         <>
