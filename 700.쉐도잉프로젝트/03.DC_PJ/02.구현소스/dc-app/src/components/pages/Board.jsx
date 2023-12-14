@@ -17,7 +17,9 @@ let orgData;
 // 로컬스가 있으면 그것 넣기
 if (localStorage.getItem("bData")) orgData = JSON.parse(localStorage.getItem("bdata"));
 // 로컬스 없으면 제이슨 데이터 넣기
-else orgData = baseData;
+// else orgData = baseData;
+else orgData = [];
+
 // console.log(org);
 
 // ********************** Board 컴포넌트 ********************** //
@@ -26,7 +28,7 @@ export function Board() {
     // 1. 페이지 단위수 : 한 페이지 당 레코드 수
     const pgBlock = 7;
     // 2. 전체 레코드수 : 배열데이터 총개수
-    const totNum = baseData.length;
+    const totNum = orgData.length;
     console.log("페이지 단위수 (pgBlock) :", pgBlock, ", 전체 레코드 수 (totNum) :", totNum);
 
     // [ 상태관리 변수 셋팅 ] ////////////
@@ -70,7 +72,7 @@ export function Board() {
         console.log("결과 셋 tempData:", tempData);
 
         // 데이터가 없는 경우 출력 /////////
-        if (tempData.length === 0) {
+        if (orgData.length === 0) {
             return (
                 <tr>
                     <td colSpan="5">There is no data.</td>
