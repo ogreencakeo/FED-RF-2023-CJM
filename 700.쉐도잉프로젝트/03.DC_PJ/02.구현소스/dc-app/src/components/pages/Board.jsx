@@ -29,13 +29,13 @@ export function Board() {
     const totNum = baseData.length;
     console.log("페이지 단위수 (pgBlock) :", pgBlock, ", 전체 레코드 수 (totNum) :", totNum);
 
-    // 3. 현재 페이지 번호
-    let pgNum = 1;
-
+    
     // [ 상태관리 변수 셋팅 ] ////////////
-    // 1. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
+    // 1. 현재 페이지 번호 : 가장 중요한 리스트 바인딩의 핵심
+    const [pgNum, setPgNum] = useState(1);
+    // 2. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
     const [currData, setCurrData] = useState(null);
-    // 2. 게시판 모드관리 변수
+    // 3. 게시판 모드관리 변수
     const [bdMode, setBdMode] = useState("L");
     // 모드구분값 : CRUD (Create/Read/Update/Delete)
     // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 글삭제(U에 포함!)
@@ -52,13 +52,17 @@ export function Board() {
         // 데이터 선별하기
         const tempData = [];
 
+        
         // 시작값 : (페이지번호 - 1) * 블록단위수
+        let initNum =  pgBlock * (pgNum - 1);
         // 한계값 : 블록단위수 * 페이지번호
+        let limitNum = pgBlock * pgNum;
+        
         // 블록단위가 7일 경우 첫 페이지는 0~7, 7~14, ...
-        console.log('시작값 :', pgBlock * (pgNum - 1), ', 한계값 :', pgBlock * pgNum)
+        console.log('시작값 :', initNum, ', 한계값 :', limitNum);
 
-        // 데이터 선별용 for문 : 원본데이터(orgData)로 생성
-        for (let i = pgBlock * (pgNum - 1); i < pgBlock * pgNum; i++) {
+        // 데이터 선별용 for문 : 원본데이터(orgData)로부터 생성
+        for (let i = initNum; i < limitNum; i++) {
             tempData.push(orgData[i]);
         }
 
@@ -67,7 +71,7 @@ export function Board() {
         return tempData.map((v, i) => (
             <tr key={i}>
                 {/* 1. 일련번호 */}
-                <td>{i + 1}</td>
+                <td>{(i + 1) + initNum}</td>
                 {/* 2. 글제목 */}
                 <td>
                     <a href="#" datatype={v.idx}>
@@ -131,10 +135,10 @@ export function Board() {
     const chgList = (e) => {
         let currNum = e.target.innerText;
         console.log("번호 currNum :", currNum);
-        // 현재 페이지번호 업데이트
-        pgNum = currNum;
-        // 바인드 리스트 호출
-        bindList();
+        // 현재 페이지번호 업데이트 ->  리스트 업데이트 됨!
+        setPgNum(currNum);
+        // 바인드 리스트 호출 불필요! 왜? pgNum을 bindList()에서 사용하기 때문에
+        // 리랜더링이 자동으로 일어남! // bindList();
     }; // chgList 함수 ///////////
 
     // 리턴코드 //////////////
