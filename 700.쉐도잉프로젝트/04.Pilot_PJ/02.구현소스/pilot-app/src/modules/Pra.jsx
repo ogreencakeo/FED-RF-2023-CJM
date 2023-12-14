@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import gdata from "../data/glist-items";
+import { useState } from "react";
+import { useRef } from "react";
 
 export function Pra({cat, goods}) {
 
@@ -13,6 +15,21 @@ export function Pra({cat, goods}) {
         $('.bgbx').slideUp(400);
     }
 
+    const [csts, setCsts] =useState(0);
+    const flag = useRef(true);
+    const [transData, setTransData] = useState(null);
+
+    const useCart = () => {
+        flag.current = true;
+        selData.num = $('#sum').val();
+        let localD;
+        if(!localStorage.getItem('cart')){
+            localD = [];
+            localD.push(selData);
+            loc
+        }
+    }
+
     useEffect(()=>{
         const sum = $('#sum');
         const numBtn = $('.chg_num img');
@@ -24,6 +41,11 @@ export function Pra({cat, goods}) {
             $('#total').text(addComma(ginfo[3] * num));
         })
     }, []);
+
+    useEffect(()=>{
+        $('#sum').val('1');
+        $('#total').text(addComma(ginfo[3])+'원');
+    })
 
     function addComma(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

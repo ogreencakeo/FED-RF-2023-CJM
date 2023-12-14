@@ -7,6 +7,11 @@ import "../../css/board.css";
 // 기본 데이터 제이슨 불러오기
 import baseData from "../data/board.json";
 
+// 기본 데이터 역순정렬
+baseData.sort((a, b) => {
+    return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+});
+
 // 초기데이터 셋업하기
 let org;
 // 로컬스가 있으면 그것 넣기
@@ -16,6 +21,17 @@ else org = baseData;
 // console.log(org);
 
 export function Board() {
+
+    // [ 컴포넌트 전체 공통변수 ] //////////
+    // 1. 페이지 단위수 : 한 페이지 당 레코드 수
+    const pgBlock = 7;
+    // 2. 전체 레코드수 : 배열데이터 총개수
+    const totNum = baseData.length;
+    console.log('페이지 단위수 (pgBlock) :', pgBlock, ', 전체 레코드 수 (totNum) :', totNum);
+
+    // 3. 시작레코드 순번
+    let initSeq = 0;
+
     // [ 상태관리 변수 셋팅 ] ////////////
     // 1. 데이터 변경변수
     const [jsn, setJsn] = useState(org);
@@ -31,28 +47,55 @@ export function Board() {
         기능 : 페이지별 리스트를 생성하여 바인딩함
     ***********************************************************/
     const bindList = () => {
-        
-        return(
-            jsn.map((v,i) => 
-                <tr>
-                    {/* 1. 일련번호 */}
-                    <td>{i+1}</td>
-                    {/* 2. 글제목 */}
-                    <td>{v.tit}</td>
-                    {/* 3. 글쓴이 */}
-                    <td>{v.writer}</td>
-                    {/* 4. 쓴 날짜 */}
-                    <td>{v.date}</td>
-                    {/* 5. 조회수 */}
-                    <td>{v.cnt}</td>
-                </tr>
-            )
-        );
+        // 데이터 선별하기
+        const tempData = [];
+
+        // 데이터 선별용 for문
+        for (let i = initSeq; i < pgBlock; i++) {
+            tempData.push(jsn[i]);
+        }
+
+        return tempData.map((v, i) => (
+            <tr key={i}>
+                {/* 1. 일련번호 */}
+                <td>{i + 1}</td>
+                {/* 2. 글제목 */}
+                <td>
+                    <a href="#" datatype={v.idx}>
+                        {v.tit}
+                    </a>
+                </td>
+                {/* 3. 글쓴이 */}
+                <td>{v.writer}</td>
+                {/* 4. 쓴 날짜 */}
+                <td>{v.date}</td>
+                {/* 5. 조회수 */}
+                <td>{v.cnt}</td>
+            </tr>
+        ));
 
         // <tr>
         //     <td colSpan="5">There is no data.</td>
         // </tr>;
     }; // bindList 함수 ////////////////////
+
+
+    /***********************************************************
+        함수명 : pagingLink
+        기능 : 리스트 페이징 링크를 생성한다.
+    ***********************************************************/
+    const pagingLink = () => {
+        
+        // 페이징 블록 만들기 ///////////
+        // 1. 블록개수 계산하기
+        const blockCnt = Math.floor(totNum / pgBlock);
+        // 전체 레코드 수 / 페이지단위 (나머지가 있으면 + 1)
+        // 전체 레코드 수 : pgBlock변수에 할당됨!
+        // 2. 블록 나머지수  
+        const blockPad = totNum % pgBlock;
+        
+
+    }; // pagingLink 함수 /////////////
 
     // 리턴코드 //////////////
     return (
@@ -79,6 +122,7 @@ export function Board() {
                             <tr>
                                 <td colSpan="5" className="paging">
                                     {/* 페이징번호 위치  */}
+                                    {pagingLink()}
                                 </td>
                             </tr>
                         </tfoot>
