@@ -78,6 +78,7 @@ export function Board() {
             );
         } // if /////////////
 
+        // if문에 들어가지 않으면 여기를 리턴함!
         return tempData.map((v, i) => (
             <tr key={i}>
                 {/* 1. 일련번호 */}
