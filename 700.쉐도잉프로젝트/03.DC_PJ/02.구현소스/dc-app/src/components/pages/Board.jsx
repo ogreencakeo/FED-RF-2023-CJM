@@ -21,13 +21,12 @@ else org = baseData;
 // console.log(org);
 
 export function Board() {
-
     // [ 컴포넌트 전체 공통변수 ] //////////
     // 1. 페이지 단위수 : 한 페이지 당 레코드 수
     const pgBlock = 7;
     // 2. 전체 레코드수 : 배열데이터 총개수
     const totNum = baseData.length;
-    console.log('페이지 단위수 (pgBlock) :', pgBlock, ', 전체 레코드 수 (totNum) :', totNum);
+    console.log("페이지 단위수 (pgBlock) :", pgBlock, ", 전체 레코드 수 (totNum) :", totNum);
 
     // 3. 시작레코드 순번
     let initSeq = 0;
@@ -79,22 +78,37 @@ export function Board() {
         // </tr>;
     }; // bindList 함수 ////////////////////
 
-
     /***********************************************************
         함수명 : pagingLink
         기능 : 리스트 페이징 링크를 생성한다.
     ***********************************************************/
     const pagingLink = () => {
-        
         // 페이징 블록 만들기 ///////////
         // 1. 블록개수 계산하기
         const blockCnt = Math.floor(totNum / pgBlock);
         // 전체 레코드 수 / 페이지단위 (나머지가 있으면 + 1)
         // 전체 레코드 수 : pgBlock변수에 할당됨!
-        // 2. 블록 나머지수  
+        // 2. 블록 나머지수
         const blockPad = totNum % pgBlock;
-        
 
+        // 최종 한계수 -> 여분레코드 존재에 따라 1 더하기
+        const limit = blockCnt + (blockPad===0? 0 : 1);
+        
+        console.log("블록개수 blockCnt :", blockCnt, ", 블록 나머지 blockPad : ", blockPad, '한계수 limit :', limit);
+
+        let pgCode;
+        // 리턴코드
+        for(let i=0; i<limit; i++){
+            
+        }
+
+        // 리턴코드
+        return (
+            <>
+                <b>1</b> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |{" "}
+                <a href="#">6</a>
+            </>
+        );
     }; // pagingLink 함수 /////////////
 
     // 리턴코드 //////////////
