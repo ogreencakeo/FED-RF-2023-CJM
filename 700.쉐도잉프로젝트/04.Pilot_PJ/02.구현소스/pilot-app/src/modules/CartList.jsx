@@ -106,35 +106,76 @@ export const CartList = memo(({ selData, flag }) => {
     }; ////////// deleteItem 함수 //////////
 
     // 증감 반영 함수 ////////////
-    const chgNum = e => { 
+    const chgNum = (e) => {
         // 이벤트 타겟
         const tg = $(e.currentTarget);
         // 이벤트 타켓의 입력창
-        const tgInput = tg.parent().siblings('.item-cnt');
+        const tgInput = tg.parent().siblings(".item-cnt");
         // 입력창 숫자 읽기 : 문자형숫자 -> 숫자형
         let cNum = Number(tgInput.val());
-        console.log('증감반영 :');
-        
-        // CSS 포커스시 반영버튼 보이기 셋팅에 맞춰서 
+        console.log("증감반영 :");
+
+        // CSS 포커스시 반영버튼 보이기 셋팅에 맞춰서
         // 강제로 입력창에 포커스 주기
         tgInput.focus();
 
         // 증감하기
-        if(tg.attr('alt') === '증가') cNum++;
+        if (tg.attr("alt") === "증가") cNum++;
         else cNum--;
 
         // 한계수 체크
-        if(cNum<1) cNum = 1;
+        if (cNum < 1) cNum = 1;
 
         // 화면 반영하기
         tgInput.val(cNum);
-
     }; // chgNum 함수 //////////
 
-
     // 반영버튼 클릭시 데이터 업데이트하기
-    const goResult = () => {
-        console.log('결과야 나와라~!');
+    const goResult = (e) => {
+        // 업데이트할 배열 고유값 idx
+        let tg = $(e.currentTarget)
+        let cidx = tg.attr('data-idx');
+
+        console.log("결과야 나와라~! cidx :", cidx);
+
+        // 데이터 리랜더링 중복실행 막기
+        flag.current = false;
+
+        // 해당 데이터 업데이트 하기
+        // forEach로 돌리면 중간에 맞을 경우 return 할 수 없음!
+        // 일반 for문으로 해야 return 또는 continue를 사용 가능
+
+        // -> some() 이라는 메서드가 있다!
+        // return true로 조건에 처리시 for문을 빠져나옴 (return과 유사!)
+        // return false로 조건 처리시 for문을 해당순번 제외하고 계속 순회함 (continue와 유사!)
+        // 참고 : https://www.w3schools.com/jsref/jsref_some.asp
+
+        // [ Array some() 메서드 테스트 ] /////////
+        // cartData.some((v) => {
+            // console.log('some테스트 상단 :', v.idx);
+            // if (v.idx==19) {return true;} // for문 break 유사
+            // if (v.idx==19) {return false;} // for문 continue 유사
+            // console.log('some테스트 하단 :', v.idx);
+        // });
+
+        // 클릭시 'data-idx'값에 업데이트할 요소 idx번호 있음 -> cidx
+        cartData.some((v, i) => {
+            // 해당 순번 업데이트하기
+            if(v.idx==cidx){
+                // 업데이트 하기
+                cartData[i].num = tg.prev().val();
+
+                // some 메서드 이므로 true 리턴시 순회종료
+                return true;
+            } // if문
+        });
+        
+        // 로컬스 데이터 업데이트!!!
+        localStorage.setItem("cart", JSON.stringify(cartData));
+
+        // 전체 데이터 업데이트 하면 모두 리랜더링되게 하자!
+        setCartData(cartData);
+    
     }; // goResult 함수 ////////////
 
     /// 리턴 코드 ///////////////////////
@@ -179,9 +220,11 @@ export const CartList = memo(({ selData, flag }) => {
                                     <div>
                                         <span>
                                             <input type="text" className="item-cnt" defaultValue={v.num} />
-                                            <button className="btn-insert" onClick={goResult}>반영</button>
-                                            <b className="btn-cnt" >
-                                                <img src="./images/cnt_up.png" alt="증가"  onClick={chgNum} />
+                                            <button className="btn-insert" onClick={goResult} data-idx={v.idx}>
+                                                반영
+                                            </button>
+                                            <b className="btn-cnt">
+                                                <img src="./images/cnt_up.png" alt="증가" onClick={chgNum} />
                                                 <img src="./images/cnt_down.png" alt="감소" onClick={chgNum} />
                                             </b>
                                         </span>

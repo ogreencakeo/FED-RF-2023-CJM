@@ -117,7 +117,7 @@
 /* 증감 이미지 버튼 */
 
 #cartlist .btn-cnt img{
-    display: block;
+    /* display: block; */
     width: 18px;
 }
 /* 반영 버튼 */
@@ -125,13 +125,17 @@
     position: absolute;
     margin-left: 43px;
     width: 34px;
-    word-spacing: normal;
     padding: 0;
-    display: none;
+    overflow: hidden;
+    width: 0;
+    transition: .1s .1s;
+    /* display: none; */
 }
 
 /* 입력창에 포커스 갈때 다음 형제요소 반영 버튼 보이기 */
 .item-cnt:focus+.btn-insert{
     /* outline: 10px dotted red; */
-    display: inline-block;
+    width: 34px;
+    transition: none;
+    /* display: inline-block; */
 }
