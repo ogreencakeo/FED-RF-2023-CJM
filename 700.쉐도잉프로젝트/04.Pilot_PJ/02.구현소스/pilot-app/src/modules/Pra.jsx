@@ -20,6 +20,15 @@ export const Prac = memo((selData, flag) => {
     const hideList = (e) => {
         e.prevnetDefault();
         $('#cartlist').animate({right : '-60%'}, 600);
+    };
+
+    const deleteItem = (e) => {
+        flag.current = false;
+        const selIdx = $(e.target).attr('data-idx');
+        const newData = cartData.filter((v) => {
+            if(v.idx !== selIdx) return true;
+        });
+        
     }
 
     return (

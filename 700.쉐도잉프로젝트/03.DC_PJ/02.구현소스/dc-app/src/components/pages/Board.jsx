@@ -29,7 +29,6 @@ export function Board() {
     const totNum = baseData.length;
     console.log("페이지 단위수 (pgBlock) :", pgBlock, ", 전체 레코드 수 (totNum) :", totNum);
 
-    
     // [ 상태관리 변수 셋팅 ] ////////////
     // 1. 현재 페이지 번호 : 가장 중요한 리스트 바인딩의 핵심
     const [pgNum, setPgNum] = useState(1);
@@ -52,29 +51,28 @@ export function Board() {
         // 데이터 선별하기
         const tempData = [];
 
-        
         // 시작값 : (페이지번호 - 1) * 블록단위수
-        let initNum =  pgBlock * (pgNum - 1);
+        let initNum = pgBlock * (pgNum - 1);
         // 한계값 : 블록단위수 * 페이지번호
         let limitNum = pgBlock * pgNum;
-        
+
         // 블록단위가 7일 경우 첫 페이지는 0~7, 7~14, ...
-        console.log('시작값 :', initNum, ', 한계값 :', limitNum);
+        console.log("시작값 :", initNum, ", 한계값 :", limitNum);
 
         // 데이터 선별용 for문 : 원본데이터(orgData)로부터 생성
         for (let i = initNum; i < limitNum; i++) {
             // 마지막 페이지 한계수 체크
-            if(i>=totNum) break; 
+            if (i >= totNum) break;
             // 코드 푸시
             tempData.push(orgData[i]);
         }
 
-        console.log('결과 셋 tempData:', tempData);
+        console.log("결과 셋 tempData:", tempData);
 
         return tempData.map((v, i) => (
             <tr key={i}>
                 {/* 1. 일련번호 */}
-                <td>{(i + 1) + initNum}</td>
+                <td>{i + 1 + initNum}</td>
                 {/* 2. 글제목 */}
                 <td>
                     <a href="#" datatype={v.idx}>
@@ -121,9 +119,13 @@ export function Board() {
         for (let i = 0; i < limit; i++) {
             pgCode[i] = (
                 <Fragment key={i}>
-                    <a href="#" onClick={chgList}>
-                        {i + 1}
-                    </a>{" "}
+                    {pgNum-1 === i ? (
+                        <b>{i + 1}</b>
+                    ) : (
+                        <a href="#" onClick={chgList}>
+                            {i + 1}
+                        </a>
+                    )}
                     {i < limit - 1 ? " | " : ""}
                 </Fragment>
             );
