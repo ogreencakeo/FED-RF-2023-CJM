@@ -69,6 +69,15 @@ export function Board() {
 
         console.log("결과 셋 tempData:", tempData);
 
+        // 데이터가 없는 경우 출력 /////////
+        if (tempData.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="5">There is no data.</td>
+                </tr>
+            );
+        } // if /////////////
+
         return tempData.map((v, i) => (
             <tr key={i}>
                 {/* 1. 일련번호 */}
@@ -87,10 +96,6 @@ export function Board() {
                 <td>{v.cnt}</td>
             </tr>
         ));
-
-        // <tr>
-        //     <td colSpan="5">There is no data.</td>
-        // </tr>;
     }; // bindList 함수 ////////////////////
 
     /***********************************************************
@@ -119,7 +124,7 @@ export function Board() {
         for (let i = 0; i < limit; i++) {
             pgCode[i] = (
                 <Fragment key={i}>
-                    {pgNum-1 === i ? (
+                    {pgNum - 1 === i ? (
                         <b>{i + 1}</b>
                     ) : (
                         <a href="#" onClick={chgList}>
