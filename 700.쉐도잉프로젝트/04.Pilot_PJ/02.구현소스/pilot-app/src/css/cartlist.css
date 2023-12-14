@@ -52,6 +52,7 @@
     padding: 10px 0px;
     border-top: 1px solid rgb(85, 85, 85);
     text-align: center;
+    /* vertical-align: middle; */
 }
 #cartlist td img {
     width: 50px;
@@ -103,3 +104,28 @@
     opacity: 1;
     transition: .4s 2s;
 }
+
+/* 수량증감 박스 */
+.cnt-part>div, .cnt-part span{
+    display: flex;
+}
+/* 입력창 */
+#item-cnt{
+    width: 20px;
+    height: 15px;
+}
+/* 증감 이미지 버튼 */
+.btn-cnt{
+
+}
+#cartlist .btn-cnt img{
+    display: block;
+    width: 18px;
+}
+/* 반영 버튼 */
+.btn-insert{
+    width: 34px;
+    word-spacing: normal;
+    padding: 0;
+}
+

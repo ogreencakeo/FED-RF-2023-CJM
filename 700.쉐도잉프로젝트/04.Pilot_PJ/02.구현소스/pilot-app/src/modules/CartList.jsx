@@ -82,21 +82,27 @@ export const CartList = memo(({ selData, flag }) => {
         // 삭제기능만 작동한다!
         flag.current = false;
 
-        const selIdx = $(e.target).attr("data-idx");
-        console.log("지울아이:", selIdx);
+        let confMsg = "정말정말정말로 지우시겠습니까? 할인도 하는데?";
+        // 지울지 여부를 사용자에게 물어본다.
+        // confirm() 대화창에 '확인' -> true, '취소' -> false 리턴함
+        // confirm은 alert과 유사하게 window 객체에 있음!
+        if (window.confirm(confMsg)) {
+            const selIdx = $(e.target).attr("data-idx");
+            console.log("지울아이:", selIdx);
 
-        // 해당 데이터 순번 알아내기
-        const newData = cartData.filter((v) => {
-            if (v.idx !== selIdx) return true;
-        });
+            // 해당 데이터 순번 알아내기
+            const newData = cartData.filter((v) => {
+                if (v.idx !== selIdx) return true;
+            });
 
-        console.log("제거후리스트:", newData);
+            console.log("제거후리스트:", newData);
 
-        // 로컬스 데이터 업데이트!!!
-        localStorage.setItem("cart", JSON.stringify(newData));
+            // 로컬스 데이터 업데이트!!!
+            localStorage.setItem("cart", JSON.stringify(newData));
 
-        // 전체 데이터 업데이트 하면 모두 리랜더링되게 하자!
-        setCartData(newData);
+            // 전체 데이터 업데이트 하면 모두 리랜더링되게 하자!
+            setCartData(newData);
+        } // if /////////
     }; ////////// deleteItem 함수 //////////
 
     /// 리턴 코드 ///////////////////////
@@ -137,7 +143,18 @@ export const CartList = memo(({ selData, flag }) => {
                                 {/* 상품가격 */}
                                 <td>{addComma(v.ginfo[3])}원</td>
                                 {/* 상품수량 */}
-                                <td>{v.num}</td>
+                                <td className="cnt-part">
+                                    <div>
+                                        <span>
+                                            <input type="text" id="item-cnt" defaultValue={v.num} />
+                                            <b className="btn-cnt">
+                                                <img src="./images/cnt_up.png" alt="증가" />
+                                                <img src="./images/cnt_down.png" alt="감소" />
+                                            </b>
+                                        </span>
+                                        <button className="btn-insert">반영</button>
+                                    </div>
+                                </td>
                                 {/* 상품가격 총합계 */}
                                 <td>{addComma(v.ginfo[3] * v.num)}원</td>
                                 {/* 삭제버튼 */}
