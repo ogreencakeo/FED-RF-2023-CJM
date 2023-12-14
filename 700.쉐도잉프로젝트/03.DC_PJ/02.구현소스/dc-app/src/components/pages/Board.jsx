@@ -99,14 +99,14 @@ export function Board() {
         let pgCode;
         // 리턴코드
         for(let i=0; i<limit; i++){
-            
+
         }
 
         // 리턴코드
         return (
             <>
-                <b>1</b> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |{" "}
-                <a href="#">6</a>
+                {/* <b>1</b> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |{" "}
+                <a href="#">6</a> */}
             </>
         );
     }; // pagingLink 함수 /////////////
