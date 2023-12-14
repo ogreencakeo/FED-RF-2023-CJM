@@ -105,6 +105,38 @@ export const CartList = memo(({ selData, flag }) => {
         } // if /////////
     }; ////////// deleteItem 함수 //////////
 
+    // 증감 반영 함수 ////////////
+    const chgNum = e => { 
+        // 이벤트 타겟
+        const tg = $(e.currentTarget);
+        // 이벤트 타켓의 입력창
+        const tgInput = tg.parent().siblings('.item-cnt');
+        // 입력창 숫자 읽기 : 문자형숫자 -> 숫자형
+        let cNum = Number(tgInput.val());
+        console.log('증감반영 :');
+        
+        // CSS 포커스시 반영버튼 보이기 셋팅에 맞춰서 
+        // 강제로 입력창에 포커스 주기
+        tgInput.focus();
+
+        // 증감하기
+        if(tg.attr('alt') === '증가') cNum++;
+        else cNum--;
+
+        // 한계수 체크
+        if(cNum<1) cNum = 1;
+
+        // 화면 반영하기
+        tgInput.val(cNum);
+
+    }; // chgNum 함수 //////////
+
+
+    // 반영버튼 클릭시 데이터 업데이트하기
+    const goResult = () => {
+        console.log('결과야 나와라~!');
+    }; // goResult 함수 ////////////
+
     /// 리턴 코드 ///////////////////////
     return (
         <>
@@ -146,13 +178,13 @@ export const CartList = memo(({ selData, flag }) => {
                                 <td className="cnt-part">
                                     <div>
                                         <span>
-                                            <input type="text" id="item-cnt" defaultValue={v.num} />
-                                            <b className="btn-cnt">
-                                                <img src="./images/cnt_up.png" alt="증가" />
-                                                <img src="./images/cnt_down.png" alt="감소" />
+                                            <input type="text" className="item-cnt" defaultValue={v.num} />
+                                            <button className="btn-insert" onClick={goResult}>반영</button>
+                                            <b className="btn-cnt" >
+                                                <img src="./images/cnt_up.png" alt="증가"  onClick={chgNum} />
+                                                <img src="./images/cnt_down.png" alt="감소" onClick={chgNum} />
                                             </b>
                                         </span>
-                                        <button className="btn-insert">반영</button>
                                     </div>
                                 </td>
                                 {/* 상품가격 총합계 */}
