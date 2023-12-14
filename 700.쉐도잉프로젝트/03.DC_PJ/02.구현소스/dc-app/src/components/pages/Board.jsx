@@ -46,6 +46,8 @@ export function Board() {
         기능 : 페이지별 리스트를 생성하여 바인딩함
     ***********************************************************/
     const bindList = () => {
+        console.log('다시 바인딩!');
+
         // 데이터 선별하기
         const tempData = [];
 
@@ -96,20 +98,31 @@ export function Board() {
         
         console.log("블록개수 blockCnt :", blockCnt, ", 블록 나머지 blockPad : ", blockPad, '한계수 limit :', limit);
 
-        let pgCode;
+
+        // 리액트에서는 jsx문법 코드를 배열에 넣고 출력하면 바로 코드로 변환된다
+        let pgCode = [];
         // 리턴코드
         for(let i=0; i<limit; i++){
 
-        }
-
-        // 리턴코드
-        return (
+            pgCode[i] = 
             <>
-                {/* <b>1</b> | <a href="#">2</a> | <a href="#">3</a> | <a href="#">4</a> | <a href="#">5</a> |{" "}
-                <a href="#">6</a> */}
-            </>
-        );
+                <a href="#" onClick={chgList} >{i+1}</a> {i<limit-1? ' | ' : ''}
+            </>;
+        }
+        return(pgCode);
+        
     }; // pagingLink 함수 /////////////
+
+    /***********************************************************
+        함수명 : chgList
+        기능 : 페이지 링크 크릭시 리스트변경
+    ***********************************************************/
+    const chgList = () => {
+        console.log('번호 e.target.innerText :', e.target.innerText);
+        // 바인드 리스트 호출
+        bindList();
+
+    }; // chgList 함수 ///////////
 
     // 리턴코드 //////////////
     return (
