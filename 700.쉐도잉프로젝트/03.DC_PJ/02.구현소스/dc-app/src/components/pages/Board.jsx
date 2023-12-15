@@ -228,7 +228,7 @@ export function Board() {
             console.log('현재 데이터 cData :', cData);
 
             // 3. 읽기모드 입력창에 데이터 매칭하여 넣기
-            $(()=>{
+            $(()=>{   // DOM 그린후 실행함!
                 // (1) 글쓴이
                 $('.readone .name').val(cData.writer);
                 // (2) 글제목
