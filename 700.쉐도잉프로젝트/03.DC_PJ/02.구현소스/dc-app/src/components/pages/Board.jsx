@@ -4,6 +4,9 @@
 import { Fragment, useState } from "react";
 import "../../css/board.css";
 
+// 제이쿼리
+import $ from "jquery";
+
 // 기본 데이터 제이슨 불러오기
 import baseData from "../data/board.json";
 
@@ -15,70 +18,70 @@ baseData.sort((a, b) => {
 // 초기데이터 셋업하기(원본데이터 담기)
 let orgData;
 // 로컬스가 있으면 그것 넣기
-if (localStorage.getItem("bData")) orgData = JSON.parse(localStorage.getItem("bdata"));
+if (localStorage.getItem("bdata")) orgData = JSON.parse(localStorage.getItem("bdata"));
 // 로컬스 없으면 제이슨 데이터 넣기
-// else orgData = baseData;
-else orgData = [];
+else orgData = baseData;
+// else orgData = [];
 
-// console.log(org);
+// // console.log(org);
 
-// ********************** Board 컴포넌트 ********************** //
+// ******* Borad 컴포넌트 ******* //
 export function Board() {
-    // [ 컴포넌트 전체 공통변수 ] //////////
-    // 1. 페이지 단위수 : 한 페이지 당 레코드 수
+    // [컴포넌트 전체 공통변수] /////////////
+    // 1. 페이지 단위수 : 한 페이지 당 레코드수
     const pgBlock = 7;
     // 2. 전체 레코드수 : 배열데이터 총개수
     const totNum = orgData.length;
-    console.log("페이지 단위수 (pgBlock) :", pgBlock, ", 전체 레코드 수 (totNum) :", totNum);
+    // console.log("페이지단위수:", pgBlock, "\n전체 레코드수:", totNum);
 
-    // [ 상태관리 변수 셋팅 ] ////////////
-    // 1. 현재 페이지 번호 : 가장 중요한 리스트 바인딩의 핵심
+    // [ 상태관리 변수 셋팅 ] ////////
+
+    // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
-    // 2. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
+    // 1. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
     const [currData, setCurrData] = useState(null);
-    // 3. 게시판 모드관리 변수
+    // 2. 게시판 모드관리변수
     const [bdMode, setBdMode] = useState("L");
     // 모드구분값 : CRUD (Create/Read/Update/Delete)
-    // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 글삭제(U에 포함!)
+    // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 글삭제(U에포함!)
     // 상태추가 : L - 글목록
-    // 전체 5가지 상태값 : CURD + L
+    // 전체 5가지 상태값 : CRUD+L
 
-    /***********************************************************
-        함수명 : bindList
-        기능 : 페이지별 리스트를 생성하여 바인딩함
-    ***********************************************************/
+    /************************************* 
+    함수명 : bindList
+    기능 : 페이지별 리스트를 생성하여 바인딩함
+  *************************************/
     const bindList = () => {
-        console.log("다시 바인딩! pgNum", pgNum);
-
+        // console.log("다시바인딩!", pgNum);
         // 데이터 선별하기
         const tempData = [];
 
-        // 시작값 : (페이지번호 - 1) * 블록단위수
-        let initNum = pgBlock * (pgNum - 1);
-        // 한계값 : 블록단위수 * 페이지번호
+        // 시작값 : (페이지번호-1)*블록단위수
+        let initNum = (pgNum - 1) * pgBlock;
+        // 한계값 : 블록단위수*페이지번호
         let limitNum = pgBlock * pgNum;
 
-        // 블록단위가 7일 경우 첫 페이지는 0~7, 7~14, ...
-        console.log("시작값 :", initNum, ", 한계값 :", limitNum);
+        // 블록단위가 7일 경우 첫페이지는 0~7, 7~14,...
+        // console.log("시작값:", initNum, "\n한계값:", limitNum);
 
         // 데이터 선별용 for문 : 원본데이터(orgData)로부터 생성
         for (let i = initNum; i < limitNum; i++) {
-            // 마지막 페이지 한계수 체크
+            // 마지막 페이지 한계수체크
             if (i >= totNum) break;
             // 코드 푸시
             tempData.push(orgData[i]);
-        }
+        } ///// for /////
 
-        console.log("결과 셋 tempData:", tempData);
+        // console.log("결과셋:", tempData);
 
-        // 데이터가 없는 경우 출력 /////////
+        // 데이터가 없는 경우 출력 ///
         if (orgData.length === 0) {
             return (
                 <tr>
                     <td colSpan="5">There is no data.</td>
                 </tr>
             );
-        } // if /////////////
+        } ////// if /////////
 
         // if문에 들어가지 않으면 여기를 리턴함!
         return tempData.map((v, i) => (
@@ -87,41 +90,49 @@ export function Board() {
                 <td>{i + 1 + initNum}</td>
                 {/* 2. 글제목 */}
                 <td>
-                    <a href="#" datatype={v.idx}>
+                    <a href="#" data-idx={v.idx} onClick={chgMode}>
                         {v.tit}
                     </a>
                 </td>
                 {/* 3. 글쓴이 */}
                 <td>{v.writer}</td>
-                {/* 4. 쓴 날짜 */}
+                {/* 4. 쓴날짜 */}
                 <td>{v.date}</td>
                 {/* 5. 조회수 */}
                 <td>{v.cnt}</td>
             </tr>
         ));
-    }; // bindList 함수 ////////////////////
+    }; /////////// bindList 함수 ////////////
 
-    /***********************************************************
-        함수명 : pagingLink
-        기능 : 리스트 페이징 링크를 생성한다.
-    ***********************************************************/
+    /************************************* 
+    함수명 : pagingLink
+    기능 : 리스트 페이징 링크를 생성한다!
+  *************************************/
     const pagingLink = () => {
-        // 페이징 블록 만들기 ///////////
+        // 페이징 블록만들기 ////
         // 1. 블록개수 계산하기
         const blockCnt = Math.floor(totNum / pgBlock);
-        // 전체 레코드 수 / 페이지단위 (나머지가 있으면 + 1)
-        // 전체 레코드 수 : pgBlock변수에 할당됨!
+        // 전체레코드수 / 페이지단위수 (나머지가 있으면 +1)
+        // 전체레코드수 : pgBlock변수에 할당됨!
         // 2. 블록 나머지수
         const blockPad = totNum % pgBlock;
 
-        // 최종 한계수 -> 여분레코드 존재에 따라 1 더하기
+        // 최종 한계수 -> 여분레코드 존재에 따라 1더하기
         const limit = blockCnt + (blockPad === 0 ? 0 : 1);
 
-        console.log("블록개수 blockCnt :", blockCnt, ", 블록 나머지 blockPad : ", blockPad, "한계수 limit :", limit);
+        // console.log(
+        //   "블록개수:",
+        //   blockCnt,
+        //   "\n블록나머지:",
+        //   blockPad,
+        //   "\n최종한계수:",
+        //   limit
+        // );
 
-        // 리액트에서는 jsx문법 코드를 배열에 넣고 출력하면 바로 코드로 변환된다
+        // 리액트에서는 jsx문법 코드를 배열에 넣고
+        // 출력하면 바로 코드로 변환된다!!!
         let pgCode = [];
-        // 리턴코드
+        // 리턴 코드 //////////
         // 만약 빈태그 묶음에 key를 심어야할 경우
         // 불가하므로 Fragment 조각 가상태그를 사용한다!
         for (let i = 0; i < limit; i++) {
@@ -134,31 +145,54 @@ export function Board() {
                             {i + 1}
                         </a>
                     )}
+
                     {i < limit - 1 ? " | " : ""}
                 </Fragment>
             );
-        }
-        return pgCode;
-    }; // pagingLink 함수 /////////////
+        } ////// for /////
 
-    /***********************************************************
-        함수명 : chgList
-        기능 : 페이지 링크 크릭시 리스트변경
-    ***********************************************************/
+        return pgCode;
+    }; /////////// pagingLink 함수 ////////
+
+    /************************************* 
+    함수명 : chgList
+    기능 : 페이지 링크 클릭시 리스트변경
+  *************************************/
     const chgList = (e) => {
         let currNum = e.target.innerText;
-        console.log("번호 currNum :", currNum);
-        // 현재 페이지번호 업데이트 ->  리스트 업데이트 됨!
+        // console.log("번호:", currNum);
+        // 현재 페이지번호 업데이트! -> 리스트 업데이트됨!
         setPgNum(currNum);
-        // 바인드 리스트 호출 불필요! 왜? pgNum을 bindList()에서 사용하기 때문에
-        // 리랜더링이 자동으로 일어남! // bindList();
-    }; // chgList 함수 ///////////
+        // 바인드 리스트 호출 불필요!!!
+        // 왜? pgNum을 bindList()에서 사용하기때문에
+        // 리랜더링이 자동으로 일어남!!!
+    }; ///////// chgList 함수 //////////////
 
-    // 리턴코드 //////////////
+    /************************************* 
+    함수명 : chgMode
+    기능 : 게시판 옵션 모드를 변경함
+  *************************************/
+    const chgMode = (e) => {
+        // 기본막기
+        e.preventDefault();
+        // 해당 버튼의 텍스트 읽어오기
+        const btxt = $(e.currentTarget).text();
+        const modeTxt = {
+            List: "L",
+            Write: "C",
+            Submit: "L",
+            Modify: "U",
+            Delete: "L",
+        };
+        //  console.log(modeTxt[btxt]);
+        setBdMode(modeTxt[btxt] ? modeTxt[btxt] : "R");
+    }; ////////// chgMode 함수 ///////////
+
+    // 리턴코드 ////////////////////
     return (
         <>
             {
-                // 1. 게시판 리스트 : 게시판 모드 'L'일때 출력
+                /* 1. 게시판 리스트 : 게시판 모드 'L'일때 출력 */
                 bdMode === "L" && (
                     <table className="dtbl" id="board">
                         <caption>OPINION</caption>
@@ -172,8 +206,10 @@ export function Board() {
                                 <th>Hits</th>
                             </tr>
                         </thead>
+
                         {/* 중앙 레코드 표시부분 */}
                         <tbody>{bindList()}</tbody>
+
                         {/* 하단 페이징 표시부분 */}
                         <tfoot>
                             <tr>
@@ -187,7 +223,7 @@ export function Board() {
                 )
             }
             {
-                // 2. 글쓰기 테이블 : 게시판 모드 'C'일때 출력
+                /* 2. 글쓰기 테이블 : 게시판 모드 'C'일때 출력 */
                 bdMode === "C" && (
                     <table className="dtblview writeone">
                         <caption>OPINION : Write</caption>
@@ -221,7 +257,7 @@ export function Board() {
                 )
             }
             {
-                // 3. 읽기 테이블 : 게시판 모드 'R'일때 출력
+                /* 3. 읽기 테이블 : 게시판 모드 'R'일때 출력 */
                 bdMode === "R" && (
                     <table className="dtblview readone">
                         <caption>OPINION : Read</caption>
@@ -249,7 +285,7 @@ export function Board() {
                 )
             }
             {
-                // 4. 수정(삭제) 테이블 : 게시판 모드 'U'일때 출력
+                /* 4. 수정(삭제) 테이블 : 게시판 모드 'U'일때 출력 */
                 bdMode === "U" && (
                     <table className="dtblview updateone">
                         <caption>OPINION : Modify</caption>
@@ -276,6 +312,7 @@ export function Board() {
                     </table>
                 )
             }
+
             <br />
             {/* 5. 버튼 그룹박스 */}
             <table className="dtbl btngrp">
@@ -285,8 +322,10 @@ export function Board() {
                             {
                                 // 리스트 모드(L)
                                 bdMode === "L" && (
-                                    <button>
-                                        <a href="#">Write</a>
+                                    <button onClick={chgMode}>
+                                        <a href="#" >
+                                            Write
+                                        </a>
                                     </button>
                                 )
                             }
@@ -294,11 +333,15 @@ export function Board() {
                                 // 글쓰기 모드(C)
                                 bdMode === "C" && (
                                     <>
-                                        <button>
-                                            <a href="#">Submit</a>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                Submit
+                                            </a>
                                         </button>
-                                        <button>
-                                            <a href="#">List</a>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                List
+                                            </a>
                                         </button>
                                     </>
                                 )
@@ -306,35 +349,46 @@ export function Board() {
                             {
                                 // 읽기 모드(R)
                                 bdMode === "R" && (
-                                    <button>
-                                        <a href="#">List</a>
-                                    </button>
+                                    <>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                List
+                                            </a>
+                                        </button>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                Modify
+                                            </a>
+                                        </button>
+                                    </>
                                 )
                             }
                             {
                                 // 수정 모드(U)
                                 bdMode === "U" && (
                                     <>
-                                        <button>
-                                            <a href="#">Submit</a>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                Submit
+                                            </a>
                                         </button>
-                                        <button>
-                                            <a href="#">Delete</a>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                Delete
+                                            </a>
                                         </button>
-                                        <button>
-                                            <a href="#">List</a>
+                                        <button onClick={chgMode}>
+                                            <a href="#" >
+                                                List
+                                            </a>
                                         </button>
                                     </>
                                 )
                             }
-
-                            <button>
-                                <a href="#">Modify</a>
-                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </>
     );
-} // Board 컴포넌트
+} //////////// Board 컴포넌트 /////////////
