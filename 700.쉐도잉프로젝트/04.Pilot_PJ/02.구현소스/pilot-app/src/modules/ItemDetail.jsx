@@ -12,8 +12,11 @@ export function ItemDetail({ cat, goods }) {
     // cat - 카테고리명(men/women/style)
     // goods - 상품 아이템정보(속성코드: m1,m2,...)
 
+    // 카트 사용 여부 초기값은 로컬스 'cart'가 있으면 1
+    // 없으면 0 으로 셋팅해준다.
+
     // 카트사용여부 상태변수 /////////
-    const [csts, setCsts] = useState(0);
+    const [csts, setCsts] = useState(localStorage.getItem('cart') ? 1 : 0);
 
     // 자식 카트 컴포넌트와 함께 상태값 공유할 변수
     const flag = useRef(true);
@@ -35,10 +38,10 @@ export function ItemDetail({ cat, goods }) {
         // 1.선택된 상품을 로컬스토리지에 담기!
         /* 데이터 구성:
     {
-      idx: 상품유일키,
-      cat: 상품분류,
-      ginfo: 상품정보,
-      num: 선택상품수
+        idx: 상품유일키,
+        cat: 상품분류,
+        ginfo: 상품정보,
+        num: 선택상품수
     }
     -> 기존 선택객체는 selData에 담김
     -> 여기에 num항목을 추가한다!
