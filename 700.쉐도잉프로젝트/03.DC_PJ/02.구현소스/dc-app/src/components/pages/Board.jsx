@@ -1,7 +1,7 @@
 // OPINION 의견 게시판 컴포넌트
 
 // 게시판용 CSS
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import "../../css/board.css";
 
 // 제이쿼리
@@ -172,21 +172,64 @@ export function Board() {
     함수명 : chgMode
     기능 : 게시판 옵션 모드를 변경함
   *************************************/
-    const chgMode = (e) => {
-        // 기본막기
-        e.preventDefault();
-        // 해당 버튼의 텍스트 읽어오기
-        const btxt = $(e.currentTarget).text();
-        const modeTxt = {
-            List: "L",
-            Write: "C",
-            Submit: "L",
-            Modify: "U",
-            Delete: "L",
-        };
-        //  console.log(modeTxt[btxt]);
-        setBdMode(modeTxt[btxt] ? modeTxt[btxt] : "R");
-    }; ////////// chgMode 함수 ///////////
+    const chgMode = useCallback(
+        (e) => {
+            // 기본막기
+            e.preventDefault();
+            // 1. 해당 버튼의 텍스트 읽어오기
+            const btxt = $(e.currentTarget).text();
+            console.log("btxt :", btxt);
+
+            // 2. 텍스트별 모드 연결하기
+            let modeTxt;
+            switch (btxt) {
+                case "List":
+                    modeTxt = "L";
+                    break;
+                case "Write":
+                    modeTxt = "C";
+                    break;
+                case "Modify":
+                    modeTxt = "U";
+                    break;
+                case "Submit":
+                    modeTxt = "X";
+                    break;
+                case "Delete":
+                    modeTxt = "X";
+                    break;
+                default:
+                    modeTxt = "R";
+            }
+
+            // // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 글삭제(U에포함!)
+            // 3. 모드 이동하기
+            // -> Submit은 모드변경 없이 새글쓰기 / 글변경하기
+            // 둘 중 하나의 기능을 하므로 리스트로 보내기만 한다.
+            if (btxt !== "X" || btxt !== "Delete") setBdMode(modeTxt);
+
+            console.log("버튼명 (btxt) :", btxt, ", 모드명 (modeTxt) :", modeTxt);
+
+            // 4. 모드별 분기하기 ///////
+            // 4-1. 읽기 모드
+            if (bdMode === "C" && btxt !== "Submit") {
+                console.log("읽기처리");
+            }
+            // 4-2. 쓰기 모드
+            else if (bdMode === "" && btxt === "Submit") {
+                console.log("쓰기처리");
+            }
+            // 4-3. 수정하기 모드
+            else if (bdMode === "U" && btxt === "Submit") {
+                console.log("수정처리");
+            }
+            // 4-4. 삭제하기 모드
+            else if (bdMode === "U" && btxt === "Delete") {
+                console.log("삭제처리");
+            }
+        },
+        [bdMode]
+    ); ////////// chgMode 함수 ///////////
 
     // 리턴코드 ////////////////////
     return (
@@ -323,9 +366,7 @@ export function Board() {
                                 // 리스트 모드(L)
                                 bdMode === "L" && (
                                     <button onClick={chgMode}>
-                                        <a href="#" >
-                                            Write
-                                        </a>
+                                        <a href="#">Write</a>
                                     </button>
                                 )
                             }
@@ -334,14 +375,10 @@ export function Board() {
                                 bdMode === "C" && (
                                     <>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                Submit
-                                            </a>
+                                            <a href="#">Submit</a>
                                         </button>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                List
-                                            </a>
+                                            <a href="#">List</a>
                                         </button>
                                     </>
                                 )
@@ -351,14 +388,10 @@ export function Board() {
                                 bdMode === "R" && (
                                     <>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                List
-                                            </a>
+                                            <a href="#">List</a>
                                         </button>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                Modify
-                                            </a>
+                                            <a href="#">Modify</a>
                                         </button>
                                     </>
                                 )
@@ -368,19 +401,13 @@ export function Board() {
                                 bdMode === "U" && (
                                     <>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                Submit
-                                            </a>
+                                            <a href="#">Submit</a>
                                         </button>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                Delete
-                                            </a>
+                                            <a href="#">Delete</a>
                                         </button>
                                         <button onClick={chgMode}>
-                                            <a href="#" >
-                                                List
-                                            </a>
+                                            <a href="#">List</a>
                                         </button>
                                     </>
                                 )
