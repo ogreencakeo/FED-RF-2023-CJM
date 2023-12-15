@@ -267,6 +267,12 @@ export function Board() {
             $(".writeone .name").val("tomtom");
 
         }
+        // 3-5. 수정모드 ///////
+        else if (modeTxt === "U") {
+            console.log("수정모드");
+            setBdMode('U');
+
+        }
 
         // 4-2. 쓰기 모드 : 모드변경없이 처리후 리스트보내기
         // else if(modeTxt==="C" && btxt==="Submit"){
@@ -387,19 +393,19 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input type="text" className="name" size="20" readOnly />
+                                    <input type="text" className="name" size="20" readOnly value={cData.current.writer} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Title</td>
                                 <td>
-                                    <input type="text" className="subject" size="60" />
+                                    <input type="text" className="subject" size="60" defaultValue={cData.current.tit} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Content</td>
                                 <td>
-                                    <textarea className="content" cols="60" rows="10"></textarea>
+                                    <textarea className="content" cols="60" rows="10" defaultValue={cData.current.cont}></textarea>
                                 </td>
                             </tr>
                         </tbody>
