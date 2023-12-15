@@ -172,64 +172,88 @@ export function Board() {
     함수명 : chgMode
     기능 : 게시판 옵션 모드를 변경함
   *************************************/
-    const chgMode = useCallback(
-        (e) => {
-            // 기본막기
-            e.preventDefault();
-            // 1. 해당 버튼의 텍스트 읽어오기
-            const btxt = $(e.currentTarget).text();
-            console.log("btxt :", btxt);
+    const chgMode = (e) => {
+        // 기본막기
+        e.preventDefault();
 
-            // 2. 텍스트별 모드 연결하기
-            let modeTxt;
-            switch (btxt) {
-                case "List":
-                    modeTxt = "L";
-                    break;
-                case "Write":
-                    modeTxt = "C";
-                    break;
-                case "Modify":
-                    modeTxt = "U";
-                    break;
-                case "Submit":
-                    modeTxt = "X";
-                    break;
-                case "Delete":
-                    modeTxt = "X";
-                    break;
-                default:
-                    modeTxt = "R";
-            }
+        // 1. 해당 버튼의 텍스트 읽어오기
+        let btxt = $(e.target).text();
+        console.log(btxt);
 
-            // // C - 글쓰기 / R - 글읽기 / U - 글수정 / D - 글삭제(U에포함!)
-            // 3. 모드 이동하기
-            // -> Submit은 모드변경 없이 새글쓰기 / 글변경하기
-            // 둘 중 하나의 기능을 하므로 리스트로 보내기만 한다.
-            if (btxt !== "X" || btxt !== "Delete") setBdMode(modeTxt);
+        // 2. 텍스트별 모드 연결하기
+        let modeTxt;
 
-            console.log("버튼명 (btxt) :", btxt, ", 모드명 (modeTxt) :", modeTxt);
+        switch (btxt) {
+            case "List":
+                modeTxt = "L";
+                break;
+            case "Write":
+                modeTxt = "C";
+                break;
+            case "Modify":
+                modeTxt = "U";
+                break;
+            case "Submit":
+                modeTxt = "X";
+                break;
+            case "Delete":
+                modeTxt = "X";
+                break;
+            default:
+                modeTxt = "R";
+        }
 
-            // 4. 모드별 분기하기 ///////
-            // 4-1. 읽기 모드
-            if (bdMode === "C" && btxt !== "Submit") {
-                console.log("읽기처리");
-            }
-            // 4-2. 쓰기 모드
-            else if (bdMode === "" && btxt === "Submit") {
-                console.log("쓰기처리");
-            }
-            // 4-3. 수정하기 모드
-            else if (bdMode === "U" && btxt === "Submit") {
-                console.log("수정처리");
-            }
-            // 4-4. 삭제하기 모드
-            else if (bdMode === "U" && btxt === "Delete") {
-                console.log("삭제처리");
-            }
-        },
-        [bdMode]
-    ); ////////// chgMode 함수 ///////////
+        // 3. 모드 이동하기
+        // -> Submit은 모드변경없이 새글쓰기/글변경하기
+        // 둘 중 하나의 기능을 하므로 리스트로 보내기만 한다!
+        // if(modeTxt!=="X") setBdMode(modeTxt);
+
+        console.log("버튼명:", btxt, "모드명:", modeTxt);
+
+        // 4. 모드별 분기하기 //////
+        // 4-1. 읽기 모드
+        if (modeTxt === "R") {
+            
+            setBdMode("R");
+
+            // 1. a링크의 'data-idx'값 읽어오기
+            let cidx = $(e.target).attr("data-idx");
+            console.log("읽기처리", cidx, ', orgData :', orgData);
+
+            // 2. 해당정보 가져오기 : orgData에서 초회함
+            const cData = orgData.find(v=>{
+                if(v.idx === cidx) return true;
+            });
+            
+            console.log('현재 데이터 cData :', cData);
+
+            // 3. 읽기모드 입력창에 데이터 매칭하여 넣기
+            $(()=>{
+                // (1) 글쓴이
+                $('.readone .name').val(cData.writer);
+                // (2) 글제목
+                $('.readone .subject').val(cData.tit);
+                // (3) 글내용
+                $('.readone .content').val(cData.cont);
+            })
+
+        } ////// if ///////
+        else if (modeTxt === "L") {
+            setBdMode("L");
+        }
+        // 4-2. 쓰기 모드 : 모드변경없이 처리후 리스트보내기
+        // else if(modeTxt==="C" && btxt==="Submit"){
+        //   console.log("쓰기처리");
+        // } ////// else if ///////
+        // 4-3. 수정하기 모드 : 모드변경없이 처리후 리스트보내기
+        // else if(modeTxt==="U" && btxt==="Submit"){
+        //   console.log("수정처리");
+        // } ////// else if ///////
+        // 4-4. 삭제하기 모드 : 모드변경없이 처리후 리스트보내기
+        // else if(modeTxt==="U" && btxt==="Delete"){
+        //   console.log("삭제처리");
+        // } ////// else if ///////
+    }; //////// chgMode 함수 ///////////
 
     // 리턴코드 ////////////////////
     return (
