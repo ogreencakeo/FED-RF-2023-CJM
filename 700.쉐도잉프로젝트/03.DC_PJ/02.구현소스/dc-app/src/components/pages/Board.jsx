@@ -1,7 +1,7 @@
 // OPINION 의견 게시판 컴포넌트
 
 // 게시판용 CSS
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useRef, useState } from "react";
 import "../../css/board.css";
 
 // 제이쿼리
@@ -39,7 +39,7 @@ export function Board() {
     // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
     // 1. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
-    const [currData, setCurrData] = useState(null);
+    // const [currData, setCurrData] = useState(null);
     // 2. 게시판 모드관리변수
     const [bdMode, setBdMode] = useState("L");
     // 모드구분값 : CRUD (Create/Read/Update/Delete)
@@ -172,6 +172,10 @@ export function Board() {
     함수명 : chgMode
     기능 : 게시판 옵션 모드를 변경함
   *************************************/
+
+    // 선택된 데이터 셋팅을 위한 참조변수
+    const cData = useRef(null);
+
     const chgMode = (e) => {
         // 기본막기
         e.preventDefault();
@@ -194,53 +198,76 @@ export function Board() {
                 modeTxt = "U";
                 break;
             case "Submit":
-                modeTxt = "X";
+                modeTxt = "S";
                 break;
             case "Delete":
-                modeTxt = "X";
+                modeTxt = "D";
                 break;
             default:
                 modeTxt = "R";
         }
-
-        // 3. 모드 이동하기
-        // -> Submit은 모드변경없이 새글쓰기/글변경하기
-        // 둘 중 하나의 기능을 하므로 리스트로 보내기만 한다!
-        // if(modeTxt!=="X") setBdMode(modeTxt);
-
         console.log("버튼명:", btxt, "모드명:", modeTxt);
 
-        // 4. 모드별 분기하기 //////
-        // 4-1. 읽기 모드
+        // 3. 모드별 분기하기 //////
+        // 3-1. 읽기 모드
         if (modeTxt === "R") {
             
-            setBdMode("R");
-
             // 1. a링크의 'data-idx'값 읽어오기
             let cidx = $(e.target).attr("data-idx");
-            console.log("읽기처리", cidx, ', orgData :', orgData);
-
+            console.log("읽기처리", cidx, ", orgData :", orgData);
+            
             // 2. 해당정보 가져오기 : orgData에서 초회함
-            const cData = orgData.find(v=>{
-                if(v.idx === cidx) return true;
+            // 전역 참조변수에 저장하여 리랜더링시 리턴코드에 
+            // 이 값이 적용되게 해준다.
+            cData.current = orgData.find((v) => {
+                if (v.idx === cidx) return true;
             });
             
-            console.log('현재 데이터 cData :', cData);
-
+            console.log("현재 데이터 cData :", cData.current);
+            
+            setBdMode("R");
+            
             // 3. 읽기모드 입력창에 데이터 매칭하여 넣기
-            $(()=>{   // DOM 그린후 실행함!
-                // (1) 글쓴이
-                $('.readone .name').val(cData.writer);
-                // (2) 글제목
-                $('.readone .subject').val(cData.tit);
-                // (3) 글내용
-                $('.readone .content').val(cData.cont);
-            })
-
+            // $(() => {
+            //     // DOM 그린후 실행함!
+            //     // (1) 글쓴이
+            //     $(".readone .name").val(cData.writer);
+            //     // (2) 글제목
+            //     $(".readone .subject").val(cData.tit);
+            //     // (3) 글내용
+            //     $(".readone .content").val(cData.cont);
+            // });
         } ////// if ///////
+        // 3-2. 리스트 이동하기
         else if (modeTxt === "L") {
             setBdMode("L");
         }
+        // else if
+        // 3-3. 쓰기 모드
+        else if (modeTxt === "C") {
+            setBdMode("C");
+
+            // 1. 글쓴이와 이메일은 로그인상태값에서 읽어와서
+            // 본 읽기전용 입력창에 넣어준다.
+            // 지금은 임시로 tomtom / tomtom@gmail.com
+            $(() => {
+                // DOM 그려진 후 실행
+                // (1) 글쓴이
+                $(".writeone .name").val("tomtom");
+                // (2) 이메일
+                $(".writeone .email").val("tom@gamil.com");
+            });
+        }
+        // 3-4. 글쓰기 서브밋 ///////
+        else if (modeTxt === "S" && bdMode === "C") {
+            console.log("글쓰기 서브밋");
+
+            // 1. 제목, 내용 필수입력 체크
+            
+            $(".writeone .name").val("tomtom");
+
+        }
+
         // 4-2. 쓰기 모드 : 모드변경없이 처리후 리스트보내기
         // else if(modeTxt==="C" && btxt==="Submit"){
         //   console.log("쓰기처리");
@@ -332,19 +359,19 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input type="text" className="name" size="20" readOnly />
+                                    <input type="text" className="name" size="20" readOnly value={cData.current.writer}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Title</td>
                                 <td>
-                                    <input type="text" className="subject" size="60" readOnly />
+                                    <input type="text" className="subject" size="60" readOnly value={cData.current.tit} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Content</td>
                                 <td>
-                                    <textarea className="content" cols="60" rows="10" readOnly></textarea>
+                                    <textarea className="content" cols="60" rows="10" readOnly value={cData.current.cont}></textarea>
                                 </td>
                             </tr>
                         </tbody>
