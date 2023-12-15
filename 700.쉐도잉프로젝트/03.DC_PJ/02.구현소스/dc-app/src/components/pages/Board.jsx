@@ -393,18 +393,21 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
+                                    {/* value는 수정 불가 */}
                                     <input type="text" className="name" size="20" readOnly value={cData.current.writer} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Title</td>
                                 <td>
+                                    {/* defaultValue로 써야 수정 가능하다. */}
                                     <input type="text" className="subject" size="60" defaultValue={cData.current.tit} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Content</td>
                                 <td>
+                                    {/* defaultValue로 써야 수정 가능하다. */}
                                     <textarea className="content" cols="60" rows="10" defaultValue={cData.current.cont}></textarea>
                                 </td>
                             </tr>
