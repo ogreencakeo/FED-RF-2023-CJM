@@ -76,9 +76,9 @@ export function Board() {
     // 의존성에 등록하여 그 변경발생시 한번만 실행되도록 설정하는 것이다.
 
     /************************************* 
-    함수명 : bindList
-    기능 : 페이지별 리스트를 생성하여 바인딩함
-  *************************************/
+        함수명 : bindList
+        기능 : 페이지별 리스트를 생성하여 바인딩함
+    *************************************/
     const bindList = () => {
         // console.log("다시바인딩!", pgNum);
         // 데이터 선별하기
@@ -199,6 +199,9 @@ export function Board() {
     // 선택된 데이터 셋팅을 위한 참조변수
     const cData = useRef(null);
 
+    // 로그인 사용자 데이터 셋팅을 위한 참조변수
+    const logData = useRef(null);
+
     /************************************* 
     함수명 : chgMode
     기능 : 게시판 옵션 모드를 변경함
@@ -280,18 +283,25 @@ export function Board() {
 
         // 3-3. 쓰기 모드 //////////////
         else if (modeTxt === "C") {
+            // 로그인한 사용자 정보 셋팅하기 : 글쓰기버튼은 
+            // 로그인한 사람에게 노출되므로 아래 코드는 괜찮다.
+            logData.current = JSON.parse(myCon.logSts);
+            // 이 데이터로 가상돔 구성시 리액트 코드에 데이터 매칭함
+            // 필요 데이터 : 로그인 사용자 이름(unm), 이메일(eml)
+
             setBdMode("C");
 
             // 1. 글쓴이와 이메일은 로그인상태값에서 읽어와서
             // 본 읽기전용 입력창에 넣어준다!
             // 지금은 임시로 tomtom / tom@gmail.com
-            $(() => {
-                // DOM 그려진 후 실행
-                // (1) 글쓴이
-                $(".writeone .name").val("tomtom");
-                // (2) 이메일
-                $(".writeone .email").val("tom@gmail.com");
-            });
+            // $(() => {
+            //     // DOM 그려진 후 실행
+            //     // (1) 글쓴이
+            //     $(".writeone .name").val("tomtom");
+            //     // (2) 이메일
+            //     $(".writeone .email").val("tom@gmail.com");
+            // });
+
         } ////// else if ///////
 
         // 3-4. 글쓰기 서브밋 /////////
@@ -401,13 +411,13 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input type="text" className="name" size="20" readOnly />
+                                    <input type="text" className="name" size="20" readOnly value={logData.current.umn} />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>
-                                    <input type="text" className="email" size="40" readOnly />
+                                    <input type="text" className="email" size="40" readOnly value={logData.current.eml} />
                                 </td>
                             </tr>
                             <tr>
