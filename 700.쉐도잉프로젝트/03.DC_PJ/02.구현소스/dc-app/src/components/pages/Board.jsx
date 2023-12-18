@@ -61,6 +61,9 @@ export function Board() {
     // 상태추가 : L - 글목록
     // 전체 5가지 상태값 : CRUD+L
 
+    // 3. 버튼공개 여부 관리변수 : 수정버튼
+    const [btnSts, setBtnSts] = useState(false);
+
     /************************************* 
     함수명 : bindList
     기능 : 페이지별 리스트를 생성하여 바인딩함
@@ -109,7 +112,7 @@ export function Board() {
                     </a>
                 </td>
                 {/* 3. 글쓴이 */}
-                <td>{v.writer}</td>
+                <td>{v.unm}</td>
                 {/* 4. 쓴날짜 */}
                 <td>{v.date}</td>
                 {/* 5. 조회수 */}
@@ -238,6 +241,10 @@ export function Board() {
 
             console.log("현재Data:", cData.current);
 
+            // 로그인 사용자와 글쓴이가 같으면 btnSts상태값 true
+            // 상태업데이트 함수 호출!(uid를 보냄)
+            compUsr(cData.current.uid);
+
             setBdMode("R");
 
             // -> 아래의 방식은 스크립트로 DOM에 셋팅하는 방법
@@ -304,13 +311,40 @@ export function Board() {
         // } ////// else if ///////
     }; //////// chgMode 함수 ///////////
 
-    // 사용자 정보 변환함수 //////////
-    const chgUsrInfo = (usr) => {
+    // 사용자 비교함수 //////////
+    // 원본으로 부터 해당 사용자 정보 조회하여
+    // 글쓴이와 로그인사용자가 같으면 btnSts값을 true로 업데이트
+    const compUsr = (usr) => {
+        // usr - 글쓴이 아이디(uid)
         // 사용자 정보조회 로컬스(mem-info)
         // 보드 상단에서 null일경우 생성함수 이미 호출!
         // null을 고려하지 말고 코드작성!
-        const info = JSON.parse(localStorage.getItem("mem-info"));
-        console.log(info);
+
+        // 로그인 상태일 경우 조회하여
+        // 버튼 상태 업데이트 하기
+        if (myCon.logSts !== null) {
+            // 1. 로컬스 원본 데이터 조회
+            const info = JSON.parse(localStorage.getItem("mem-data"));
+            console.log(info);
+
+            // 2. 원본으로 부터 해당 사용자 정보 조회하여
+            // 글쓴이와 로그인사용자가 같으면 btnSts값을 true로 업데이트
+            const cUser = info.find((v) => {
+                if (v.uid === usr) return true;
+            });
+
+            console.log(cUser);
+
+            // 3. 로그인사용자 정보와 조회하기
+            // 아이디로 조회함!
+            const currUsr = JSON.parse(myCon.logSts);
+            if (currUsr.uid === cUser.uid) setBtnSts(true);
+            else setBtnSts(false);
+        } /////// if ////////////
+        else {
+            // 로그인 안한 상태 ////
+            setBtnSts(false);
+        } //////// else ///////////
     }; ///////// chgUsrInfo 함수 ////////
 
     // 리턴코드 ////////////////////
@@ -390,13 +424,7 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input
-                                        type="text"
-                                        className="name"
-                                        size="20"
-                                        readOnly
-                                        value={chgUsrInfo(cData.current.uid)}
-                                    />
+                                    <input type="text" className="name" size="20" readOnly value={cData.current.unm} />
                                 </td>
                             </tr>
                             <tr>
@@ -504,9 +532,15 @@ export function Board() {
                                         <button onClick={chgMode}>
                                             <a href="#">List</a>
                                         </button>
-                                        <button onClick={chgMode}>
-                                            <a href="#">Modify</a>
-                                        </button>
+                                        {
+                                            /* btnSts 상태변수가 true일때 보임
+                      -> 글쓴이===로그인사용자 일때 true변경 */
+                                            btnSts && (
+                                                <button onClick={chgMode}>
+                                                    <a href="#">Modify</a>
+                                                </button>
+                                            )
+                                        }
                                     </>
                                 )
                             }
