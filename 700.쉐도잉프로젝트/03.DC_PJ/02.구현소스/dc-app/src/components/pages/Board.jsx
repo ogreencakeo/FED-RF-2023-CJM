@@ -66,13 +66,19 @@ export function Board() {
 
     // 리랜더링 루프에 빠지지 않도록 랜더링후 실행구역에
     // 변경코드를 써준다! 단, logSts에 의존성을 설정해준다.
-    useEffect(()=>{
+    useEffect(() => {
         // 만약 로그아웃하면 버튼 상태값 flase로 변경하기
-        if(myCon.logSts===null) setBtnSts(false);
+        if (myCon.logSts === null) setBtnSts(false);
+
+        // 만약 글쓰기 모드(C)에서 로그 아웃을 한 경우 리스트 페이지 이동
+        if (myCon.logSts === null && bdMode === "C") {
+            setBdMode("L");
+            alert("로그아웃 되었습니다!");
+        }
     }, [myCon.logSts]);
-    // [ 리랜더링의 원인 중 많은 경우 랜더링 전 즉, 
+    // [ 리랜더링의 원인 중 많은 경우 랜더링 전 즉,
     //   가상돔에 설정을 잡을 때 발생한다. ]
-    // -> 해결책은 랜더링 후 처리 구역에서 변경되는 상태변수를 
+    // -> 해결책은 랜더링 후 처리 구역에서 변경되는 상태변수를
     // 의존성에 등록하여 그 변경발생시 한번만 실행되도록 설정하는 것이다.
 
     /************************************* 
@@ -283,7 +289,7 @@ export function Board() {
 
         // 3-3. 쓰기 모드 //////////////
         else if (modeTxt === "C") {
-            // 로그인한 사용자 정보 셋팅하기 : 글쓰기버튼은 
+            // 로그인한 사용자 정보 셋팅하기 : 글쓰기버튼은
             // 로그인한 사람에게 노출되므로 아래 코드는 괜찮다.
             logData.current = JSON.parse(myCon.logSts);
             // 이 데이터로 가상돔 구성시 리액트 코드에 데이터 매칭함
@@ -301,14 +307,44 @@ export function Board() {
             //     // (2) 이메일
             //     $(".writeone .email").val("tom@gmail.com");
             // });
-
         } ////// else if ///////
 
         // 3-4. 글쓰기 서브밋 /////////
         else if (modeTxt === "S" && bdMode === "C") {
             console.log("글쓰기 서브밋");
 
+            const subEle = $(".writeone .subject");
+            const contEle = $(".writeone .content");
+
             // 1. 제목, 내용 필수입력 체크
+            // 리랜더링 없는 DOM 상태 기능 구현
+            if (subEle.val().trim() === "" || contEle.val().trim() === "") {
+                window.alert("제목과 내용은 필수입력입니다.");
+            } else {
+                // 2. 통과시 실제 데이터 입력하기
+                const addZero = (x) => (x < 10 ? "0" + x : x);
+                // 2-1. 날짜 데이터 구성
+                let today = new Date();
+                let yy = today.getFullYear();
+                let mm = today.getMonth() + 1;
+                let dd = today.getDate();
+
+                // 2-2. 원본 데이터 변수 할당
+                let orgTemp = orgData;
+
+                // 2-3. 임시변수에 입력할 객체 데이터 생성하기
+                let temp = {
+                    idx: 51,
+                    tit: subEle.val().trim(),
+                    cont: contEle.val().trim(),
+                    att: "",
+                    date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
+                    uid: logData.current.uid,
+                    unm: logData.current.unm,
+                    cnt: "0",
+                };
+                console.log('입력전 준비 데이터 temp :', temp);
+            }
         } ////// else if ///////
 
         // 3-5. 수정모드 /////////
@@ -411,13 +447,25 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input type="text" className="name" size="20" readOnly value={logData.current.umn} />
+                                    <input
+                                        type="text"
+                                        className="name"
+                                        size="20"
+                                        readOnly
+                                        value={logData.current.umn}
+                                    />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>
-                                    <input type="text" className="email" size="40" readOnly value={logData.current.eml} />
+                                    <input
+                                        type="text"
+                                        className="email"
+                                        size="40"
+                                        readOnly
+                                        value={logData.current.eml}
+                                    />
                                 </td>
                             </tr>
                             <tr>
