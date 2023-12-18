@@ -1,7 +1,7 @@
 // OPINION 의견 게시판 컴포넌트
 
 // 게시판용 CSS
-import { Fragment, useCallback, useContext, useRef, useState } from "react";
+import { Fragment, useCallback, useContext, useEffect, useRef, useState } from "react";
 import "../../css/board.css";
 
 // 컨텍스트 API 불러오기
@@ -63,6 +63,17 @@ export function Board() {
 
     // 3. 버튼공개 여부 관리변수 : 수정버튼
     const [btnSts, setBtnSts] = useState(false);
+
+    // 리랜더링 루프에 빠지지 않도록 랜더링후 실행구역에
+    // 변경코드를 써준다! 단, logSts에 의존성을 설정해준다.
+    useEffect(()=>{
+        // 만약 로그아웃하면 버튼 상태값 flase로 변경하기
+        if(myCon.logSts===null) setBtnSts(false);
+    }, [myCon.logSts]);
+    // [ 리랜더링의 원인 중 많은 경우 랜더링 전 즉, 
+    //   가상돔에 설정을 잡을 때 발생한다. ]
+    // -> 해결책은 랜더링 후 처리 구역에서 변경되는 상태변수를 
+    // 의존성에 등록하여 그 변경발생시 한번만 실행되도록 설정하는 것이다.
 
     /************************************* 
     함수명 : bindList
@@ -345,7 +356,7 @@ export function Board() {
             // 로그인 안한 상태 ////
             setBtnSts(false);
         } //////// else ///////////
-    }; ///////// chgUsrInfo 함수 ////////
+    }; ///////// compUsr 함수 ////////
 
     // 리턴코드 ////////////////////
     return (
