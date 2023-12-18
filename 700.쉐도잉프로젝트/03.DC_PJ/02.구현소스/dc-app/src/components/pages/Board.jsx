@@ -90,6 +90,11 @@ export function Board() {
         // 데이터 선별하기
         const tempData = [];
 
+        // 내림차순 정렬
+        orgData.sort((a, b) => {
+            return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+        });
+
         // 시작값 : (페이지번호-1)*블록단위수
         let initNum = (pgNum - 1) * pgBlock;
         // 한계값 : 블록단위수*페이지번호
@@ -256,7 +261,7 @@ export function Board() {
             // 전역 참조변수에 저장하여 리랜더링시 리턴코드에
             // 이값이 적용되게 해준다!!!
             cData.current = orgData.find((v) => {
-                if (v.idx === cidx) return true;
+                if (Number(v.idx) === Number(cidx)) return true;
             });
 
             console.log("현재Data:", cData.current);
@@ -332,9 +337,32 @@ export function Board() {
                 // 2-2. 원본 데이터 변수 할당
                 let orgTemp = orgData;
 
-                // 2-3. 임시변수에 입력할 객체 데이터 생성하기
+                // 2-3. 입력 idx 기본키값을 숫자값 중 최대값에 1을 더함!
+                // 2-3-1. idx값만 모아서 배열로 재구성 함
+                let arrIdx = orgTemp.map(v => parseInt(v.idx));
+                // 최대값
+                let maxNum = Math.max(...arrIdx);
+                console.log('arrIdx :', arrIdx);
+                console.log('최대값 :', maxNum);
+                console.log('다른 방법 최대값:', Math.max.apply(null, arrIdx));
+                // 스프레드 연산자 나오기 전에는 항상 apply 메서드 사용함
+                // apply(this 객체, 배열값) -> this객체 전달없으므로 null 씀
+                // -> 배열값 내부의 값을 하나씩 전달함!
+
+                // Math.max() 에서 값을 비교하기 위해 배열값을 나열하여 입력하면 된다
+                // 배열값을 나열하는 연산자는? Spread Operator(스프레드 연산자 : ...)
+                // 다른 배열을 합칠 때도 사용함
+                // let aa = [1, 16];
+                // let bb = [300, 500];
+                // let cc = [...aa, ...bb];
+                // console.log('합친 배열 :', cc);
+
+                // let test = Math.max(1, 2, 3, 4, 5);
+                // console.log('1~5사이 최대값 :', test);
+
+                // 2-4. 임시변수에 입력할 객체 데이터 생성하기
                 let temp = {
-                    idx: 51,
+                    idx: maxNum+1,
                     tit: subEle.val().trim(),
                     cont: contEle.val().trim(),
                     att: "",
@@ -343,7 +371,18 @@ export function Board() {
                     unm: logData.current.unm,
                     cnt: "0",
                 };
-                console.log('입력전 준비 데이터 temp :', temp);
+                // console.log('입력전 준비 데이터 temp :', temp);
+                
+                // 2-5. 원본 임시 변수에 배열 데이터 값 PUSH 하기
+                orgTemp.push(temp);
+                // console.log('최종반영 전체 데이터 :', orgTemp);
+
+                // 2-6. 로컬스에 반영하기
+                localStorage.setItem('bdata', JSON.stringify(orgTemp));
+
+                // 2-7. 리스트 페이지로 이동하기
+                setBdMode('L');
+
             }
         } ////// else if ///////
 
@@ -452,7 +491,7 @@ export function Board() {
                                         className="name"
                                         size="20"
                                         readOnly
-                                        value={logData.current.umn}
+                                        value={logData.current.unm}
                                     />
                                 </td>
                             </tr>
@@ -538,7 +577,7 @@ export function Board() {
                                         className="name"
                                         size="20"
                                         readOnly
-                                        value={cData.current.writer}
+                                        value={cData.current.unm}
                                     />
                                     {/* value는 수정불가! */}
                                 </td>
