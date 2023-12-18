@@ -1,10 +1,8 @@
-
-import { useState } from 'react';
-import baseData from '../data/board.json';
-
-baseData.sort((a, b) => {
-    return Number(a.idx) === Number(b.idx)? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
-})
+import { Fragment, useState } from "react";
+import baseData from "../data/board.json";
+baseData.sort((a, b) =>{
+    return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+});
 
 let orgData;
 if(localStorage.getItem('bdata')) orgData = JSON.parse(localStorage.getItem('bdata'));
@@ -19,13 +17,46 @@ export function Pra() {
 
     const bindList = () => {
         const tempData = [];
-        let initNum = (pgNum - 1) * pgBlock;
-        let limitNum = pgNum * pgBlock;
-
+        let initNum = (pgNum-1) * pgBlock;
+        let limitNum = pgBlock * pgNum;
         for(let i=initNum; i<limitNum; i++){
-            if( i>= totNum) break;
+            if(i>=totNum) break;
+            tempData.push(orgData[i]);
         }
 
+        if(orgData.length === 0){
+            return(
+                <tr>
+                    <td colSpan='5'>There is no data.</td>
+                </tr>
+            )
+        }
+
+        return tempData.map((v, i) => (
+            <tr key={i}>
+                <td>{i+1+initNum}</td>
+                <td>
+                    <a href="#" data-idx={v.idx} onClick={chgMode}>{v.tit}</a>
+                </td>
+                <td>{v.umn}</td>
+                <td>{v.date}</td>
+                <td>{v.cnt}</td>
+            </tr>
+        ))
+    };
+
+    const pagingLink = () => {
+        const blockCnt = Math.floor(totNum/pgBlock);
+        const blockPad = totNum % pgBlock;
+        const limit = blockCnt + (blockPad == 0? 0 :1);
+        let pgCode = [];
+        for(let i=0; i<limit; i++){
+            pgCode[i] = (
+                <Fragment key={i}>
+                    {pgNum}
+                </Fragment>
+            )
+        }
     }
 
     return (
@@ -45,43 +76,18 @@ export function Pra() {
                     </thead>
 
                     {/* 중앙 레코드 표시부분 */}
-                    <tbody>{}</tbody>
+                    <tbody>{bindList()}</tbody>
 
                     {/* 하단 페이징 표시부분 */}
                     <tfoot>
                         <tr>
                             <td colSpan="5" className="paging">
                                 {/* 페이징번호 위치  */}
-                                {}
+                                {pagingLink()}
                             </td>
                         </tr>
                     </tfoot>
                 </table>
-            }
-            {
-                <div className="dtblview readone">
-                    <caption>OPINION : Read</caption>
-                    <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td>
-                                <input type="text" className="name" size="20" readOnly />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Title</td>
-                            <td>
-                                <input type="text" className="subject" size="60" readOnly />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Content</td>
-                            <td>
-                                <textarea className="content" cols="60" rows="10" readOnly></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </div>
             }
         </>
     );
