@@ -1,5 +1,6 @@
 // 로그인 페이지 컴포넌트 - Login.jsx
-// 컨텍스트 API
+
+// 컨텍스트 API를 사용하는 컴포넌트 파일에서 불러옴!
 import { dcCon } from "../modules/dcContext";
 
 // 디자인은 회원가입과 동일!
@@ -13,10 +14,8 @@ import { initData } from "../func/mem_fn";
 import $ from "jquery";
 
 export function Login() {
-
-    // 컨텍스트 API 사용
+    // 컨텍스트 API 사용하기
     const myCon = useContext(dcCon);
-
 
     // [ 상태관리변수 ] /////////
     // [1] 입력요소 상태변수 /////////
@@ -30,20 +29,17 @@ export function Login() {
     const [userIdError, setUserIdError] = useState(false);
     // 2. 비밀번호변수
     const [pwdError, setPwdError] = useState(false);
-
     // [ 아이디관련 메시지 프리셋 ] ////
     const msgId = [
         "This is a required entry", //필수입력
         "ID does not exist", //아이디가 존재하지 않습니다
     ];
-
     // [ 비번 메시지 프리셋 ]
     const msgPwd = [
         // 비밀번호
         "This is a required entry", //필수입력
         "Password doesn't match", //비밀번호가 일치하지 않습니다
-    ]; ///// msgEtc ///////
-
+    ]; ///// msgPwd ///////
     // [3] 에러메시지 상태변수
     const [idMsg, setIdMsg] = useState(msgId[0]);
     const [pwdMsg, setPwdMsg] = useState(msgPwd[0]);
@@ -71,7 +67,7 @@ export function Login() {
         else {
             // 빈값일 경우
             // 메시지 띄우기 : "This is a required entry"
-            setPwdMsg(msgPwd[0]);
+            setIdMsg(msgId[0]);
             // 에러상태값 변경하기
             setPwdError(true);
         } ///// else ////
@@ -99,8 +95,8 @@ export function Login() {
 
         // 4-2. 유효성검사 전체 통과시 ////
         if (totalValid()) {
-            console.log("통과!");
-            // DB역할의 로컬쓰에 데이터를 비교한다!
+            // console.log("통과!");
+            // DB역할의 로컬스에 데이터를 비교한다!
 
             // 만약 로컬스에 'mem-data'가 없으면
             // 초기화! -> 함수내에 이미 걸러내고 있음!
@@ -109,117 +105,118 @@ export function Login() {
             // 로컬스 'mem-data' 확인하기
             let memData = localStorage.getItem("mem-data");
 
-            // 로컬스 데이터 객체화 하기
+            // 로컬스 데이터 객체화하기
             memData = JSON.parse(memData);
-            console.log(memData);
+            // console.log(memData);
 
             // 같은 아이디 검사 상태변수
-            // -> true이면 아이디 불일치 할 경우
-            // let isNOT = true; -> find() 사용시 불필요!
+            // -> true면 아이디불일치할 경우
+            // let isNot = true; -> find()사용시 불필요!
 
-            // ******************************************************
-            // 입력데이터 중 아이디 값 비교하기
-            // 배열 데이터 순회하며 값 비교하기
-            // 배열.find()로 검색순회하면 해당 데이터 만나는 순간
-            // 끝나고 나옴! -> 효율성을 높이자
+            // ************************************
+            // 입력데이터 중 아이디값 비교하기 //////
+            // 배열 데이터 순회하며 값비교하기!
+            // 배열.find() 로 검색순회하면 해당 데이터 만나는 순간
+            // 끝내고 나옴! -> 효율성을 높이자!
             let findD = memData.find((v) => {
                 if (v["uid"] === userId) return true;
-            }); // find /////////////
+            }); ///////// find ////////
 
-            console.log("findD :", findD);
+            // console.log('find결과:',findD);
 
-            // 만약 검색결과가 있으면 true 처리됨!
-            // 결과가 리턴이 없는 경우 undefined이므로 false
+            // 만약 검색결과가 있으면 true처리됨!
+            // 결과가 리턴이 없는 경우 undefined이므로 false!
             if (findD) {
-                // 같은 아이디가 있는 경우
-                console.log("아이디 같아요~!");
-                // 아이디 에러 상태 업데이트
+                // 같은 아이디가 있는 경우 ///
+                // console.log("아이디같아요~!");
+                // 아이디에러 상태 업데이트
                 setUserIdError(false);
 
-                // 비밀번호가 일치하는가? -> 로그인 최종성공!
+                // 비밀번호가 일치하는가? -> 로그인 최종성공!!!
                 if (findD["pwd"] === pwd) {
-                    console.log("비번이 같아요");
-                    // 비번 에러 상태값 업데이트
+                    // console.log("비번이 같아요~!");
+                    // 비번에러 상태값 업데이트
                     setPwdError(false);
 
-                    // *********** [ 로그인후 셋팅작업 ] *************
-                    // 1. 로그인한 회원정보를 로컬스에 셋팅
-                    // -> 서버의 세션을 대신하여 사용함
-                    localStorage.setItem('minfo', JSON.stringify(findD));
+                    // **** [ 로그인후 셋팅작업 ] **** //
+                    // 1. 로그인한 회원정보를 로컬스에 셋팅!
+                    // -> 서버의 세션을 대신하여 사용함!
+                    localStorage.setItem("minfo", JSON.stringify(findD));
 
-                    // 2. 컨텍스트 API에 공개된 로그인상태 업데이트 하기
-                    myCon.setLogSts(localStorage.getItem('minfo'));
+                    // 2. 컨텍스트 API에 공개된 로그인상태 업데이트하기!
+                    myCon.setLogSts(localStorage.getItem("minfo"));
 
-                    // 유저 아이콘
-                    const usrIcon = ["🐸", "😻", "🐥", "🐰", "🦔"];
+                    // 유저아이콘
+                    const usrIcon = ["🙍‍♂️", "🧏‍♀️", "🦸‍♂", "👨‍🎤", "🦸‍♀"];
 
-                    // 3. 컨텍스트 API에 공개된 로그인 메시지 업데이트 하기
-                    myCon.setLogMsg('welcome ' + findD.unm + usrIcon[Math.floor(Math.random()*5)]);
+                    // 3. 컨텍스트 API에 공개된 로그인 메시지 업데이트하기!
+                    myCon.setLogMsg("Welcome " + findD.unm + usrIcon[Math.floor(Math.random() * 5)]);
 
-                    // 버튼에 메시지
-                    $('.sbtn').text('넌 로그인 된거야~!');
-                    
-                    // 3. 라우팅 페이지 이동하기 (useNavigate)
-                    myCon.chgPage('/', {});
+                    // 버튼에 메시지(재미로...)
+                    $(".sbtn").text("넌 로그인된거야~!");
 
-                } // if ///////
+                    // 3. 라우팅 페이지 이동하기(useNavigate)
+                    // 컨텍스트 API 함수호출!
+                    setTimeout(() => myCon.chgPage("/", {}), 1000);
+                } /////////// if //////////
                 else {
-                    // 비번 불일치!
-                    console.log("비번 달라요~!");
+                    /// 비번 불일치!
+                    // console.log("비번달라요~!");
                     // 비번 다를때 메시지
                     setPwdMsg(msgPwd[1]);
-                    // 비번 에러상태 업데이트
+                    // 비번에러 상태 업데이트
                     setPwdError(true);
-                } // else /////
-            } // if //////
+                } ////////// else /////////
+            } //////////// if /////////////////
             else {
-                // 같은 아이디가 없는 경우
-                console.log("아이디 달라요~!");
+                // 같은 아이디가 없는 경우 /////
+                // console.log("아이디 달라요~!");
                 // 아이디가 다를때 메시지 보이기
                 setIdMsg(msgId[1]);
                 // 아이디 에러 상태 업데이트
                 setUserIdError(true);
-            } // else ////
+            } /////////// else ///////////
 
-            // -> forEach를 사용하면 비효율적임 (모두 순회하므로!)
+            // -> forEach를 사용하면 비효율적임(모두순회하므로!)
             // memData.forEach((v) => {
-            //     // 같은 아이디가 있는가?
-            //     if (v["uid"] === userId) {
-            //         console.log("아이디 같아요~!");
-            //         // 아이디 에러 상태 업데이트
-            //         setUserIdError(false);
-            //         // 같은 아이디 상태 업데이트
-            //         isNOT = false;
+            //   // 같은 아이디가 있는가?
+            //   if (v["uid"] === userId) {
+            //     // console.log("아이디같아요~!");
+            //     // 아이디에러 상태 업데이트
+            //     setUserIdError(false);
+            //     // 같은 아이디 상태 업데이트
+            //     isNot = false;
 
-            //         // 비밀번호가 일치하는가?
-            //         if (v["pwd"] === pwd) {
-            //             console.log("비번이 같아요");
-            //             // 비번 에러 상태값 업데이트
-            //             setPwdError(false);
-            //         } // if ///////
-            //         else {
-            //             // 비번 불일치!
-            //             console.log("비번 달라요~!");
-            //             // 비번 다를때 메시지
-            //             setPwdMsg(msgPwd[1]);
-            //             // 비번 에러상태 업데이트
-            //             setPwdError(true);
-            //         } // else /////
-            //     } // if//////////
-            // }); // forEach //////////
+            //     // 비밀번호가 일치하는가?
+            //     if (v["pwd"] === pwd) {
+            //       // console.log("비번이 같아요~!");
+            //       // 비번에러 상태값 업데이트
+            //       setPwdError(false);
+            //     } ///// if ////
+            //     else {
+            //       /// 비번 불일치!
+            //       // console.log("비번달라요~!");
+            //       // 비번 다를때 메시지
+            //       setPwdMsg(msgPwd[1]);
+            //       // 비번에러 상태 업데이트
+            //       setPwdError(true);
+            //     } ///// else //////
+            //   } ////// if //////
+            // }); ////////// forEach /////////
 
-            // 아이디가 불일치 할 경우
-            // if (isNOT) {
-            //     console.log("아이디 달라요~!");
-            //     // 아이디가 다를때 메시지 보이기
-            //     setIdMsg(msgId[1]);
-            //     // 아이디 에러 상태 업데이트
-            //     setUserIdError(true);
-            // } // if //////////
+            // 아이디가 불일치할 경우
+            // if (isNot) {
+            //   // console.log("아이디 달라요~!");
+            //   // 아이디가 다를때 메시지 보이기
+            //   setIdMsg(msgId[1]);
+            //   // 아이디 에러 상태 업데이트
+            //   setUserIdError(true);
+            // } //////// if ///////////
         } ///// if ///////
-        // 4-3. 유효성검사 불통과시 /////
+
+        // 4-3. 유효성검사 불통과시 - 특별히 필요없음 /////
         // else {
-            // console.log("실패!");
+        //   console.log("실패!");
         // } ////// else ///////
     }; //////////// onSubmit 함수 ///////////
 

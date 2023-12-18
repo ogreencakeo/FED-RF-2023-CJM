@@ -1,8 +1,14 @@
 // OPINION 의견 게시판 컴포넌트
 
 // 게시판용 CSS
-import { Fragment, useCallback, useRef, useState } from "react";
+import { Fragment, useCallback, useContext, useRef, useState } from "react";
 import "../../css/board.css";
+
+// 컨텍스트 API 불러오기
+import { dcCon } from "../modules/dcContext";
+
+// 로컬스토리지 사용자정보 생성 JS
+import { initData } from "../func/mem_fn";
 
 // 제이쿼리
 import $ from "jquery";
@@ -27,6 +33,14 @@ else orgData = baseData;
 
 // ******* Borad 컴포넌트 ******* //
 export function Board() {
+    // 기본사용자 정보 셋업 함수 호출
+    initData();
+
+    // 컨텍스트 API 사용하기
+    const myCon = useContext(dcCon);
+
+    console.log("로그인상태:", myCon.logSts);
+
     // [컴포넌트 전체 공통변수] /////////////
     // 1. 페이지 단위수 : 한 페이지 당 레코드수
     const pgBlock = 7;
@@ -39,7 +53,7 @@ export function Board() {
     // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
     // 1. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
-    // const [currData, setCurrData] = useState(null);
+    const [currData, setCurrData] = useState(null);
     // 2. 게시판 모드관리변수
     const [bdMode, setBdMode] = useState("L");
     // 모드구분값 : CRUD (Create/Read/Update/Delete)
@@ -168,14 +182,13 @@ export function Board() {
         // 리랜더링이 자동으로 일어남!!!
     }; ///////// chgList 함수 //////////////
 
+    // 선택된 데이터 셋팅을 위한 참조변수
+    const cData = useRef(null);
+
     /************************************* 
     함수명 : chgMode
     기능 : 게시판 옵션 모드를 변경함
   *************************************/
-
-    // 선택된 데이터 셋팅을 위한 참조변수
-    const cData = useRef(null);
-
     const chgMode = (e) => {
         // 기본막기
         e.preventDefault();
@@ -206,76 +219,76 @@ export function Board() {
             default:
                 modeTxt = "R";
         }
+
         console.log("버튼명:", btxt, "모드명:", modeTxt);
 
         // 3. 모드별 분기하기 //////
         // 3-1. 읽기 모드
         if (modeTxt === "R") {
-            
             // 1. a링크의 'data-idx'값 읽어오기
             let cidx = $(e.target).attr("data-idx");
-            console.log("읽기처리", cidx, ", orgData :", orgData);
-            
-            // 2. 해당정보 가져오기 : orgData에서 초회함
-            // 전역 참조변수에 저장하여 리랜더링시 리턴코드에 
-            // 이 값이 적용되게 해준다.
+            console.log("읽기처리", cidx);
+
+            // 2. 해당정보 가져오기 : orgData에서 조회함
+            // 전역 참조변수에 저장하여 리랜더링시 리턴코드에
+            // 이값이 적용되게 해준다!!!
             cData.current = orgData.find((v) => {
                 if (v.idx === cidx) return true;
             });
-            
-            console.log("현재 데이터 cData :", cData.current);
-            
+
+            console.log("현재Data:", cData.current);
+
             setBdMode("R");
-            
-            // 아래의 방식은 스크립트로 DOM에 셋팅하는 방법
-            // 리액트는 가상돔에 데이터를 셋팅하도록 해야함
-            // cData를 참조변수로 만들어서 미리 데이터를 셋팅했음
+
+            // -> 아래의 방식은 스크립트로 DOM에 셋팅하는 방법
+            // ->>> 리액트는 가상돔에 데이터를 셋팅하도록 해야함!
+            // cData를 참조변수로 만들어서 미리 데이터를 셋팅했음!
+
             // 3. 읽기모드 입력창에 데이터 매칭하여 넣기
-            // $(() => {
-            //     // DOM 그린후 실행함!
-            //     // (1) 글쓴이
-            //     $(".readone .name").val(cData.writer);
-            //     // (2) 글제목
-            //     $(".readone .subject").val(cData.tit);
-            //     // (3) 글내용
-            //     $(".readone .content").val(cData.cont);
+            // $(()=>{ // DOM그린후 실행함!
+            //   // (1) 글쓴이
+            //   $(".readone .name").val(cData.writer);
+            //   // (2) 글제목
+            //   $(".readone .subject").val(cData.tit);
+            //   // (3) 글내용
+            //   $(".readone .content").val(cData.cont);
             // });
         } ////// if ///////
-        // 3-2. 리스트 이동하기
+
+        // 3-2. 리스트 이동하기 ///////
         else if (modeTxt === "L") {
             setBdMode("L");
-        }
-        // else if
-        // 3-3. 쓰기 모드
+        } ////// else if ///////
+
+        // 3-3. 쓰기 모드 //////////////
         else if (modeTxt === "C") {
             setBdMode("C");
 
             // 1. 글쓴이와 이메일은 로그인상태값에서 읽어와서
-            // 본 읽기전용 입력창에 넣어준다.
-            // 지금은 임시로 tomtom / tomtom@gmail.com
+            // 본 읽기전용 입력창에 넣어준다!
+            // 지금은 임시로 tomtom / tom@gmail.com
             $(() => {
                 // DOM 그려진 후 실행
                 // (1) 글쓴이
                 $(".writeone .name").val("tomtom");
                 // (2) 이메일
-                $(".writeone .email").val("tom@gamil.com");
+                $(".writeone .email").val("tom@gmail.com");
             });
-        }
-        // 3-4. 글쓰기 서브밋 ///////
+        } ////// else if ///////
+
+        // 3-4. 글쓰기 서브밋 /////////
         else if (modeTxt === "S" && bdMode === "C") {
             console.log("글쓰기 서브밋");
 
             // 1. 제목, 내용 필수입력 체크
-            
-            $(".writeone .name").val("tomtom");
+        } ////// else if ///////
 
-        }
-        // 3-5. 수정모드 ///////
+        // 3-5. 수정모드 /////////
         else if (modeTxt === "U") {
             console.log("수정모드");
-            setBdMode('U');
 
-        }
+            setBdMode("U");
+        } ////// else if ///////
 
         // 4-2. 쓰기 모드 : 모드변경없이 처리후 리스트보내기
         // else if(modeTxt==="C" && btxt==="Submit"){
@@ -290,6 +303,15 @@ export function Board() {
         //   console.log("삭제처리");
         // } ////// else if ///////
     }; //////// chgMode 함수 ///////////
+
+    // 사용자 정보 변환함수 //////////
+    const chgUsrInfo = (usr) => {
+        // 사용자 정보조회 로컬스(mem-info)
+        // 보드 상단에서 null일경우 생성함수 이미 호출!
+        // null을 고려하지 말고 코드작성!
+        const info = JSON.parse(localStorage.getItem("mem-info"));
+        console.log(info);
+    }; ///////// chgUsrInfo 함수 ////////
 
     // 리턴코드 ////////////////////
     return (
@@ -368,19 +390,37 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    <input type="text" className="name" size="20" readOnly value={cData.current.writer}/>
+                                    <input
+                                        type="text"
+                                        className="name"
+                                        size="20"
+                                        readOnly
+                                        value={chgUsrInfo(cData.current.uid)}
+                                    />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Title</td>
                                 <td>
-                                    <input type="text" className="subject" size="60" readOnly value={cData.current.tit} />
+                                    <input
+                                        type="text"
+                                        className="subject"
+                                        size="60"
+                                        readOnly
+                                        value={cData.current.tit}
+                                    />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Content</td>
                                 <td>
-                                    <textarea className="content" cols="60" rows="10" readOnly value={cData.current.cont}></textarea>
+                                    <textarea
+                                        className="content"
+                                        cols="60"
+                                        rows="10"
+                                        readOnly
+                                        value={cData.current.cont}
+                                    ></textarea>
                                 </td>
                             </tr>
                         </tbody>
@@ -396,22 +436,33 @@ export function Board() {
                             <tr>
                                 <td>Name</td>
                                 <td>
-                                    {/* value는 수정 불가 */}
-                                    <input type="text" className="name" size="20" readOnly value={cData.current.writer} />
+                                    <input
+                                        type="text"
+                                        className="name"
+                                        size="20"
+                                        readOnly
+                                        value={cData.current.writer}
+                                    />
+                                    {/* value는 수정불가! */}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Title</td>
                                 <td>
-                                    {/* defaultValue로 써야 수정 가능하다. */}
                                     <input type="text" className="subject" size="60" defaultValue={cData.current.tit} />
+                                    {/* defaultValue로 써야 수정가능! */}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Content</td>
                                 <td>
-                                    {/* defaultValue로 써야 수정 가능하다. */}
-                                    <textarea className="content" cols="60" rows="10" defaultValue={cData.current.cont}></textarea>
+                                    <textarea
+                                        className="content"
+                                        cols="60"
+                                        rows="10"
+                                        defaultValue={cData.current.cont}
+                                    ></textarea>
+                                    {/* defaultValue로 써야 수정가능! */}
                                 </td>
                             </tr>
                         </tbody>
@@ -427,7 +478,7 @@ export function Board() {
                         <td>
                             {
                                 // 리스트 모드(L)
-                                bdMode === "L" && (
+                                bdMode === "L" && myCon.logSts !== null && (
                                     <button onClick={chgMode}>
                                         <a href="#">Write</a>
                                     </button>
