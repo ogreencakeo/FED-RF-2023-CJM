@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SchCatList } from "../modules/SchCatList";
+import { catListData } from "../data/swiper_cat";
 
 export function Seraching(props){
     const [kwrod, setKword] = useState(null);
@@ -11,11 +12,20 @@ export function Seraching(props){
     const initFn = () => {
         if(props.kwrod!=kwrod){
             chgKword(props.kwrod);
-            SchCatList();
+            schList();
         }
     }
 
     initFn();
+
+    function schList(e){
+        let keyword = $('#schinGnb').val();
+        const newList = catListData.filter((v) => {
+            if(v.cname.indexOf(keyword)!=-1) return true;
+        });
+        setSelData([newList,2]);
+        setCnt(newList.length);
+    }
 
 
     return(

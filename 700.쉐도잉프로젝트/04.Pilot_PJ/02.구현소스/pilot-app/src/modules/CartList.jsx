@@ -13,6 +13,11 @@ export const CartList = memo(({ selData, flag }) => {
     // flag - 상태값 체크변수(true/false) -> 업데이트 여부결정!
     console.log("업뎃상태값:", flag.current);
 
+    // 1. 페이지 단위수 : 한 페이지 당 레코드수
+    const pgBlock = 7;
+    // 2. 전체 레코드수 : 배열데이터 총개수
+    const totNum = orgData.length;
+
     // 상태관리변수 설정 /////////////
     // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
@@ -255,9 +260,7 @@ export const CartList = memo(({ selData, flag }) => {
                             <th>합계</th>
                             <th>삭제</th>
                         </tr>
-
                         {bindList()}
-
                         <tr>
                             <td colSpan="6">총합계 :</td>
                             <td>{addComma(totalCnt)}원</td>
