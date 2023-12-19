@@ -247,7 +247,7 @@ export const CartList = memo(({ selData, flag }) => {
                     <div>
                         <span>
                             {/* 실제 개수 반영을 위해 value속성 사용할 것 defaultValue를 쓰면 값 반영이 안됨 */}
-                            <input type="text" className="item-cnt" value={v.num} />
+                            <input type="text" className="item-cnt" readOnly value={v.num} />
                             <button className="btn-insert" onClick={goResult} data-idx={v.idx}>
                                 반영
                             </button>
@@ -379,7 +379,7 @@ export const CartList = memo(({ selData, flag }) => {
             {/* 카트버튼이미지 박스 */}
             <div id="mycart" onClick={showList}>
                 {/* 카트이미지 */}
-                <img src="./images/mycart.gif" title="개의 상품이 있습니다" />
+                <img src="./images/mycart.gif" title={`${cntData}개의 상품이 있습니다`} />
                 {/* 카트상품개수 출력박스 */}
                 <div className="cntBx">{cntData}</div>
             </div>
