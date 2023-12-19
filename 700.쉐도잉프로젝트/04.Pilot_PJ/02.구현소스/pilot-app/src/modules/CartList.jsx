@@ -14,7 +14,7 @@ export const CartList = memo(({ selData, flag }) => {
     console.log("업뎃상태값:", flag.current);
 
     // 1. 페이지 단위수 : 한 페이지 당 레코드수
-    const pgBlock = 7;
+    const pgBlock = 5;
     // 2. 전체 레코드수 : 배열데이터 총개수
     const totNum = orgData.length;
 
@@ -197,6 +197,31 @@ export const CartList = memo(({ selData, flag }) => {
         기능 : 페이지별 리스트를 생성하여 바인딩함
     *************************************/
     const bindList = () => {
+
+        // 데이터 선별하기
+        const tempData = [];
+        // 시작값 : (페이지번호-1)*블록단위수
+        let initNum = (pgNum - 1) * pgBlock;
+        // 한계값 : 블록단위수*페이지번호
+        let limitNum = pgBlock * pgNum;
+        
+        // 데이터 선별용 for문 : 원본데이터(orgData)로부터 생성
+        for (let i = initNum; i < limitNum; i++) {
+            // 마지막 페이지 한계수체크
+            if (i >= totNum) break;
+            // 코드 푸시
+            tempData.push(orgData[i]);
+        } ///// for /////
+
+        // 데이터가 없는 경우 출력 ///
+        if (orgData.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="5">There is no data.</td>
+                </tr>
+            );
+        } ////// if /////////
+
         return cartData.map((v, i) => (
             <tr key={i}>
                 {/* 상품이미지 */}
