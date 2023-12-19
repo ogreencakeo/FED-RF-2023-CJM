@@ -16,13 +16,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo, useContext, useEffect, useState } from "react";
 
 /******************************************************* 
-  [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
-  1. <Link to="/경로명"></Link>
-  -> to속성의 경로는 <Route path="/경로명"> 과 일치함!
+    [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
+    1. <Link to="/경로명"></Link>
+    -> to속성의 경로는 <Route path="/경로명"> 과 일치함!
 
-  2. <Outlet />
-  -> 라우터 연결 컴포넌트 출력자리 컴포넌트
-  -> 여기서는 MainArea 컴포넌트에 출력!
+    2. <Outlet />
+    -> 라우터 연결 컴포넌트 출력자리 컴포넌트
+    -> 여기서는 MainArea 컴포넌트에 출력!
 *******************************************************/
 
 // 메모이제이션 적용하기! /////
