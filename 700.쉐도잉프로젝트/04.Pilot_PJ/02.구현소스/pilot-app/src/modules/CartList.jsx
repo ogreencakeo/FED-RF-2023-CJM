@@ -16,7 +16,7 @@ export const CartList = memo(({ selData, flag }) => {
     // 1. 페이지 단위수 : 한 페이지 당 레코드수
     const pgBlock = 5;
     // 2. 전체 레코드수 : 배열데이터 총개수
-    const totNum = orgData.length;
+    const totNum = selData.length;
 
     // 상태관리변수 설정 /////////////
     // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
@@ -26,7 +26,7 @@ export const CartList = memo(({ selData, flag }) => {
     // 3. 리랜더링 강제적용 상태변수
     const [force, setForce] = useState(null);
 
-    console.log("받은 데이터", selData, "\n기존 데이터", cartData);
+    console.log("받은 데이터 selData", selData, "\n기존 데이터 cartData", cartData);
 
     // 카트 컴포넌트의 데이터가 상태관리되고 있으므로
     // 외부에서 전달되는 데이터와 다를때 업데이트해야
@@ -200,29 +200,32 @@ export const CartList = memo(({ selData, flag }) => {
 
         // 데이터 선별하기
         const tempData = [];
+
         // 시작값 : (페이지번호-1)*블록단위수
         let initNum = (pgNum - 1) * pgBlock;
         // 한계값 : 블록단위수*페이지번호
         let limitNum = pgBlock * pgNum;
         
-        // 데이터 선별용 for문 : 원본데이터(orgData)로부터 생성
+        // 데이터 선별용 for문 : 원본데이터(selData)로부터 생성
         for (let i = initNum; i < limitNum; i++) {
             // 마지막 페이지 한계수체크
             if (i >= totNum) break;
             // 코드 푸시
-            tempData.push(orgData[i]);
+            tempData.push(cartData[i]);
         } ///// for /////
 
         // 데이터가 없는 경우 출력 ///
-        if (orgData.length === 0) {
+        if (cartData.length === 0) {
             return (
                 <tr>
-                    <td colSpan="5">There is no data.</td>
+                    <td colSpan="8">There is no data.</td>
                 </tr>
             );
         } ////// if /////////
 
-        return cartData.map((v, i) => (
+        console.log('찍기직전 데이터 (tempData) :', tempData);
+
+        return tempData.map((v, i) => (
             <tr key={i}>
                 {/* 상품이미지 */}
                 <td>
