@@ -105,9 +105,9 @@ export const TopArea = memo(({ chgPageFn, logSts, logMsg, logOut }) => {
     return (
         <>
             {/* 1.상단영역 */}
-            <div className="logmsg">{logMsg}</div>
             <header className="top-area">
                 {/* 로그인 환영메시지 박스 */}
+                <div className="logmsg">{logMsg}</div>
                 {/* 네비게이션 GNB파트 */}
                 <nav className="gnb">
                     <ul>
