@@ -80,8 +80,8 @@ export function Board() {
     // 것이다!!!
 
     /************************************* 
-      함수명 : bindList
-      기능 : 페이지별 리스트를 생성하여 바인딩함
+        함수명 : bindList
+        기능 : 페이지별 리스트를 생성하여 바인딩함
     *************************************/
     const bindList = () => {
         // console.log("다시바인딩!", pgNum);
@@ -212,8 +212,8 @@ export function Board() {
     const logData = useRef(null);
 
     /************************************* 
-      함수명 : chgMode
-      기능 : 게시판 옵션 모드를 변경함
+        함수명 : chgMode
+        기능 : 게시판 옵션 모드를 변경함
     *************************************/
     const chgMode = (e) => {
         // 기본막기
@@ -269,6 +269,9 @@ export function Board() {
             compUsr(cData.current.uid);
 
             setBdMode("R");
+
+            // 조회수 증가 함수 호출!
+            plusCnt();
 
             // -> 아래의 방식은 스크립트로 DOM에 셋팅하는 방법
             // ->>> 리액트는 가상돔에 데이터를 셋팅하도록 해야함!
@@ -484,7 +487,7 @@ export function Board() {
             // 2. 원본으로 부터 해당 사용자 정보 조회하여
             // 글쓴이와 로그인사용자가 같으면 btnSts값을 true로 업데이트
             const cUser = info.find((v) => {
-                console.log(v.uid)
+                console.log(v.uid);
                 if (v.uid === usr) return true;
             });
 
@@ -492,13 +495,12 @@ export function Board() {
 
             // 3. 로그인사용자 정보와 조회하기
             // 아이디로 조회함!
-            if(cUser){
+            if (cUser) {
                 // 할당안되면 undefined이므로 할당되었을때만 if문 처리
                 const currUsr = JSON.parse(myCon.logSts);
                 if (currUsr.uid === cUser.uid) setBtnSts(true);
                 else setBtnSts(false);
-            }
-            else{
+            } else {
                 // 사용자 비교값이 없는 경우
                 setBtnSts(false);
             } // else /////
@@ -508,6 +510,46 @@ export function Board() {
             setBtnSts(false);
         } //////// else ///////////
     }; ///////// compUsr 함수 ////////
+
+    /******************************************************************** 
+        * 함수명 : plusCnt
+        * 기능 : 게시판 조회수 증가 반영하기
+        * 조건 : 
+            (1) 자신의 글은 업데이트 안됨
+            (2) 한 글에 대해 한번만 업데이트 됨
+            -> 방법 : 사용자가 방문한 글 고유 번호를
+            배열에 기록하고 조회하여 같은 글인 경우
+            업데이트를 막아준다.
+            (이때 배열은 섹션스에 기록함. 이유는 브라우저 닫을때 사라짐)
+        * 업데이트 시점 : 글 읽기 모드에 들어간후
+    ********************************************************************/
+
+    const plusCnt = () => {
+        // 1. 현재읽은 글은 cData.current로 읽어옴
+        let cidx = cData.current.idx;
+        console.log("조회수 증가 체크 idx (cidx) :", cidx);
+
+        // 2. 세션스에 'cnt-idx' 이름으로 배열 데이터를 저장함
+        // 만약 없으면 우선 만들기 ////////////////////
+        if (!sessionStorage.getItem("cnt-idx")) sessionStorage.setItem("cnt-idx", "[]");
+
+        // 세션스 파싱
+        let cntIdx = JSON.parse(sessionStorage.getItem('cnt-idx'));
+
+        // 배열 여부 확인
+        console.log('Array.isArray(cntIdx)', Array.isArray(cntIdx));
+        
+        // 카운트 증가하기
+        
+        // [ 현재글 세션스에 처리하기 ] ///////////
+        // 세션스 배열에 idx값 넣기
+        cntIdx.push(Number(cidx));
+        console.log('넣은 후 cntIdx :', cntIdx);
+
+        // 세션에 저장하기
+        sessionStorage.setItem('cnt-idx', JSON.stringify(cntIdx));
+
+    }; // plusCnt 함수 //////////
 
     // 리턴코드 ////////////////////
     return (
