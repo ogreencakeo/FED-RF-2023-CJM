@@ -17,6 +17,20 @@ export function ItemDetail({ cat, goods }) {
     // 컨텍스트 API 사용하기
     const myCon = useContext(pCon);
 
+    // const flag = useRef(true);
+    // // 카트 사용여부 상태변수
+    // let stsVal = 0;
+    // let transVal = null;
+
+    // if(localStorage.getItem('universal-cart')){
+    //     transVal = JSON.parse(localStorage.getItem('universal-cart'));
+    //     if(transVal.length !== 0) stsVal = 1;
+    // }
+    // const [transData, setTransData] = useState(transVal); // 로컬스 변환값 변수
+    // const [csts, setCsts] = useState(stsVal);
+
+    // const [lastData,setLastData] = useState(JSON.parse(localStorage.getItem("universal-cart")));
+
     // 카트에 담기 버튼 클릭시 호출함수 ////
     const useCart = () => {
         // 카트 선택 아이템만 추가하기 위해
@@ -280,3 +294,5 @@ export function ItemDetail({ cat, goods }) {
         </>
     );
 } /////////// ItemDetail 컴포넌트 ///////////
+
+// {csts && <CartList selData={transData} flag={flag} />}
