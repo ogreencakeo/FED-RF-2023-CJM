@@ -25,14 +25,25 @@ baseData.sort((a, b) => {
 let orgData;
 // 로컬스가 있으면 그것 넣기
 if (localStorage.getItem("bdata")) orgData = JSON.parse(localStorage.getItem("bdata"));
-// 로컬스 없으면 제이슨 데이터 넣기
-else orgData = baseData;
+// 로컬스 없으면 제이슨 데이터 넣기 + 로컬스 생성하기!
+else {
+    // 기본 데이터 제이슨에서 가져온것 넣기
+    orgData = baseData;
+} /////// else /////////
 // else orgData = [];
 
 // // console.log(org);
 
 // ******* Borad 컴포넌트 ******* //
 export function Board() {
+    // 보드 데이터가 로컬스에 없으면 생성하기!
+    if (!localStorage.getItem("bdata")) {
+        // !연산자로 false일때 실행
+        // 로컬스 'bdata'가 없으므로 여기서 최초 생성하기
+        // -> 조회수증가시 로컬스 데이터로 확인하기 때문!
+        localStorage.setItem("bdata", JSON.stringify(orgData));
+    } //////////// if ///////////////
+
     // 기본사용자 정보 셋업 함수 호출
     initData();
 
@@ -80,11 +91,11 @@ export function Board() {
     // 것이다!!!
 
     /************************************* 
-        함수명 : bindList
-        기능 : 페이지별 리스트를 생성하여 바인딩함
+      함수명 : bindList
+      기능 : 페이지별 리스트를 생성하여 바인딩함
     *************************************/
     const bindList = () => {
-        // console.log("다시바인딩!", pgNum);
+        console.log("다시바인딩!", pgNum);
         // 데이터 선별하기
         const tempData = [];
 
@@ -212,8 +223,8 @@ export function Board() {
     const logData = useRef(null);
 
     /************************************* 
-        함수명 : chgMode
-        기능 : 게시판 옵션 모드를 변경함
+      함수명 : chgMode
+      기능 : 게시판 옵션 모드를 변경함
     *************************************/
     const chgMode = (e) => {
         // 기본막기
@@ -482,12 +493,10 @@ export function Board() {
             // 1. 로컬스 원본 데이터 조회
             const info = JSON.parse(localStorage.getItem("mem-data"));
             console.log(info);
-            console.log(usr);
 
             // 2. 원본으로 부터 해당 사용자 정보 조회하여
             // 글쓴이와 로그인사용자가 같으면 btnSts값을 true로 업데이트
             const cUser = info.find((v) => {
-                console.log(v.uid);
                 if (v.uid === usr) return true;
             });
 
@@ -496,14 +505,15 @@ export function Board() {
             // 3. 로그인사용자 정보와 조회하기
             // 아이디로 조회함!
             if (cUser) {
-                // 할당안되면 undefined이므로 할당되었을때만 if문 처리
+                // 할당안되면 undefined 이므로 할당되었을때만 if문처리
                 const currUsr = JSON.parse(myCon.logSts);
                 if (currUsr.uid === cUser.uid) setBtnSts(true);
                 else setBtnSts(false);
-            } else {
-                // 사용자 비교값이 없는 경우
+            } //// if /////
+            else {
+                // 사용자비교값이 없는 경우
                 setBtnSts(false);
-            } // else /////
+            } //// else ////
         } /////// if ////////////
         else {
             // 로그인 안한 상태 ////
@@ -511,19 +521,20 @@ export function Board() {
         } //////// else ///////////
     }; ///////// compUsr 함수 ////////
 
-    /******************************************************************** 
-        * 함수명 : plusCnt
-        * 기능 : 게시판 조회수 증가 반영하기
-        * 조건 : 
-            (1) 자신의 글은 업데이트 안됨
-            (2) 한 글에 대해 한번만 업데이트 됨
-            -> 방법 : 사용자가 방문한 글 고유 번호를
-            배열에 기록하고 조회하여 같은 글인 경우
-            업데이트를 막아준다.
-            (이때 배열은 섹션스에 기록함. 이유는 브라우저 닫을때 사라짐)
-        * 업데이트 시점 : 글 읽기 모드에 들어간후
-    ********************************************************************/
-
+    /************************************* 
+      * 함수명 : plusCnt
+      * 기능 : 게시판 조회수 증가 반영하기
+      * 조건 : 
+        (1) 자신의 글은 업데이트 안됨
+        (2) 한 글에 대해 한번만 업데이트 됨
+        -> 방법: 사용자가 방문한 글 고유번호를
+        배열에 기록하고 조회하여 같은 글인 경우 
+        업데이트를 막아준다!
+        (이때 배열은 세션스에 기록함! 이유는
+          브라우저 닫을 때 사라짐!)
+  
+      * 업데이트 시점 : 글 읽기 모드에 들어간후
+    *************************************/
     const plusCnt = () => {
         // 0. 처음에 통과상태 설정하기
         let isOK = true;
@@ -541,7 +552,7 @@ export function Board() {
         let cntIdx = JSON.parse(sessionStorage.getItem("cnt-idx"));
 
         // 배열여부확인
-        console.log(Array.isArray(cntIdx));
+        console.log(Array.isArray(cntIdx), cntIdx);
 
         // 3. [ 카운트 증가하기 조건검사 ] //////////
 
@@ -556,22 +567,23 @@ export function Board() {
             } /// if /////
         }); /////////// some //////
 
-        // 3-2. 로그인한 사용자일 경우 로그인 사용자계정과 같은 글이면 증가하지 않는다.
-        if(localStorage.getItem('minfo')){
-            // 1. 사용자 로그인 정보 로컬스 
-            let minfo = JSON.parse(localStorage.getItem('minfo'));
-            console.log('로그인 사용자 검사');
-            
-            // 2. 로그인 아이디
+        // 3-2. 로그인한 사용자일 경우 로그인 사용자계정과 같은
+        // 글이면 증가하지 않는다!
+        if (localStorage.getItem("minfo")) {
+            // 1.사용자 로그인정보 로컬스
+            let minfo = JSON.parse(localStorage.getItem("minfo"));
+
+            // 2.로그인 아이디
             let cUid = minfo.uid;
-            console.log('로그인 사용자 검사', cUid);
-            
-            // 3. 로그인 아이디 === 현재글 아이디
-            // isOk 값 false처리로 조회수 증가 막기!
-            if(cUid === cData.current.uid) isOK = false;
 
-        } // if ////////
+            // 3.로그인 아이디 === 현재글 아이디 검사통과시
+            // isOK 값 false처리로 조회수 증가막기!
+            if (cUid === cData.current.uid) isOK = false;
 
+            console.log("로그인사용자검사", cUid, isOK);
+        } ////////////// if //////////////
+
+        console.log(localStorage.getItem("bdata"));
 
         // 4. [ 카운트 증가하기 ] ////////
         if (isOK) {
