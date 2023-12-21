@@ -1,14 +1,30 @@
+/* 전체 */
+/* 웹폰트 */
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap");
+#cont {
+    font-family: "Ubuntu", "Nanum Gothic";
+}
+
+/* 상세보기 내부 박스 디자인 변경 */
+.inx {
+    background-color: rgb(255 255 255 / 0.817);
+}
+
 /* 타이틀 */
 .tit {
+    position: relative;
+    top: 8vw;
     text-align: center;
     /* 글자 최소크기 지정 */
     font-size: max(3vw, 25px);
+    color: navy;
+    text-shadow: 4px 4px 2px #0000006d;
 }
-.wrap{
+.wrap {
     overflow: hidden;
 }
 /* 옵션박스 */
-#optbx{
+#optbx {
     position: relative;
     top: 9vw;
     max-width: 800px;
@@ -21,7 +37,7 @@
     background-color: #fff;
 }
 /* 페이징박스 */
-#paging{
+#paging {
     position: relative;
     max-width: 800px;
     margin: 20px auto;
@@ -33,7 +49,7 @@
     background-color: #fff;
 }
 /* 더보기박스 */
-#more{
+#more {
     position: relative;
     max-width: 800px;
     margin: 20px auto;
@@ -43,7 +59,7 @@
     text-align: center;
     background-color: #fff;
 }
-#more button{
+#more button {
     border: none;
     background-color: transparent;
     cursor: pointer;
@@ -96,7 +112,6 @@
     /* transform: scale(1.1); */
     animation: magAni 10s linear infinite alternate;
 }
-
 
 /* 계속 확대/축소 애니 키프레임 */
 @keyframes magAni {
