@@ -1,5 +1,5 @@
 // 전체리스트 상품 정보
-const gdata = [
+export const gdata = [
     {
         idx: "1",
         cat: "men",

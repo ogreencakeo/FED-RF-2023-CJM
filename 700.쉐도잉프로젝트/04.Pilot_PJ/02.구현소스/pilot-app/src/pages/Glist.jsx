@@ -22,10 +22,12 @@ export function GList() {
 
     // 리랜더링을 위한 상태변수 : 무조건 리랜더링 설정
     const [force, setForce] = useState(null);
+    // 데이터 상태관리 변수
+    const [coreData, setCoreData] = useState(gdata);
 
     // 리스트 만들기 함수 ////////
     const makeList = () =>
-        gdata.map((v, i) => (
+        coreData.map((v, i) => (
             <div key={i}>
                 <a
                     href="#"
@@ -71,6 +73,73 @@ export function GList() {
         $(".bgbx").slideDown(600);
     }; // showDetail 함수 //////////
 
+    /***********************************************************
+        함수명 : changeList 
+        기능 : 체크박스에 따라 리스트 변경하기
+    ***********************************************************/
+    const changeList = (e) => {
+        // 1. 체크박스 아이디
+        const cid = e.target.id;
+        console.log('cid', cid);
+
+        // 2. 체크박스 체크여부 : checked (true/false)
+        const chked = e.target.checked;
+        console.log("아이디 :", cid, ", 체크여부 :", chked);
+
+        // 3. 체크박스 체크개수세기 : 1개초과시 배열합치기!
+        let num = $(".chkbx:checked").length;
+        console.log("체크개수:", num);
+
+        // 4. 기존 입력 데이터 가져오기
+        // 현재 상태관리 데이터 배열값 (변경되는 데이터)
+        let temp = coreData;
+        console.log('temp :', temp);
+
+        // 결과집합배열변수 : 최종결과배열
+        let lastList = [];
+
+        // 5. 체크박스 체크유무에 따른 분기
+        // (1) 체크박스가 true일대 해당 검색어로 검색하기
+        if (chked) {
+            // 현재데이터 변수에 담기(원본 데이터로 부터)
+            const nowList = gdata.filter((v) => {
+                console.log('v', v);
+                if (v['cat'] === cid) {
+                    console.log('hi');
+                    console.log('v["cat"]', v['cat'])
+                    return true;
+                }
+            });
+            console.log('gdata', gdata);
+            console.log('nowList :', nowList);
+            console.log('gdata[cat]', gdata['cat']);
+
+            // 체크개수가 1초과일때 배열합치기
+            if (num > 1) {
+                lastList = [...temp, ...nowList];
+            } else {
+                lastList = nowList;
+            }
+            console.log("추가구역 :", lastList);
+        }
+        // (2) 체크박스가 false일때 데이터 지우기
+        else {
+            console.log("지울데이터:", cid);
+            for (let i = 0; i < temp.length; i++) {
+                if (temp[i].cat == cid) {
+                    temp.splice(i, 1);
+                    i--;
+                }
+            }
+            console.log("삭제처리된배열:", temp);
+
+            // 6. 현재 데이터 업데이트 하기
+            console.log("삭제구역 :", lastList);
+        }
+        lastList = [...temp];
+        setCoreData(lastList);
+    }; // changeList 함수 ////////////
+
     // 리턴 코드 ///////////////////
     return (
         <main id="cont">
@@ -78,11 +147,11 @@ export function GList() {
             <section>
                 <div id="optbx">
                     <label htmlFor="men">남성</label>
-                    <input type="checkbox" id="men" defaultChecked />
+                    <input type="checkbox" className="chkbx" id="men" defaultChecked onChange={changeList} />
                     <label htmlFor="women">여성</label>
-                    <input type="checkbox" id="women" defaultChecked />
+                    <input type="checkbox" className="chkbx" id="women" defaultChecked onChange={changeList} />
                     <label htmlFor="style">스타일</label>
-                    <input type="checkbox" id="style" defaultChecked />
+                    <input type="checkbox" className="chkbx" id="style" defaultChecked onChange={changeList} />
                 </div>
                 <div className="grid">{makeList()}</div>
             </section>
