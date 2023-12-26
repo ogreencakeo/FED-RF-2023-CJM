@@ -1,26 +1,49 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gdata from "../data/glist-items";
-import $ from 'jquery';
+import $ from "jquery";
+import { CartList } from "./CartList";
 
 export function ItemDetail({ goods, cat }) {
-
     let stsVal = 0;
     let transVal = null;
 
-    if(localStorage.getItem('cart')){
-        transVal = JSON.parse(localStorage.getItem('cart'));
-        if(transVal.length != 0) stsVal = 1;
+    const flag = useRef(true);
+
+    if (localStorage.getItem("cart")) {
+        transVal = JSON.parse(localStorage.getItem("cart"));
+        if (transVal.length != 0) stsVal = 1;
     }
 
     const [transData, setTransData] = useState(transVal);
     const [csts, setCsts] = useState(stsVal);
 
     const useCart = () => {
-        selData.num = $('#sum').val();
+        flag.current = true;
+        selData.num = $("#sum").val();
         let localD;
-        if(!localStorage.getItem('cart')){
+        if (!localStorage.getItem("cart")) {
             localD = [];
-            
+            localD.push(selData);
+            localStorage.setItem("cart", JSON.stringify(localD));
+
+            setTransData(localD);
+            setCsts(1);
+        } else {
+            localD = localStorage.getItem("cart");
+            localD = JSON.parse(localD);
+
+            let temp = localD.find((v) => {
+                if (v.idx === selData.idx) return true;
+            });
+
+            if (temp) {
+                alert("이미 선택하신 물품입니다!");
+            } else {
+                localD.push(localD);
+                localStorage.setItem("cart", JSON.stringify(localD));
+                setTransData(localD);
+                setCsts(1);
+            }
         }
     };
 
@@ -32,27 +55,27 @@ export function ItemDetail({ goods, cat }) {
 
     const closeBox = (e) => {
         e.preventDefault();
-        $('.bgbx').slideUp(600);
+        $(".bgbx").slideUp(600);
     };
 
-    useEffect(()=>{
-        const sum = $('#sum');
-        const btnNum = $('.chg_num img');
+    useEffect(() => {
+        const sum = $("#sum");
+        const btnNum = $(".chg_num img");
 
-        btnNum.click(()=>{
+        btnNum.click(() => {
             let seq = $(e.currentTarget).index();
             const num = Number(sum.val());
-            seq? num-- : num++;
-            if(num < 1) num = 1;
+            seq ? num-- : num++;
+            if (num < 1) num = 1;
             sum.val(num);
-            $('#total').text(addComma(ginfo[3] * num));
+            $("#total").text(addComma(ginfo[3] * num));
         });
     }, []);
 
-    useEffect(()=>{
-        $('#sum').val('1');
-        $('#total').text(addComma(ginfo[3]));
-    })
+    useEffect(() => {
+        $("#sum").val("1");
+        $("#total").text(addComma(ginfo[3]));
+    });
 
     function addComma(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -146,6 +169,7 @@ export function ItemDetail({ goods, cat }) {
                             <button className="btn">WISH LIST</button>
                         </div>
                     </section>
+                    {csts && <CartList selData={transData} flag={flag} />}
                 </div>
             </div>
         </>
