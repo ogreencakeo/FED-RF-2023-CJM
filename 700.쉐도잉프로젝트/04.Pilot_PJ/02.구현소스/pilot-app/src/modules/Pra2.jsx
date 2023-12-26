@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { Fragment, memo, useState } from "react";
 
 export const CartList = memo(({ selData }) => {
     const pgBlock = 5;
@@ -90,6 +90,34 @@ export const CartList = memo(({ selData }) => {
             </tr>
         ));
     };
+
+    const pagingLink = () => {
+        const blockCnt = Math.floor(cntData / pgBlock);
+        const blockPad = cntData % pgBlock;
+        const limit = blockCnt + (blockPad===0? 0 : 1);
+
+        const pgCode = [];
+        for(let i=0; i<limit; i++){
+            pgCode[i] = (
+                <Fragment>
+                    {
+                        pgNum - 1 === i? (
+                            <b>{i+1}</b>
+                        ) : (
+                            <a href="#" onClick={chgList}>{i+1}</a>
+                        )
+                    }
+                    { i< limit - 1? ' | ' : ''}
+                </Fragment>
+            );
+        }
+        return pgCode;
+    };
+
+    const chgList = (e) => {
+        let currNum = e.target.innerText;
+        setPgNum(currNum);
+    }
 
     return (
         <>
