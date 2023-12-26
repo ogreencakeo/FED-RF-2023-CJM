@@ -54,7 +54,6 @@ function App() {
 
     // 카트사용여부 상태변수 /////////
     const [csts, setCsts] = useState(stsVal);
-    ///////////////////////////////////////////////////////////////
 
     // 랜더링 후 실행구역 ////////////
     useEffect(() => {
@@ -100,6 +99,9 @@ function App() {
         window.scrollTo(0, 0);
     }, []); ///// useLayoutEffect //////////
 
+    // GList 페이지에서 사용하는 모드구분 참조변수
+    const gMode = useRef(null);
+
     /*
       [ 컨텍스트 API 공개 변수들 ]
       1. pgName - 페이지 이름
@@ -108,11 +110,12 @@ function App() {
       4. setTransData - 카트 사용 데이터 셋업
       5. transData - 카트 사용 데이터
       6. setCsts - 로컬스에 카트 정보 셋업 여부
+      7. gMode - 전체 리스트 페이지 뷰모드 구분
     */
 
     // 리턴코드 //////////////////////////
     return (
-        <pCon.Provider value={{ pgName, chgPgName, flag, setTransData, transData, setCsts }}>
+        <pCon.Provider value={{ pgName, chgPgName, flag, setTransData, transData, setCsts, gMode }}>
             <TopArea cat={pgName} />
             <MainArea page={pgName} />
             <FooterArea />
