@@ -4,20 +4,38 @@
 import { gnbData } from "../data/gnb";
 import { TotalMenu } from "../modules/TotalMenu";
 
-export function TopArea(props) { 
+// 제이쿼리
+import $ from "jquery";
+
+export function TopArea(props) {
     // props.cat - 카테고리명(메뉴데이터 선택용)
 
-    // GNB메뉴 리스트 만들기 함수
+    // GNB 클릭시 변경적용함수 ////
+    const clickGnb = (e) => {
+        console.log("카테고리:", props.cat);
+        // glist일 경우 적용하기
+        if (props.cat === "glist") {
+            // 클릭된요소
+            const tgEle = $(e.currentTarget);
+            let atxt = tgEle.text();
+            console.log("메뉴글자:", atxt);
+
+            // 클릭된 자신은 class 'on'넣고
+            // 다른 형제 메뉴는 class 'on'빼기
+            tgEle.addClass("on").siblings().removeClass("on");
+        } //////// if ////////
+    }; ///////// clickGnb /////////
+
+    /// GNB메뉴 리스트 만들기 함수
     const makeList = (data) => {
-        return(
-            gnbData[data].map((v, i) => 
-                <li key={i}>
-                    <a href="#">{v}</a>
-                </li>
-            )
-        )
-    };
-    
+        console.log("GNB리스트:", data);
+        return gnbData[data].map((v, i) => (
+            <li key={i} className={props.cat === "glist" && i === 0 ? "on" : ""} onClick={clickGnb}>
+                <a href="#">{v}</a>
+            </li>
+        ));
+    }; ///////// makeList /////////
+
     return (
         <>
             <div id="top-area">
@@ -30,9 +48,7 @@ export function TopArea(props) {
                     <nav className="gnb">
                         <ul>
                             <li className="bld">배너순번 li 숨기기</li>
-                            {
-                                makeList(props.cat)
-                            }
+                            {makeList(props.cat)}
                         </ul>
                     </nav>
                     <div className="ham">
@@ -44,4 +60,4 @@ export function TopArea(props) {
             </div>
         </>
     );
-} // TopArea 컴포넌트 /////////////
+} //////////////// TopArea 컴포넌트 //////////
