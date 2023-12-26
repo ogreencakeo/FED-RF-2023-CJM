@@ -1,124 +1,225 @@
-// import { useEffect } from "react";
-// import gdata from "../../../../../../04.Pilot_PJ/02.구현소스/pilot-app/src/data/glist-items";
+import { initData } from "../func/mem_fn";
+import $ from 'jquery';
+import baseData from "../data/board.json";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 
-// export function ItemDetail({cat, goods}) {
+baseData.sort((a, b) => {
+    return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+});
 
-//     const selData = gdata.find((v)=> {
-//         if(v.)
-//     })
+let orgData;
+if (localStorage.getItem('bdata')) orgData = JSON.parse(localStorage.getItem('bdata'));
+else orgData = baseData;
 
-//     const closeBox = (e) => {
-//         e.preventDefault();
-//         $('.bgbx').slideUp(400);
-//     };
+export function Board() {
+    if (!localStorage.getItem('bdata')) {
+        localStorage.setItem('bdata', JSON.stringify(orgData));
+    }
+    initData();
+    const myCon = useContext(dcCon);
+    const pgBlock = 7;
+    const totNum = orgData.length;
 
-//     useEffect(()=>{
-//         const sum = $('#sum');
-//         const numBtn = $('.chg_num img');
-//         numBtn.click((e) => {
-//             let seq = $(e.target).index();
-//             let num = Number(sum.val());
-//             seq? num-- : num++;
-//             if(num<1) num = 1;
-//             sum.val(num);
-//             $('#total').text(addComma(ginfo[3]*num))
-//         })
-//     })
+    const [pgNum, setPgNum] = useState(1);
+    const [bdMode, setBdMode] = useState('L');
+    const [btnSts, setBtnSts] = useState(false);
+    useEffect(() => {
+        if (myCon.logSts === null) setBtnSts(false);
+        if (myCon.logSts === null && bdMode === 'C') setBdMode('L');
+    }, [myCon.logSts]);
 
-//     function addComma(x) {
-//         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-//     }
+    const bidList = () => {
+        const tempData = [];
+        orgData.sort((a, b) => {
+            return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
+        });
 
-//     return (
-//         <>
-//             <a href="#" className="cbtn" onClick={closeBox}>
-//                 <span className="ir">닫기버튼</span>
-//             </a>
-//             <div id="imbx">
-//                 <div className="inx">
-//                     <section className="gimg">
-//                         <img src={"./images/goods/" + cat + "/" + goods + ".png"} alt="큰 이미지" />
-//                         <div className="small">
-//                             <a href="#">
-//                                 <img src="./images/goods/men/m1.png" alt="썸네일 이미지" />
-//                                 <img src="./images/goods/men/m2.png" alt="썸네일 이미지" />
-//                                 <img src="./images/goods/men/m3.png" alt="썸네일 이미지" />
-//                                 <img src="./images/goods/men/m4.png" alt="썸네일 이미지" />
-//                                 <img src="./images/goods/men/m5.png" alt="썸네일 이미지" />
-//                                 <img src="./images/goods/men/m6.png" alt="썸네일 이미지" />
-//                             </a>
-//                         </div>
-//                     </section>
-//                     <section className="gdesc scbar">
-//                         <h1>HOME &gt; MEN</h1>
-//                         <div>
-//                             <ol>
-//                                 <li>
-//                                     <img src="./images/dx_ico_new-28143800.gif" alt="new버튼" />
-//                                 </li>
-//                                 <li id="gtit">상품명: {ginfo[1]}</li>
-//                                 <li>
-//                                     <img src="./images/icon_type02_social01.gif" alt="페이스북" />
-//                                     <img src="./images/icon_type02_social02.gif" alt="트위터" />
-//                                     <img src="./images/icon_mail02.gif" alt="이메일" />
-//                                     <img src="./images/btn_source_copy.gif" alt="URL복사" />
-//                                 </li>
-//                                 <li>
-//                                     <span>판매가</span>
-//                                     <span id="gprice">{addComma(ginfo[3])}원</span>
-//                                 </li>
-//                                 <li>
-//                                     <span>적립금</span>
-//                                     <span>
-//                                         <img src="./images/icon_my_m02.gif" alt="적립금" />
-//                                         4,950(5%적립)
-//                                     </span>
-//                                 </li>
-//                                 <li>
-//                                     <span>무이자할부</span>
-//                                     <span>
-//                                         부분 무이자 할부 혜택
-//                                         <img src="./images/view_btn_nointerest_card.gif" alt="무이자카드보기" />
-//                                     </span>
-//                                 </li>
-//                                 <li>
-//                                     <span>상품코드</span> <span id="gcode">{ginfo[2]}</span>
-//                                 </li>
-//                                 <li>
-//                                     <span>사이즈</span> <span>95 100 105 110</span>
-//                                 </li>
-//                                 <li>
-//                                     <span>구매수량</span>
-//                                     <span>
-//                                         <input type="text" id="sum" defaultValue="1" />
-//                                         <b className="chg_num">
-//                                             <img src="./images/cnt_up.png" alt="증가" />
-//                                             <img src="./images/cnt_down.png" alt="감소" />
-//                                         </b>
-//                                     </span>
-//                                 </li>
-//                                 <li>
-//                                     <span>컬러</span> <span></span>
-//                                 </li>
-//                                 <li>
-//                                     <span>권장계절</span> <span>여름</span>
-//                                 </li>
-//                                 <li className="tot">
-//                                     <span>총합계</span>
-//                                     <span id="total">{addComma(ginfo[3])}원</span>
-//                                 </li>
-//                             </ol>
-//                         </div>
-//                         <div>
-//                             <button className="btn btn1">BUY NOW</button>
-//                             <button className="btn" onClick={useCart}>
-//                                 SHOPPING CART
-//                             </button>
-//                             <button className="btn">WISH LIST</button>
-//                         </div>
-//                     </section>
-//                 </div>
-//             </div>
-//         </>
-//     );
-// }
+        let initNum = pgBlock * (pgNum - 1);
+        let limitNum = pgBlock * pgNum;
+
+        for (let i = initNum; i < limitNum; i++) {
+            if (i > totNum) break;
+            tempData.push(orgData[i]);
+        }
+
+        if (orgData.length === 0) {
+            return (
+                <tr>
+                    <td colSpan="5">There is no data.</td>
+                </tr>
+            )
+        }
+
+        return tempData.map((v, i) => (
+            <tr key={i}>
+                <td>{i + 1 + initNum}</td>
+                <td>
+                    <a href="#" data-idx={v.idx} onClick={chgMode}>
+                        {v.tit}
+                    </a>
+                </td>
+                <td>{v.unm}</td>
+                <td>{v.date}</td>
+                <td>{v.cnt}</td>
+            </tr>
+        ));
+    };
+
+    const pagingLink = () => {
+        const blockCnt = Math.floor(totNum / pgBlock);
+        const blockPad = totNum % pgBlock;
+        const limit = blockCnt + (blockPad == 0 ? 0 : 1);
+
+        let pgCode = [];
+        for (let i = 0; i < limit; i++) {
+            pgCode[i] = (
+                <Fragment>
+                    {
+                        pgNum - 1 === i ? (
+                            <b>{i + 1}</b>
+                        ) : (
+                            <a href="#" onClick={chgList}>{i + 1}</a>
+                        )
+                    }
+                    {i < limit - 1 ? ' | ' : ''}
+                </Fragment>
+            )
+        }
+        return pgCode;
+    }
+
+    const chgList = (e) => {
+        let currNum = e.target.innerText;
+        setPgNum(currNum);
+    };
+
+    const cData = useRef(null);
+    const logData = useRef(null);
+
+    const chgMode = (e) => {
+        e.preventDefault();
+        let btxt = $(e.target).text();
+        let modeTxt;
+        switch (btxt) {
+            case 'List':
+                modeTxt = 'L';
+                break;
+            case 'Write' :
+                modeTxt = 'C';
+                break;
+            case 'Modify' : 
+                modeTxt = 'U';
+                break;
+            case 'Submit' :
+                modeTxt = 'S';
+                break;
+            default :
+                modeTxt = 'R';
+        }
+
+        if(modeTxt === 'R'){
+            let cidx = $(e.target).attr('data-idx');
+            cData.current = orgData.find((v) => {
+                if(Number(v.idx) === Number(cidx)) return true;
+            });
+
+            // compUser(cData.current.uid);
+
+            setBdMode('R');
+            // plusCnt();
+        }else if(modeTxt === 'L'){
+            setBdMode('L');
+        }else if(modeTxt === 'C'){
+            logData.current = JSON.parse(myCon.logSts);
+            setBdMode('C');
+        }else if(modeTxt === 'S' && bdMode === 'C'){
+            const subEle = $('.writeone .subject');
+            const contEle = $('.writeone .content');
+
+            if(subEle.val().trim() === '' || contEle.val().trim() === ''){
+                window.alert('제목과 내용은 필수입력입니다');
+            }else{
+                const addZero = (x) => (x<10 ? '0'+x : x);
+                let today = new Date();
+                let yy = today.getFullYear();
+                let mm = today.getMonth() + 1;
+                let dd = today.getDate();
+                let orgTemp = orgData;
+                
+            }
+        }
+    };
+    return (
+        <>
+            {
+                bdMode === 'L' && (
+                    <>
+                        {/* 전체 탕리틀 */}
+                        <h1 className="tit">OPINION</h1>
+                        <div class="sbx">
+                            {/* 검색옵션박스 */}
+                            <div class="selbx">
+                                <select name="cta" id="cta" class="cta">
+                                    <option value="tit">Title</option>
+                                    <option value="cont">Contents</option>
+                                    <option value="unm">Writer</option>
+                                </select>
+                                <select name="sel" id="sel" class="sel">
+                                    <option value="0">JungYeol</option>
+                                    <option value="1">Ascending</option>
+                                    <option value="2">Descending</option>
+                                </select>
+                                <input id="stxt" type="text" maxlength="50" />
+                                <button class="sbtn">Serach</button>
+                            </div>
+                            <div class="showNum cont"></div>
+                        </div>
+                        <table className="dtbl" id="board">
+                            {/* 상단 컬럼명 표시영역 */}
+                            <thead>
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Title</th>
+                                    <th>Writer</th>
+                                    <th>Date</th>
+                                    <th>Hits</th>
+                                </tr>
+                            </thead>
+
+                            {/* 중앙 레코드 표시부분 */}
+                            <tbody>{bindList()}</tbody>
+
+                            {/* 하단 페이징 표시부분 */}
+                            <tfoot>
+                                <tr>
+                                    <td colSpan="5" className="paging">
+                                        {/* 페이징번호 위치  */}
+                                        {pagingLink()}
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </>
+                )
+            }
+
+            {
+                <table className="dtbl btngrp">
+                    <tbody>
+                        <tr>
+                            <td>
+                                {
+                                    bdMode === 'L' && myCon.logSts !== null && (
+                                        <button onClick={chgMode}>
+                                            <a href="#">Write</a>
+                                        </button>
+                                    )
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </>
+    )
+}
