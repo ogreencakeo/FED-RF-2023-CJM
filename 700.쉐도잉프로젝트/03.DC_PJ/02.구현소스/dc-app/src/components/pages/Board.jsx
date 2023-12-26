@@ -631,18 +631,17 @@ export function Board() {
                             {/* 검색옵션박스 */}
                             <div class="selbx">
                                 <select name="cta" id="cta" class="cta">
-                                    <option value="tit">제목</option>
-                                    <option value="cont">내용</option>
-                                    <option value="unm">글쓴이</option>
+                                    <option value="tit">Title</option>
+                                    <option value="cont">Contents</option>
+                                    <option value="unm">Writer</option>
                                 </select>
                                 <select name="sel" id="sel" class="sel">
-                                    <option value="0">정렬선택</option>
-                                    <option value="1">오름차순</option>
-                                    <option value="2">내림차순</option>
+                                    <option value="0">JungYeol</option>
+                                    <option value="1">Ascending</option>
+                                    <option value="2">Descending</option>
                                 </select>
                                 <input id="stxt" type="text" maxlength="50" />
-                                <button class="sbtn">검색</button>
-                                <button class="fbtn">FL</button>
+                                <button class="sbtn">Serach</button>
                             </div>
                             <div class="showNum cont"></div>
                         </div>

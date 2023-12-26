@@ -165,6 +165,9 @@
 }
 
 .selbx{
-    text-align: center;
-    margin: 20px 0;
+    margin: 0 auto;
+    max-width: 90%;
+    width: 950px;
+    box-sizing: border-box;
+    padding: 20px 10px;
 }
