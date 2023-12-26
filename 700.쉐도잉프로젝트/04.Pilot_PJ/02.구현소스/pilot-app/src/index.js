@@ -26,7 +26,6 @@ function App() {
         setPgName(txt);
     }; ///////// chgPgName 함수 //////
 
-    /////////////////////////////////////////////////////////////////////
     // 자식 카트 컴포넌트와 함께 상태값 공유할 변수
     const flag = useRef(true);
     // -> 이값이 true일때만 새로추가하는 데이터가 반영됨
@@ -41,13 +40,13 @@ function App() {
 
     // 카트셋팅에 필요한 데이터를 로컬스에 따라 셋팅함!
     if (localStorage.getItem("cart")) {
-        // 로컬스가 있으므로 객체화하기
+        // 로컬스가 있으므로 객체화하기!
         transVal = JSON.parse(localStorage.getItem("cart"));
         // 로컬스 객체화 데이터 개수가 0이 아닐때만 상태값 1로 노출하기
         if (transVal.length !== 0) stsVal = 1;
     } ///// if ////////
 
-    console.log("로컬스 있니? stsVal :", stsVal);
+    console.log("로컬스있니?", stsVal);
 
     // 로컬스 변환값 변수 - 상태변수로 리랜더링시 값을 유지하게함!
     const [transData, setTransData] = useState(transVal);
@@ -78,18 +77,18 @@ function App() {
             // pause() 메서드 : 동영상 정지 메서드
         }); //////// click ////////
 
-        ///////////////////////////////////////
         // 카트가 생성된 경우 버튼 보이기
-        // (카트 부모박스 .bgbx 보이기)
+        // (카트부모박스 .bgbx 보이기)
+        console.log("카트노출상태:", csts);
         if (csts === 1) {
             $(() => {
-                // 로딩구역
-                // 전체 보여라
+                // 로딩구역 ///
+                // 전체 보여라!
                 $(".bgbx").show();
-                // 카트 사이드에 나와라
+                // 카트 사이드에 나와라!
                 $("#mycart").addClass("on");
-            });
-        } // if
+            }); /// 로딩구역 /////
+        } /// if ////
 
         // 랜더링구역 한번만 실행 : 옵션 []
     }, []); ////////// useEffect //////////////
@@ -100,27 +99,36 @@ function App() {
     }, []); ///// useLayoutEffect //////////
 
     // GList 페이지에서 사용하는 모드구분 참조변수
-    const gMode = useRef(null);
+    const [gMode, setGMode] = useState("F");
+    // 처음값은 'F' -> Filter List임!
+    // 'P' -> Paging List
+    // 'M' -> More List
 
-    /*
-      [ 컨텍스트 API 공개 변수들 ]
-      1. pgName - 페이지 이름
-      2. chgPgName - 페이지 이름 업데이트 함수
-      3. flag - 카트 데이터 상태변수
-      4. setTransData - 카트 사용 데이터 셋업
-      5. transData - 카트 사용 데이터
-      6. setCsts - 로컬스에 카트 정보 셋업 여부
-      7. gMode - 전체 리스트 페이지 뷰모드 구분
-    */
+    /***************************************** 
+    [ 컨텍스트 API 공개 변수들 ]
+    1. pgName - 페이지 이름
+    2. chgPgName - 페이지 이름 업데이트함수
+    3. flag - 카트 데이터 상태변수
+    4. setTransData - 카트 사용 데이터 셋업
+    5. transData - 카트 사용 데이터
+    6. setCsts - 로컬스에 카트정보 셋업여부
+    7. gMode, setGMode 
+      - 전체 리스트 페이지 뷰모드 구분
+  *****************************************/
 
     // 리턴코드 //////////////////////////
     return (
-        <pCon.Provider value={{ pgName, chgPgName, flag, setTransData, transData, setCsts, gMode }}>
+        <pCon.Provider value={{ pgName, chgPgName, flag, setTransData, transData, setCsts, gMode, setGMode }}>
             <TopArea cat={pgName} />
             <MainArea page={pgName} />
             <FooterArea />
             {/* 카트리스트 */}
-            {csts && <CartList selData={transData} flag={flag} />}
+            {
+                csts && <CartList selData={transData} flag={flag} />
+                // useRef 변수인 flag를 보내면 자식 컴포넌트에서도
+                // 이 값을 참조할 뿐만 아니라 변경도 가능하다!!!
+                // 주의: useRef변수는 사용시 변수명.current를 꼭 쓴다!
+            }
         </pCon.Provider>
     );
 } ///////////// App 컴포넌트 /////////////
