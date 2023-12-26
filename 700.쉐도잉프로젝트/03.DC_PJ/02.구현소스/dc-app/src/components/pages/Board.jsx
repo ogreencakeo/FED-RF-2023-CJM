@@ -624,32 +624,54 @@ export function Board() {
             {
                 /* 1. 게시판 리스트 : 게시판 모드 'L'일때 출력 */
                 bdMode === "L" && (
-                    <table className="dtbl" id="board">
-                        <caption>OPINION</caption>
-                        {/* 상단 컬럼명 표시영역 */}
-                        <thead>
-                            <tr>
-                                <th>Number</th>
-                                <th>Title</th>
-                                <th>Writer</th>
-                                <th>Date</th>
-                                <th>Hits</th>
-                            </tr>
-                        </thead>
+                    <>
+                        {/* 전체 탕리틀 */}
+                        <h1 className="tit">OPINION</h1>
+                        <div class="sbx">
+                            {/* 검색옵션박스 */}
+                            <div class="selbx">
+                                <select name="cta" id="cta" class="cta">
+                                    <option value="tit">제목</option>
+                                    <option value="cont">내용</option>
+                                    <option value="unm">글쓴이</option>
+                                </select>
+                                <select name="sel" id="sel" class="sel">
+                                    <option value="0">정렬선택</option>
+                                    <option value="1">오름차순</option>
+                                    <option value="2">내림차순</option>
+                                </select>
+                                <input id="stxt" type="text" maxlength="50" />
+                                <button class="sbtn">검색</button>
+                                <button class="fbtn">FL</button>
+                            </div>
+                            <div class="showNum cont"></div>
+                        </div>
+                        <table className="dtbl" id="board">
+                            {/* 상단 컬럼명 표시영역 */}
+                            <thead>
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Title</th>
+                                    <th>Writer</th>
+                                    <th>Date</th>
+                                    <th>Hits</th>
+                                </tr>
+                            </thead>
 
-                        {/* 중앙 레코드 표시부분 */}
-                        <tbody>{bindList()}</tbody>
+                            {/* 중앙 레코드 표시부분 */}
+                            <tbody>{bindList()}</tbody>
 
-                        {/* 하단 페이징 표시부분 */}
-                        <tfoot>
-                            <tr>
-                                <td colSpan="5" className="paging">
-                                    {/* 페이징번호 위치  */}
-                                    {pagingLink()}
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            {/* 하단 페이징 표시부분 */}
+                            <tfoot>
+                                <tr>
+                                    <td colSpan="5" className="paging">
+                                        {/* 페이징번호 위치  */}
+                                        {pagingLink()}
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </>
                 )
             }
             {

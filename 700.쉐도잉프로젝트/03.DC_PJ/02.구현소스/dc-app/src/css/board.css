@@ -163,3 +163,8 @@
 .btngrp button:hover a{
     color: #fff;
 }
+
+.selbx{
+    text-align: center;
+    margin: 20px 0;
+}
