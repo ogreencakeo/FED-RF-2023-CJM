@@ -34,7 +34,7 @@ export function GList() {
     // -> 깊은복사로 원본데이터와 연결성 없음!!!
     // 주의: 사용시 current 속성을 씀!
 
-    // 참조변수셋팅 : 리랜더링없이 값유지!
+    // 참조변수셋팅 : 리랜더링 없이 값유지!
     // 1. 아이템 코드(m1,m2,m3,...)
     const item = useRef("m1");
     // 2. 카테고리명(men/women/style)
@@ -49,7 +49,7 @@ export function GList() {
     // 1. 페이지 단위수 : 한 페이지 당 레코드수
     const pgBlock = 10;
     // 2. 전체 레코드수 : 배열데이터 총개수
-    const totNum = currData.length;
+    const totNum = gdata.length;
     // 3. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
 
@@ -62,7 +62,18 @@ export function GList() {
 
         // 1. Filter List //////////////
         if (myCon.gMode === "F") {
-            retVal = currData.map((v, i) => (
+            // 데이터 초기화하기 /////////////
+            // gdata와 같지 않으면 초기화!
+            // 단, 모드를 변경하는 상단메뉴일때만 적용해야함!
+            // 컨텍스트 API의 gInit 참조변수가 true일때만 적용함!
+            if (currData !== gdata && myCon.gInit.current) {
+                // 깊은복사로 데이터 재할당!
+                // -> 무한 리랜더링을 피하려면 참조변수를 활용한다!
+                transData.current = JSON.parse(JSON.stringify(gdata));
+            }
+
+            // 참조변수 데이터로 map 돌기!
+            retVal = transData.current.map((v, i) => (
                 <div key={i}>
                     <a
                         href="#"
@@ -88,8 +99,12 @@ export function GList() {
             // 부분데이터 가져오기다!
             // console.log('원본data:',gdata);
 
-            // 원본에 대한 개수로 다시 업데이트함!
-            totNum = gdata.length;
+            // 만약 상단메뉴를 클릭해서 들어온 경우
+            // 페이지 번호가 1이 아니면 초기화해주기
+            if (pgNum !== 1 && myCon.gInit.current) {
+                setPgNum(1);
+            }
+
             console.log("원본개수:", totNum);
 
             // map아닌 일반 for문사용시
@@ -191,6 +206,9 @@ export function GList() {
     기능 : 페이지 링크 클릭시 리스트변경
   *************************************/
     const chgList = (e) => {
+        // 초기화 전역변수 false로 업데이트하기(초기화막기!)
+        myCon.gInit.current = false;
+
         let currNum = e.target.innerText;
         // console.log("번호:", currNum);
         // 현재 페이지번호 업데이트! -> 리스트 업데이트됨!
@@ -232,6 +250,9 @@ export function GList() {
     기능: 체크박스에 따른 리스트 변경하기
   *******************************************/
     const changeList = (e) => {
+        // 체크박스일 경우 초기화 전역변수 false로 업데이트
+        myCon.gInit.current = false;
+
         // 1. 체크박스 아이디
         const cid = e.target.id;
 

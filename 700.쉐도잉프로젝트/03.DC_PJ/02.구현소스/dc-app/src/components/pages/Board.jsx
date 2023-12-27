@@ -624,7 +624,7 @@ export function Board() {
                 /* 1. 게시판 리스트 : 게시판 모드 'L'일때 출력 */
                 bdMode === "L" && (
                     <>
-                        {/* 전체 탕리틀 */}
+                        {/* 전체 타이틀 */}
                         <h1 className="tit">OPINION</h1>
                         <div class="sbx">
                             {/* 검색옵션박스 */}
