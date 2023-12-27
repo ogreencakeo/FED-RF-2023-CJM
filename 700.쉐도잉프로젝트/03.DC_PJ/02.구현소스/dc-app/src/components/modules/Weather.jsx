@@ -1,5 +1,8 @@
 import { Component } from "react";
 
+// 날씨 CSS
+import '../../css/weather.css';
+
 // 여기서는 컴포넌트를 class로 만들어 보자!
 // 컴포넌트 class는 기본적으로 Componet 클래스를 상속받는다.
 class Weather extends Component {
@@ -57,7 +60,29 @@ class Weather extends Component {
     // 컴포넌트 결과 랜더링 메서드
     // render()
     render() {
-        return <h1>날씨양~!</h1>;
+        // 아이콘 정보
+        const isrc = `http://openweathermap.com/img/w/${this.state.icon}.png`;
+
+        // 로딩중 loading 값이 true이면 
+        if(this.state.loading){
+            return <h4>Loading...</h4>
+        } 
+        // 로딩 성공시 loading 값이 false인 경우
+        else{
+                /* 절대온도이므로 섭씨 온도로 바꾼다!
+                절대온도 - 273.15 뺀다!
+                소수점도 한자리만 표시 */
+                let ctemp = (parseInt(this.state.temp) - 273.15).toFixed(1);
+                // toFixed(자릿수)
+            return(
+                <div className="weather-bx">
+                    <h4>Now Weather</h4>
+                    <img src={isrc} alt="weather icon" />
+                    <p>{ctemp}℃</p>
+                    <p>{this.state.desc}</p>
+                </div>
+            )
+        }
     } // render 메서드 //////
 } // Weather 클래스 ////////////
 
