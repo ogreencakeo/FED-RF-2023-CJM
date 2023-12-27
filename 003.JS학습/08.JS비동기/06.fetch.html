@@ -63,9 +63,11 @@
             
             // async함수 만들기
             async function getFile(fData){
+                // 1. 파일 로드까지 기다려~
                 let myFetch = await fetch(fData);
+                // 2. 로드된 파일 내용 읽을때까지 기다려~
                 let myText = await myFetch.text();
-                // 출력하기
+                // 3. 위의 1, 2번 순서대로 완료 후 출력하기
                 tg.innerHTML += myText;
             } // async 함수 /////////////
 
