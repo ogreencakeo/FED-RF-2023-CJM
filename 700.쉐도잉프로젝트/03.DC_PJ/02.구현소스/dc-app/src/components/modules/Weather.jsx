@@ -17,7 +17,7 @@ class Weather extends Component {
         // 클래스 내부 속성은 this 키워드를 사용함!
         // 받아온 날씨 정보를 셋업할 객체임!
         // state 이름의 상태변수에 setState()로 셋팅함
-        this.state = { temp: "", desc: "", icon: "", loading: true };
+        this.state = { temp: "", desc: "", icon: "", loading: true, city : "" };
         // 함수형 컴포넌트처럼 useState()를 쓰지 않음!
         // -> 값의 셋팅은 setState 라고 씀
     } // 생성자 함수 /////////////
@@ -50,7 +50,8 @@ class Weather extends Component {
                     temp: wdata.main.temp, 
                     desc: wdata.weather[0].description,
                     icon: wdata.weather[0].icon, 
-                    loading: false // 로딩여부 끝 (false) 
+                    loading: false, // 로딩여부 끝 (false) 
+                    city : cityName,
                 });
             }) // 마지막 then //////
             // 에러시 처리
@@ -77,8 +78,9 @@ class Weather extends Component {
             return(
                 <div className="weather-bx">
                     <h4>Now Weather</h4>
+                    <h5>{this.state.city}</h5>
                     <img src={isrc} alt="weather icon" />
-                    <p>{ctemp}℃</p>
+                    <p>{ctemp} ℃</p>
                     <p>{this.state.desc}</p>
                 </div>
             )
