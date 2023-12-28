@@ -63,7 +63,7 @@ export function Board() {
 
     // 1. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
-    
+
     // 1. 데이터 변경변수 : 리스트에 표시되는 실제 데이터셋
     // const [currData, setCurrData] = useState(null);
 
@@ -624,27 +624,26 @@ export function Board() {
 
     // 검색기능수행 함수 ///////////
     const searchList = () => {
-        
-        // 1. 검색기준값 읽어오기 : 
-        const cta = $('#cta').val();
-        
+        // 1. 검색기준값 읽어오기 :
+        const cta = $("#cta").val();
+
         // 2. 검색어 읽어오기 : 소문자 변환
-        const inpVal = $('#stxt').val().toLowerCase().trim();
+        const inpVal = $("#stxt").val().toLowerCase().trim();
         // 3. 검색어 입력 안한 경우 경고창과 return
-        if(inpVal === ''){
-            alert('Write down keyword!!!');
+        if (inpVal === "") {
+            alert("Write down keyword!!!");
             return;
         }
-        console.log('검색시작~! cta :', cta, ', inputVal :', inpVal);
+        console.log("검색시작~! cta :", cta, ", inputVal :", inpVal);
 
         // 원본 데이터로 검색하지 않고 로컬스토리지 데이터 사용!
-        console.log('원본데이터 :', orgData);
-        
+        console.log("원본데이터 :", orgData);
+
         // 로컬스 데이터 가져오기
-        const storageData = JSON.parse(localStorage.getItem('bdata'));
-        
-        console.log('storageData :', storageData);
-        
+        const storageData = JSON.parse(localStorage.getItem("bdata"));
+
+        console.log("storageData :", storageData);
+
         // 4. 전체 로컬스 데이터에서 검색 기준값으로 검색하기
         const resData = storageData.filter((v) => {
             // 원본 문자 데이터 소문자 변환
@@ -652,16 +651,15 @@ export function Board() {
             // 검색 기준은 동적으로 변수에 담기므로
             // 대괄호로 객체값을 읽어온다.
             // indexOf()로 like 검색함!
-            if(compTxt.indexOf(inpVal) !== -1) return true;
+            if (compTxt.indexOf(inpVal) !== -1) return true;
         });
-        console.log('resData :', resData);
+        console.log("resData :", resData);
 
         // 5. 리스트 업데이트 하기
         orgData = resData;
 
         // 6. 강제 리랜더링하기
         setForce(Math.random());
-        
     }; // searchList 함수 ////////
 
     // 리턴코드 ////////////////////
@@ -687,7 +685,9 @@ export function Board() {
                                     <option value="2">Descending</option>
                                 </select>
                                 <input id="stxt" type="text" maxLength="50" />
-                                <button className="sbtn" onClick={searchList}>Serach</button>
+                                <button className="sbtn" onClick={searchList}>
+                                    Serach
+                                </button>
                             </div>
                             <div className="showNum cont"></div>
                         </div>
@@ -851,9 +851,16 @@ export function Board() {
                             {
                                 // 리스트 모드(L)
                                 bdMode === "L" && myCon.logSts !== null && (
-                                    <button onClick={chgMode}>
-                                        <a href="#">Write</a>
-                                    </button>
+                                    <>
+                                        {/* List버튼은 검색 실행시에만 나타남
+                                        클릭시 전체 리스트로 돌아감. 이때 버튼 사라짐 */}
+                                        <button onClick={()=>setTimeout(()=>{ setForce(Math.random())}, 0) }>
+                                            <a href="#">List</a>
+                                        </button>
+                                        <button onClick={chgMode}>
+                                            <a href="#">Write</a>
+                                        </button>
+                                    </>
                                 )
                             }
                             {
