@@ -347,7 +347,7 @@ export function Member() {
                             {
                                 // 에러시 메시지출력
                                 chkPwdError && (
-                                    <div className="msg">
+                                    <div className="msg">ChkPwd
                                         <small
                                             style={{
                                                 color: "red",
