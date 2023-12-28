@@ -853,8 +853,8 @@ export function Board() {
                                 bdMode === "L" && myCon.logSts !== null && (
                                     <>
                                         {/* List버튼은 검색 실행시에만 나타남
-                                        클릭시 전체 리스트로 돌아감. 이때 버튼 사라짐 */}
-                                        <button onClick={()=>setTimeout(()=>{ setForce(Math.random())}, 0) }>
+                                        클릭시 전체 리스트로 돌아감. 이때 버튼 */}
+                                        <button onClick={()=> {setTimeout(()=>{ setForce(Math.random())}, 0)} }>
                                             <a href="#">List</a>
                                         </button>
                                         <button onClick={chgMode}>
