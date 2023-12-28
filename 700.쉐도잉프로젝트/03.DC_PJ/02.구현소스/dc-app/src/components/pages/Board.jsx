@@ -620,22 +620,29 @@ export function Board() {
     // 검색기능수행 함수 ///////////
     const searchList = () => {
         
-        // 1. 검색기준값 읽어오기
+        // 1. 검색기준값 읽어오기 : 
         const cta = $('#cta').val();
         
-        // 검색어 입력 안한 경우 경고창과 return
-        // 2. 검색어 읽어오기
-        const inpVal = $('#stxt').val().trim();
+        // 2. 검색어 읽어오기 : 소문자 변환
+        const inpVal = $('#stxt').val().toLowerCase().trim();
+        // 3. 검색어 입력 안한 경우 경고창과 return
         if(inpVal === ''){
             alert('Write down keyword!!!');
             return;
         }
         console.log('검색시작~! cta :', cta, ', inputVal :', inpVal);
-
-        // 3. 전체 원본 데이터에서 검색 기준값으로 검색하기
-
-
-
+        
+        // 4. 전체 원본 데이터에서 검색 기준값으로 검색하기
+        const resData = orgData.filter((v) => {
+            // 원본 문자 데이터 소문자 변환
+            let compTxt = v[cta].toLowerCase();
+            // 검색 기준은 동적으로 변수에 담기므로
+            // 대괄호로 객체값을 읽어온다.
+            // indexOf()로 like 검색함!
+            if(compTxt.indexOf(inpVal) !== -1) return true;
+        })
+        console.log('resData :', resData);
+        
     }; // searchList 함수 ////////
 
     // 리턴코드 ////////////////////
