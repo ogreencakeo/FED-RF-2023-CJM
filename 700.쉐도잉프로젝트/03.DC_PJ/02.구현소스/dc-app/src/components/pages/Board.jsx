@@ -50,7 +50,7 @@ export function Board() {
     // 컨텍스트 API 사용하기
     const myCon = useContext(dcCon);
 
-    console.log("로그인상태:", myCon.logSts);
+    // console.log("로그인상태:", myCon.logSts);
 
     // [컴포넌트 전체 공통변수] /////////////
     // 1. 페이지 단위수 : 한 페이지 당 레코드수
@@ -95,7 +95,7 @@ export function Board() {
         기능 : 페이지별 리스트를 생성하여 바인딩함
     *************************************/
     const bindList = () => {
-        console.log("다시바인딩!", pgNum);
+        // console.log("다시바인딩!", pgNum);
         // 데이터 선별하기
         const tempData = [];
 
@@ -617,6 +617,27 @@ export function Board() {
         } /////////////// if //////////////
     }; //////////// plusCnt 함수 /////////////
 
+    // 검색기능수행 함수 ///////////
+    const searchList = () => {
+        
+        // 1. 검색기준값 읽어오기
+        const cta = $('#cta').val();
+        
+        // 검색어 입력 안한 경우 경고창과 return
+        // 2. 검색어 읽어오기
+        const inpVal = $('#stxt').val().trim();
+        if(inpVal === ''){
+            alert('Write down keyword!!!');
+            return;
+        }
+        console.log('검색시작~! cta :', cta, ', inputVal :', inpVal);
+
+        // 3. 전체 원본 데이터에서 검색 기준값으로 검색하기
+
+
+
+    }; // searchList 함수 ////////
+
     // 리턴코드 ////////////////////
     return (
         <>
@@ -626,23 +647,23 @@ export function Board() {
                     <>
                         {/* 전체 타이틀 */}
                         <h1 className="tit">OPINION</h1>
-                        <div class="sbx">
+                        <div className="sbx">
                             {/* 검색옵션박스 */}
-                            <div class="selbx">
-                                <select name="cta" id="cta" class="cta">
+                            <div className="selbx">
+                                <select name="cta" id="cta" className="cta">
                                     <option value="tit">Title</option>
                                     <option value="cont">Contents</option>
                                     <option value="unm">Writer</option>
                                 </select>
-                                <select name="sel" id="sel" class="sel">
+                                <select name="sel" id="sel" className="sel">
                                     <option value="0">JungYeol</option>
                                     <option value="1">Ascending</option>
                                     <option value="2">Descending</option>
                                 </select>
-                                <input id="stxt" type="text" maxlength="50" />
-                                <button class="sbtn">Serach</button>
+                                <input id="stxt" type="text" maxLength="50" />
+                                <button className="sbtn" onClick={searchList}>Serach</button>
                             </div>
-                            <div class="showNum cont"></div>
+                            <div className="showNum cont"></div>
                         </div>
                         <table className="dtbl" id="board">
                             {/* 상단 컬럼명 표시영역 */}
