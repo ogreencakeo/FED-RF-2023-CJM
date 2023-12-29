@@ -736,7 +736,11 @@ export function Board() {
                                 <option value="1">Ascending</option>
                                 <option value="2">Descending</option>
                             </select>
-                            <input id="stxt" type="text" maxLength="50" />
+                            <input id="stxt" type="text" maxLength="50" onKeyUp={(e)=>{
+                                // 엔터칠때 검색실행!
+                                    if(e.code === 'Enter') searchList();
+                                    console.log(e.code);
+                                }} />
                             <button className="sbtn" onClick={searchList}>
                                 Search
                             </button>
