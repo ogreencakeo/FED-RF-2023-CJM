@@ -734,8 +734,14 @@ export function Board() {
                                 <option value="unm">Writer</option>
                             </select>
                             <select name="sel" id="sel" className="sel" onChange={(e)=>{
+                                // 선택값 읽기
                                 let opt = $(e.currentTarget).val();
                                 console.log('선택값 :', opt);
+                                // 선택에 따른 정렬호출
+                                if(Number(opt)===0) sortData(orgData, [-1, 1]);
+                                else sortData(orgData, [1, -1]);
+                                // 강제 리랜더링
+                                setForce(Math.random());
                             }}>
                                 <option value="0">Descending</option>
                                 <option value="1">Ascending</option>
