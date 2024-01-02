@@ -7,9 +7,6 @@ import "../../css/board.css";
 // 컨텍스트 API 불러오기
 import { dcCon } from "../modules/dcContext";
 
-// 로컬스토리지 사용자정보 생성 JS
-import { initData } from "../func/mem_fn";
-
 // 제이쿼리
 import $ from "jquery";
 
@@ -31,7 +28,7 @@ else {
     orgData = baseData;
 } /////// else /////////
 // else orgData = [];
-
+aseData
 // // // console.log(org);
 
 // ******* Borad 컴포넌트 ******* //
