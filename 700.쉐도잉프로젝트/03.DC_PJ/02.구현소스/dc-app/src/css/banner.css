@@ -94,11 +94,13 @@
 /* banner.css 미디어쿼리 */
 @media screen and (max-width:750px){
     .slider li {
-        height: 30vh;
+        /* height: 30vh; */
     }
     /* 배너 이미지 */
     .banner img {
-        object-position: 19%;
+        aspect-ratio: 1.45/1;
+        object-fit: cover;
+        object-position: center;
     }
     /* 배너 타이틀 */
     .bantit {
