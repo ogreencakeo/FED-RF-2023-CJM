@@ -132,13 +132,13 @@ export function Board() {
     }; ///////////// rawData /////////////
 
     // 최초랜더링 시에만 한번 실행하기
-    // -> 경우에 따라 내림차순 필요한 경우 firstSts 값을 true로만 변경하면 리랜더링시 
+    // -> 경우에 따라 내림차순 필요한 경우 firstSts 값을 true로만 변경하면 리랜더링시
     // bindList() 위에서 먼저 적용된다. (글쓰기후 리스트 오기 / 검색직후에 적용함)
-    if (firstSts.current){
+    if (firstSts.current) {
         // 내림차순 정렬 적용하기
         sortData(orgData, [-1, 1]);
         // 정력 선택박스 내림차순으로 변경하기
-        $('#sel').val('0');
+        $("#sel").val("0");
     } // if //////////
 
     /************************************* 
@@ -220,6 +220,12 @@ export function Board() {
         // 최종 한계수 -> 여분레코드 존재에 따라 1더하기
         const limit = blockCnt + (blockPad === 0 ? 0 : 1);
 
+        // 페이징의 페이징 한계수 구하기
+        const pgBlockCnt = Math.floor(limit / pgPgBlock);
+        const pgBlockPad = limit % pgPgBlock;
+        const pgLimit = pgBlockCnt + (pgBlockPad === 0 ? 0 : 1);
+        console.log('페이징의 페이징 한계값 pgLimit :', pgLimit);
+
         // // console.log(
         //   "블록개수:",
         //   blockCnt,
@@ -239,9 +245,17 @@ export function Board() {
         // 리턴 코드 //////////
         // 만약 빈태그 묶음에 key를 심어야할 경우
         // 불가하므로 Fragment 조각 가상태그를 사용한다!
-        for (let i = 0; i < limit; i++) {
+        // for (let i = 0; i < pgPgBlock; i++) {
+
+        // 시작값 : (페페넘 - 1) * 페페블럭
+        let initNum = (pgPgNum.current-1) * pgPgBlock;
+        // 한계값 : 페페넘 * 페페블럭
+        let limitNum =  pgPgNum.current * pgPgBlock;
+
+        for (let i = initNum; i <limitNum; i++) {
             pgCode[i] = (
                 <Fragment key={i}>
+                    {/* 1. 페이징 링크 만들기 */}
                     {pgNum - 1 === i ? (
                         <b>{i + 1}</b>
                     ) : (
@@ -255,8 +269,35 @@ export function Board() {
             );
         } ////// for /////
 
+        // pgPgNum.current = 2;
+
+        {
+            // 2. 페이징 이전블록 이동 버튼 - 배열 맨앞에 추가
+            // 기준 : 1페이지가 아니면 보임!
+            pgCode.unshift(pgPgNum.current === 1 ? "" : <Fragment key={-1}><a href="#" onClick={e=>{e.preventDefault(); goPaging(-1)}}>◀</a></Fragment>);
+        }
+        {
+            // 3. 페이징 다음블록 이동 버튼
+            // 기준 : 페이징의 페이징 블록 끝 번호가 아니면 보임
+            pgCode.push(pgPgNum.current === pgLimit ? "" : <Fragment key={-2}><a href="#" onClick={e=>{e.preventDefault(); goPaging(1)}}>▶</a></Fragment>);
+        }
+
         return pgCode;
+        /* 3.  */
     }; /////////// pagingLink 함수 ////////
+
+    // 페이징의 페이징 이동함수 ////////////
+    const goPaging = (dir) => {
+        // dir : 이동방향 (오른쪽 : +1, 왼쪽 : -1)
+        const newPgPgNum = pgPgNum.current + dir;
+        let newPgNum = newPgPgNum * pgPgBlock;
+
+        // 페이징의 페이징번호 업데이트
+        pgPgNum.current = newPgPgNum;
+        // 이동할 페이지 번호 : 다음 블록의 첫 페이지로 이동
+        setPgNum(newPgNum); // 리랜더링
+
+    };
 
     /************************************* 
     함수명 : chgList
@@ -466,7 +507,7 @@ export function Board() {
                 // 6. 로컬스에 반영하기
                 localStorage.setItem("bdata", JSON.stringify(orgTemp));
 
-                // 내림차순 정렬하도록 firstSts 값을 true로 변경하면 
+                // 내림차순 정렬하도록 firstSts 값을 true로 변경하면
                 // 리랜더링시 정렬 적용될까? bindList 전에 적용되야 함
                 firstSts.current = true; // -> 효과 있음!
                 // bindList() 위의 내림차순 코드가 실행됨!
@@ -731,7 +772,7 @@ export function Board() {
         // 5. 리스트 업데이트 하기
         orgData = resData;
 
-        // 내림차순 정렬하도록 firstSts 값을 true로 변경하면 
+        // 내림차순 정렬하도록 firstSts 값을 true로 변경하면
         // 리랜더링시 정렬 적용될까? bindList 전에 적용되야 함
         firstSts.current = true; // -> 효과 있음!
         // bindList() 위의 내림차순 코드가 실행됨!
