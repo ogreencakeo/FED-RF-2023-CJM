@@ -427,6 +427,7 @@ export function Board() {
             // 로그인한 사용자 정보 셋팅하기 : 글쓰기버튼은
             // 로그인한 사람에게 노출되므로 아래코드는 괜찮다!
             logData.current = JSON.parse(myCon.logSts);
+            console.log('logData.current :', logData.current);
             // 이 데이터로 가상돔 구성시 리액트코드에 데이터매칭함!
             // 필요데이터: 로그인 사용자이름(unm), 이메일(eml)
 
