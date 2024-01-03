@@ -253,9 +253,12 @@ export function Board() {
         let limitNum =  pgPgNum.current * pgPgBlock;
 
         for (let i = initNum; i <limitNum; i++) {
+            // 맨 끝 페이지 번호보다 크면 나가라
+            if(i>=limit) break;
+            
+            {/* 1. 페이징 링크 만들기 */}
             pgCode[i] = (
                 <Fragment key={i}>
-                    {/* 1. 페이징 링크 만들기 */}
                     {pgNum - 1 === i ? (
                         <b>{i + 1}</b>
                     ) : (
@@ -263,10 +266,18 @@ export function Board() {
                             {i + 1}
                         </a>
                     )}
-
-                    {i < limit - 1 ? " | " : ""}
+                    
+                    {
+                        // 매번 페이징의 페이징에서 끝번호 뒤 바 생략
+                        // 또는 전체 한계값이 페이지 끝번호와 같으면 바 생략
+                        (i < limitNum - 1 || i >= limit + 1) ? " | " : ""
+                    }
+                    {
+                        console.log(limit, i)
+                    }
                 </Fragment>
             );
+            
         } ////// for /////
 
         // pgPgNum.current = 2;
@@ -290,7 +301,8 @@ export function Board() {
     const goPaging = (dir) => {
         // dir : 이동방향 (오른쪽 : +1, 왼쪽 : -1)
         const newPgPgNum = pgPgNum.current + dir;
-        let newPgNum = newPgPgNum * pgPgBlock;
+        // 새 페이지 번호 : 전페이지 끝번호 + 1
+        let newPgNum = (newPgPgNum-1) * pgPgBlock + 1;
 
         // 페이징의 페이징번호 업데이트
         pgPgNum.current = newPgPgNum;
