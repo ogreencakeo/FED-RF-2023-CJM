@@ -224,7 +224,8 @@ export function Board() {
         const pgBlockCnt = Math.floor(limit / pgPgBlock);
         const pgBlockPad = limit % pgPgBlock;
         const pgLimit = pgBlockCnt + (pgBlockPad === 0 ? 0 : 1);
-        console.log('페이징의 페이징 한계값 pgLimit :', pgLimit);
+        console.log("페이징의 페이징 한계값 pgLimit :", pgLimit);
+        // pgLimit가 마지막 페이징의 페이징번호이기도 함
 
         // // console.log(
         //   "블록개수:",
@@ -248,15 +249,17 @@ export function Board() {
         // for (let i = 0; i < pgPgBlock; i++) {
 
         // 시작값 : (페페넘 - 1) * 페페블럭
-        let initNum = (pgPgNum.current-1) * pgPgBlock;
+        let initNum = (pgPgNum.current - 1) * pgPgBlock;
         // 한계값 : 페페넘 * 페페블럭
-        let limitNum =  pgPgNum.current * pgPgBlock;
+        let limitNum = pgPgNum.current * pgPgBlock;
 
-        for (let i = initNum; i <limitNum; i++) {
+        for (let i = initNum; i < limitNum; i++) {
             // 맨 끝 페이지 번호보다 크면 나가라
-            if(i>=limit) break;
-            
-            {/* 1. 페이징 링크 만들기 */}
+            if (i >= limit) break;
+
+            {
+                /* 1. 페이징 링크 만들기 */
+            }
             pgCode[i] = (
                 <Fragment key={i}>
                     {pgNum - 1 === i ? (
@@ -266,18 +269,15 @@ export function Board() {
                             {i + 1}
                         </a>
                     )}
-                    
+
                     {
                         // 매번 페이징의 페이징에서 끝번호 뒤 바 생략
                         // 또는 전체 한계값이 페이지 끝번호와 같으면 바 생략
-                        (i < limitNum - 1 || i >= limit + 1) ? " | " : ""
+                        i < limitNum - 1 && i < limit - 1 ? " | " : ""
                     }
-                    {
-                        console.log(limit, i)
-                    }
+                    {console.log(limit, i)}
                 </Fragment>
             );
-            
         } ////// for /////
 
         // pgPgNum.current = 2;
@@ -285,12 +285,70 @@ export function Board() {
         {
             // 2. 페이징 이전블록 이동 버튼 - 배열 맨앞에 추가
             // 기준 : 1페이지가 아니면 보임!
-            pgCode.unshift(pgPgNum.current === 1 ? "" : <Fragment key={-1}><a href="#" onClick={e=>{e.preventDefault(); goPaging(-1)}}>◀</a></Fragment>);
+            pgCode.unshift(
+                pgPgNum.current === 1 ? (
+                    ""
+                ) : (
+                    <Fragment key={-1}>
+                        <a
+                            href="#"
+                            style={{ marginRight: "10px" }}
+                            title="맨앞으로"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                goPaging(1, false);
+                            }}
+                        >
+                            ≪
+                        </a>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                goPaging(-1, true);
+                            }}
+                            style={{ marginRight: "10px" }}
+                            title="앞으로"
+                        >
+                            ◀
+                        </a>
+                    </Fragment>
+                )
+            );
         }
         {
             // 3. 페이징 다음블록 이동 버튼
             // 기준 : 페이징의 페이징 블록 끝 번호가 아니면 보임
-            pgCode.push(pgPgNum.current === pgLimit ? "" : <Fragment key={-2}><a href="#" onClick={e=>{e.preventDefault(); goPaging(1)}}>▶</a></Fragment>);
+            pgCode.push(
+                pgPgNum.current === pgLimit ? (
+                    ""
+                ) : (
+                    <Fragment key={-2}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                goPaging(1, true);
+                            }}
+                            style={{ marginLeft: "10px" }}
+                            title="뒤로"
+                        >
+                            ▶
+                        </a>
+                        <a
+                            href="#"
+                            style={{ marginLeft: "10px" }}
+                            title="맨뒤으로"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                goPaging(pgLimit, false);
+                            }}
+                        >
+                            ≫
+                        </a>
+                    </Fragment>
+                )
+            );
         }
 
         return pgCode;
@@ -298,17 +356,25 @@ export function Board() {
     }; /////////// pagingLink 함수 ////////
 
     // 페이징의 페이징 이동함수 ////////////
-    const goPaging = (dir) => {
+    // 전달변수 : dir은 페이지 더하기 또는 빼기 기능
+    // 전달변수 : opt는 true이면 일반 이동
+    //           false이면 맨앞,맨뒤 이동
+    const goPaging = (dir, opt) => {
         // dir : 이동방향 (오른쪽 : +1, 왼쪽 : -1)
-        const newPgPgNum = pgPgNum.current + dir;
+        let newPgPgNum;
+
+        // opt가 true이면 일반 이동
+        if (opt) newPgPgNum = pgPgNum.current + dir;
+        // opt가 false이면 맨끝 이동
+        else newPgPgNum = dir; // dir에 첫번호 / 끝번호옴
+
         // 새 페이지 번호 : 전페이지 끝번호 + 1
-        let newPgNum = (newPgPgNum-1) * pgPgBlock + 1;
+        let newPgNum = (newPgPgNum - 1) * pgPgBlock + 1;
 
         // 페이징의 페이징번호 업데이트
         pgPgNum.current = newPgPgNum;
         // 이동할 페이지 번호 : 다음 블록의 첫 페이지로 이동
         setPgNum(newPgNum); // 리랜더링
-
     };
 
     /************************************* 
@@ -427,7 +493,7 @@ export function Board() {
             // 로그인한 사용자 정보 셋팅하기 : 글쓰기버튼은
             // 로그인한 사람에게 노출되므로 아래코드는 괜찮다!
             logData.current = JSON.parse(myCon.logSts);
-            console.log('logData.current :', logData.current);
+            console.log("logData.current :", logData.current);
             // 이 데이터로 가상돔 구성시 리액트코드에 데이터매칭함!
             // 필요데이터: 로그인 사용자이름(unm), 이메일(eml)
 
@@ -649,14 +715,13 @@ export function Board() {
     * 함수명 : plusCnt
     * 기능 : 게시판 조회수 증가 반영하기
     * 조건 : 
-      (1) 자신의 글은 업데이트 안됨
-      (2) 한 글에 대해 한번만 업데이트 됨
-      -> 방법: 사용자가 방문한 글 고유번호를
-      배열에 기록하고 조회하여 같은 글인 경우 
-      업데이트를 막아준다!
-      (이때 배열은 세션스에 기록함! 이유는
+        (1) 자신의 글은 업데이트 안됨
+        (2) 한 글에 대해 한번만 업데이트 됨
+        -> 방법: 사용자가 방문한 글 고유번호를
+        배열에 기록하고 조회하여 같은 글인 경우 
+        업데이트를 막아준다!
+        (이때 배열은 세션스에 기록함! 이유는
         브라우저 닫을 때 사라짐!)
-
     * 업데이트 시점 : 글 읽기 모드에 들어간후
   *************************************/
     const plusCnt = () => {
