@@ -8,12 +8,34 @@ import {Link} from 'react-router-dom';
 
 // 제이쿼리
 import $ from "jquery";
+import { memo } from "react";
+import { Logo } from "../modules/Logo";
 
-export function TopArea(){
+export const  TopArea = memo(({chgPageFn}) => {
 
     const showSearch = (e) => {
         e.preventDefault();
+        $('.searchingGnb').show();
+        $('#schinGnb').focus();
+    };
 
+    const showMenu = () => {
+        $('.top-area').toggleClass('on');
+    };
+
+    const enterKey = (e) => {
+        if(e.key === 'Enter'){
+            $('.top-area').removeClass('on');
+            let txt = $(e.target).val().trim();
+            if(txt != ''){
+                $(e.target).val('').parent().hide();
+                goSearch(txt);
+            }
+        }
+    };
+
+    const goSearch = (txt) => {
+        chgPageFn('/schpage', {state : {keyword : txt}});
     };
 
     return(
@@ -24,6 +46,7 @@ export function TopArea(){
                     <ul>
                         <li>
                             {/* 로고 */}
+                            <Logo logoStyle='top' />
                         </li>
                         {
                             menu.map((v, i) => (
@@ -55,8 +78,9 @@ export function TopArea(){
                             marginLeft : 'auto',
                             marginRight : '25px',
                         }}>
-                            <div className="serachingGnb">
+                            <div className="searchingGnb">
                                 <FontAwesomeIcon icon={faSearch} className="schbtnGnb" title="Open search" />
+                                <input id="schinGnb" type="text" placeholder="Filter by Keyword" onKeyUp={enterKey} />
                             </div>
                             <a href="#" onClick={showSearch}>
                                 <FontAwesomeIcon icon={faSearch} />
@@ -64,7 +88,8 @@ export function TopArea(){
                         </li>
                     </ul>
                 </nav>
+                <button className="hambtn" onClick={showMenu}></button>
             </header>
         </>
     );
-}
+});
