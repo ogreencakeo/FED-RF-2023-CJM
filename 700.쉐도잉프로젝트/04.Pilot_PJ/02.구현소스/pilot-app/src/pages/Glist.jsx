@@ -34,7 +34,7 @@ export function GList() {
     // -> 깊은복사로 원본데이터와 연결성 없음!!!
     // 주의: 사용시 current 속성을 씀!
 
-    // 참조변수셋팅 : 리랜더링 없이 값유지!
+    // 참조변수셋팅 : 리랜더링없이 값유지!
     // 1. 아이템 코드(m1,m2,m3,...)
     const item = useRef("m1");
     // 2. 카테고리명(men/women/style)
@@ -52,6 +52,14 @@ export function GList() {
     const totNum = gdata.length;
     // 3. 현재 페이지 번호 : 가장중요한 리스트 바인딩의 핵심!
     const [pgNum, setPgNum] = useState(1);
+    // 4. 더보기 블록단위수 : 한번에 보여주는 레코드수
+    const moreBlock = 5;
+    // 5. 더보기 블록개수 : 상태변수로 숫자 유지하기
+    const [moreNum, setMoreNum] = useState(1);
+    // 6. 더보기 블록개수 한계수 계산
+    const moreLimit = Math.floor(totNum / moreBlock) + (totNum % moreBlock !== 0 ? 1 : 0);
+    // 나누어서 나머지가 있으면 1더하고 없으면 0더함(즉,없음)
+    console.log("더보기한계수:", moreLimit);
 
     // 리스트 만들기 함수 ////////
     const makeList = () => {
@@ -145,7 +153,53 @@ export function GList() {
                     </div>
                 );
             } //////// for //////////////
-        } ////////////// if //////////////
+        } ////////////// else if //////////////
+
+        // 3. More List //////////////
+        else if (myCon.gMode === "M") {
+            // 데이터 초기화하기 /////////////
+            // moreNum이 1이 아니면 초기화!
+            // 단, 모드를 변경하는 상단메뉴일때만 적용해야함!
+            // 컨텍스트 API의 gInit 참조변수가 true일때만 적용함!
+            console.log("상단메뉴클릭상태:", myCon.gInit.current);
+            if (moreNum !== 1 && myCon.gInit.current) {
+                setMoreNum(1);
+            } ///////// if /////////
+
+            // 리턴할 배열을 새로할당함
+            retVal = []; // 배열형 할당!
+
+            // 한계값 : 더보기 블록단위수 * 더보기 블록개수
+            let limitNum = moreBlock * moreNum;
+            // 한계값이 전체 레코드수(totNum)보다 커지면
+            // 전체레코드수로 고정!
+            if (limitNum > totNum) limitNum = totNum;
+
+            for (let i = 0; i < limitNum; i++) {
+                // 순회하며 데이터 넣기
+                retVal.push(
+                    <div key={i}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                showDetail(gdata[i].ginfo[0], gdata[i].cat);
+                            }}
+                        >
+                            [{i + 1}]
+                            <img
+                                src={"./images/goods/" + gdata[i].cat + "/" + gdata[i].ginfo[0] + ".png"}
+                                alt="dress"
+                            />
+                            <aside>
+                                <h2>{gdata[i].ginfo[1]}</h2>
+                                <h3>{addComma(gdata[i].ginfo[3])}원</h3>
+                            </aside>
+                        </a>
+                    </div>
+                );
+            } //////// for //////////////
+        } ////////////// else if //////////////
 
         // 분기문 결과 리턴하기 ////
         return retVal;
@@ -364,9 +418,24 @@ export function GList() {
                 myCon.gMode === "M" && (
                     <section>
                         <div className="grid">{makeList()}</div>
-                        <div id="more">
-                            <button className="more">MORE</button>
-                        </div>
+                        {
+                            // 더보기 블록개수가 한계수가 아닐때만 버튼출력
+                            moreNum !== moreLimit && (
+                                <div id="more">
+                                    <button
+                                        className="more"
+                                        onClick={() => {
+                                            // 부모 클릭 상태변수값 false변경!
+                                            myCon.gInit.current = false;
+                                            let temp = moreNum;
+                                            setMoreNum(++temp);
+                                        }}
+                                    >
+                                        MORE
+                                    </button>
+                                </div>
+                            )
+                        }
                     </section>
                 )
             }
