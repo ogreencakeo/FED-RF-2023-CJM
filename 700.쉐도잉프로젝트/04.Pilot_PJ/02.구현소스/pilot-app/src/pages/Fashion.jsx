@@ -79,7 +79,7 @@ export function Fashion(props) {
 
     // 카테고리가 변경시에만 위로이동!
     if (props.cat !== afterCat.current) setPos(0);
-  
+
     // 이전카테고리 업데이트
     afterCat.current = props.cat;
 
