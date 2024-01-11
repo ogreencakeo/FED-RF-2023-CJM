@@ -13,9 +13,33 @@ export function SinSang({ cat, chgItemFn }) {
     // cat - 카테고리 분류명
     // chgItemFn - 선택 품정 정보 변경 부모함수
 
+    // 이전 카테고리 저장용 참조변수
+    const afterCat = useRef(null);
+
+    // 신상품 리스트 이동함수 사용변수 ///////
+    // 위치값 변수 (left 값) - 리랜더링시 기존값을 유지하도록
+    // -> useRef를 사용한다 -> 변수명.current로 사용!
+    const lpos = useRef(0);
+    // 재귀호출 상태값(1-호출, 0-멈춤)
+    const callStst = useRef(1);
+
+    // 확인
+    console.log('신상 cat :', cat, ', 신상 after cat :', afterCat.current);
+
+    // 들어온 cat 파라미터 값과 이전 cat을 저장한 afterCat 값이 다를때
+    // 새로운 cat으로 변경되었으므로 초기화를 실행함
+    if(cat !== afterCat.current){
+        // 신상 흘러가기 변수 초기화
+        lpos.current = 0;
+        // 신상 멈춤 / 가기 상태변수 초기화
+        callStst.current = 1;
+    }
+
+    // cat을 afetCat에 담아서 다음번에 비교하게 한다.
+    afterCat.current = cat;
+
     // 컨텍스트 API 사용하기
     const myCon = useContext(pCon);
-
 
     // 선택 데이터 : 해당 카테고리 상품 데이터만 가져온다
     const selData = sinsangData[cat];
@@ -84,15 +108,7 @@ export function SinSang({ cat, chgItemFn }) {
         $(e.currentTarget).find(".ibox").remove();
     };
 
-    // 신상품 리스트 이동함수 사용변수 ///////
-    // 위치값 변수 (left 값) - 리랜더링시 기존값을 유지하도록
-    // -> useRef를 사용한다 -> 변수명.current로 사용!
-    let lpos = useRef(0);
-
-    // 재귀호출 상태값(1-호출, 0-멈춤)
-    let callStst = 1;
-
-    // 신상품 리스트 이동함수
+    // [ 신상품 리스트 이동함수 ]
     const flowList = (ele) => {
         // ele - 움직일 대상
         // console.log("flowList ele :", ele);
@@ -111,7 +127,7 @@ export function SinSang({ cat, chgItemFn }) {
         ele.css({ left: lpos.current + "px" });
 
         // 재귀호출
-        if (callStst) setTimeout(() => flowList(ele), 40);
+        if (callStst.current) setTimeout(() => flowList(ele), 40);
     }; // flowList /////////////////
 
     // 랜더링 후 한번만 실행구역 //////////////
@@ -127,13 +143,14 @@ export function SinSang({ cat, chgItemFn }) {
         <>
             <h2 className="c1tit">
                 NEW MEN'S ARRIVAL
-                <button onClick={()=>myCon.chgPgName('glist')}>전체리스트</button>
+                <button onClick={() => myCon.chgPgName("glist")}>전체리스트</button>
             </h2>
             <div
                 className="flowbx"
-                onMouseOver={() => (callStst = 0)}
+                onMouseOver={() => (callStst.current = 0)}
                 onMouseOut={() => {
-                    callStst = 1;
+                    callStst.current = 1;
+                    flowList($('.flist'));
                 }}
             >
                 <ul className="flist">{makeList()}</ul>
