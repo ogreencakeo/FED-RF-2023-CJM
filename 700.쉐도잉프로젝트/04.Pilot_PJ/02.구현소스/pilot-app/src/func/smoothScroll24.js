@@ -30,26 +30,28 @@ var moving = false;
 pos = target.scrollTop;
 var frame = target === document.body && document.documentElement ? document.documentElement : target; // safari is the new IE
 
-target.addEventListener("mousewheel", scrolled, {
-    passive: false,
-});
-target.addEventListener("DOMMouseScroll", scrolled, {
-    passive: false,
-});
-
 
 // 여기서 이벤트 연결설정 하지 않고 리액트 페이지에서 함!
 // 그래야 removeEventListner를 할 수 있음
-// function scrolled(e) {
-//     e.preventDefault(); // disable default scrolling
 
-//     var delta = normalizeWheelDelta(e);
+// target.addEventListener("mousewheel", scrolled, {
+//     passive: false,
+// });
+// target.addEventListener("DOMMouseScroll", scrolled, {
+//     passive: false,
+// });
 
-//     pos += -delta * speed;
-//     pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
 
-//     if (!moving) update();
-// }
+function scrolled(e) {
+    e.preventDefault(); // disable default scrolling
+
+    var delta = normalizeWheelDelta(e);
+
+    pos += -delta * speed;
+    pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)); // limit scrolling
+
+    if (!moving) update();
+}
 
 function normalizeWheelDelta(e) {
     if (e.detail) {
@@ -86,4 +88,4 @@ var requestFrame = (function () {
 // }
 
 // 내보내기 : 시작함수 + 위치값변경함수
-export { startSS, setPos };
+export { scrolled, setPos };
