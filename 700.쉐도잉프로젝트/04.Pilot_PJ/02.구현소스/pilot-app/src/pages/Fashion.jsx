@@ -68,6 +68,10 @@ export function Fashion(props) {
         };
     }, []); // useEffect //////////////
 
+    // useEffect(()=>{
+    //     setPos(0);
+    // },[props.cat])
+
     //////////////////////////
     // 카테고리 이전것 저장변수 만들기
     const afterCat = useRef(null);
