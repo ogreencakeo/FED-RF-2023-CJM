@@ -28,12 +28,20 @@ export function SinSang({ cat, chgItemFn }) {
 
     // 들어온 cat 파라미터 값과 이전 cat을 저장한 afterCat 값이 다를때
     // 새로운 cat으로 변경되었으므로 초기화를 실행함
-    if(cat !== afterCat.current){
+    // if(cat !== afterCat.current){
+    //     // 신상 흘러가기 변수 초기화
+    //     lpos.current = 0;
+    //     // 신상 멈춤 / 가기 상태변수 초기화
+    //     callStst.current = 1;
+    // }
+
+    useEffect(()=>{
         // 신상 흘러가기 변수 초기화
         lpos.current = 0;
         // 신상 멈춤 / 가기 상태변수 초기화
         callStst.current = 1;
-    }
+        
+    }, [cat]);
 
     // cat을 afetCat에 담아서 다음번에 비교하게 한다.
     afterCat.current = cat;
