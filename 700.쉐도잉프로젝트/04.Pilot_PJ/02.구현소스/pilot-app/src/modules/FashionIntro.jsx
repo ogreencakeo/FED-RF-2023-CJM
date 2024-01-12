@@ -63,6 +63,22 @@ export function FashionIntro(props) {
                         <img src={selData.isrc[1]} alt={selData.ialt[1]} />
                     </li>
                 )}
+                {/* 서브페이지용 구성 */}
+                {props.cat == "submen1" && (
+                    <>
+                        {/* 글자 박스 */}
+                        <h2>
+                            <a href="#">
+                                {selData.tit[0]} <br />
+                                {selData.tit[1]}
+                            </a>
+                        </h2>
+                        {/* 이미지 박스 */}
+                        <li className="imgc">
+                            <img src={selData.isrc} alt={selData.ialt} />
+                        </li>
+                    </>
+                )}
             </ul>
         </div>
     );

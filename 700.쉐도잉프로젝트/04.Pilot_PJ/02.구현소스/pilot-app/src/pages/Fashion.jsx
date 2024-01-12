@@ -143,7 +143,7 @@ export function Fashion(props) {
             </section>
             {/* 4. 단일상품영역 */}
             <section id="c3" className="cont c3">
-                <FashionIntro cat="women" />
+                <FashionIntro cat="submen1" />
             </section>
             {/* 5. 스타일상품영역 */}
             <section id="c4" className="cont c4">
