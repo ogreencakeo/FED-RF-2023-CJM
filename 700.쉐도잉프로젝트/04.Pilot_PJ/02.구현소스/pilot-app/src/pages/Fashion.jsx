@@ -1,6 +1,6 @@
 // 공통패션 서브페이지 컨텐츠 컴포넌트
 
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
 
 // 공통 서브 CSS 불러오기
 import "../css/fashion.css";
@@ -8,6 +8,9 @@ import { SwiperApp } from "../plugin/SwiperApp";
 
 // 컨텍스트 API
 import { pCon } from "../modules/PilotContext";
+
+// 데이터 셋업을 위한 gnb 데이터 불러오기
+import { gnbData } from "../data/gnb";
 
 // 제이쿼리
 import $ from "jquery";
@@ -18,12 +21,17 @@ import { useState } from "react";
 // 부드러운 스크롤 JS
 import { scrolled, setPos } from "../func/smoothScroll24";
 
+// 리액트용 패럴랙스 - 설치 : npm i react-parallax
+import { Parallax } from "react-parallax";
+import { FashionIntro } from "../modules/FashionIntro";
+// 설명 : https://www.npmjs.com/package/react-parallax
+
 export function Fashion(props) {
     // 컨텍스트 API 사용!
     const myCon = useContext(pCon);
 
     // props.cat - 서브 카테고리명
-    console.log('패션 페이지 cat :', props.cat);
+    console.log("패션 페이지 cat :", props.cat);
 
     useEffect(() => {
         // [ 부드러운 스크롤 함수 이벤트 설정하기 ]
@@ -68,9 +76,16 @@ export function Fashion(props) {
         };
     }, []); // useEffect //////////////
 
-    // useEffect(()=>{
-    //     setPos(0);
-    // },[props.cat])
+    // props.cat 카테고리가 변경될때만 맨 위로 값 변경!
+    useLayoutEffect(() => {
+        // 부드러운 스크롤 위치값
+        setPos(0);
+        // 윈도우 실제로 상단이동
+        window.scrollTo(0, 0);
+
+        // 열렸을 수 있는 상세 페이지 닫기
+        $(".bgbx").hide();
+    }, [props.cat]);
 
     //////////////////////////
     // 카테고리 이전것 저장변수 만들기
@@ -113,12 +128,27 @@ export function Fashion(props) {
             <div className="bgbx">
                 <ItemDetail goods={item} cat={props.cat} />
             </div>
-            {/* 3. 패럴랙스 영역 */}
-            <section id="c2" className="cont c2 men"></section>
+            {/* 3. 패럴랙스 영역 : 리액트용 페럴랙스 적용 */}
+            <section id="c2" className="cont">
+                <Parallax
+                    className="c2"
+                    // 패럴랙스할 배경이미지 설정속성 bgImage
+                    bgImage={`./images/sub/${props.cat}/02.special.png`}
+                    // 패럴랙스 이동정도 조정 속성 strength
+                    // 수치범위 : -500 ~ 1000 -> 높은 숫자는 반대방향
+                    strength={100}
+                >
+                    <h2 class="c2tit">2024 {gnbData[props.cat][1]}</h2>
+                </Parallax>
+            </section>
             {/* 4. 단일상품영역 */}
-            <section id="c3" className="cont c3"></section>
+            <section id="c3" className="cont c3">
+                <FashionIntro cat="women" />
+            </section>
             {/* 5. 스타일상품영역 */}
-            <section id="c4" className="cont c4"></section>
+            <section id="c4" className="cont c4">
+                <FashionIntro cat="style" />
+            </section>
         </>
     );
 } //////// Fashion 컴포넌트 ///////

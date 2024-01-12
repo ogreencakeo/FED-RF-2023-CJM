@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useLayoutEffect, useRef } from "react";
 
 // 컨텍스트 API 불러오기
 import { pCon } from "./PilotContext";
@@ -14,7 +14,7 @@ export function SinSang({ cat, chgItemFn }) {
     // chgItemFn - 선택 품정 정보 변경 부모함수
 
     // 이전 카테고리 저장용 참조변수
-    const afterCat = useRef(null);
+    // const afterCat = useRef(null);
 
     // 신상품 리스트 이동함수 사용변수 ///////
     // 위치값 변수 (left 값) - 리랜더링시 기존값을 유지하도록
@@ -24,7 +24,7 @@ export function SinSang({ cat, chgItemFn }) {
     const callStst = useRef(1);
 
     // 확인
-    console.log('신상 cat :', cat, ', 신상 after cat :', afterCat.current);
+    // console.log('신상 cat :', cat, ', 신상 after cat :', afterCat.current);
 
     // 들어온 cat 파라미터 값과 이전 cat을 저장한 afterCat 값이 다를때
     // 새로운 cat으로 변경되었으므로 초기화를 실행함
@@ -35,16 +35,16 @@ export function SinSang({ cat, chgItemFn }) {
     //     callStst.current = 1;
     // }
 
-    useEffect(()=>{
+    // 전달변수 cat 카테고리명이 다를 경우에만 업데이트!
+    useLayoutEffect(()=>{
         // 신상 흘러가기 변수 초기화
         lpos.current = 0;
         // 신상 멈춤 / 가기 상태변수 초기화
-        callStst.current = 1;
-        
+        callStst.current = 1;  
     }, [cat]);
 
     // cat을 afetCat에 담아서 다음번에 비교하게 한다.
-    afterCat.current = cat;
+    // afterCat.current = cat;
 
     // 컨텍스트 API 사용하기
     const myCon = useContext(pCon);

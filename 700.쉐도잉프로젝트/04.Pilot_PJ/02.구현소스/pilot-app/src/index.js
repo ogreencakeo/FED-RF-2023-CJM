@@ -93,11 +93,6 @@ function App() {
         // 랜더링구역 한번만 실행 : 옵션 []
     }, []); ////////// useEffect //////////////
 
-    // 처음 로딩시 스크롤 상단이동 //////
-    useLayoutEffect(() => {
-        window.scrollTo(0, 0);
-    }, []); ///// useLayoutEffect //////////
-
     useEffect(()=>{
         // 전체 상품 리스트 페이지를 위한 초기화 변수 확인
         console.log('초기화 상태값 :', gInit.current);
