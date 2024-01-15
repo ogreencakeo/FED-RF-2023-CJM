@@ -76,6 +76,9 @@ export function Fashion(props) {
 
             // 등장액션 체크함수 이벤트 해제하기
             window.removeEventListener('scroll', chkPos);
+
+            // 끝낼때 이벤트 소멸하기
+            $('.gnb a').off('click');
         };
     }, []); // useEffect //////////////
 
