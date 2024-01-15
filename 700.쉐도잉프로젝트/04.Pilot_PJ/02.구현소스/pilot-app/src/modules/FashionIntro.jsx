@@ -78,18 +78,49 @@ export function FashionIntro(props) {
                     </li>
                 )}
                 {/* 서브페이지용 구성 */}
-                {props.cat == "submen1" && (
+                {/* sub이고 첫번째 sub 분류 데이터 */}
+                {props.cat == "sub" && props.subcat[1] === 0 && (
                     <>
                         {/* 글자 박스 */}
-                        <h2>
-                            <a href="#">
-                                {selData.tit[0]} <br />
-                                {selData.tit[1]}
-                            </a>
-                        </h2>
+                        <li className="txtc">
+                            <h2>
+                                <a href="#">
+                                    {selData.tit[0]} <br />
+                                    {selData.tit[1]}
+                                </a>
+                            </h2>
+                        </li>
                         {/* 이미지 박스 */}
                         <li className="imgc">
                             <img src={selData.isrc} alt={selData.ialt} />
+                        </li>
+                    </>
+                )}
+                {/* sub이고 두번째 sub 분류 데이터 */}
+                {props.cat == "sub" && props.subcat[1] === 1 && (
+                    <>
+                        {/* 이미지 박스 */}
+                        <li className="imgc">
+                            <img src={selData.isrc[0]} alt={selData.ialt[0]} />
+                        </li>
+                        {/* 글자 박스 */}
+                        <li className="txtc">
+                            <h2 className="tm">
+                                <a href="#">
+                                    {selData.tit[0][0]} <br />
+                                    {selData.tit[0][1]}
+                                </a>
+                            </h2>
+                            <h2 className="tw">
+                                <a href="#">
+                                    {selData.tit[1][0]} <br />
+                                    {selData.tit[1][1]}
+                                </a>
+                            </h2>
+                        </li>
+                        {/* 이미지 박스 */}
+                        <li className="imgc">
+                            <img src={selData.isrc[1]} alt={selData.ialt[1]} />
                         </li>
                     </>
                 )}
