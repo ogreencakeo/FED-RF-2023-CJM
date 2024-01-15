@@ -91,6 +91,24 @@ export function Fashion(props) {
         // 열렸을 수 있는 상세 페이지 닫기
         $(".bgbx").hide();
 
+
+        // 메뉴 클릭시 위치 이동하기
+        $('.gnb a').on('click', e => {
+            e.preventDefault();
+            // 아이디 읽어오기
+            let cid = $(e.currentTarget).attr('href');
+            // 해당 아이디 위치값 
+            let cpos = $(cid).offset().top;
+            console.log(cpos);
+            // 해당 위치로 이동 애니메이션 
+            $('htmp, body').stop().animate({
+                scrollTop : cpos + 'px'
+            }, 600);
+
+            // 부드러운 스크롤 위치값 씽크 맞춤
+            setPos(cpos);
+        });
+
         ////////////////////////////////
         // 스크롤 등장액션 만들기 ////////
         ////////////////////////////////
