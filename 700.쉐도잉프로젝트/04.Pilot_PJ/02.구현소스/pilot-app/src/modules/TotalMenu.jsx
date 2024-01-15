@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { pCon } from "./PilotContext";
 
 export function TotalMenu() {
-
     // 컨텍스트 사용
     const myCon = useContext(pCon);
     // pCon에 Provider value 속성에 공개한 변수/함수를 사용함
@@ -14,7 +13,7 @@ export function TotalMenu() {
     const goPage = (txt) => {
         myCon.chgPgName(txt);
         // 전체 박스 숨기기
-        document.querySelector('.mbox').style.display = 'none';
+        document.querySelector(".mbox").style.display = "none";
     }; // goPage 메서드
 
     return (
@@ -24,7 +23,15 @@ export function TotalMenu() {
                 <nav className="mlist">
                     <dl>
                         <dt>
-                            <a href="#" onClick={()=>goPage('men')}>MEN</a>
+                            <a
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    goPage("men");
+                                }}
+                            >
+                                MEN
+                            </a>
                         </dt>
                         <dd>
                             <a href="#">T-SHIRT</a>
@@ -41,7 +48,12 @@ export function TotalMenu() {
                     </dl>
                     <dl>
                         <dt>
-                            <a href="#" onClick={()=>goPage('women')}>WOMEN</a>
+                            <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    goPage("women");
+                                }}>
+                                WOMEN
+                            </a>
                         </dt>
                         <dd>
                             <a href="#">T-SHIRT</a>
@@ -58,7 +70,12 @@ export function TotalMenu() {
                     </dl>
                     <dl>
                         <dt>
-                            <a href="#" onClick={()=>goPage('style')}>STYLE</a>
+                            <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    goPage("style");
+                                }}>
+                                STYLE
+                            </a>
                         </dt>
                         <dd>
                             <a href="#">COLLECTION</a>
