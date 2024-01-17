@@ -3,6 +3,7 @@
 // 게시판용 CSS
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import "../../css/board.css";
+import "../../css/board_file.css";
 
 // 컨텍스트 API 불러오기
 import { dcCon } from "../modules/dcContext";
@@ -1002,6 +1003,12 @@ export function Board() {
                                     <textarea className="content" cols="60" rows="10"></textarea>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Attachment</td>
+                                <td>
+                                    <AttachBox />
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 )
@@ -1175,3 +1182,77 @@ export function Board() {
         </>
     );
 } //////////// Board 컴포넌트 /////////////
+
+////////////////////////////////////////////////
+// 업로드 기능 서브 컴포넌트 및 메서드 만들기 //
+///////////////////////////////////////////////
+
+// 업로드 모듈을 리턴하는 서브 컴포넌트 /////
+const AttachBox = () => {
+    // [상태관리 변수]
+    // 1. 드래그 또는 파일을 첨부할때 활성화 여부 관리 변수
+    // 값 : true이면 활성화, false이면 비활성화
+    const [isOn, setIsOn] = useState(false);
+    // 2. 업로드파일 정보 관리변수
+    const [uploadedInfo, setUploadedInfo] = useState(null);
+
+    // [ 이벤트 처리 메서드 ]
+    // 드래그 대상영역을 들어가고 나갈때 isOn 상태값 업데이트 하기
+    const controllDragEnter = () => setIsOn(true);
+    const controllDragLeave = () => setIsOn(false);
+
+    // 드래그를 할때 dragOver 이벤트는 비활성화 함(필요가 없어서)
+    const controllDragOver = (e) => e.preventDefault();
+
+    // 드롭이벤트 발생시 처리 메서드
+    const controllDrop = e => {
+        // 기본 드롭기능 막기
+        e.preventDefault();
+        // 드롭 했으므로 비활성화 전환
+        setIsOn(false);
+
+        // 파일 정보 읽어오기
+        const fileInfo = e.dataTransfer.files[0];
+        console.log('fileInfo :', fileInfo);
+    }
+
+    /* 
+        [ 드래그 관련 이벤트 구분 ]
+        onDragEnter = 드래그 대상 영역 안으로 들어갈때
+        onDragLeave = 드래그 대상 영역 밖으로 나갈갈때
+        onDragOver = 드래그 대상 영역 위에 있을 때
+        onDrop = 드래그 대상 영역 안에 드롭될 때
+    */
+    // 리턴 코드
+    return (
+        <label className="info-view"
+            onDragEnter={controllDragEnter}
+            onDragLeave={controllDragLeave}
+            onDragOver={controllDragOver}
+            onDrop={controllDrop}
+        >
+            <input type="file" className="file" />
+            {
+                // 업로드 정보가 null이 아니면 파일정보 출력
+            }
+            {
+                // 업로드 정보가 null이면 안내문자 출력
+                !uploadedInfo &&
+                <>
+                    {/* 업로드 안내 아이콘 */}
+                    <UpIcon />
+                    <p className="info-view-msg">Click or drop the file here.</p>
+                    <p className="info-view-desc">Up to 3MB per file.</p>
+                </>
+            }
+        </label>
+    )
+}; // AttachBox 컴포넌트 /////////
+
+// 업로드 표시 아이콘 SVG 태그 리턴 컴포넌트 //////
+// 화살표 함수에 중괄호 안쓰고 JSX 태그를 바로 쓰면 리턴 키워드 생략
+const UpIcon = () => (
+    <svg className="icon" x="0px" y="0px" viewBox="0 0 99.09 122.88">
+        <path fill="#000" d="M64.64,13,86.77,36.21H64.64V13ZM42.58,71.67a3.25,3.25,0,0,1-4.92-4.25l9.42-10.91a3.26,3.26,0,0,1,4.59-.33,5.14,5.14,0,0,1,.4.41l9.3,10.28a3.24,3.24,0,0,1-4.81,4.35L52.8,67.07V82.52a3.26,3.26,0,1,1-6.52,0V67.38l-3.7,4.29ZM24.22,85.42a3.26,3.26,0,1,1,6.52,0v7.46H68.36V85.42a3.26,3.26,0,1,1,6.51,0V96.14a3.26,3.26,0,0,1-3.26,3.26H27.48a3.26,3.26,0,0,1-3.26-3.26V85.42ZM99.08,39.19c.15-.57-1.18-2.07-2.68-3.56L63.8,1.36A3.63,3.63,0,0,0,61,0H6.62A6.62,6.62,0,0,0,0,6.62V116.26a6.62,6.62,0,0,0,6.62,6.62H92.46a6.62,6.62,0,0,0,6.62-6.62V39.19Zm-7.4,4.42v71.87H7.4V7.37H57.25V39.9A3.71,3.71,0,0,0,61,43.61Z" />
+    </svg>
+);// UpIcon 컴포넌트 /////////
