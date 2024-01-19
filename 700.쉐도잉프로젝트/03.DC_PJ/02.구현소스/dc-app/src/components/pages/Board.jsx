@@ -17,6 +17,9 @@ import $ from "jquery";
 // 기본 데이터 제이슨 불러오기
 import baseData from "../data/board.json";
 
+// 파일전송 요청을 위해 엑스오스 불러오기
+import axios from "axios";
+
 // 기본 데이터 역순정렬
 baseData.sort((a, b) => {
     return Number(a.idx) === Number(b.idx) ? 0 : Number(a.idx) > Number(b.idx) ? -1 : 1;
@@ -1218,7 +1221,20 @@ const AttachBox = () => {
         
         // 파일정보 셋팅 메서드 호출
         setFileInfo(fileInfo);
-    }
+
+        // 원래는 form 태그로 싸여있어서 서버 전송을 하지만,
+        // 없어도 form 전송을 서버에 할 수 있는 객체가 있다.
+        // formData() 클래스 객체임.
+        const formData = new FormData();
+        // 전송할 데이터 추가하기
+        formData.append('file', fileInfo);
+
+        // 폼 데이터에는 키 값이 있음 확인하자
+        for(const key of formData) console.log(key);
+
+        // 서버 전송은 엑시오스로 하자
+
+    };
 
     // 드롭된 파일 정보를 화면에 뿌려주는 메서드
     const setFileInfo = (fileInfo) => {
