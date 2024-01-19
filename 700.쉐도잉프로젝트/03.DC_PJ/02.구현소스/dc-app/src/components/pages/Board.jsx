@@ -592,32 +592,35 @@ export function Board() {
                 // // console.log("입력전 준비데이터:", temp);
 
                 // [ 선택파일 서버 전송 ]
-                // 원래는 form 태그로 싸여있어서 서버 전송을 하지만,
-                // 없어도 form 전송을 서버에 할 수 있는 객체가 있다.
-                // formData() 클래스 객체임.
-                const formData = new FormData();
-                // 전송할 데이터 추가하기
-                formData.append("file", fileInfo);
-
-                // 폼 데이터에는 키 값이 있음 확인하자
-                for (const key of formData) console.log(key);
-                // 서버 전송은 엑시오스로 하자
-                // server.js에 서버에서 post방식으로 전송받는
-                // 셋팅이 익스프레스에서 되어 있어야 함
-                // 첫 번째 셋팅값 전송 url에는 서버에 셋팅된
-                // path값과 같은 upload라는 하위 경로를 써준다
-                // 두번째 셋팅값은 서버로 전송될 파일정보를 써준다.
-                axios
-                    .post("http://localhost:8080/upload", formData)
-                    .then((res) => {
-                        // res는 성공결과 리턴값 변수
-                        const { fileName } = res.data;
-                        console.log("전송성공!!", fileName);
-                    })
-                    .catch((err) => {
-                        // err은 에러발생시 에러정보 변수
-                        console.log("에러발생 :", err);
-                    });
+                if(uploadFile.current){
+                    // null 아닌 할당상태일때만 
+                    // 원래는 form 태그로 싸여있어서 서버 전송을 하지만,
+                    // 없어도 form 전송을 서버에 할 수 있는 객체가 있다.
+                    // formData() 클래스 객체임.
+                    const formData = new FormData();
+                    // 전송할 데이터 추가하기
+                    formData.append("file", fileInfo);
+    
+                    // 폼 데이터에는 키 값이 있음 확인하자
+                    for (const key of formData) console.log(key);
+                    // 서버 전송은 엑시오스로 하자
+                    // server.js에 서버에서 post방식으로 전송받는
+                    // 셋팅이 익스프레스에서 되어 있어야 함
+                    // 첫 번째 셋팅값 전송 url에는 서버에 셋팅된
+                    // path값과 같은 upload라는 하위 경로를 써준다
+                    // 두번째 셋팅값은 서버로 전송될 파일정보를 써준다.
+                    axios
+                        .post("http://localhost:8080/upload", formData)
+                        .then((res) => {
+                            // res는 성공결과 리턴값 변수
+                            const { fileName } = res.data;
+                            console.log("전송성공!!", fileName);
+                        })
+                        .catch((err) => {
+                            // err은 에러발생시 에러정보 변수
+                            console.log("에러발생 :", err);
+                        });
+                }
 
                 // 5. 원본임시변수에 배열데이터 값 push하기
                 orgTemp.push(temp);
