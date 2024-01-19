@@ -577,16 +577,19 @@ export function Board() {
                 // 입력된 업로드 파일 정보
                 console.log('업로드 파일정보 :', uploadFile.current);
 
+                // 업데이트 파일정보 확인
+                console.log('업데이트파일정보 :', uploadFile.current);
+
                 // 4. 임시변수에 입력할 객체 데이터 생성하기
                 let temp = {
-                    idx: maxNum + 1,
-                    tit: subEle.val().trim(),
-                    cont: contEle.val().trim(),
-                    att: uploadFile.current.name, // 파일 이름 업데이트
+                    idx: idxData + 1,
+                    tit: subVal,
+                    cont: contVal,
+                    att: uploadFile.current.name,
                     date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
-                    uid: logData.current.uid,
-                    unm: logData.current.unm,
-                    cnt: "0",
+                    uid: selData.current.uid,
+                    unm: selData.current.unm,
+                    cnt: 0,
                 };
 
                 // // console.log("입력전 준비데이터:", temp);
@@ -620,7 +623,7 @@ export function Board() {
                             // err은 에러발생시 에러정보 변수
                             console.log("에러발생 :", err);
                         });
-                }
+                } // if ////////////
 
                 // 5. 원본임시변수에 배열데이터 값 push하기
                 orgTemp.push(temp);
@@ -1233,7 +1236,7 @@ export function Board() {
 ///////////////////////////////////////////////
 
 // 업로드 모듈을 리턴하는 서브 컴포넌트 /////
-const AttachBox = () => {
+const AttachBox = ({saveFile}) => { // saveFile 프롭스 펑션 다운!
     // [상태관리 변수]
     // 1. 드래그 또는 파일을 첨부할때 활성화 여부 관리 변수
     // 값 : true이면 활성화, false이면 비활성화
