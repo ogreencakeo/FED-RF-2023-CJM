@@ -583,7 +583,8 @@ export function Board() {
                     idx: maxNum + 1,
                     tit: subEle.val().trim(),
                     cont: contEle.val().trim(),
-                    att: uploadFile.current.name, //파일명 업데이트
+                    att: uploadFile.current ? uploadFile.current.name : "",
+                    // 파일명 업데이트
                     date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
                     uid: logData.current.uid,
                     unm: logData.current.unm,
@@ -622,6 +623,9 @@ export function Board() {
                             // err은 에러발생시 에러정보 변수
                             console.log("에러발생:", err);
                         });
+
+                    // 파일참조변수 초기화 필수!!
+                    uploadFile.current = null;
                 } ///////////////// if ///////////////
 
                 // 5. 원본임시변수에 배열데이터 값 push하기
@@ -1097,6 +1101,14 @@ export function Board() {
                                     ></textarea>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Attachment</td>
+                                <td>
+                                    <a href={"/uploads/" + cData.current.att} download={true}>
+                                        {cData.current.att}
+                                    </a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 )
@@ -1131,6 +1143,12 @@ export function Board() {
                                         defaultValue={cData.current.cont}
                                     ></textarea>
                                     {/* defaultValue로 써야 수정가능! */}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Attachment</td>
+                                <td>
+                                    <b>{cData.current.att}</b>
                                 </td>
                             </tr>
                         </tbody>
