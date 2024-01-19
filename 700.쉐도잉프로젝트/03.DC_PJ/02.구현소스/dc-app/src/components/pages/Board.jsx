@@ -96,6 +96,12 @@ export function Board() {
     // 주의: 참조변수는 최초 랜더링시에만 초기값 셋팅되고
     // 리랜더링시엔 다시 셋팅되지 않는다!!!
 
+    // 7. 파일 저장변수 (참조변수)
+    const uploadFile = useRef(null);
+    // 파일 저장 변수 업데이트 함수
+    // -> AttachBox 컴포넌트 속성으로 내려보냄!!!
+    const updateFileInfo = (x) => (uploadFile.current = x);
+
     // 리랜더링 루프에 빠지지 않도록 랜더링후 실행구역에
     // 변경코드를 써준다! 단, logSts에 의존성을 설정해준다!
     useEffect(() => {
@@ -568,12 +574,15 @@ export function Board() {
                 // let test = Math.max(1,2,3,4,5);
                 // // console.log('1~5사이최대값:',test);
 
+                // 입력된 업로드 파일 정보
+                console.log('업로드 파일정보 :', uploadFile.current);
+
                 // 4. 임시변수에 입력할 객체 데이터 생성하기
                 let temp = {
                     idx: maxNum + 1,
                     tit: subEle.val().trim(),
                     cont: contEle.val().trim(),
-                    att: "",
+                    att: uploadFile.current.name, // 파일 이름 업데이트
                     date: `${yy}-${addZero(mm)}-${addZero(dd)}`,
                     uid: logData.current.uid,
                     unm: logData.current.unm,
@@ -581,6 +590,34 @@ export function Board() {
                 };
 
                 // // console.log("입력전 준비데이터:", temp);
+
+                // [ 선택파일 서버 전송 ]
+                // 원래는 form 태그로 싸여있어서 서버 전송을 하지만,
+                // 없어도 form 전송을 서버에 할 수 있는 객체가 있다.
+                // formData() 클래스 객체임.
+                const formData = new FormData();
+                // 전송할 데이터 추가하기
+                formData.append("file", fileInfo);
+
+                // 폼 데이터에는 키 값이 있음 확인하자
+                for (const key of formData) console.log(key);
+                // 서버 전송은 엑시오스로 하자
+                // server.js에 서버에서 post방식으로 전송받는
+                // 셋팅이 익스프레스에서 되어 있어야 함
+                // 첫 번째 셋팅값 전송 url에는 서버에 셋팅된
+                // path값과 같은 upload라는 하위 경로를 써준다
+                // 두번째 셋팅값은 서버로 전송될 파일정보를 써준다.
+                axios
+                    .post("http://localhost:8080/upload", formData)
+                    .then((res) => {
+                        // res는 성공결과 리턴값 변수
+                        const { fileName } = res.data;
+                        console.log("전송성공!!", fileName);
+                    })
+                    .catch((err) => {
+                        // err은 에러발생시 에러정보 변수
+                        console.log("에러발생 :", err);
+                    });
 
                 // 5. 원본임시변수에 배열데이터 값 push하기
                 orgTemp.push(temp);
@@ -1009,7 +1046,9 @@ export function Board() {
                             <tr>
                                 <td>Attachment</td>
                                 <td>
-                                    <AttachBox />
+                                    {/* 파일정보를 하위 컴포넌트에서 상위 컴포넌트 변수인
+                                        uploadFile에 저장한다! */}
+                                    <AttachBox saveFile={updateFileInfo} />
                                 </td>
                             </tr>
                         </tbody>
@@ -1208,7 +1247,7 @@ const AttachBox = () => {
     const controllDragOver = (e) => e.preventDefault();
 
     // 드롭이벤트 발생시 처리 메서드
-    const controllDrop = e => {
+    const controllDrop = (e) => {
         // 기본 드롭기능 막기
         e.preventDefault();
         // 드롭 했으므로 비활성화 전환
@@ -1217,53 +1256,52 @@ const AttachBox = () => {
         // 파일 정보 읽어오기
         // 드롭된 파일로 부터 전송된 파일정보는 아래와 같이 읽어온다!
         const fileInfo = e.dataTransfer.files[0];
-        console.log('fileInfo :', fileInfo);
-        
+        console.log("fileInfo :", fileInfo);
+
         // 파일정보 셋팅 메서드 호출
         setFileInfo(fileInfo);
 
-        // 원래는 form 태그로 싸여있어서 서버 전송을 하지만,
-        // 없어도 form 전송을 서버에 할 수 있는 객체가 있다.
-        // formData() 클래스 객체임.
-        const formData = new FormData();
-        // 전송할 데이터 추가하기
-        formData.append('file', fileInfo);
+        // 서브밋 저장구역에서 파일정보를 사용하도록
+        // 상위 컴포넌트 변수인 uploadFile에 저장하는
+        // 함수인 updateFileInfo()를 호출하는 속성인
+        // saveFile() 속성함수를 사용하여 업데이트한다.
+        saveFile(fileInfo);
 
-        // 폼 데이터에는 키 값이 있음 확인하자
-        for(const key of formData) console.log(key);
-
-        // 서버 전송은 엑시오스로 하자
-        // server.js에 서버에서 post방식으로 전송받는
-        // 셋팅이 익스프레스에서 되어 있어야 함
-        // 첫 번째 셋팅값 전송 url에는 서버에 셋팅된
-        // path값과 같은 upload라는 하위 경로를 써준다
-        // 두번째 셋팅값은 서버로 전송될 파일정보를 써준다.
-        axios.post('http://localhost:8080/upload', formData)
-        .then(res=>{ // res는 성공결과 리턴값 변수
-            const {fileName} = res.data;
-            console.log('전송성공!!', fileName);
-        })
-        .catch(err=>{ // err은 에러발생시 에러정보 변수
-            console.log('에러발생 :', err);
-        });
+        // 서버 전송은 서브밋 버튼 클릭후 실행!!!
     };
 
     // 드롭된 파일 정보를 화면에 뿌려주는 메서드
     const setFileInfo = (fileInfo) => {
         // 전달된 객체값을 한번에 할당하는 방법 (객체 구조분해법)
         // 구조분해 할당을 하면 객체의 값이 담긴다.
-        const {name, size : byteSize, type} = fileInfo;
+        const { name, size: byteSize, type } = fileInfo;
         // 바이트 단위의 파일크기를 mb 단위로 변환한다!
-        const size = (byteSize/(1024 * 1024)).toFixed(2) + 'mb';
+        const size = (byteSize / (1024 * 1024)).toFixed(2) + "mb";
         // console.log('전체값 :', fileInfo);
         // console.log('name :', name);
         // console.log('size :', size);
         // console.log('type :', type);
 
         // 파일정보 상태관리 변수에 업데이트 함
-        setUploadedInfo({name, size, type});
+        setUploadedInfo({ name, size, type });
         // -> 변경시 리랜더링으로 업로드 구역에 반영됨
+    };
 
+    // 파일선택 입력창 클릭시 파일선택으로 상태가 변경될때
+    // 파일정보 업데이트 하기 함수
+    const changeUpload = ({target}) => { // target은 이벤트 타겟
+        // 파일정보 읽어오기
+        const fileInfo = target.files[0];
+        console.log("클릭파일 : ", file);
+
+        // 파일정보 셋팅 메서드 호출
+        setFileInfo(fileInfo);
+
+        // 서브밋 저장구역에서 파일정보를 사용하도록
+        // 상위 컴포넌트 변수인 uploadFile에 저장하는
+        // 함수인 updateFileInfo()를 호출하는 속성인
+        // saveFile() 속성함수를 사용하여 업데이트한다.
+        saveFile(fileInfo);
     };
 
     /* 
@@ -1273,31 +1311,36 @@ const AttachBox = () => {
         onDragOver = 드래그 대상 영역 위에 있을 때
         onDrop = 드래그 대상 영역 안에 드롭될 때
     */
+
     // 리턴 코드
     return (
-        <label className="info-view"
+        <label
+            className="info-view"
             onDragEnter={controllDragEnter}
             onDragLeave={controllDragLeave}
             onDragOver={controllDragOver}
             onDrop={controllDrop}
         >
-            <input type="file" className="file" />
+            {/* 파일을 클릭하여 선택창이 뜰때 파일을 선택하면 
+                현재상태가 변경되기 때문에 onChange 이벤트 속성을 씀 */}
+            <input type="file" className="file" onChange={changeUpload} />
             {
                 // 업로드 정보가 null이 아니면 파일정보 출력
                 uploadedInfo && <FileInfo uploadedInfo={uploadedInfo} />
             }
             {
                 // 업로드 정보가 null이면 안내문자 출력
-                !uploadedInfo &&
-                <>
-                    {/* 업로드 안내 아이콘 */}
-                    <UpIcon />
-                    <p className="info-view-msg">Click or drop the file here.</p>
-                    <p className="info-view-desc">Up to 3MB per file.</p>
-                </>
+                !uploadedInfo && (
+                    <>
+                        {/* 업로드 안내 아이콘 */}
+                        <UpIcon />
+                        <p className="info-view-msg">Click or drop the file here.</p>
+                        <p className="info-view-desc">Up to 3MB per file.</p>
+                    </>
+                )
             }
         </label>
-    )
+    );
 }; // AttachBox 컴포넌트 /////////
 /* 
     Object.keys(obj) – 객체의 키만 담은 배열을 반환합니다.
@@ -1306,25 +1349,26 @@ const AttachBox = () => {
 */
 
 // 파일정보를 보여주는 파일정보 컴포넌트 ////////
-const FileInfo = ({uploadedInfo}) => (
+const FileInfo = ({ uploadedInfo }) => (
     <ul className="info-view-info">
         {console.log(Object.entries(uploadedInfo))}
-        {
-            Object.entries(uploadedInfo).map(([key, value]) => (
-                <li key={key}>
-                    <span className="info-key">{key} : </span>
-                    <span className="info-value">{value}</span>
-                </li>
-            ))
-        }
+        {Object.entries(uploadedInfo).map(([key, value]) => (
+            <li key={key}>
+                <span className="info-key">{key} : </span>
+                <span className="info-value">{value}</span>
+            </li>
+        ))}
     </ul>
 );
-// FileInfo 컴포넌트 ////////    
+// FileInfo 컴포넌트 ////////
 
 // 업로드 표시 아이콘 SVG 태그 리턴 컴포넌트 //////
 // 화살표 함수에 중괄호 안쓰고 JSX 태그를 바로 쓰면 리턴 키워드 생략
 const UpIcon = () => (
     <svg className="icon" x="0px" y="0px" viewBox="0 0 99.09 122.88">
-        <path fill="#000" d="M64.64,13,86.77,36.21H64.64V13ZM42.58,71.67a3.25,3.25,0,0,1-4.92-4.25l9.42-10.91a3.26,3.26,0,0,1,4.59-.33,5.14,5.14,0,0,1,.4.41l9.3,10.28a3.24,3.24,0,0,1-4.81,4.35L52.8,67.07V82.52a3.26,3.26,0,1,1-6.52,0V67.38l-3.7,4.29ZM24.22,85.42a3.26,3.26,0,1,1,6.52,0v7.46H68.36V85.42a3.26,3.26,0,1,1,6.51,0V96.14a3.26,3.26,0,0,1-3.26,3.26H27.48a3.26,3.26,0,0,1-3.26-3.26V85.42ZM99.08,39.19c.15-.57-1.18-2.07-2.68-3.56L63.8,1.36A3.63,3.63,0,0,0,61,0H6.62A6.62,6.62,0,0,0,0,6.62V116.26a6.62,6.62,0,0,0,6.62,6.62H92.46a6.62,6.62,0,0,0,6.62-6.62V39.19Zm-7.4,4.42v71.87H7.4V7.37H57.25V39.9A3.71,3.71,0,0,0,61,43.61Z" />
+        <path
+            fill="#000"
+            d="M64.64,13,86.77,36.21H64.64V13ZM42.58,71.67a3.25,3.25,0,0,1-4.92-4.25l9.42-10.91a3.26,3.26,0,0,1,4.59-.33,5.14,5.14,0,0,1,.4.41l9.3,10.28a3.24,3.24,0,0,1-4.81,4.35L52.8,67.07V82.52a3.26,3.26,0,1,1-6.52,0V67.38l-3.7,4.29ZM24.22,85.42a3.26,3.26,0,1,1,6.52,0v7.46H68.36V85.42a3.26,3.26,0,1,1,6.51,0V96.14a3.26,3.26,0,0,1-3.26,3.26H27.48a3.26,3.26,0,0,1-3.26-3.26V85.42ZM99.08,39.19c.15-.57-1.18-2.07-2.68-3.56L63.8,1.36A3.63,3.63,0,0,0,61,0H6.62A6.62,6.62,0,0,0,0,6.62V116.26a6.62,6.62,0,0,0,6.62,6.62H92.46a6.62,6.62,0,0,0,6.62-6.62V39.19Zm-7.4,4.42v71.87H7.4V7.37H57.25V39.9A3.71,3.71,0,0,0,61,43.61Z"
+        />
     </svg>
-);// UpIcon 컴포넌트 /////////
+); // UpIcon 컴포넌트 /////////
