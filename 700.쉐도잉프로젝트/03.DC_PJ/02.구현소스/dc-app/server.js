@@ -62,6 +62,11 @@ app.listen(8080, function () {
     console.log("8080포트로 연결됨!");
 });
 
+// 전송파일 인코딩 변환설정
+app.use(express.urlencoded({extended:true})); 
+// url : Uniform Resource 
+app.use(express.json());
+
 // 서버 루트폴더 정적 연결하기 (루트 정하기)
 // -> SPA에서 빌드하면 배포용 소스가 build 폴더에 생성되므로
 // 이 배포용 폴더를 Root로 잡으면 편하다!!
