@@ -14,7 +14,39 @@ const multer = require("multer");
 // 멀터를 이용하여 업로드 셋업을 한다.
 // multer() 에 업로드할 폴더 위치를 정해준다.
 // dest 속성에 값으로 셋팅!
-const upload = multer({ dest: "build/uploads/" });
+// 커스터마이징 없이 기본 dest로 업로드 위치를 셋팅하면 
+// 폴더가 없을 경우 폴더를 생성해준다.
+
+// But... ! 파일명이 겹쳐지므로 이것을 커스터마이징하여
+// 변경하게 되면 자동으로 폴더를 생성하지 않으므로
+// 우리가 upload라는 폴더를 생성해야 한다.
+// -> 배포시 이 폴더가 생기도록 SPA 개발폴더의 public 아래에
+// uploads 폴더를 만들어준다.
+
+// 파일명을 내가 원하는 원래 이름으로 들어가도록 변경한다.
+// 멀터 스토리지의 저장소를 사용함
+const storage = multer.diskStorage({
+    // 폴더경로를 여기에 설정함(dest 설정은 지워준다.)
+    destination : function(request, file, setPath){
+        // 여기에 파일 저장위치를 지정함
+        setPath(null, "build/uploads/");
+        // 여기 지정하면 자동으로 uploads파일을 만들지 않음!
+    },
+    // 파일명이 원래 이름으로 들어가도록 변경하기
+    filename:function(req, file, setName){
+        // 파일명을 오리지널 이름으로 변경
+        setName(null, file.originalname);
+        // 내부전달 2번째 값에 파일정보가 들어오고
+        // originalname 속성은 파일명 + 확장자가 있다!
+    }
+});
+
+// 변경된 정보가 반영되도록 storage를 담아준다.
+const upload = multer({ storage : storage });
+
+// 기본 경로만 사용한 방식 : 
+// const upload = multer({ dest: "build/uploads/" });
+
 // 파일 업로드는 POST방식으로 진행함
 // 익스프레스 서버 메서드에 post() 메서드로 설정함
 // -> 첫번째 값은 루트아래에 업로드 관련 post 전송을 선택
